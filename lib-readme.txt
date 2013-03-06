@@ -1,0 +1,12 @@
+Access_JDBC30.jar
+barbecue-1.5-modif.jar
+comm.jar
+jasperreports-3.1.2.jar
+javadbf-0.4.0.jar
+javax.comm.properties
+jna.jar
+junique-1.0.2.jar
+jxl.jar
+mail-1.4.5.jar
+rcmd.exe
+win32com.dll
