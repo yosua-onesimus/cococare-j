@@ -1,0 +1,14 @@
+<cococare-j>
+  <changes>
+    <changes on="8 Maret 2013">
+      <change type="new feature" description="..."/>
+	  <change type="bug fixed" description="..."/>
+    </changes>
+  </changes>
+  <classes>
+    <class name="...">
+	  <method name="..." function="..."/>
+	  <method name="..." function="..."/>
+	</class>
+  </classes>
+</cococare-j>

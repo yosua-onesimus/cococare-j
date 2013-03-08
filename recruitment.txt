@@ -2,8 +2,10 @@ cococare-j Recruitment:
   Software:
     NetBeans IDE 7.1 (Recommended) (http://netbeans.org/downloads/)
     MySQL Server 5.1 (Optional) (http://dev.mysql.com/downloads/mysql/)
+  Plugins:
+    cococare-j-code-templates.zip (Recommended) ()
   Library:
-    Hibernate (Recommended) (Included in NetBeans IDE)
+    Hibernate (Mandatory) (Included in NetBeans IDE)
       antlr-2.7.6.jar
       asm-attrs.jar
       asm.jar
@@ -20,7 +22,7 @@ cococare-j Recruitment:
       jdbc2_0-stdext.jar
       jta.jar
       org-apache-commons-logging.jar
-    Persistence (Recommended) (Included in NetBeans IDE)
+    Persistence (Mandatory) (Included in NetBeans IDE)
       ejb3-persistence.jar
     MySQL JDBC Driver (Optional) (Included in NetBeans IDE)
       mysql-connector-java-5.1.13-bin.jar
@@ -39,5 +41,5 @@ cococare-j Recruitment:
       win32com.dll
     Other Lib (Optional - Look And Feel) (https://github.com/yosua-onesimus/libraries/tree/master/java/look-and-feel-lib)
       liquidlnf.jar
-    cococare-j.jar (Mandatory)
+    cococare-j.jar (Mandatory) ()
 --eof--
