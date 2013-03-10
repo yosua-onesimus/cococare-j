@@ -30,6 +30,7 @@ cococare-j Recruitment:
       Access_JDBC30.jar
       barbecue-1.5-modif.jar
       comm.jar
+      itext-2.1.7.jar
       jasperreports-3.1.2.jar
       javadbf-0.4.0.jar
       javax.comm.properties
