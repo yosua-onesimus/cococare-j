@@ -1,0 +1,221 @@
+package cococare.framework.model.obj.util;
+
+//<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.common.CCFieldConfig;
+import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCFieldConfig.Type;
+import javax.persistence.Column;
+//</editor-fold>
+
+/**
+ * @author Yosua Onesimus
+ * @since 13.03.17
+ * @version 13.03.17
+ */
+public class UtilConfAppl {
+
+    @CCFieldConfig(componentId = "cmbApplLanguage", accessible = Accessible.MANDATORY, optionSource = "cococare.common.CCLanguage$LanguagePack")
+    private String applLanguage = "0";
+    @CCFieldConfig(componentId = "cmbApplLookAndFeel", accessible = Accessible.MANDATORY, optionSource = "cococare.swing.CCSwing$LookAndFeel")
+    private String applLookAndFeel = "0";
+    @CCFieldConfig(componentId = "cmbApplMenuPosition", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.common.CFApplCtrl$MenuPosition")
+    private String applMenuPosition = "0";
+    @Column(length = Integer.MAX_VALUE)
+    @CCFieldConfig(componentId = "attApplWallpaper", type = Type.IMAGE_FILE, optionReflectKey = "applWallpaperName")
+    private byte[] applWallpaper;
+    private String applWallpaperName;
+    //----------------------------------------------------------------------------------------------
+    @Column(length = Integer.MAX_VALUE)
+    @CCFieldConfig(componentId = "attCompanyLogo", type = Type.IMAGE_FILE, optionReflectKey = "companyLogoName")
+    private byte[] companyLogo;
+    private String companyLogoName;
+    @CCFieldConfig(componentId = "txtCompanyName", accessible = Accessible.MANDATORY)
+    private String companyName;
+    @CCFieldConfig(componentId = "txtCompanyAddress", accessible = Accessible.MANDATORY)
+    private String companyAddress;
+    @CCFieldConfig(componentId = "cmbCompanyCity", accessible = Accessible.MANDATORY, optionSource = "IndonesiaCities.txt")
+    private String companyCity = "147";
+    @CCFieldConfig(componentId = "cmbCompanyProvince", accessible = Accessible.MANDATORY, optionSource = "IndonesiaProvinces.txt")
+    private String companyProvince = "10";
+    @CCFieldConfig(componentId = "txtCompanyState", accessible = Accessible.MANDATORY_READONLY)
+    private String companyState = "Indonesia";
+    @CCFieldConfig(componentId = "txtCompanyPhone", type = Type.PHONE_NUMBER)
+    private String companyPhone;
+    @CCFieldConfig(componentId = "txtCompanyFax")
+    private String companyFax;
+    @CCFieldConfig(componentId = "txtCompanyEmail", type = Type.EMAIL)
+    private String companyEmail;
+    @CCFieldConfig(componentId = "txtCompanyWeb")
+    private String companyWeb;
+    //----------------------------------------------------------------------------------------------
+    @CCFieldConfig(componentId = "txtOwnerName", accessible = Accessible.MANDATORY)
+    private String ownerName;
+    @CCFieldConfig(componentId = "txtOwnerPosition")
+    private String ownerPosition;
+    @CCFieldConfig(componentId = "txtOwnerKtp")
+    private String ownerKtp;
+    @CCFieldConfig(componentId = "txtOwnerNpwp")
+    private String ownerNpwp;
+
+//<editor-fold defaultstate="collapsed" desc=" getter-setter ">
+    public String getApplLanguage() {
+        return applLanguage;
+    }
+
+    public void setApplLanguage(String applLanguage) {
+        this.applLanguage = applLanguage;
+    }
+
+    public String getApplLookAndFeel() {
+        return applLookAndFeel;
+    }
+
+    public void setApplLookAndFeel(String applLookAndFeel) {
+        this.applLookAndFeel = applLookAndFeel;
+    }
+
+    public String getApplMenuPosition() {
+        return applMenuPosition;
+    }
+
+    public void setApplMenuPosition(String applMenuPosition) {
+        this.applMenuPosition = applMenuPosition;
+    }
+
+    public byte[] getApplWallpaper() {
+        return applWallpaper;
+    }
+
+    public void setApplWallpaper(byte[] applWallpaper) {
+        this.applWallpaper = applWallpaper;
+    }
+
+    public String getApplWallpaperName() {
+        return applWallpaperName;
+    }
+
+    public void setApplWallpaperName(String applWallpaperName) {
+        this.applWallpaperName = applWallpaperName;
+    }
+
+    public byte[] getCompanyLogo() {
+        return companyLogo;
+    }
+
+    public void setCompanyLogo(byte[] companyLogo) {
+        this.companyLogo = companyLogo;
+    }
+
+    public String getCompanyLogoName() {
+        return companyLogoName;
+    }
+
+    public void setCompanyLogoName(String companyLogoName) {
+        this.companyLogoName = companyLogoName;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyAddress() {
+        return companyAddress;
+    }
+
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
+    }
+
+    public String getCompanyCity() {
+        return companyCity;
+    }
+
+    public void setCompanyCity(String companyCity) {
+        this.companyCity = companyCity;
+    }
+
+    public String getCompanyProvince() {
+        return companyProvince;
+    }
+
+    public void setCompanyProvince(String companyProvince) {
+        this.companyProvince = companyProvince;
+    }
+
+    public String getCompanyState() {
+        return companyState;
+    }
+
+    public void setCompanyState(String companyState) {
+        this.companyState = companyState;
+    }
+
+    public String getCompanyPhone() {
+        return companyPhone;
+    }
+
+    public void setCompanyPhone(String companyPhone) {
+        this.companyPhone = companyPhone;
+    }
+
+    public String getCompanyFax() {
+        return companyFax;
+    }
+
+    public void setCompanyFax(String companyFax) {
+        this.companyFax = companyFax;
+    }
+
+    public String getCompanyEmail() {
+        return companyEmail;
+    }
+
+    public void setCompanyEmail(String companyEmail) {
+        this.companyEmail = companyEmail;
+    }
+
+    public String getCompanyWeb() {
+        return companyWeb;
+    }
+
+    public void setCompanyWeb(String companyWeb) {
+        this.companyWeb = companyWeb;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getOwnerPosition() {
+        return ownerPosition;
+    }
+
+    public void setOwnerPosition(String ownerPosition) {
+        this.ownerPosition = ownerPosition;
+    }
+
+    public String getOwnerKtp() {
+        return ownerKtp;
+    }
+
+    public void setOwnerKtp(String ownerKtp) {
+        this.ownerKtp = ownerKtp;
+    }
+
+    public String getOwnerNpwp() {
+        return ownerNpwp;
+    }
+
+    public void setOwnerNpwp(String ownerNpwp) {
+        this.ownerNpwp = ownerNpwp;
+    }
+//</editor-fold>
+}

@@ -1,2 +1,0 @@
-test-commit
-TortoiseGit: https://code.google.com/p/tortoisegit/
