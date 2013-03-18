@@ -1,9 +1,10 @@
 cococare-j Recruitment:
   Software:
-    NetBeans IDE 7.1 (Recommended) (http://netbeans.org/downloads/)
+    Java SE 6 Update X (Mandatory) (http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+    NetBeans IDE 7.1 Up (Recommended) (http://netbeans.org/downloads/)
     MySQL Server 5.1 (Optional) (http://dev.mysql.com/downloads/mysql/)
   Plugins:
-    cococare-j-code-templates.zip (Recommended) ()
+    cococare-j-code-templates.zip (Recommended) (https://github.com/yosua-onesimus/cococare-j)
   Library:
     Hibernate (Mandatory) (Included in NetBeans IDE)
       antlr-2.7.6.jar
@@ -42,5 +43,5 @@ cococare-j Recruitment:
       win32com.dll
     Other Lib (Optional - Look And Feel) (https://github.com/yosua-onesimus/libraries/tree/master/java/look-and-feel-lib)
       liquidlnf.jar
-    cococare-j.jar (Mandatory) ()
+    cococare-j.jar (Mandatory) (https://github.com/yosua-onesimus/cococare-j)
 --eof--

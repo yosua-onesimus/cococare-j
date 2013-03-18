@@ -174,16 +174,10 @@ public abstract class CFApplCtrl {
     public boolean openDatabaseConnection(CCDatabaseConfig databaseConfig, boolean autoCreateDatabase) {
         if (HIBERNATE.isDatabaseConfigValid(databaseConfig, autoCreateDatabase)) {
             HIBERNATE.addDatabaseConfig(databaseConfig, autoCreateDatabase);
-            if (DatabaseMode.SINGLE.equals(DTBS_MODE)) {
-                HIBERNATE.buildSessionFactories();
-            }
             if (databaseConfig.isFirstRun()) {
                 initInitialData();
             }
-            if (DatabaseMode.MULTIPLE.equals(DTBS_MODE)) {
-                HIBERNATE.saveDatabaseConfig();
-            }
-            return databaseConnected = true;
+            return databaseConnected = HIBERNATE.saveDatabaseConfig();
         } else {
             return false;
         }

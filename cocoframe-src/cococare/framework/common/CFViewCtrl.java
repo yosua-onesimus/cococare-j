@@ -7,7 +7,6 @@ import static cococare.common.CCFormat.maxLength;
 import static cococare.common.CCLogic.*;
 import static cococare.common.CCMessage.logp;
 import cococare.common.CCTrackable;
-import cococare.database.CCEntityBo;
 import static cococare.database.CCEntityConfig.FIELD_ID;
 import cococare.database.CCHibernateBo;
 import cococare.framework.model.bo.util.UtilLoggerBo;
@@ -166,11 +165,7 @@ public abstract class CFViewCtrl implements CCTrackable {
 //<editor-fold defaultstate="collapsed" desc=" FORM_FUNCTION ">
     protected abstract void _initEditor();
 
-    protected void _initObjEntity() {
-        if (newEntity) {
-            CCEntityBo.INSTANCE.initSequence(objEntity);
-        }
-    }
+    protected abstract void _initObjEntity();
 
     protected abstract void _initAccessible();
 

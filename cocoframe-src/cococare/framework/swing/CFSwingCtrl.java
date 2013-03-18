@@ -124,6 +124,13 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     }
 
     @Override
+    protected void _initObjEntity() {
+        if (newEntity) {
+            edtEntity.initSequence(objEntity);
+        }
+    }
+
+    @Override
     protected void _initAccessible() {
         accessibleIfEditable = new CCAccessibleListener() {
 
