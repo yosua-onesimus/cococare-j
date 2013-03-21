@@ -82,11 +82,13 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     @Override
     protected void _initObject() {
         super._initObject();
-        if (BaseFunction.LIST_FUNCTION.equals(_getBaseFunction())) {
-            sysRef_swingCtrl = new HashMap();
-        } else if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction())) {
-            sysRef = getSysRef(objEntity);
-            sysRef = objEntity.toString();
+        if (_hasEntity()) {
+            if (BaseFunction.LIST_FUNCTION.equals(_getBaseFunction())) {
+                sysRef_swingCtrl = new HashMap();
+            } else if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction())) {
+                sysRef = getSysRef(objEntity);
+                sysRef = objEntity.toString();
+            }
         }
     }
 

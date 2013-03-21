@@ -14,6 +14,9 @@ import cococare.framework.swing.controller.form.note.PnlObjectiveListCtrl;
 import cococare.framework.swing.controller.form.note.PnlShortcutListCtrl;
 import cococare.framework.swing.controller.form.note.PnlTrackerListCtrl;
 import cococare.framework.swing.controller.form.util.*;
+import cococare.framework.swing.controller.form.setup.PnlJavaxCommSetupCtrl;
+import cococare.framework.swing.controller.form.setup.PnlLanguageSetupCtrl;
+import cococare.framework.swing.controller.form.setup.PnlListFilesSetupCtrl;
 import cococare.swing.CCSwing;
 import cococare.swing.component.CCImage;
 //</editor-fold>
@@ -24,6 +27,12 @@ import cococare.swing.component.CCImage;
  * @version 13.03.17
  */
 public class NotesMain extends CFApplCtrl {
+
+    @Override
+    protected void _loadInternalSetting() {
+        super._loadInternalSetting();
+        APPL_NAME = "cococare-notes";
+    }
 
     @Override
     protected void _loadExternalSetting() {
@@ -44,6 +53,9 @@ public class NotesMain extends CFApplCtrl {
         utilSwingUae.reg(turn(Notes), turn(Shortcut), PnlShortcutListCtrl.class);
         utilSwingUae.reg(turn(Notes), turn(Objective), PnlObjectiveListCtrl.class);
         utilSwingUae.reg(turn(Notes), turn(Tracker), PnlTrackerListCtrl.class);
+        utilSwingUae.reg("Setup", "Javax.Comm Setup", PnlJavaxCommSetupCtrl.class);
+        utilSwingUae.reg("Setup", "List Files Setup", PnlListFilesSetupCtrl.class);
+        utilSwingUae.reg("Setup", "Language Setup", PnlLanguageSetupCtrl.class);
         utilSwingUae.reg(turn(Utility), turn(User_Group), PnlUserGroupListCtrl.class);
         utilSwingUae.reg(turn(Utility), turn(User), PnlUserListCtrl.class);
         utilSwingUae.reg(turn(Utility), turn(Change_Password), PnlChangePasswordCtrl.class);
@@ -77,10 +89,10 @@ public class NotesMain extends CFApplCtrl {
         utilSwingUae.addMenuChild(turn(Shortcut), null, PnlShortcutListCtrl.class);
         utilSwingUae.addMenuChild(turn(Objective), null, PnlObjectiveListCtrl.class);
         utilSwingUae.addMenuChild(turn(Tracker), null, PnlTrackerListCtrl.class);
-        utilSwingUae.addMenuParent("Project Setup", null, null);
-        utilSwingUae.addMenuChild("javax.comm Setup", null, PnlLoginCtrl.class);
-        utilSwingUae.addMenuChild("Mandatory Files Setup", null, PnlLoginCtrl.class);
-        utilSwingUae.addMenuChild("Language Setup", null, PnlLoginCtrl.class);
+        utilSwingUae.addMenuParent("Setup", null, null);
+        utilSwingUae.addMenuChild("Javax.Comm Setup", null, PnlJavaxCommSetupCtrl.class);
+        utilSwingUae.addMenuChild("List Files Setup", null, PnlListFilesSetupCtrl.class);
+        utilSwingUae.addMenuChild("Language Setup", null, PnlLanguageSetupCtrl.class);
         utilSwingUae.changeMenuSide();
         utilSwingUae.addMenuParent(turn(Utility), null, null);
         utilSwingUae.addMenuChild(turn(User_Group), null, PnlUserGroupListCtrl.class);

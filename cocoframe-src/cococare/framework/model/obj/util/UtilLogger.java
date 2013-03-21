@@ -97,7 +97,7 @@ public class UtilLogger implements CCEntity {
     @CCFieldConfig(label = "IP", maxLength = 15)
     private String ip;
     @Column(length = 32)
-    @CCFieldConfig(maxLength = 32)
+    @CCFieldConfig(label = "Group Name", maxLength = 32)
     private String userGroupName;
     @Column(length = 32)
     @CCFieldConfig(maxLength = 32)
