@@ -4,3 +4,4 @@
 *.war
 *.ear
 /sample-projects/simple-inventory/build/
+/sample-projects/simple-calculator/build/
