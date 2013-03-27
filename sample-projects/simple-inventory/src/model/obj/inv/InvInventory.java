@@ -98,11 +98,11 @@ public class InvInventory implements CCEntity {
     @Column(length = Integer.MAX_VALUE)
     @CCFieldConfig(componentId = "txtDescription", maxLength = Integer.MAX_VALUE, visible = false)
     private String description;
-    @CCFieldConfig(componentId = "txtQuantityTotal", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(label = "QT", tooltiptext = "Quantity Total", componentId = "txtQuantityTotal", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer quantityTotal = 0;
-    @CCFieldConfig(componentId = "txtQuantityUsed", accessible = Accessible.READONLY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(label = "QU", tooltiptext = "Quantity Used", componentId = "txtQuantityUsed", accessible = Accessible.READONLY, type = Type.NUMERIC, maxLength = 2)
     private Integer quantityUsed = 0;
-    @CCFieldConfig(componentId = "txtQuantityAvailable", accessible = Accessible.READONLY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(label = "QA", tooltiptext = "Quantity Available", componentId = "txtQuantityAvailable", accessible = Accessible.READONLY, type = Type.NUMERIC, maxLength = 2)
     private Integer quantityAvailable = 0;
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "inventory")
