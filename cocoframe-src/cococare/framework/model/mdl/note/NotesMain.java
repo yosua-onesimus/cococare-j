@@ -2,7 +2,7 @@ package cococare.framework.model.mdl.note;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFormat;
-import cococare.common.CCLanguage;
+import cococare.datafile.CCFile;
 import cococare.framework.common.CFApplCtrl;
 import cococare.framework.model.bo.util.UtilConfigBo;
 import static cococare.framework.model.mdl.note.NotesLanguage.*;
@@ -13,12 +13,13 @@ import cococare.framework.swing.controller.form.note.PnlBookmarkListCtrl;
 import cococare.framework.swing.controller.form.note.PnlObjectiveListCtrl;
 import cococare.framework.swing.controller.form.note.PnlShortcutListCtrl;
 import cococare.framework.swing.controller.form.note.PnlTrackerListCtrl;
-import cococare.framework.swing.controller.form.util.*;
 import cococare.framework.swing.controller.form.setup.PnlJavaxCommSetupCtrl;
 import cococare.framework.swing.controller.form.setup.PnlLanguageSetupCtrl;
 import cococare.framework.swing.controller.form.setup.PnlListFilesSetupCtrl;
+import cococare.framework.swing.controller.form.util.*;
 import cococare.swing.CCSwing;
 import cococare.swing.component.CCImage;
+import java.io.File;
 //</editor-fold>
 
 /**
@@ -38,6 +39,10 @@ public class NotesMain extends CFApplCtrl {
     protected void _loadExternalSetting() {
         init(false, NotesLanguage.class);
         super._loadExternalSetting();
+        File file = CCFile.getFileSystConfFile(S_APPL_CONF);
+        if (file.exists()) {
+            updateNonContent((UtilConfAppl) CCFile.readObject(file));
+        }
     }
 
     @Override
@@ -66,10 +71,20 @@ public class NotesMain extends CFApplCtrl {
     }
 
     @Override
+    public void updateNonContent(Object object) {
+        UtilConfAppl confAppl = (UtilConfAppl) object;
+        load(LanguagePack.values()[CCFormat.parseInt(confAppl.getApplLanguage())]);
+        CCSwing.setLookAndFeel(CCSwing.LookAndFeel.values()[CCFormat.parseInt(confAppl.getApplLookAndFeel())].getName(), CFSwingMap.getMainScreen());
+        (((CCImage) CFSwingMap.getContent())).setIcon(confAppl.getApplWallpaper());
+        CFSwingMap.getCompLogo().setIcon(confAppl.getCompanyLogo());
+        CFSwingMap.getCompName().setText(CCFormat.wordWrap(new String[]{CCFormat.getStringOrBlank(confAppl.getCompanyName()), CCFormat.getStringOrBlank(confAppl.getCompanyAddress())}));
+    }
+
+    @Override
     protected void _applyUserConfig() {
         UtilConfAppl confAppl = new UtilConfigBo().loadConfAppl();
-        load(CCLanguage.LanguagePack.values()[CCFormat.parseInt(confAppl.getApplLanguage())]);
-        CCSwing.setLookAndFeel(CCSwing.LookAndFeel.values()[CCFormat.parseInt(confAppl.getApplLookAndFeel())].getName(), CFSwingMap.getMainScreen());
+        updateNonContent(confAppl);
+
         CFSwingUae utilSwingUae = new CFSwingUae();
         if (MenuPosition.LEFT_SIDE.ordinal() == CCFormat.parseInt(confAppl.getApplMenuPosition())) {
             CFSwingMap.getMenubarV().setVisible(true);
@@ -78,11 +93,6 @@ public class NotesMain extends CFApplCtrl {
             CFSwingMap.getMenubarH().setVisible(true);
             utilSwingUae.initMenuBar(CFSwingMap.getMenubarH());
         }
-        (((CCImage) CFSwingMap.getContent())).setIcon(confAppl.getApplWallpaper());
-
-        CFSwingMap.getCompLogo().setIcon(confAppl.getCompanyLogo());
-        CFSwingMap.getCompName().setText(CCFormat.wordWrap(new String[]{confAppl.getCompanyName(), confAppl.getCompanyAddress()}));
-
         utilSwingUae.addMenuRoot(PnlLoginCtrl.class);
         utilSwingUae.addMenuParent(turn(Notes), null, null);
         utilSwingUae.addMenuChild(turn(Bookmark), null, PnlBookmarkListCtrl.class);
@@ -103,6 +113,7 @@ public class NotesMain extends CFApplCtrl {
         utilSwingUae.addMenuChild(turn(Database_Setting), null, PnlDatabaseSettingCtrl.class);
         utilSwingUae.addMenuChild(turn(Log_Out), null, PnlLoginCtrl.class);
         utilSwingUae.compileMenu();
+
         CFSwingMap.getMainScreen().validate();
     }
 

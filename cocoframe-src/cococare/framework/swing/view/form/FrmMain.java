@@ -147,7 +147,6 @@ public class FrmMain extends javax.swing.JFrame {
         south.setPreferredSize(new java.awt.Dimension(800, 30));
         south.setLayout(new java.awt.BorderLayout());
 
-        southWest.setBorder(new javax.swing.border.LineBorder(java.awt.Color.cyan, 1, true));
         southWest.setMinimumSize(new java.awt.Dimension(200, 30));
         southWest.setPreferredSize(new java.awt.Dimension(200, 30));
 

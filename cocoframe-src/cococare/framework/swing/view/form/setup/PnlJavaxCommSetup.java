@@ -254,15 +254,11 @@ public class PnlJavaxCommSetup extends javax.swing.JPanel {
             pnlJavaxCommLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlJavaxCommLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(tabJavaxComm, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
-                .addGap(4, 4, 4))
+                .addComponent(tabJavaxComm, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlJavaxCommLayout.setVerticalGroup(
             pnlJavaxCommLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlJavaxCommLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(tabJavaxComm, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                .addGap(3, 3, 3))
+            .addComponent(tabJavaxComm, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

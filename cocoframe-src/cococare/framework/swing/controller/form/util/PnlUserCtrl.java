@@ -99,6 +99,7 @@ public class PnlUserCtrl extends CFSwingCtrl {
                 return (isNull(privilege.getParent()) ? "" : "    ") + privilege.getName();
             }
         });
+        tblPrivilege.setCheckboxColumn(true, 0);
         tblPrivilege.setColumnWidth(0, 20);
     }
 

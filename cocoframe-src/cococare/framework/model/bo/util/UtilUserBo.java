@@ -168,23 +168,23 @@ public class UtilUserBo extends CCHibernateBo {
         CCLoginInfo.INSTANCE.resetDomainAndUserLoginIp();
         CCDatabaseConfig databaseConfig = UtilityModule.INSTANCE.getCCHibernate().getDatabaseConfig();
         if (isNull(databaseConfig) || !databaseConfig.isValidDate()) {
-            setErrorMessage(turn(Cant_log_you_in));
+            setErrorMessage(turn(Can_not_log_you_in));
             setCauseMessage(turn(Your_domain_has_been_suspended_or_no_longer_active));
             return false;
         }
         user = userDao.getByUsername(username);
         if (isNull(user) || isNull(user.getId()) || !user.getPassword().equals(new MD5(password).toString())) {
-            setErrorMessage(turn(Cant_log_you_in));
+            setErrorMessage(turn(Can_not_log_you_in));
             setCauseMessage(turn(The_username_or_password_you_entered_is_incorrect));
             return false;
         }
         if (!user.getActive()) {
-            setErrorMessage(turn(Cant_log_you_in));
+            setErrorMessage(turn(Can_not_log_you_in));
             setCauseMessage(turn(Your_account_has_been_suspended_or_no_longer_active));
             return false;
         }
         if (userIpDao.hasRestriction(user) && !userIpDao.isValid(user, INSTANCE_getUserLoginIp())) {
-            setErrorMessage(turn(Cant_log_you_in));
+            setErrorMessage(turn(Can_not_log_you_in));
             setCauseMessage(turn(Your_IP_has_been_restricted));
             return false;
         }

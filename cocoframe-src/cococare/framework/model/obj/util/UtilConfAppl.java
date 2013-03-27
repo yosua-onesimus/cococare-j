@@ -4,7 +4,9 @@ package cococare.framework.model.obj.util;
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.Type;
-import javax.persistence.Column;
+import cococare.database.CCEntity;
+import java.util.Date;
+import javax.persistence.*;
 //</editor-fold>
 
 /**
@@ -12,8 +14,82 @@ import javax.persistence.Column;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class UtilConfAppl {
+public class UtilConfAppl implements CCEntity {
 
+//<editor-fold defaultstate="collapsed" desc=" entity base ">
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(length = 32)
+    private String logCreatedBy;
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date logCreatedOn;
+    @Column(length = 32)
+    private String logChangedBy;
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date logChangedOn;
+    private Integer logSaveTimes = 0;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String getLogCreatedBy() {
+        return logCreatedBy;
+    }
+
+    @Override
+    public void setLogCreatedBy(String logCreatedBy) {
+        this.logCreatedBy = logCreatedBy;
+    }
+
+    @Override
+    public Date getLogCreatedOn() {
+        return logCreatedOn;
+    }
+
+    @Override
+    public void setLogCreatedOn(Date logCreatedOn) {
+        this.logCreatedOn = logCreatedOn;
+    }
+
+    @Override
+    public String getLogChangedBy() {
+        return logChangedBy;
+    }
+
+    @Override
+    public void setLogChangedBy(String logChangedBy) {
+        this.logChangedBy = logChangedBy;
+    }
+
+    @Override
+    public Date getLogChangedOn() {
+        return logChangedOn;
+    }
+
+    @Override
+    public void setLogChangedOn(Date logChangedOn) {
+        this.logChangedOn = logChangedOn;
+    }
+
+    @Override
+    public Integer getLogSaveTimes() {
+        return logSaveTimes;
+    }
+
+    @Override
+    public void setLogSaveTimes(Integer logSaveTimes) {
+        this.logSaveTimes = logSaveTimes;
+    }
+//</editor-fold>
     @CCFieldConfig(componentId = "cmbApplLanguage", accessible = Accessible.MANDATORY, optionSource = "cococare.common.CCLanguage$LanguagePack")
     private String applLanguage = "0";
     @CCFieldConfig(componentId = "cmbApplLookAndFeel", accessible = Accessible.MANDATORY, optionSource = "cococare.swing.CCSwing$LookAndFeel")

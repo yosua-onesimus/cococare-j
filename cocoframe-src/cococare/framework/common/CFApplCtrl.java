@@ -72,9 +72,9 @@ public abstract class CFApplCtrl {
     protected String APPL_NAME = "appl.name";
     protected String APPL_VER = "1.0.120317";
     //
-    protected String S_APPL_CONF = "appl.conf";
-    protected String S_APPL_LCNS = "appl.lcns";
-    protected String S_DTBS_CONF = "dtbs.conf";
+    public static String S_APPL_CONF = "appl.conf";
+    public static String S_APPL_LCNS = "appl.lcns";
+    public static String S_DTBS_CONF = "dtbs.conf";
     //
     protected File FILE_APPL_CONF = new File(getFileSystConfPath(), S_APPL_CONF);
     protected File FILE_APPL_LCNS = new File(getFileSystConfPath(), S_APPL_LCNS);
@@ -201,6 +201,9 @@ public abstract class CFApplCtrl {
 
     protected boolean _login(String username, String password) {
         return new UtilUserBo().login(username, password);
+    }
+
+    public void updateNonContent(Object object) {
     }
 
     protected void _initDatabaseFilter() {
