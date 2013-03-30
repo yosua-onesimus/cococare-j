@@ -9,7 +9,7 @@ import cococare.database.CCHibernate;
 import java.util.List;
 import model.dao.InvEmployeeDao;
 import model.mdl.InventoryModule;
-import model.obj.inv.InvEmployee;
+import model.obj.InvEmployee;
 //</editor-fold>
 
 public class Ex1_Console {

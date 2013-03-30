@@ -8,7 +8,7 @@ import cococare.database.CCHibernate;
 import cococare.swing.CCSwing;
 import cococare.swing.CCTable;
 import model.mdl.InventoryModule;
-import model.obj.inv.InvEmployee;
+import model.obj.InvEmployee;
 //</editor-fold>
 
 public class Ex3_ListDialog extends javax.swing.JDialog {

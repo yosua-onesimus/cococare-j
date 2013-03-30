@@ -1,4 +1,4 @@
-package model.obj.inv;
+package model.obj;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;

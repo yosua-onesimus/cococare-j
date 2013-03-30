@@ -2,10 +2,10 @@ package controller.form;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.framework.swing.CFSwingCtrl;
-import model.obj.inv.InvInventory;
+import model.obj.InvInventory;
 //</editor-fold>
 
-public class PnlInventoryCtrl extends CFSwingCtrl {
+public class PnlInventory3Ctrl extends CFSwingCtrl {
 
     @Override
     protected Class _getEntity() {
@@ -15,5 +15,10 @@ public class PnlInventoryCtrl extends CFSwingCtrl {
     @Override
     protected BaseFunction _getBaseFunction() {
         return BaseFunction.FORM_FUNCTION;
+    }
+
+    @Override
+    protected ShowMode _getShowMode() {
+        return ShowMode.PANEL_MODE;
     }
 }

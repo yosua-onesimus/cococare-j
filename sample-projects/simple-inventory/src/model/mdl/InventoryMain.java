@@ -7,6 +7,8 @@ import cococare.framework.common.CFApplCtrl;
 import cococare.framework.swing.CFSwingMap;
 import cococare.framework.swing.CFSwingUae;
 import controller.form.PnlEmployeeListCtrl;
+import controller.form.PnlInventory2ListCtrl;
+import controller.form.PnlInventory3ListCtrl;
 import controller.form.PnlInventoryListCtrl;
 //</editor-fold>
 
@@ -26,19 +28,18 @@ public class InventoryMain extends CFApplCtrl {
     }
 
     @Override
-    public boolean initInitialData() {
-        return true;
-    }
-
-    @Override
     protected void _applyUserConfig() {
-        CFSwingUae utilSwingUae = new CFSwingUae();
+        CFSwingUae swingUae = new CFSwingUae();
         CFSwingMap.getMenubarV().setVisible(true);
-        utilSwingUae.initMenuBar(CFSwingMap.getMenubarV());
-        utilSwingUae.addMenuParent(CCLanguage.Archive, null, null);
-        utilSwingUae.addMenuChild("Inventory", null, PnlInventoryListCtrl.class);
-        utilSwingUae.addMenuChild("Employee", null, PnlEmployeeListCtrl.class);
-        utilSwingUae.compileMenu();
+        swingUae.initMenuBar(CFSwingMap.getMenubarV());
+        swingUae.addMenuParent(CCLanguage.Archive, null, null);
+        swingUae.addMenuChild("Inventory", null, PnlInventoryListCtrl.class);
+        swingUae.addMenuChild("Employee", null, PnlEmployeeListCtrl.class);
+        swingUae.addMenuParent("Dialog Flow Sample", null, null);
+        swingUae.addMenuChild("Inventory", null, PnlInventory2ListCtrl.class);
+        swingUae.addMenuParent("Panel Flow Sample", null, null);
+        swingUae.addMenuChild("Inventory", null, PnlInventory3ListCtrl.class);
+        swingUae.compileMenu();
         CFSwingMap.getMainScreen().validate();
     }
 

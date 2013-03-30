@@ -1,8 +1,8 @@
 package view.form;
 
-public class PnlInventoryList extends javax.swing.JPanel {
+public class PnlInventory2List extends javax.swing.JPanel {
 
-    public PnlInventoryList() {
+    public PnlInventory2List() {
         initComponents();
     }
 

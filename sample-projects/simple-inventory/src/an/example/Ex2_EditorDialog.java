@@ -9,7 +9,7 @@ import cococare.database.CCHibernate;
 import cococare.swing.CCEditor;
 import cococare.swing.CCSwing;
 import model.mdl.InventoryModule;
-import model.obj.inv.InvEmployee;
+import model.obj.InvEmployee;
 //</editor-fold>
 
 public class Ex2_EditorDialog extends javax.swing.JDialog {

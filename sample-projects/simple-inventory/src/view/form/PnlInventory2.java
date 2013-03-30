@@ -1,8 +1,9 @@
 package view.form;
 
-public class PnlInventory3 extends javax.swing.JPanel {
+public class PnlInventory2 extends javax.swing.JDialog {
 
-    public PnlInventory3() {
+    public PnlInventory2(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -23,11 +24,9 @@ public class PnlInventory3 extends javax.swing.JPanel {
         scrDescription = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
 
-        setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(600, 400));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         pnlEditor.setMinimumSize(new java.awt.Dimension(600, 400));
-        pnlEditor.setPreferredSize(new java.awt.Dimension(600, 400));
 
         btnEdit.setText("Edit");
         btnEdit.setType(cococare.swing.component.CCButton.Type.EDIT);
@@ -107,8 +106,8 @@ public class PnlInventory3 extends javax.swing.JPanel {
                     .addComponent(scrDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -117,6 +116,8 @@ public class PnlInventory3 extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cococare.swing.component.CCButton btnCancel;
