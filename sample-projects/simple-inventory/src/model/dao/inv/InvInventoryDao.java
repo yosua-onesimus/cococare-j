@@ -2,13 +2,13 @@ package model.dao.inv;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import model.mdl.inv.InventoryDao;
-import model.obj.inv.InvEmployee;
+import model.obj.inv.InvInventory;
 //</editor-fold>
 
-public class InvEmployeeDao extends InventoryDao {
+public class InvInventoryDao extends InventoryDao {
 
     @Override
     protected Class getEntity() {
-        return InvEmployee.class;
+        return InvInventory.class;
     }
 }

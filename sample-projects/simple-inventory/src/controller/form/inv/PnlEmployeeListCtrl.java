@@ -1,8 +1,8 @@
-package controller.form;
+package controller.form.inv;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.framework.swing.CFSwingCtrl;
-import model.obj.InvEmployee;
+import model.obj.inv.InvEmployee;
 //</editor-fold>
 
 public class PnlEmployeeListCtrl extends CFSwingCtrl {

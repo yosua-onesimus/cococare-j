@@ -1,4 +1,4 @@
-package view.form;
+package view.form.inv;
 
 public class PnlInventory3 extends javax.swing.JPanel {
 
@@ -22,6 +22,12 @@ public class PnlInventory3 extends javax.swing.JPanel {
         xDescription = new javax.swing.JLabel();
         scrDescription = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
+        xQuantityTotal = new javax.swing.JLabel();
+        txtQuantityTotal = new javax.swing.JTextField();
+        xQuantityUsed = new javax.swing.JLabel();
+        txtQuantityUsed = new javax.swing.JTextField();
+        xQuantityAvailable = new javax.swing.JLabel();
+        txtQuantityAvailable = new javax.swing.JTextField();
 
         setMinimumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(600, 400));
@@ -59,6 +65,23 @@ public class PnlInventory3 extends javax.swing.JPanel {
         txtDescription.setRows(5);
         scrDescription.setViewportView(txtDescription);
 
+        xQuantityTotal.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xQuantityTotal.setText("Quantity");
+
+        txtQuantityTotal.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        xQuantityUsed.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xQuantityUsed.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        xQuantityUsed.setText("-");
+
+        txtQuantityUsed.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        xQuantityAvailable.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xQuantityAvailable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        xQuantityAvailable.setText("=");
+
+        txtQuantityAvailable.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout pnlEditorLayout = new javax.swing.GroupLayout(pnlEditor);
         pnlEditor.setLayout(pnlEditorLayout);
         pnlEditorLayout.setHorizontalGroup(
@@ -83,6 +106,18 @@ public class PnlInventory3 extends javax.swing.JPanel {
                 .addComponent(xDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(scrDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlEditorLayout.createSequentialGroup()
+                .addComponent(xQuantityTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtQuantityTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(xQuantityUsed, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtQuantityUsed, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(xQuantityAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtQuantityAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlEditorLayout.setVerticalGroup(
             pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +139,15 @@ public class PnlInventory3 extends javax.swing.JPanel {
                 .addGap(1, 1, 1)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(scrDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(scrDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xQuantityTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtQuantityTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(xQuantityUsed, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtQuantityUsed, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(xQuantityAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtQuantityAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -128,8 +171,14 @@ public class PnlInventory3 extends javax.swing.JPanel {
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtQuantityAvailable;
+    private javax.swing.JTextField txtQuantityTotal;
+    private javax.swing.JTextField txtQuantityUsed;
     private javax.swing.JLabel xCode;
     private javax.swing.JLabel xDescription;
     private javax.swing.JLabel xName;
+    private javax.swing.JLabel xQuantityAvailable;
+    private javax.swing.JLabel xQuantityTotal;
+    private javax.swing.JLabel xQuantityUsed;
     // End of variables declaration//GEN-END:variables
 }

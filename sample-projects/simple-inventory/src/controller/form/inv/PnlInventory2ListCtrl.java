@@ -1,8 +1,8 @@
-package controller.form;
+package controller.form.inv;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.framework.swing.CFSwingCtrl;
-import model.obj.InvInventory;
+import model.obj.inv.InvInventory;
 //</editor-fold>
 
 public class PnlInventory2ListCtrl extends CFSwingCtrl {

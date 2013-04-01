@@ -7,9 +7,9 @@ import cococare.common.CCMessage;
 import cococare.database.CCDatabaseConfig;
 import cococare.database.CCHibernate;
 import java.util.List;
-import model.dao.InvEmployeeDao;
-import model.mdl.InventoryModule;
-import model.obj.InvEmployee;
+import model.dao.inv.InvEmployeeDao;
+import model.mdl.inv.InventoryModule;
+import model.obj.inv.InvEmployee;
 //</editor-fold>
 
 public class Ex1_Console {

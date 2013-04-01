@@ -1,4 +1,4 @@
-package model.mdl;
+package model.mdl.inv;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.database.CCHibernate;

@@ -1,15 +1,21 @@
-package model.mdl;
+package model.mdl.inv;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.common.CCFormat;
 import cococare.common.CCLanguage;
+import cococare.common.CCLanguage.LanguagePack;
 import cococare.database.CCLoginInfo;
+import cococare.datafile.CCFile;
 import cococare.framework.common.CFApplCtrl;
+import cococare.framework.model.bo.util.UtilConfigBo;
+import cococare.framework.model.obj.util.UtilConfAppl;
+import cococare.framework.model.obj.util.UtilUser;
 import cococare.framework.swing.CFSwingMap;
 import cococare.framework.swing.CFSwingUae;
-import controller.form.PnlEmployeeListCtrl;
-import controller.form.PnlInventory2ListCtrl;
-import controller.form.PnlInventory3ListCtrl;
-import controller.form.PnlInventoryListCtrl;
+import cococare.framework.swing.controller.form.util.*;
+import cococare.swing.CCSwing;
+import controller.form.inv.*;
+import java.io.File;
 //</editor-fold>
 
 public class InventoryMain extends CFApplCtrl {
@@ -18,7 +24,16 @@ public class InventoryMain extends CFApplCtrl {
     protected void _loadInternalSetting() {
         super._loadInternalSetting();
         APPL_NAME = "simple-inventory";
-        CCLoginInfo.INSTANCE = null;//menghiraukan login
+        //CCLoginInfo.INSTANCE = null;//without login
+    }
+
+    @Override
+    protected void _loadExternalSetting() {
+        super._loadExternalSetting();
+        File file = CCFile.getFileSystConfFile(S_APPL_CONF);
+        if (file.exists()) {
+            updateNonContent((UtilConfAppl) CCFile.readObject(file));
+        }
     }
 
     @Override
@@ -28,24 +43,73 @@ public class InventoryMain extends CFApplCtrl {
     }
 
     @Override
-    protected void _applyUserConfig() {
+    public boolean initInitialData() {
         CFSwingUae swingUae = new CFSwingUae();
-        CFSwingMap.getMenubarV().setVisible(true);
-        swingUae.initMenuBar(CFSwingMap.getMenubarV());
+        swingUae.reg("Inventory", "Inventory", PnlInventoryListCtrl.class);
+        swingUae.reg("Inventory", "Employee", PnlEmployeeListCtrl.class);
+        swingUae.reg("Inventory", "Ownership", PnlOwnershipListCtrl.class);
+        swingUae.reg(CCLanguage.Utility, CCLanguage.User_Group, PnlUserGroupListCtrl.class);
+        swingUae.reg(CCLanguage.Utility, CCLanguage.User, PnlUserListCtrl.class);
+        swingUae.reg(CCLanguage.Utility, CCLanguage.Change_Password, PnlChangePasswordCtrl.class);
+        swingUae.reg(CCLanguage.Utility, CCLanguage.Logger_History, PnlLoggerListCtrl.class);
+        swingUae.reg(CCLanguage.Utility, CCLanguage.Application_Setting, PnlApplicationSettingCtrl.class);
+        swingUae.reg(CCLanguage.Utility, CCLanguage.Database_Setting, PnlDatabaseSettingCtrl.class);
+        return swingUae.compile();
+    }
+
+    @Override
+    public void updateNonContent(Object object) {
+        UtilConfAppl confAppl = (UtilConfAppl) object;
+        CCLanguage.load(LanguagePack.values()[CCFormat.parseInt(confAppl.getApplLanguage())]);
+        CCSwing.setLookAndFeel(CCSwing.LookAndFeel.values()[CCFormat.parseInt(confAppl.getApplLookAndFeel())].getName(), CFSwingMap.getMainScreen());
+        CFSwingMap.getContentImage().setIcon(confAppl.getApplWallpaper());
+        CFSwingMap.getCompLogo().setIcon(confAppl.getCompanyLogo());
+        CFSwingMap.getCompName().setText(CCFormat.wordWrap(new String[]{CCFormat.getStringOrBlank(confAppl.getCompanyName()), CCFormat.getStringOrBlank(confAppl.getCompanyAddress())}));
+    }
+
+    @Override
+    protected void _applyUserConfig() {
+        UtilConfAppl confAppl = new UtilConfigBo().loadConfAppl();
+        updateNonContent(confAppl);
+
+        CFSwingUae swingUae = new CFSwingUae();
+        if (MenuPosition.LEFT_SIDE.ordinal() == CCFormat.parseInt(confAppl.getApplMenuPosition())) {
+            CFSwingMap.getMenubarV().setVisible(true);
+            swingUae.initMenuBar(CFSwingMap.getMenubarV());
+        } else {
+            CFSwingMap.getMenubarH().setVisible(true);
+            swingUae.initMenuBar(CFSwingMap.getMenubarH());
+        }
+        swingUae.addMenuRoot(PnlLoginCtrl.class);
+        if (CCLoginInfo.INSTANCE_getUserLogin() != null && ((UtilUser) CCLoginInfo.INSTANCE_getUserLogin()).getUserGroup().isRoot()) {
+            swingUae.addMenuRoot(PnlInventory2ListCtrl.class, PnlInventory3ListCtrl.class);
+        }
         swingUae.addMenuParent(CCLanguage.Archive, null, null);
         swingUae.addMenuChild("Inventory", null, PnlInventoryListCtrl.class);
         swingUae.addMenuChild("Employee", null, PnlEmployeeListCtrl.class);
+        swingUae.addMenuChild("Ownership", null, PnlOwnershipListCtrl.class);
         swingUae.addMenuParent("Dialog Flow Sample", null, null);
         swingUae.addMenuChild("Inventory", null, PnlInventory2ListCtrl.class);
         swingUae.addMenuParent("Panel Flow Sample", null, null);
         swingUae.addMenuChild("Inventory", null, PnlInventory3ListCtrl.class);
+        swingUae.changeMenuSide();
+        swingUae.addMenuParent(CCLanguage.Utility, null, null);
+        swingUae.addMenuChild(CCLanguage.User_Group, null, PnlUserGroupListCtrl.class);
+        swingUae.addMenuChild(CCLanguage.User, null, PnlUserListCtrl.class);
+        swingUae.addMenuChild(CCLanguage.Change_Password, null, PnlChangePasswordCtrl.class);
+        swingUae.addMenuChild(CCLanguage.Logger_History, null, PnlLoggerListCtrl.class);
+        swingUae.addMenuChild(CCLanguage.Application_Setting, null, PnlApplicationSettingCtrl.class);
+        swingUae.addMenuChild(CCLanguage.Database_Setting, null, PnlDatabaseSettingCtrl.class);
+        swingUae.addMenuChild(CCLanguage.Log_Out, null, PnlLoginCtrl.class);
         swingUae.compileMenu();
+
         CFSwingMap.getMainScreen().validate();
     }
 
     @Override
     public void showScreen() {
-        _applyUserConfig();//menghiraukan login
+        super.showScreen();//with login
+        //_applyUserConfig();//without login
     }
 
     public static void main(String[] args) {

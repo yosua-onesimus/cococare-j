@@ -1,8 +1,8 @@
-package view.form;
+package view.form.inv;
 
-public class PnlEmployeeList extends javax.swing.JPanel {
+public class PnlOwnershipList extends javax.swing.JPanel {
 
-    public PnlEmployeeList() {
+    public PnlOwnershipList() {
         initComponents();
     }
 
@@ -80,7 +80,7 @@ public class PnlEmployeeList extends javax.swing.JPanel {
         pnlList.add(scrEntity, java.awt.BorderLayout.CENTER);
         pnlList.add(pgnEntity, java.awt.BorderLayout.SOUTH);
 
-        tabEntity.addTab("Employee", pnlList);
+        tabEntity.addTab("Ownership", pnlList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

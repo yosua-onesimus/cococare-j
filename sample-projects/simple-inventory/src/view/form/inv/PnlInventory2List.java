@@ -1,4 +1,4 @@
-package view.form;
+package view.form.inv;
 
 public class PnlInventory2List extends javax.swing.JPanel {
 

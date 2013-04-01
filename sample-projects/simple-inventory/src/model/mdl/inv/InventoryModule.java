@@ -1,11 +1,11 @@
-package model.mdl;
+package model.mdl.inv;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.database.CCHibernate;
 import cococare.database.CCHibernateModule;
-import model.obj.InvEmployee;
-import model.obj.InvInventory;
-import model.obj.InvOwnership;
+import model.obj.inv.InvEmployee;
+import model.obj.inv.InvInventory;
+import model.obj.inv.InvOwnership;
 //</editor-fold>
 
 public class InventoryModule extends CCHibernateModule {
