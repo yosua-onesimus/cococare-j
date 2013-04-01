@@ -5,3 +5,5 @@
 *.ear
 /sample-projects/simple-inventory/build/
 /sample-projects/simple-calculator/build/
+/sample-projects/simple-inventory/dist/
+/sample-projects/simple-calculator/dist/

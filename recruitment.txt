@@ -30,6 +30,7 @@ cococare-j Recruitment:
     Other Lib (Optional) (https://github.com/yosua-onesimus/libraries/tree/master/java/common-lib)
       Access_JDBC30.jar
       barbecue-1.5-modif.jar
+      c3p0-0.9.1.1.jar
       comm.jar
       itext-2.1.7.jar
       jasperreports-3.1.2.jar
