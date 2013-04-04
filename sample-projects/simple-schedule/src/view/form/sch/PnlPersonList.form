@@ -60,8 +60,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Employee">
-                <Property name="tabTitle" type="java.lang.String" value="Employee"/>
+              <JTabbedPaneConstraints tabName="Person">
+                <Property name="tabTitle" type="java.lang.String" value="Person"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -100,7 +100,6 @@
                   <SubComponents>
                     <Component class="cococare.swing.component.CCButton" name="btnAdd">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Add"/>
                         <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
                           <Value id="ADD"/>
                         </Property>
@@ -113,7 +112,6 @@
                     </Component>
                     <Component class="cococare.swing.component.CCButton" name="btnView">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="View"/>
                         <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
                           <Value id="VIEW"/>
                         </Property>
@@ -126,7 +124,6 @@
                     </Component>
                     <Component class="cococare.swing.component.CCButton" name="btnEdit">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Edit"/>
                         <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
                           <Value id="EDIT"/>
                         </Property>
@@ -139,7 +136,6 @@
                     </Component>
                     <Component class="cococare.swing.component.CCButton" name="btnDelete">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Delete"/>
                         <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
                           <Value id="DELETE"/>
                         </Property>
