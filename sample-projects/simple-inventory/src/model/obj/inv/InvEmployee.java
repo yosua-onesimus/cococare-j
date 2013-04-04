@@ -90,7 +90,7 @@ public class InvEmployee implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 16, sequence = "EMP/[yyMMdd]/000", unique = true)
+    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 16, sequence = "EMP/[yyMMdd]/000", requestFocus = true, unique = true)
     private String code;
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY)
     private String name;

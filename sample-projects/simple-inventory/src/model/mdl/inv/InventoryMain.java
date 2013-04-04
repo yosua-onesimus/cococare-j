@@ -7,6 +7,7 @@ import cococare.common.CCLanguage.LanguagePack;
 import cococare.database.CCLoginInfo;
 import cococare.datafile.CCFile;
 import cococare.framework.common.CFApplCtrl;
+import static cococare.framework.common.CFApplCtrl.APPL_CODE;
 import cococare.framework.model.bo.util.UtilConfigBo;
 import cococare.framework.model.obj.util.UtilConfAppl;
 import cococare.framework.model.obj.util.UtilUser;
@@ -22,9 +23,10 @@ public class InventoryMain extends CFApplCtrl {
 
     @Override
     protected void _loadInternalSetting() {
-        super._loadInternalSetting();
+        APPL_CODE = "smpl-invntry";
         APPL_NAME = "simple-inventory";
         //CCLoginInfo.INSTANCE = null;//without login
+        super._loadInternalSetting();
     }
 
     @Override

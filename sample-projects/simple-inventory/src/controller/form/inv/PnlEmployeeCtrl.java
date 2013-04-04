@@ -50,6 +50,7 @@ public class PnlEmployeeCtrl extends CFSwingCtrl {
     protected void _initTblOwnership() {
         tblOwnership = CCSwing.newCCTable(getContainer(), "tblOwnership", InvOwnership.class);
         tblOwnership.setVisibleField(false, "employee");
+        tblOwnership.setNaviElements(null, null, btnRemoveInventory);
     }
 
     @Override
@@ -61,18 +62,23 @@ public class PnlEmployeeCtrl extends CFSwingCtrl {
     }
 
     @Override
+    protected void _doUpdateAccessible() {
+        super._doUpdateAccessible();
+        //
+        CCSwing.applyAccessible(btnAddInventory, btnRemoveInventory);
+    }
+
+    @Override
     protected void _initListener() {
         super._initListener();
         //
         CCSwing.addActionListener(btnAddInventory, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doAddInventory();
             }
         });
         CCSwing.addActionListener(btnRemoveInventory, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doRemoveInventory();
@@ -85,14 +91,14 @@ public class PnlEmployeeCtrl extends CFSwingCtrl {
         return employeeBo.save();
     }
 
-    private void _doAddInventory() {
+    protected void _doAddInventory() {
         if (bndInventory.getObject() != null) {
             employeeBo.addOwnership((InvInventory) bndInventory.getObject());
             _doUpdateTblOwnership();
         }
     }
 
-    private void _doRemoveInventory() {
+    protected void _doRemoveInventory() {
         if (tblOwnership.isSelected()) {
             employeeBo.removeOwnership(tblOwnership.getSelectedRow());
             _doUpdateTblOwnership();

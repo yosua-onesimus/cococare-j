@@ -34,16 +34,12 @@ public class PnlInventory2 extends javax.swing.JDialog {
 
         pnlEditor.setMinimumSize(new java.awt.Dimension(600, 400));
 
-        btnEdit.setText("Edit");
         btnEdit.setType(cococare.swing.component.CCButton.Type.EDIT);
 
-        btnCancel.setText("Cancel");
         btnCancel.setType(cococare.swing.component.CCButton.Type.CANCEL);
 
-        btnSave.setText("Save");
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
 
-        btnClose.setText("Close");
         btnClose.setType(cococare.swing.component.CCButton.Type.CLOSE);
 
         xCode.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N

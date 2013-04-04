@@ -41,22 +41,18 @@ public class PnlEmployeeList extends javax.swing.JPanel {
         pnlNorthWest.setPreferredSize(new java.awt.Dimension(400, 50));
         pnlNorthWest.setLayout(null);
 
-        btnAdd.setText("Add");
         btnAdd.setType(cococare.swing.component.CCButton.Type.ADD);
         pnlNorthWest.add(btnAdd);
         btnAdd.setBounds(0, 10, 100, 29);
 
-        btnView.setText("View");
         btnView.setType(cococare.swing.component.CCButton.Type.VIEW);
         pnlNorthWest.add(btnView);
         btnView.setBounds(100, 10, 100, 29);
 
-        btnEdit.setText("Edit");
         btnEdit.setType(cococare.swing.component.CCButton.Type.EDIT);
         pnlNorthWest.add(btnEdit);
         btnEdit.setBounds(200, 10, 100, 29);
 
-        btnDelete.setText("Delete");
         btnDelete.setType(cococare.swing.component.CCButton.Type.DELETE);
         pnlNorthWest.add(btnDelete);
         btnDelete.setBounds(300, 10, 100, 29);
