@@ -187,7 +187,9 @@ public abstract class CFApplCtrl {
         HIBERNATE.reloadDatabaseConfig();
     }
 
-    public abstract boolean initInitialData();
+    public boolean initInitialData() {
+        return true;
+    }
 
     public boolean showDatabaseSettingScreen() {
         if (PlatformMode.DESKTOP.equals(PLAT_MODE)) {
@@ -244,8 +246,12 @@ public abstract class CFApplCtrl {
     public void showScreen() {
         if (databaseConnected) {
             if (INSTANCE_hasLogged()) {
+                applyDatabaseFilter();
+                _applyUserConfig();
                 _showHomeScreen();
             } else {
+                clearDatabaseFilter();
+                _clearUserConfig();
                 _showLoginScreen();
             }
         }
@@ -253,8 +259,6 @@ public abstract class CFApplCtrl {
 
     public boolean login(String username, String password) {
         if (_login(username, password)) {
-            applyDatabaseFilter();
-            _applyUserConfig();
             showScreen();
             return true;
         } else {
@@ -265,8 +269,6 @@ public abstract class CFApplCtrl {
     public boolean logout() {
         if (INSTANCE_hasLogged()) {
             CCLoginInfo.INSTANCE.logout();
-            clearDatabaseFilter();
-            _clearUserConfig();
             showScreen();
             return true;
         } else {

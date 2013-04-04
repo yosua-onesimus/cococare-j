@@ -95,7 +95,7 @@ public class NoteTracker implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "T000", unique = true)
+    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "T000", requestFocus = true, unique = true)
     private String code;
     @Column(length = 32)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)

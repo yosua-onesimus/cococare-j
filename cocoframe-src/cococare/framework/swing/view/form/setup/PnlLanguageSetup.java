@@ -38,7 +38,6 @@ public class PnlLanguageSetup extends javax.swing.JPanel {
 
         btnLoad.setText("Load");
 
-        btnSave.setText("Save");
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
 
         javax.swing.GroupLayout pnlNorthLayout = new javax.swing.GroupLayout(pnlNorth);

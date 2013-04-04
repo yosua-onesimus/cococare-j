@@ -2,6 +2,8 @@ package cococare.framework.swing.controller.form.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCCustomField;
+import static cococare.common.CCFinal.FORMAT_MYSQL;
+import static cococare.common.CCFormat.getString;
 import cococare.database.CCHibernateFilter;
 import cococare.framework.model.obj.util.UtilLogger;
 import cococare.framework.swing.CFSwingCtrl;
@@ -52,10 +54,10 @@ public class PnlLoggerListCtrl extends CFSwingCtrl {
 
             @Override
             public Object getCustomView(Object object) {
-                return ((UtilLogger) object).getLogCreatedOn();
+                return getString(((UtilLogger) object).getLogCreatedOn(), FORMAT_MYSQL);
             }
         });
-        tblEntity.setColumnWidth(0, 200);
+        tblEntity.setColumnWidth(150, 100, 100, 100, 150, 100, null);
         tblEntity.setHqlFilters(new CCHibernateFilter() {
 
             @Override

@@ -64,10 +64,8 @@ public class PnlApplicationSetting extends javax.swing.JPanel {
         pnlEditor.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         pnlEditor.setMinimumSize(new java.awt.Dimension(600, 400));
 
-        btnSave.setText("Save");
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
 
-        btnClose.setText("Close");
         btnClose.setType(cococare.swing.component.CCButton.Type.CLOSE);
 
         pnlApplication.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Application", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N

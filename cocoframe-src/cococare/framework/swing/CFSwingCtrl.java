@@ -2,7 +2,8 @@ package cococare.framework.swing;
 
 // <editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCAccessibleListener;
-import static cococare.common.CCClass.*;
+import static cococare.common.CCClass.getUniqueKeyValue;
+import static cococare.common.CCClass.newObject;
 import static cococare.common.CCLanguage.*;
 import static cococare.common.CCLogic.*;
 import static cococare.common.CCMessage.showDeleted;
@@ -86,8 +87,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             if (BaseFunction.LIST_FUNCTION.equals(_getBaseFunction())) {
                 sysRef_swingCtrl = new HashMap();
             } else if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction())) {
-                sysRef = getSysRef(objEntity);
-                sysRef = objEntity.toString();
+                sysRef = _getSysRef(objEntity);
             }
         }
     }
@@ -135,14 +135,12 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     @Override
     protected void _initAccessible() {
         accessibleIfEditable = new CCAccessibleListener() {
-
             @Override
             public boolean isAccessible() {
                 return !readonly;
             }
         };
         accessibleIfReadonly = new CCAccessibleListener() {
-
             @Override
             public boolean isAccessible() {
                 return readonly;
@@ -171,79 +169,66 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected void _initListener() {
         if (BaseFunction.LIST_FUNCTION.equals(_getBaseFunction())) {
             alAdd = new ActionListener() {
-
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     _doAdd();
                 }
             };
             alView = new ActionListener() {
-
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     _doView();
                 }
             };
             alEdit = new ActionListener() {
-
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     _doEdit();
                 }
             };
             alDelete = new ActionListener() {
-
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     _doDelete();
                 }
             };
             klSearch = new KeyAdapter() {
-
                 @Override
                 public void keyReleased(KeyEvent e) {
                     _doSearch();
                 }
             };
-            addFocusListener(swingView.getTabEntity(), new FocusAdapter() {
-
-                @Override
-                public void focusGained(FocusEvent focusEvent) {
-                    focusEvent.getComponent().transferFocus();
-                }
-            });
+//            addFocusListener(swingView.getTabEntity(), new FocusAdapter() {
+//                @Override
+//                public void focusGained(FocusEvent focusEvent) {
+//                    focusEvent.getComponent().transferFocus();
+//                }
+//            });
             addActionListener(swingView.getBtnAdd(), alAdd);
             addActionListener(swingView.getBtnView(), alView);
             addActionListener(swingView.getBtnEdit(), alEdit);
             addActionListener(swingView.getBtnDelete(), alDelete);
             addKeyListener(swingView.getTxtKeyword(), klSearch);
         } else if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction())) {
-            if (ShowMode.DIALOG_MODE.equals(_getShowMode())) {
-                new CCHotkey(getContainer()).add(KeyEvent.VK_ESCAPE, alClose);
-            }
             alNew = new ActionListener() {
-
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     //new data
                 }
             };
             alEdit = new ActionListener() {
-
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     setReadonly(false);
                 }
             };
             alSave = new ActionListener() {
-
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     _doSave();
                 }
             };
             alSaveAndNew = new ActionListener() {
-
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     _doSave();
@@ -251,19 +236,20 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
                 }
             };
             alCancel = new ActionListener() {
-
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     setReadonly(true);
                 }
             };
             alClose = new ActionListener() {
-
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     _doClose();
                 }
             };
+            if (ShowMode.DIALOG_MODE.equals(_getShowMode())) {
+                new CCHotkey(getContainer()).add(KeyEvent.VK_ESCAPE, alClose);
+            }
             addActionListener(swingView.getBtnNew(), alNew);
             addActionListener(swingView.getBtnEdit(), alEdit);
             addActionListener(swingView.getBtnSave(), alSave);
@@ -375,8 +361,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 //<editor-fold defaultstate="collapsed" desc=" LIST_FUNCTION ">
     @Override
     protected boolean _doShowEditor(boolean readonly, Object objEntity) {
-        sysRef = getSysRef(objEntity);
-        sysRef = objEntity.toString();
+        sysRef = _getSysRef(objEntity);
         if (isNotNull(sysRef_swingCtrl.get(sysRef))) {
             CFSwingCtrl swingCtrl = sysRef_swingCtrl.get(sysRef);
             swingCtrl.setReadonly(readonly);

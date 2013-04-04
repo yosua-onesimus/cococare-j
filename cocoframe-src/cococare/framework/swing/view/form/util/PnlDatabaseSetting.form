@@ -157,7 +157,6 @@
       <SubComponents>
         <Component class="cococare.swing.component.CCButton" name="btnSave">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Save"/>
             <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
               <Value id="SAVE"/>
             </Property>
@@ -165,7 +164,6 @@
         </Component>
         <Component class="cococare.swing.component.CCButton" name="btnClose">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Close"/>
             <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
               <Value id="CLOSE"/>
             </Property>

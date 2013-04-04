@@ -145,6 +145,10 @@ public abstract class CFViewCtrl implements CCTrackable {
         updateCaller = false;
     }
 
+    protected String _getSysRef(Object objEntity) {
+        return getSysRef(objEntity);
+    }
+
     protected void _initComponent() {
         if (BaseFunction.LIST_FUNCTION.equals(_getBaseFunction())) {
             _initTable();

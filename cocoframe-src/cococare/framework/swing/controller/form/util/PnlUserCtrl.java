@@ -111,14 +111,8 @@ public class PnlUserCtrl extends CFSwingCtrl {
     }
 
     @Override
-    protected void _doUpdateComponent() {
-        super._doUpdateComponent();
-        //privilege
-        _doUpdateTblPrivilege();
-    }
-
-    protected void _doUpdateTblPrivilege() {
-        tblPrivilege.setList(userBo.getPrivileges());
+    protected boolean _doSaveEntity() {
+        return userBo.save();
     }
 
     protected void _doSelect(boolean selected) {
@@ -142,7 +136,13 @@ public class PnlUserCtrl extends CFSwingCtrl {
     }
 
     @Override
-    protected boolean _doSaveEntity() {
-        return userBo.save();
+    protected void _doUpdateComponent() {
+        super._doUpdateComponent();
+        //privilege
+        _doUpdateTblPrivilege();
+    }
+
+    protected void _doUpdateTblPrivilege() {
+        tblPrivilege.setList(userBo.getPrivileges());
     }
 }

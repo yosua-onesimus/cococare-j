@@ -31,6 +31,15 @@ public class PnlShortcutListCtrl extends CFSwingCtrl {
     }
 
     @Override
+    protected String _getSysRef(Object objEntity) {
+        if (getBoolean(parameter.get("tracker_newEntity"))) {
+            return objEntity.toString();
+        } else {
+            return super._getSysRef(objEntity);
+        }
+    }
+
+    @Override
     protected void _initTable() {
         super._initTable();
         tblEntity.setVisibleField(false, "path");

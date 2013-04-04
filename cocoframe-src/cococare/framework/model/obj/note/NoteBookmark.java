@@ -94,7 +94,7 @@ public class NoteBookmark implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "B000", unique = true)
+    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "B000", requestFocus = true, unique = true)
     private String code;
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY)
     private String name;

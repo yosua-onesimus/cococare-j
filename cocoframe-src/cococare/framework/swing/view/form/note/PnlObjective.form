@@ -115,7 +115,6 @@
       <SubComponents>
         <Component class="cococare.swing.component.CCButton" name="btnEdit">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
             <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
               <Value id="EDIT"/>
             </Property>
@@ -123,7 +122,6 @@
         </Component>
         <Component class="cococare.swing.component.CCButton" name="btnCancel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cancel"/>
             <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
               <Value id="CANCEL"/>
             </Property>
@@ -131,7 +129,6 @@
         </Component>
         <Component class="cococare.swing.component.CCButton" name="btnSave">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Save"/>
             <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
               <Value id="SAVE"/>
             </Property>
@@ -139,7 +136,6 @@
         </Component>
         <Component class="cococare.swing.component.CCButton" name="btnClose">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Close"/>
             <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
               <Value id="CLOSE"/>
             </Property>

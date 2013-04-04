@@ -152,8 +152,8 @@ public class UtilUserGroup implements CCEntity {
         this.name = name;
     }
 
-    public Boolean getRoot() {
-        return root;
+    public boolean isRoot() {
+        return root != null && root;
     }
 
     public void setRoot(Boolean root) {

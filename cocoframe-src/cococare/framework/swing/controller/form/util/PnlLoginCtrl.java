@@ -5,13 +5,10 @@ import static cococare.common.CCMessage.showError;
 import cococare.framework.common.CFApplCtrl;
 import cococare.framework.model.obj.util.UtilUser;
 import cococare.framework.swing.CFSwingCtrl;
-import static cococare.framework.swing.CFSwingMap.getMainScreen;
-import cococare.swing.CCHotkey;
-import static cococare.swing.CCSwing.addActionListener;
-import static cococare.swing.CCSwing.getJButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 //</editor-fold>
 
 /**
@@ -20,6 +17,11 @@ import java.awt.event.KeyEvent;
  * @version 13.03.17
  */
 public class PnlLoginCtrl extends CFSwingCtrl {
+
+    private JTextField txtUsername;
+    private JTextField txtPassword;
+    private JButton btnLogin;
+    private JButton btnExit;
 
     @Override
     protected Class _getEntity() {
@@ -40,16 +42,16 @@ public class PnlLoginCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        CCHotkey hotkey = new CCHotkey(getMainScreen());
-        hotkey.add(KeyEvent.VK_ENTER, new ActionListener() {
-
+        ActionListener alLogin = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doLogin();
             }
-        }, getJButton(getContainer(), "btnLogin"));
-        addActionListener(getJButton(getContainer(), "btnExit"), new ActionListener() {
-
+        };
+        txtUsername.addActionListener(alLogin);
+        txtPassword.addActionListener(alLogin);
+        btnLogin.addActionListener(alLogin);
+        btnExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 CFApplCtrl.INSTANCE.end();

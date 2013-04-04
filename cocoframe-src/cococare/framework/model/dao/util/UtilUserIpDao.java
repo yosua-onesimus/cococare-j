@@ -36,7 +36,7 @@ public class UtilUserIpDao extends UtilityDao {
 
     public List<UtilUserIp> getListUnlimitedBy(UtilUser user) {
         hql.start().
-                where("user= :user");
+                where("user = :user");
         parameters.start().
                 set("user", user);
         return getListUnlimitedBy(hql.value(), parameters.value());

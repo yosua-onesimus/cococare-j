@@ -48,6 +48,15 @@ public class PnlShortcutCtrl extends CFSwingCtrl {
     }
 
     @Override
+    protected String _getSysRef(Object objEntity) {
+        if (getBoolean(parameter.get("tracker_newEntity"))) {
+            return objEntity.toString();
+        } else {
+            return super._getSysRef(objEntity);
+        }
+    }
+
+    @Override
     protected boolean _isValueUnique() {
         boolean valueUnique = super._isValueUnique();
         if (valueUnique && getBoolean(parameter.get("tracker_newEntity"))) {

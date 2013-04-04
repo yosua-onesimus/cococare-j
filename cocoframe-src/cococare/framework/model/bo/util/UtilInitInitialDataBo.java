@@ -108,7 +108,7 @@ public class UtilInitInitialDataBo extends CCHibernateBo {
             transaction.saveOrUpdate(userGroup).saveOrUpdate(userGroupPrivileges).
                     saveOrUpdate(user).saveOrUpdate(userPrivileges);
             //4. create admin
-            userGroup = _newUserGroup(ADMIN, ADMIN, true);
+            userGroup = _newUserGroup(ADMIN, ADMIN, false);
             userGroupPrivileges = _newUserGroupPrivileges(userGroup);
             user = _newUser(ADMIN, ADMIN, ADMIN, userGroup);
             userPrivileges = _newUserPrivileges(user);

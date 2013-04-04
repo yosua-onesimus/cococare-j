@@ -10,7 +10,7 @@ import static cococare.common.CCMessage.setErrorMessage;
 import cococare.common.trial.MD5;
 import cococare.database.CCDatabaseConfig;
 import cococare.database.CCHibernateBo;
-import cococare.database.CCHibernateDao;
+import cococare.database.CCHibernateDao.Transaction;
 import cococare.database.CCLoginInfo;
 import static cococare.database.CCLoginInfo.INSTANCE_getUserLoginIp;
 import cococare.framework.model.dao.util.UtilPrivilegeDao;
@@ -126,7 +126,7 @@ public class UtilUserBo extends CCHibernateBo {
     }
 
     public synchronized boolean save() {
-        CCHibernateDao.Transaction transaction = userDao.newTransaction();
+        Transaction transaction = userDao.newTransaction();
         //
         transaction.saveOrUpdate(user);
         //

@@ -2,7 +2,8 @@ package cococare.framework.swing;
 
 // <editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCClass;
-import static cococare.common.CCClass.*;
+import static cococare.common.CCClass.instanceOf;
+import static cococare.common.CCClass.newObject;
 import static cococare.common.CCFinal.*;
 import cococare.framework.swing.view.form.FrmMain;
 import static cococare.swing.CCSwing.*;
@@ -19,8 +20,8 @@ import javax.swing.JPanel;
 // </editor-fold>
 
 /**
- * CFSwingMap is a class that contains a mapping for the swing so easy retrieval of common
- * components.
+ * CFSwingMap is a class that contains a mapping for the swing so easy retrieval
+ * of common components.
  *
  * @author Yosua Onesimus
  * @since 13.03.17
@@ -122,6 +123,8 @@ public class CFSwingMap {
 
     /**
      * Initial a main screen.
+     *
+     * @param frmMainPath the frmMainPath.
      */
     public static void initMainScreen(String frmMainPath) {
         frmMain = (JFrame) newObject(frmMainPath);
@@ -224,6 +227,15 @@ public class CFSwingMap {
      */
     public static JPanel getContent() {
         return getJPanel(getMainScreen(), aContent);
+    }
+
+    /**
+     * Returns a content image.
+     *
+     * @return the content image.
+     */
+    public static CCImage getContentImage() {
+        return getCCImage(getMainScreen(), aContent);
     }
 
     /**

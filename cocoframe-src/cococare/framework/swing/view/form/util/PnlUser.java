@@ -42,16 +42,12 @@ public class PnlUser extends javax.swing.JPanel {
         pnlEditor.setMinimumSize(new java.awt.Dimension(600, 400));
         pnlEditor.setPreferredSize(new java.awt.Dimension(600, 400));
 
-        btnEdit.setText("Edit");
         btnEdit.setType(cococare.swing.component.CCButton.Type.EDIT);
 
-        btnCancel.setText("Cancel");
         btnCancel.setType(cococare.swing.component.CCButton.Type.CANCEL);
 
-        btnSave.setText("Save");
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
 
-        btnClose.setText("Close");
         btnClose.setType(cococare.swing.component.CCButton.Type.CLOSE);
 
         xUsername.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -77,7 +73,7 @@ public class PnlUser extends javax.swing.JPanel {
         xUserGroup.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xUserGroup.setText("User Group");
 
-        bndUserGroup.setVisibleClearButton(false);
+        bndUserGroup.setVisibleClearButton(true);
 
         chkActive.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         chkActive.setText("Active");
