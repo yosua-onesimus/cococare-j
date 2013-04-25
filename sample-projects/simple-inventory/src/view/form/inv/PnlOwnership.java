@@ -12,7 +12,6 @@ public class PnlOwnership extends javax.swing.JPanel {
 
         pnlEditor = new javax.swing.JPanel();
         btnEdit = new cococare.swing.component.CCButton();
-        btnCancel = new cococare.swing.component.CCButton();
         btnSave = new cococare.swing.component.CCButton();
         btnClose = new cococare.swing.component.CCButton();
         xEmployee = new javax.swing.JLabel();
@@ -27,8 +26,6 @@ public class PnlOwnership extends javax.swing.JPanel {
         pnlEditor.setPreferredSize(new java.awt.Dimension(600, 400));
 
         btnEdit.setType(cococare.swing.component.CCButton.Type.EDIT);
-
-        btnCancel.setType(cococare.swing.component.CCButton.Type.CANCEL);
 
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
 
@@ -51,8 +48,6 @@ public class PnlOwnership extends javax.swing.JPanel {
             .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -71,7 +66,6 @@ public class PnlOwnership extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
@@ -98,7 +92,6 @@ public class PnlOwnership extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cococare.swing.component.CCBandBox bndEmployee;
     private cococare.swing.component.CCBandBox bndInventory;
-    private cococare.swing.component.CCButton btnCancel;
     private cococare.swing.component.CCButton btnClose;
     private cococare.swing.component.CCButton btnEdit;
     private cococare.swing.component.CCButton btnSave;

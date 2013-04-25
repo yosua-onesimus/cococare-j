@@ -4,7 +4,7 @@ public class SchEnum {
 
     public enum Repetition {
 
-        ONCE("Once"), WEEKLY("Weekly"), RANGE("Range");
+        ONCE("Once"), WEEKLY("Weekly");
         private String string;
 
         private Repetition(String string) {

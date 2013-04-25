@@ -95,22 +95,33 @@ public class SchSchedule implements CCEntity {
     @CCFieldConfig(maxLength = 16)
     private String repetition;
     @Temporal(value = TemporalType.DATE)
-    @CCFieldConfig(componentId = "txtDateBegin", accessible = Accessible.MANDATORY, compareRule = CompareRule.SMALLER_OR_EQUAL_THAN)
+    @CCFieldConfig(componentId = "dtpDateBegin", accessible = Accessible.MANDATORY, compareRule = CompareRule.SMALLER_OR_EQUAL_THAN, compareWith = "dtpDateEnd")
     private Date dateBegin;
     @Temporal(value = TemporalType.DATE)
-    @CCFieldConfig(componentId = "txtDateEnd")
+    @CCFieldConfig(componentId = "dtpDateEnd")
     private Date dateEnd;
     @Temporal(value = TemporalType.TIME)
-    @CCFieldConfig(componentId = "txtTimeBegin", accessible = Accessible.MANDATORY, compareRule = CompareRule.SMALLER_OR_EQUAL_THAN)
+    @CCFieldConfig(componentId = "txtTimeBegin", accessible = Accessible.MANDATORY, compareRule = CompareRule.SMALLER_OR_EQUAL_THAN, compareWith = "txtTimeEnd")
     private Date timeBegin;
     @Temporal(value = TemporalType.TIME)
     @CCFieldConfig(componentId = "txtTimeEnd", accessible = Accessible.MANDATORY)
     private Date timeEnd;
+    @Column(length = 255)
     @CCFieldConfig(componentId = "txtDescription")
     private String description;
     @ManyToOne
     @CCFieldConfig(componentId = "bndPerson", accessible = Accessible.MANDATORY, uniqueKey = "name")
     private SchPerson person;
+
+//<editor-fold defaultstate="collapsed" desc=" SchSchedule ">
+    public SchSchedule() {
+    }
+
+    public SchSchedule(Date timeBegin, Date timeEnd) {
+        this.timeBegin = timeBegin;
+        this.timeEnd = timeEnd;
+    }
+//</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public Integer getRepetitionIndex() {

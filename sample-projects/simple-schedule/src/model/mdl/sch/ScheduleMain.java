@@ -14,6 +14,7 @@ import cococare.framework.swing.CFSwingUae;
 import cococare.framework.swing.controller.form.util.*;
 import cococare.swing.CCSwing;
 import controller.form.sch.PnlPersonListCtrl;
+import controller.form.sch.PnlScheduleListCtrl;
 import java.io.File;
 //</editor-fold>
 
@@ -46,6 +47,7 @@ public class ScheduleMain extends CFApplCtrl {
     public boolean initInitialData() {
         CFSwingUae swingUae = new CFSwingUae();
         swingUae.reg("Schedule", "Person", PnlPersonListCtrl.class);
+        swingUae.reg("Schedule", "Schedule", PnlScheduleListCtrl.class);
         swingUae.reg(CCLanguage.Utility, CCLanguage.User_Group, PnlUserGroupListCtrl.class);
         swingUae.reg(CCLanguage.Utility, CCLanguage.User, PnlUserListCtrl.class);
         swingUae.reg(CCLanguage.Utility, CCLanguage.Change_Password, PnlChangePasswordCtrl.class);
@@ -81,6 +83,7 @@ public class ScheduleMain extends CFApplCtrl {
         swingUae.addMenuRoot(PnlLoginCtrl.class);
         swingUae.addMenuParent(CCLanguage.Archive, null, null);
         swingUae.addMenuChild("Person", null, PnlPersonListCtrl.class);
+        swingUae.addMenuChild("Schedule", null, PnlScheduleListCtrl.class);
         swingUae.changeMenuSide();
         swingUae.addMenuParent(CCLanguage.Utility, null, null);
         swingUae.addMenuChild(CCLanguage.User_Group, null, PnlUserGroupListCtrl.class);

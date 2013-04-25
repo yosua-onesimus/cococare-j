@@ -96,8 +96,10 @@ public class NoteBookmark implements CCEntity {
     @Column(length = 8)
     @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "B000", requestFocus = true, unique = true)
     private String code;
+    @Column(length = 255)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY)
     private String name;
+    @Column(length = 255)
     @CCFieldConfig(componentId = "txtUrl", accessible = Accessible.MANDATORY)
     private String url;
     @ManyToOne

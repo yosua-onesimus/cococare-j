@@ -108,7 +108,6 @@ public class CFSwingUae {
                     menuCandidate.getLabel(), menuCandidate.getIcon(),
                     isNull(menuCandidate.getControllerClass()) ? null
                     : new ActionListener() {
-
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     ((CFSwingCtrl) newObject(menuCandidate.getControllerClass())).init();

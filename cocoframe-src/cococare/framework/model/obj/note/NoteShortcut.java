@@ -96,9 +96,10 @@ public class NoteShortcut implements CCEntity {
     @Column(length = 8)
     @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "S000", requestFocus = true, unique = true)
     private String code;
+    @Column(length = 255)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY)
     private String name;
-    @Column(name = "path_")
+    @Column(name = "path_", length = 255)
     @CCFieldConfig(componentId = "txtPath", accessible = Accessible.MANDATORY)
     private String path;
     @ManyToOne

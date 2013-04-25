@@ -27,6 +27,7 @@ public class PnlBookmarkList extends javax.swing.JPanel {
         btnView = new cococare.swing.component.CCButton();
         btnEdit = new cococare.swing.component.CCButton();
         btnDelete = new cococare.swing.component.CCButton();
+        btnExport = new cococare.swing.component.CCButton();
         pnlNorthEast = new javax.swing.JPanel();
         txtKeyword = new javax.swing.JTextField();
         scrEntity = new javax.swing.JScrollPane();
@@ -47,7 +48,7 @@ public class PnlBookmarkList extends javax.swing.JPanel {
         pnlNorth.setPreferredSize(new java.awt.Dimension(10, 50));
         pnlNorth.setLayout(new java.awt.BorderLayout());
 
-        pnlNorthWest.setPreferredSize(new java.awt.Dimension(400, 50));
+        pnlNorthWest.setPreferredSize(new java.awt.Dimension(500, 50));
         pnlNorthWest.setLayout(null);
 
         btnAdd.setType(cococare.swing.component.CCButton.Type.ADD);
@@ -65,6 +66,10 @@ public class PnlBookmarkList extends javax.swing.JPanel {
         btnDelete.setType(cococare.swing.component.CCButton.Type.DELETE);
         pnlNorthWest.add(btnDelete);
         btnDelete.setBounds(300, 10, 100, 29);
+
+        btnExport.setType(cococare.swing.component.CCButton.Type.EXPORT);
+        pnlNorthWest.add(btnExport);
+        btnExport.setBounds(400, 10, 100, 29);
 
         pnlNorth.add(pnlNorthWest, java.awt.BorderLayout.WEST);
 
@@ -102,6 +107,7 @@ public class PnlBookmarkList extends javax.swing.JPanel {
     private cococare.swing.component.CCButton btnAdd;
     private cococare.swing.component.CCButton btnDelete;
     private cococare.swing.component.CCButton btnEdit;
+    private cococare.swing.component.CCButton btnExport;
     private cococare.swing.component.CCButton btnView;
     private cococare.swing.component.CCPaging pgnEntity;
     private javax.swing.JPanel pnlList;

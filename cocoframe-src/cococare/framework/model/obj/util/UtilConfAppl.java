@@ -102,7 +102,7 @@ public class UtilConfAppl implements CCEntity {
     private String applWallpaperName;
     //----------------------------------------------------------------------------------------------
     @Column(length = Integer.MAX_VALUE)
-    @CCFieldConfig(componentId = "attCompanyLogo", type = Type.IMAGE_FILE, optionReflectKey = "companyLogoName")
+    @CCFieldConfig(componentId = "attCompanyLogo", type = Type.THUMB_FILE, optionReflectKey = "companyLogoName")
     private byte[] companyLogo;
     private String companyLogoName;
     @CCFieldConfig(componentId = "txtCompanyName", accessible = Accessible.MANDATORY)

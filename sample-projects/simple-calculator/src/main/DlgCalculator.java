@@ -25,7 +25,6 @@ public class DlgCalculator extends javax.swing.JDialog {
 
     private void _init() {
         ActionListener alTypingCurr = new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 ((JButton) actionEvent.getSource()).getText();
@@ -44,7 +43,6 @@ public class DlgCalculator extends javax.swing.JDialog {
         CCSwing.addActionListener(btn8, alTypingCurr);
         CCSwing.addActionListener(btn9, alTypingCurr);
         ActionListener alTypingSign = new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _typingCurrSign();
@@ -52,7 +50,6 @@ public class DlgCalculator extends javax.swing.JDialog {
         };
         CCSwing.addActionListener(btnSign, alTypingSign);
         ActionListener alTypingBackspace = new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _typingCurrBackspace();
@@ -60,7 +57,6 @@ public class DlgCalculator extends javax.swing.JDialog {
         };
         CCSwing.addActionListener(btnBackspace, alTypingBackspace);
         ActionListener alClearCurr = new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _clearCurr();
@@ -68,7 +64,6 @@ public class DlgCalculator extends javax.swing.JDialog {
         };
         CCSwing.addActionListener(btnCE, alClearCurr);
         ActionListener alTypingOperator = new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 ((JButton) actionEvent.getSource()).getText();
@@ -82,7 +77,6 @@ public class DlgCalculator extends javax.swing.JDialog {
         CCSwing.addActionListener(btnAddition, alTypingOperator);
         CCSwing.addActionListener(btnSubtraction, alTypingOperator);
         ActionListener alTypingEqual = new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _typingEqual();
@@ -90,7 +84,6 @@ public class DlgCalculator extends javax.swing.JDialog {
         };
         CCSwing.addActionListener(btnEqual, alTypingEqual);
         ActionListener alClearAll = new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _clearAll();

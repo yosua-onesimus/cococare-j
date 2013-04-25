@@ -13,7 +13,6 @@ public class PnlInventory2 extends javax.swing.JDialog {
 
         pnlEditor = new javax.swing.JPanel();
         btnEdit = new cococare.swing.component.CCButton();
-        btnCancel = new cococare.swing.component.CCButton();
         btnSave = new cococare.swing.component.CCButton();
         btnClose = new cococare.swing.component.CCButton();
         xCode = new javax.swing.JLabel();
@@ -35,8 +34,6 @@ public class PnlInventory2 extends javax.swing.JDialog {
         pnlEditor.setMinimumSize(new java.awt.Dimension(600, 400));
 
         btnEdit.setType(cococare.swing.component.CCButton.Type.EDIT);
-
-        btnCancel.setType(cococare.swing.component.CCButton.Type.CANCEL);
 
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
 
@@ -84,8 +81,6 @@ public class PnlInventory2 extends javax.swing.JDialog {
             .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -120,7 +115,6 @@ public class PnlInventory2 extends javax.swing.JDialog {
                 .addGap(10, 10, 10)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
@@ -160,7 +154,6 @@ public class PnlInventory2 extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cococare.swing.component.CCButton btnCancel;
     private cococare.swing.component.CCButton btnClose;
     private cococare.swing.component.CCButton btnEdit;
     private cococare.swing.component.CCButton btnSave;

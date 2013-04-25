@@ -62,6 +62,10 @@ public class CFSwingView {
         return getCCButton(getContainer(), btnDelete);
     }
 
+    public CCButton getBtnExport() {
+        return getCCButton(getContainer(), btnExport);
+    }
+
     public CCButton getBtnNew() {
         return getCCButton(getContainer(), btnNew);
     }

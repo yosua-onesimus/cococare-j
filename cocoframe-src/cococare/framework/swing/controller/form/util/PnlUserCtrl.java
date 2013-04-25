@@ -4,6 +4,7 @@ package cococare.framework.swing.controller.form.util;
 import cococare.common.CCCustomField;
 import static cococare.common.CCLogic.*;
 import cococare.framework.model.bo.util.UtilUserBo;
+import cococare.framework.model.obj.util.UtilFilter;
 import cococare.framework.model.obj.util.UtilPrivilege;
 import cococare.framework.model.obj.util.UtilUser;
 import cococare.framework.model.obj.util.UtilUserGroup;
@@ -11,6 +12,7 @@ import cococare.framework.swing.CFSwingCtrl;
 import static cococare.swing.CCSwing.getCCBandBox;
 import static cococare.swing.CCSwing.newCCTable;
 import cococare.swing.CCTable;
+import cococare.swing.component.CCBandBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JCheckBox;
@@ -24,9 +26,9 @@ import javax.swing.JCheckBox;
 public class PnlUserCtrl extends CFSwingCtrl {
 
     private UtilUserBo userBo;
+    private CCBandBox bndUserGroup;
     private CCTable tblPrivilege;
     private ActionListener alSelect = new ActionListener() {
-
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             _doSelect(((JCheckBox) actionEvent.getSource()).isSelected());
@@ -53,6 +55,7 @@ public class PnlUserCtrl extends CFSwingCtrl {
     @Override
     protected void _initEditor() {
         super._initEditor();
+        bndUserGroup.getTable().setHqlFilters(UtilFilter.IsUserGroupNotRoot);
         //
         if (!newEntity) {
             edtEntity.unreg("xPassword");
@@ -60,15 +63,6 @@ public class PnlUserCtrl extends CFSwingCtrl {
             edtEntity.unreg("xRetypePassword");
             edtEntity.unreg("txtRetypePassword");
         }
-        //
-        getCCBandBox(getContainer(), "bndUserGroup").addEventListenerOnSelect(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                userBo.getPrivileges((UtilUserGroup) getCCBandBox(getContainer(), "bndUserGroup").getObject());
-                tblPrivilege.reloadItems();
-            }
-        });
         //privilege
         _initTblPrivilege();
     }
@@ -77,7 +71,6 @@ public class PnlUserCtrl extends CFSwingCtrl {
         tblPrivilege = newCCTable(getContainer(), "tblPrivilege", UtilPrivilege.class);
         tblPrivilege.setVisibleField(false, "name");
         tblPrivilege.addField(0, new CCCustomField() {
-
             @Override
             public Object getCustomView(Object object) {
                 UtilPrivilege privilege = (UtilPrivilege) object;
@@ -87,7 +80,6 @@ public class PnlUserCtrl extends CFSwingCtrl {
             }
         });
         tblPrivilege.addField(1, new CCCustomField() {
-
             @Override
             public String getLabel() {
                 return "Privilege";
@@ -108,6 +100,19 @@ public class PnlUserCtrl extends CFSwingCtrl {
         super._doUpdateAccessible();
         //privilege
         tblPrivilege.setEditableColumn(!readonly, 0);
+    }
+
+    @Override
+    protected void _initListener() {
+        super._initListener();
+        //privilege
+        getCCBandBox(getContainer(), "bndUserGroup").addEventListenerOnSelect(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                userBo.getPrivileges((UtilUserGroup) getCCBandBox(getContainer(), "bndUserGroup").getObject());
+                tblPrivilege.reloadItems();
+            }
+        });
     }
 
     @Override

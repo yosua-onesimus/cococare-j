@@ -4,10 +4,11 @@ package cococare.framework.swing;
 import cococare.common.CCAccessibleListener;
 import static cococare.common.CCClass.getUniqueKeyValue;
 import static cococare.common.CCClass.newObject;
+import static cococare.common.CCFinal.btnEdit;
 import static cococare.common.CCLanguage.*;
 import static cococare.common.CCLogic.*;
-import static cococare.common.CCMessage.showDeleted;
-import static cococare.common.CCMessage.showSaved;
+import static cococare.common.CCMessage.*;
+import static cococare.database.CCLoginInfo.INSTANCE_isCompAccessible;
 import cococare.framework.common.CFViewCtrl;
 import static cococare.framework.swing.CFSwingMap.*;
 import cococare.swing.CCEditor;
@@ -35,6 +36,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected ActionListener alView;
     protected ActionListener alEdit;
     protected ActionListener alDelete;
+    protected ActionListener alExport;
     protected KeyListener klSearch;
     protected HashMap<String, CFSwingCtrl> sysRef_swingCtrl;
     //
@@ -146,6 +148,9 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
                 return readonly;
             }
         };
+        if (isNotNull(getControllerForm(getClass())) && !INSTANCE_isCompAccessible(getControllerForm(getClass()).getName() + "." + btnEdit)) {
+            addAccessibleListener(swingView.getBtnEdit(), CCAccessibleListener.nonAccessible);
+        }
         addAccessibleListener(swingView.getBtnEdit(), accessibleIfReadonly);
         addAccessibleListener(swingView.getBtnSave(), accessibleIfEditable);
         addAccessibleListener(swingView.getBtnSaveAndNew(), accessibleIfEditable);
@@ -192,6 +197,12 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
                     _doDelete();
                 }
             };
+            alExport = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    _doExport();
+                }
+            };
             klSearch = new KeyAdapter() {
                 @Override
                 public void keyReleased(KeyEvent e) {
@@ -208,6 +219,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             addActionListener(swingView.getBtnView(), alView);
             addActionListener(swingView.getBtnEdit(), alEdit);
             addActionListener(swingView.getBtnDelete(), alDelete);
+            addActionListener(swingView.getBtnExport(), alExport);
             addKeyListener(swingView.getTxtKeyword(), klSearch);
         } else if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction())) {
             alNew = new ActionListener() {
@@ -288,6 +300,23 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     @Override
     protected void _showDeleted(boolean success) {
         showDeleted(success);
+    }
+
+    @Override
+    protected boolean _doExportMulti() {
+        return tblEntity.export2Excel();
+    }
+
+    @Override
+    protected boolean _doExportSingle() {
+        return true;
+    }
+
+    @Override
+    protected void _showExported(boolean success) {
+        if (!success) {
+            showError();
+        }
     }
 //</editor-fold>
 

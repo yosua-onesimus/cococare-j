@@ -100,6 +100,7 @@ public class NoteObjective implements CCEntity {
     @Column(length = 32)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
     private String name;
+    @Column(length = 255)
     @CCFieldConfig(componentId = "txtDescription")
     private String description;
     @CCFieldConfig(componentId = "cmbObjectiveStatus", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.note.NoteEnum$ObjectiveStatus", optionReflectKey = "objectiveStatus", visible = false)

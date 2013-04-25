@@ -208,13 +208,24 @@ public abstract class CFViewCtrl implements CCTrackable {
     protected void _doDelete() {
         if (_isSelected()) {
             if (_isSureDelete()) {
-                boolean success = _doDeleteEntity();
-                if (success) {
+                if (_doDeleteEntity()) {
                     _logger(_getSelectedItem());
                     doUpdateTable();
                 } else {
-                    _showDeleted(success);
+                    _showDeleted(false);
                 }
+            }
+        }
+    }
+
+    protected void _doExport() {
+        if (_hasTblEntity()) {
+            if (!_doExportMulti()) {
+                _showExported(false);
+            }
+        } else if (_hasEdtEntity()) {
+            if (!_doExportSingle()) {
+                _showExported(false);
             }
         }
     }
@@ -238,6 +249,12 @@ public abstract class CFViewCtrl implements CCTrackable {
     protected abstract boolean _doDeleteEntity();
 
     protected abstract void _showDeleted(boolean success);
+
+    protected abstract boolean _doExportMulti();
+
+    protected abstract boolean _doExportSingle();
+
+    protected abstract void _showExported(boolean success);
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" FORM_FUNCTION ">

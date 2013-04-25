@@ -92,6 +92,7 @@ public class SchPerson implements CCEntity {
     @Column(length = 16)
     @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 16, sequence = "PER/[yyMMdd]/000", requestFocus = true, unique = true)
     private String code;
+    @Column(length = 255)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY)
     private String name;
 //<editor-fold defaultstate="collapsed" desc=" cascade ">

@@ -35,14 +35,14 @@ public class FrmMain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setName("frmMain");
+        setName("frmMain"); // NOI18N
 
         north.setBorder(new javax.swing.border.LineBorder(java.awt.Color.cyan, 1, true));
         north.setMinimumSize(new java.awt.Dimension(800, 60));
         north.setPreferredSize(new java.awt.Dimension(800, 60));
         north.setLayout(new java.awt.BorderLayout());
 
-        northWest.setPreferredSize(new java.awt.Dimension(400, 60));
+        northWest.setPreferredSize(new java.awt.Dimension(500, 60));
 
         aApplLogo.setBorder(new javax.swing.border.LineBorder(java.awt.Color.cyan, 1, true));
         aApplLogo.setIconAutoFit(true);
@@ -70,7 +70,7 @@ public class FrmMain extends javax.swing.JFrame {
             .addGroup(northWestLayout.createSequentialGroup()
                 .addComponent(aApplLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(aApplName, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(aApplName, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         northWestLayout.setVerticalGroup(
             northWestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,7 +80,7 @@ public class FrmMain extends javax.swing.JFrame {
 
         north.add(northWest, java.awt.BorderLayout.WEST);
 
-        northEast.setPreferredSize(new java.awt.Dimension(400, 60));
+        northEast.setPreferredSize(new java.awt.Dimension(300, 60));
 
         aCompLogo.setBorder(new javax.swing.border.LineBorder(java.awt.Color.cyan, 1, true));
         aCompLogo.setIconAutoFit(true);
@@ -106,7 +106,7 @@ public class FrmMain extends javax.swing.JFrame {
         northEastLayout.setHorizontalGroup(
             northEastLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(northEastLayout.createSequentialGroup()
-                .addComponent(aCompName, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(aCompName, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(aCompLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
