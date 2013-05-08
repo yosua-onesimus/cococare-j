@@ -98,7 +98,7 @@ public class Ex1_Console {
         CCMessage.println("Code: " + employee.getCode());
         CCMessage.println("Name: ");
         employee.setName(CCMessage.readln());
-        if (hibernate.saveOrUpdate(employee)) {
+        if (employeeDao.saveOrUpdate(employee)) {
             CCMessage.println("employee has been saved successfully");
             CCMessage.println("employee.getId(): " + employee.getId());
         } else {
