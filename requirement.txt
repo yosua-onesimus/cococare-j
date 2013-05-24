@@ -1,4 +1,4 @@
-cococare-j Recruitment:
+cococare-j Requirement:
   Software:
     Java SE 6 Update X (Mandatory) (http://www.oracle.com/technetwork/java/javase/downloads/index.html)
     NetBeans IDE 7.1 Up (Recommended) (http://netbeans.org/downloads/)
