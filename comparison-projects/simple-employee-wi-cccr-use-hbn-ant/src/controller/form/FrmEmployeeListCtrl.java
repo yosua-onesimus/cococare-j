@@ -1,6 +1,7 @@
 package controller.form;
 
 import cococare.common.CCLanguage;
+import cococare.common.CCMessage;
 import cococare.database.CCDatabaseConfig;
 import cococare.database.CCHibernate;
 import cococare.swing.CCSwing;
@@ -60,6 +61,11 @@ public class FrmEmployeeListCtrl {
     }
 
     private void _doDelete() {
+        if (tblEntity.deleteById(tblEntity.getSelectedItem()) > -1) {
+            tblEntity.search();
+        } else {
+            CCMessage.showError();
+        }
     }
 
     public static void main(String[] args) {
