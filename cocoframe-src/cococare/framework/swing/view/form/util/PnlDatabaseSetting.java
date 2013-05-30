@@ -38,11 +38,10 @@ public class PnlDatabaseSetting extends javax.swing.JPanel {
         chkInitInitialData = new javax.swing.JCheckBox();
 
         setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        setMinimumSize(new java.awt.Dimension(600, 400));
 
         pnlEditor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, CCLanguage.turn(CCLanguage.Database_Setting), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         pnlEditor.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        pnlEditor.setMinimumSize(new java.awt.Dimension(600, 400));
-        pnlEditor.setPreferredSize(new java.awt.Dimension(600, 400));
 
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
 
@@ -174,13 +173,13 @@ public class PnlDatabaseSetting extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents

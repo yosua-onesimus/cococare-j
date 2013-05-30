@@ -25,9 +25,10 @@ public class PnlListFilesSetup extends javax.swing.JPanel {
         scrListFiles = new javax.swing.JScrollPane();
         tblListFiles = new javax.swing.JTable();
 
+        setMinimumSize(new java.awt.Dimension(600, 400));
+
         pnlListFiles.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "List Files Setup", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         pnlListFiles.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        pnlListFiles.setMinimumSize(new java.awt.Dimension(600, 400));
         pnlListFiles.setLayout(new java.awt.BorderLayout());
 
         pnlNorth.setPreferredSize(new java.awt.Dimension(588, 60));

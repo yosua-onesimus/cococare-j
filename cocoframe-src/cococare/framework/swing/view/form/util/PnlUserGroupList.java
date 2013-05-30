@@ -39,8 +39,6 @@ public class PnlUserGroupList extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(600, 400));
 
         tabEntity.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        tabEntity.setMinimumSize(new java.awt.Dimension(600, 400));
-        tabEntity.setPreferredSize(new java.awt.Dimension(600, 400));
 
         pnlList.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         pnlList.setLayout(new java.awt.BorderLayout());
@@ -97,13 +95,13 @@ public class PnlUserGroupList extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tabEntity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tabEntity, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tabEntity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tabEntity, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents

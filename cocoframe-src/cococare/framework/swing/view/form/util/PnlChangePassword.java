@@ -27,9 +27,10 @@ public class PnlChangePassword extends javax.swing.JPanel {
         xRetypePassword = new javax.swing.JLabel();
         txtRetypePassword = new javax.swing.JPasswordField();
 
+        setMinimumSize(new java.awt.Dimension(600, 400));
+
         pnlEditor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, CCLanguage.turn(CCLanguage.Change_Password), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         pnlEditor.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        pnlEditor.setMinimumSize(new java.awt.Dimension(600, 400));
 
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
 

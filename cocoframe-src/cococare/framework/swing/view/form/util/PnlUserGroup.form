@@ -35,11 +35,6 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="pnlEditor">
-      <Properties>
-        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[600, 400]"/>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">

@@ -44,6 +44,8 @@ public class CFSwingUae {
     private boolean leftSide = true;
     private HashMap<Integer, MenuCandidate> leftSideMenus = new LinkedHashMap();
     private HashMap<Integer, MenuCandidate> rightSideMenus = new LinkedHashMap();
+    private List<Integer> separatorMenus = new ArrayList();
+    private Integer separatorParentCode = null;
     private HashMap<MenuCandidate, Boolean> accessibles = new HashMap();
 //</editor-fold>
 //</editor-fold>
@@ -104,6 +106,9 @@ public class CFSwingUae {
 
     private void _addMenu(final MenuCandidate menuCandidate) {
         if (accessibles.get(menuCandidate)) {
+            if (isNotNull(separatorParentCode) && separatorParentCode.equals(menuCandidate.getParentCode())) {
+                menuBar.addMenuSeparator(separatorParentCode);
+            }
             menuBar.addMenu(menuCandidate.getParentCode(), menuCandidate.getCode(),
                     menuCandidate.getLabel(), menuCandidate.getIcon(),
                     isNull(menuCandidate.getControllerClass()) ? null
@@ -113,6 +118,10 @@ public class CFSwingUae {
                     ((CFSwingCtrl) newObject(menuCandidate.getControllerClass())).init();
                 }
             });
+            separatorParentCode = null;
+        }
+        if (isNull(separatorParentCode) && separatorMenus.contains(menuCandidate.getCode())) {
+            separatorParentCode = menuCandidate.getParentCode();
         }
     }
 //</editor-fold>
@@ -149,6 +158,8 @@ public class CFSwingUae {
         leftSide = true;
         leftSideMenus.clear();
         rightSideMenus.clear();
+        separatorMenus.clear();
+        separatorParentCode = null;
         accessibles.clear();
     }
 
@@ -170,9 +181,9 @@ public class CFSwingUae {
             MenuCandidate parent = (leftSide ? leftSideMenus.get(parentCode) : rightSideMenus.get(parentCode));
             if (isNotNull(controllerClass)) {
                 boolean isAccessible = menuRoot.contains(controllerClass) || isAccessible(controllerClass);
-                if (!isAccessible) {
-                    return;
-                }
+//                if (!isAccessible) {
+//                    return;
+//                }
                 MenuCandidate menuCandidate = _addMenuCandidate(parentCode, code, label, icon, controllerClass);
                 accessibles.put(menuCandidate, isAccessible);
                 accessibles.put(parent, accessibles.get(parent) || isAccessible);
@@ -186,6 +197,16 @@ public class CFSwingUae {
 
     public void addMenuChild(String label, String icon, Class<? extends CFSwingCtrl> controllerClass) {
         addMenu(pc, cc++, label, icon, controllerClass);
+    }
+
+    public void addMenuSeparator(int code) {
+        if (!separatorMenus.contains(code)) {
+            separatorMenus.add(code);
+        }
+    }
+
+    public void addMenuSeparator() {
+        addMenuSeparator(cc - 1);
     }
 
     public void changeMenuSide() {

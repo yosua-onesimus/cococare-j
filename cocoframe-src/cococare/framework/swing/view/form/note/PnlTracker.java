@@ -38,9 +38,6 @@ public class PnlTracker extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(610, 400));
         setPreferredSize(new java.awt.Dimension(610, 400));
 
-        pnlEditor.setMinimumSize(new java.awt.Dimension(610, 400));
-        pnlEditor.setPreferredSize(new java.awt.Dimension(610, 400));
-
         btnEdit.setType(cococare.swing.component.CCButton.Type.EDIT);
 
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
@@ -166,11 +163,11 @@ public class PnlTracker extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

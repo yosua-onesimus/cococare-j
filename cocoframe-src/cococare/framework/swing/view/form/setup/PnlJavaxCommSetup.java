@@ -46,10 +46,10 @@ public class PnlJavaxCommSetup extends javax.swing.JPanel {
         btnOpenDrawer3 = new cococare.swing.component.CCButton();
         btnOpenDrawer4 = new cococare.swing.component.CCButton();
 
+        setMinimumSize(new java.awt.Dimension(600, 400));
+
         pnlJavaxComm.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Javax.Comm Setup", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         pnlJavaxComm.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        pnlJavaxComm.setMinimumSize(new java.awt.Dimension(600, 400));
-        pnlJavaxComm.setPreferredSize(new java.awt.Dimension(600, 400));
 
         tabJavaxComm.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
@@ -268,11 +268,11 @@ public class PnlJavaxCommSetup extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlJavaxComm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlJavaxComm, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlJavaxComm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlJavaxComm, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

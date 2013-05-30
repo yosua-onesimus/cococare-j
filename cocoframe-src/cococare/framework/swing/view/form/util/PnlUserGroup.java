@@ -31,8 +31,6 @@ public class PnlUserGroup extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(600, 400));
 
-        pnlEditor.setMinimumSize(new java.awt.Dimension(600, 400));
-
         btnEdit.setType(cococare.swing.component.CCButton.Type.EDIT);
 
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
