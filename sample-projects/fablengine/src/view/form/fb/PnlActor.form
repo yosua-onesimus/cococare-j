@@ -55,11 +55,6 @@
                   <Component id="btnClose" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
-                  <Component id="xCode" min="-2" pref="100" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="txtCode" min="-2" pref="50" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
                   <Component id="xName" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="txtName" min="-2" pref="250" max="-2" attributes="0"/>
@@ -117,11 +112,6 @@
                       <Component id="btnClose" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="xCode" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="txtCode" min="-2" pref="29" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="xName" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="txtName" min="-2" pref="29" max="-2" attributes="0"/>
@@ -182,21 +172,6 @@
           <Properties>
             <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
               <Value id="CLOSE"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="xCode">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Code"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtCode">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="12" style="0"/>
             </Property>
           </Properties>
         </Component>

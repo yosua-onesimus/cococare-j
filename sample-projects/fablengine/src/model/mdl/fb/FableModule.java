@@ -4,6 +4,7 @@ package model.mdl.fb;
 import cococare.database.CCHibernate;
 import cococare.database.CCHibernateModule;
 import model.obj.fb.FBAction;
+import model.obj.fb.FBActor;
 import model.obj.fb.FBClass;
 //</editor-fold>
 
@@ -16,8 +17,9 @@ public class FableModule extends CCHibernateModule {
     public void init(CCHibernate hibernate) {
         super.init(hibernate);
         //
-        hibernate.addAnnotatedClass(FBClass.class);
         hibernate.addAnnotatedClass(FBAction.class);
+        hibernate.addAnnotatedClass(FBClass.class);
+        hibernate.addAnnotatedClass(FBActor.class);
     }
 //</editor-fold>
 }

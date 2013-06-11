@@ -3,6 +3,7 @@ package model.obj.fb;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import static cococare.common.CCMath.manipulate;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
@@ -111,6 +112,8 @@ public class FBAction implements CCEntity {
     @Column(length = 255)
     @CCFieldConfig(componentId = "txtFormulaPost")
     private String formulaPost;
+    transient private FBActor caster;
+    transient private FBActor target;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public Integer getActionTypeIndex() {
@@ -175,6 +178,20 @@ public class FBAction implements CCEntity {
 
     public void setFormulaPost(String formulaPost) {
         this.formulaPost = formulaPost;
+    }
+
+    private void setCaster(FBActor caster) {
+        this.caster = caster;
+    }
+
+    private void setTarget(FBActor target) {
+        this.target = target;
+    }
+
+    public void execute(FBActor caster, FBActor target) {
+        setCaster(caster);
+        setTarget(target);
+        manipulate(this, formulaMain);
     }
 //</editor-fold>
 }

@@ -1,8 +1,8 @@
 package view.form.fb;
 
-public class PnlClass extends javax.swing.JPanel {
+public class PnlActor extends javax.swing.JPanel {
 
-    public PnlClass() {
+    public PnlActor() {
         initComponents();
     }
 
@@ -14,8 +14,6 @@ public class PnlClass extends javax.swing.JPanel {
         btnEdit = new cococare.swing.component.CCButton();
         btnSave = new cococare.swing.component.CCButton();
         btnClose = new cococare.swing.component.CCButton();
-        xCode = new javax.swing.JLabel();
-        txtCode = new javax.swing.JTextField();
         xName = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         xHp = new javax.swing.JLabel();
@@ -48,11 +46,6 @@ public class PnlClass extends javax.swing.JPanel {
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
 
         btnClose.setType(cococare.swing.component.CCButton.Type.CLOSE);
-
-        xCode.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        xCode.setText("Code");
-
-        txtCode.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
         xName.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xName.setText("Name");
@@ -115,10 +108,6 @@ public class PnlClass extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEditorLayout.createSequentialGroup()
-                .addComponent(xCode, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addComponent(xName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -169,10 +158,6 @@ public class PnlClass extends javax.swing.JPanel {
                     .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(xCode, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
-                .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
@@ -222,7 +207,6 @@ public class PnlClass extends javax.swing.JPanel {
     private cococare.swing.component.CCButton btnSave;
     private javax.swing.JPanel pnlEditor;
     private javax.swing.JTextField txtAp;
-    private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtCrtRate;
     private javax.swing.JTextField txtDefense;
     private javax.swing.JTextField txtEssence;
@@ -233,7 +217,6 @@ public class PnlClass extends javax.swing.JPanel {
     private javax.swing.JTextField txtOffense;
     private javax.swing.JTextField txtVelense;
     private javax.swing.JLabel xAp;
-    private javax.swing.JLabel xCode;
     private javax.swing.JLabel xCrtRate;
     private javax.swing.JLabel xDefense;
     private javax.swing.JLabel xEssence;

@@ -1,22 +1,14 @@
 package model.mdl.inv;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.common.CCFormat;
 import cococare.common.CCLanguage;
-import cococare.common.CCLanguage.LanguagePack;
 import cococare.database.CCLoginInfo;
-import cococare.datafile.CCFile;
 import cococare.framework.common.CFApplCtrl;
-import static cococare.framework.common.CFApplCtrl.APPL_CODE;
-import cococare.framework.model.bo.util.UtilConfigBo;
-import cococare.framework.model.obj.util.UtilConfAppl;
 import cococare.framework.model.obj.util.UtilUser;
 import cococare.framework.swing.CFSwingMap;
 import cococare.framework.swing.CFSwingUae;
-import cococare.framework.swing.controller.form.util.*;
-import cococare.swing.CCSwing;
+import cococare.framework.swing.controller.form.util.PnlLoginCtrl;
 import controller.form.inv.*;
-import java.io.File;
 //</editor-fold>
 
 public class InventoryMain extends CFApplCtrl {
@@ -27,15 +19,6 @@ public class InventoryMain extends CFApplCtrl {
         APPL_NAME = "simple-inventory";
         //CCLoginInfo.INSTANCE = null;//without login
         super._loadInternalSetting();
-    }
-
-    @Override
-    protected void _loadExternalSetting() {
-        super._loadExternalSetting();
-        File file = CCFile.getFileSystConfFile(S_APPL_CONF);
-        if (file.exists()) {
-            updateNonContent((UtilConfAppl) CCFile.readObject(file));
-        }
     }
 
     @Override
@@ -50,32 +33,14 @@ public class InventoryMain extends CFApplCtrl {
         swingUae.reg("Inventory", "Inventory", PnlInventoryListCtrl.class);
         swingUae.reg("Inventory", "Employee", PnlEmployeeListCtrl.class);
         swingUae.reg("Inventory", "Ownership", PnlOwnershipListCtrl.class);
-        swingUae.reg(CCLanguage.Utility, CCLanguage.User_Group, PnlUserGroupListCtrl.class);
-        swingUae.reg(CCLanguage.Utility, CCLanguage.User, PnlUserListCtrl.class);
-        swingUae.reg(CCLanguage.Utility, CCLanguage.Change_Password, PnlChangePasswordCtrl.class);
-        swingUae.reg(CCLanguage.Utility, CCLanguage.Logger_History, PnlLoggerListCtrl.class);
-        swingUae.reg(CCLanguage.Utility, CCLanguage.Application_Setting, PnlApplicationSettingCtrl.class);
-        swingUae.reg(CCLanguage.Utility, CCLanguage.Database_Setting, PnlDatabaseSettingCtrl.class);
-        return swingUae.compile();
-    }
-
-    @Override
-    public void updateNonContent(Object object) {
-        UtilConfAppl confAppl = (UtilConfAppl) object;
-        CCLanguage.load(LanguagePack.values()[CCFormat.parseInt(confAppl.getApplLanguage())]);
-        CCSwing.setLookAndFeel(CCSwing.LookAndFeel.values()[CCFormat.parseInt(confAppl.getApplLookAndFeel())].getName(), CFSwingMap.getMainScreen());
-        CFSwingMap.getContentImage().setIcon(confAppl.getApplWallpaper());
-        CFSwingMap.getCompLogo().setIcon(confAppl.getCompanyLogo());
-        CFSwingMap.getCompName().setText(CCFormat.wordWrap(new String[]{CCFormat.getStringOrBlank(confAppl.getCompanyName()), CCFormat.getStringOrBlank(confAppl.getCompanyAddress())}));
+        return _initInitialDataUaeUtility(swingUae).compile();
     }
 
     @Override
     protected void _applyUserConfig() {
-        UtilConfAppl confAppl = new UtilConfigBo().loadConfAppl();
-        updateNonContent(confAppl);
-
+        super._applyUserConfig();
         CFSwingUae swingUae = new CFSwingUae();
-        if (MenuPosition.LEFT_SIDE.ordinal() == CCFormat.parseInt(confAppl.getApplMenuPosition())) {
+        if (MenuPosition.LEFT_SIDE == MENU_POST) {
             CFSwingMap.getMenubarV().setVisible(true);
             swingUae.initMenuBar(CFSwingMap.getMenubarV());
         } else {
@@ -95,16 +60,7 @@ public class InventoryMain extends CFApplCtrl {
         swingUae.addMenuParent("Panel Flow Sample", null, null);
         swingUae.addMenuChild("Inventory", null, PnlInventory3ListCtrl.class);
         swingUae.changeMenuSide();
-        swingUae.addMenuParent(CCLanguage.Utility, null, null);
-        swingUae.addMenuChild(CCLanguage.User_Group, null, PnlUserGroupListCtrl.class);
-        swingUae.addMenuChild(CCLanguage.User, null, PnlUserListCtrl.class);
-        swingUae.addMenuChild(CCLanguage.Change_Password, null, PnlChangePasswordCtrl.class);
-        swingUae.addMenuChild(CCLanguage.Logger_History, null, PnlLoggerListCtrl.class);
-        swingUae.addMenuChild(CCLanguage.Application_Setting, null, PnlApplicationSettingCtrl.class);
-        swingUae.addMenuChild(CCLanguage.Database_Setting, null, PnlDatabaseSettingCtrl.class);
-        swingUae.addMenuChild(CCLanguage.Log_Out, null, PnlLoginCtrl.class);
-        swingUae.compileMenu();
-
+        _applyUserConfigUaeUtility(swingUae).compileMenu();
         CFSwingMap.getMainScreen().validate();
     }
 
