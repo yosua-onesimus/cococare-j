@@ -25,8 +25,8 @@ public class PnlTracker extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         xObjective = new javax.swing.JLabel();
         bndObjective = new cococare.swing.component.CCBandBox();
-        xTrackerType = new javax.swing.JLabel();
-        cmbTrackerType = new javax.swing.JComboBox();
+        xType = new javax.swing.JLabel();
+        cmbType = new javax.swing.JComboBox();
         tab = new javax.swing.JTabbedPane();
         pnlDescription = new javax.swing.JPanel();
         xDescription = new javax.swing.JLabel();
@@ -59,10 +59,10 @@ public class PnlTracker extends javax.swing.JPanel {
 
         bndObjective.setVisibleClearButton(true);
 
-        xTrackerType.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        xTrackerType.setText("Type");
+        xType.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xType.setText("Type");
 
-        cmbTrackerType.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        cmbType.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
         tab.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
@@ -130,9 +130,9 @@ public class PnlTracker extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(xTrackerType, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(xType, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(cmbTrackerType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(tab)
         );
         pnlEditorLayout.setVerticalGroup(
@@ -153,8 +153,8 @@ public class PnlTracker extends javax.swing.JPanel {
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(xTrackerType, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbTrackerType, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(xType, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addComponent(tab))
         );
@@ -163,11 +163,11 @@ public class PnlTracker extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+            .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -175,7 +175,7 @@ public class PnlTracker extends javax.swing.JPanel {
     private cococare.swing.component.CCButton btnClose;
     private cococare.swing.component.CCButton btnEdit;
     private cococare.swing.component.CCButton btnSave;
-    private javax.swing.JComboBox cmbTrackerType;
+    private javax.swing.JComboBox cmbType;
     private javax.swing.JPanel pnlBookmark;
     private javax.swing.JPanel pnlDescription;
     private javax.swing.JPanel pnlEditor;
@@ -189,6 +189,6 @@ public class PnlTracker extends javax.swing.JPanel {
     private javax.swing.JLabel xDescription;
     private javax.swing.JLabel xName;
     private javax.swing.JLabel xObjective;
-    private javax.swing.JLabel xTrackerType;
+    private javax.swing.JLabel xType;
     // End of variables declaration//GEN-END:variables
 }

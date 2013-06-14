@@ -103,11 +103,11 @@ public class NoteObjective implements CCEntity {
     @Column(length = 255)
     @CCFieldConfig(componentId = "txtDescription")
     private String description;
-    @CCFieldConfig(componentId = "cmbObjectiveStatus", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.note.NoteEnum$ObjectiveStatus", optionReflectKey = "objectiveStatus", visible = false)
-    private Integer objectiveStatusIndex;
+    @CCFieldConfig(componentId = "cmbStatus", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.note.NoteEnum$ObjectiveStatus", optionReflectKey = "status", visible = false)
+    private Integer statusIndex;
     @Column(length = 16)
     @CCFieldConfig(maxLength = 16)
-    private String objectiveStatus;
+    private String status;
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "objective")
     private List<NoteTracker> trackers;
@@ -138,20 +138,20 @@ public class NoteObjective implements CCEntity {
         this.description = description;
     }
 
-    public Integer getObjectiveStatusIndex() {
-        return objectiveStatusIndex;
+    public Integer getStatusIndex() {
+        return statusIndex;
     }
 
-    public void setObjectiveStatusIndex(Integer objectiveStatusIndex) {
-        this.objectiveStatusIndex = objectiveStatusIndex;
+    public void setStatusIndex(Integer statusIndex) {
+        this.statusIndex = statusIndex;
     }
 
-    public String getObjectiveStatus() {
-        return objectiveStatus;
+    public String getStatus() {
+        return status;
     }
 
-    public void setObjectiveStatus(String objectiveStatus) {
-        this.objectiveStatus = objectiveStatus;
+    public void setStatus(String status) {
+        this.status = status;
     }
 //</editor-fold>
 }

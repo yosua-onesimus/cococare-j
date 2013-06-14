@@ -28,4 +28,9 @@ public class PnlUserListCtrl extends CFSwingCtrl {
         super._initTable();
         tblEntity.setHqlFilters(UtilFilter.IsUserNotRoot);
     }
+
+    @Override
+    protected boolean _doDeleteEntity() {
+        return tblEntity.deleteBySetting(_getSelectedItem()) > 0;
+    }
 }

@@ -41,8 +41,6 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected HashMap<String, CFSwingCtrl> sysRef_swingCtrl;
     //
     protected CCEditor edtEntity;
-    protected CCAccessibleListener accessibleIfEditable;
-    protected CCAccessibleListener accessibleIfReadonly;
     protected ActionListener alNew;
     protected ActionListener alSave;
     protected ActionListener alSaveAndNew;
@@ -123,31 +121,19 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected void _initEditor() {
         if (_hasEntity()) {
             edtEntity = new CCEditor(getContainer(), _getEntity());
-            _initObjEntity();
+            if (newEntity) {
+                _initObjEntity();
+            }
         }
     }
 
     @Override
     protected void _initObjEntity() {
-        if (newEntity) {
-            edtEntity.initSequence(objEntity);
-        }
+        edtEntity.initSequence(objEntity);
     }
 
     @Override
     protected void _initAccessible() {
-        accessibleIfEditable = new CCAccessibleListener() {
-            @Override
-            public boolean isAccessible() {
-                return !readonly;
-            }
-        };
-        accessibleIfReadonly = new CCAccessibleListener() {
-            @Override
-            public boolean isAccessible() {
-                return readonly;
-            }
-        };
         if (isNotNull(getControllerForm(getClass())) && !INSTANCE_isCompAccessible(getControllerForm(getClass()).getName() + "." + btnEdit)) {
             addAccessibleListener(swingView.getBtnEdit(), CCAccessibleListener.nonAccessible);
         }

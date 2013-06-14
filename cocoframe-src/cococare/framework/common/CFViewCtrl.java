@@ -1,9 +1,12 @@
 package cococare.framework.common;
 
 // <editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.common.CCAccessibleListener;
 import static cococare.common.CCClass.*;
 import cococare.common.CCField;
 import static cococare.common.CCFormat.maxLength;
+import static cococare.common.CCLanguage.Not_supported_yet;
+import static cococare.common.CCLanguage.turn;
 import static cococare.common.CCLogic.*;
 import static cococare.common.CCMessage.logp;
 import cococare.common.CCTrackable;
@@ -42,6 +45,19 @@ public abstract class CFViewCtrl implements CCTrackable {
     protected String sysRef;
     protected boolean newEntity = true;
     protected boolean updateCaller = false;
+    //
+    protected CCAccessibleListener accessibleIfEditable = new CCAccessibleListener() {
+        @Override
+        public boolean isAccessible() {
+            return !readonly;
+        }
+    };
+    protected CCAccessibleListener accessibleIfReadonly = new CCAccessibleListener() {
+        @Override
+        public boolean isAccessible() {
+            return readonly;
+        }
+    };
     //
     protected UtilLoggerBo loggerBo;
 //</editor-fold>
@@ -124,9 +140,9 @@ public abstract class CFViewCtrl implements CCTrackable {
         if (BaseFunction.LIST_FUNCTION.equals(_getBaseFunction())) {
             return init(null);
         } else if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction())) {
-            return init(isNull(_getEntity()) ? null : newObject(_getEntity()));
+            return init(_hasEntity() ? _newObjEntity() : null);
         } else {
-            return false;
+            throw new UnsupportedOperationException(turn(Not_supported_yet));
         }
     }
 

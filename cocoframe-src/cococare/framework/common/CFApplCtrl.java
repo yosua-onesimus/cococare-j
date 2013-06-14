@@ -1,27 +1,23 @@
 package cococare.framework.common;
 
 // <editor-fold defaultstate="collapsed" desc=" import ">
-import static cococare.common.CCConfig.EDT_COLOR_ON_FOCUS;
+import static cococare.common.CCFormat.parseInt;
 import cococare.common.CCLanguage;
-import static cococare.common.CCLanguage.*;
+import static cococare.common.CCLanguage.load;
 import static cococare.common.CCLogic.isNull;
 import static cococare.common.CCMessage.initDefaultHandler;
 import cococare.database.CCDatabaseConfig;
 import cococare.database.CCHibernate;
 import cococare.database.CCLoginInfo;
 import static cococare.database.CCLoginInfo.INSTANCE_hasLogged;
-import static cococare.datafile.CCFile.getFileSystConfPath;
+import static cococare.datafile.CCFile.*;
+import static cococare.datafile.CCSetup.executeMandatoryFile;
+import cococare.framework.model.bo.util.UtilConfigBo;
 import cococare.framework.model.bo.util.UtilUserBo;
 import cococare.framework.model.mdl.util.UtilityModule;
-import static cococare.framework.swing.CFSwingMap.*;
-import cococare.framework.swing.controller.form.util.PnlDatabaseSettingCtrl;
-import cococare.framework.swing.controller.form.util.PnlLoginCtrl;
-import cococare.swing.CCSwing.LookAndFeel;
-import static cococare.swing.CCSwing.centerScreen;
-import static cococare.swing.CCSwing.setLookAndFeel;
+import cococare.framework.model.obj.util.UtilConfAppl;
+import static cococare.framework.swing.CFSwingMap.getCCProgressbar;
 import java.io.File;
-import javax.swing.ImageIcon;
-import javax.swing.UIManager;
 // </editor-fold>
 
 /**
@@ -43,10 +39,8 @@ public abstract class CFApplCtrl {
 
         SINGLE, MULTIPLE;
     }
-// </editor-fold>
 
-//<editor-fold defaultstate="collapsed" desc=" public enum ">
-    public enum MenuPosition {
+    protected enum MenuPosition {
 
         LEFT_SIDE("Left Side"), TOP_SIDE("Top Side");
         private String string;
@@ -60,11 +54,13 @@ public abstract class CFApplCtrl {
             return string;
         }
     }
-//</editor-fold>
+// </editor-fold>
+    //
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     //
     protected PlatformMode PLAT_MODE = PlatformMode.DESKTOP;
     protected DatabaseMode DTBS_MODE = DatabaseMode.SINGLE;
+    protected MenuPosition MENU_POST = MenuPosition.LEFT_SIDE;
     //
     protected String APPL_ID = "appl.id";
     public static String APPL_CODE = "appl.code";
@@ -104,45 +100,20 @@ public abstract class CFApplCtrl {
 //<editor-fold defaultstate="collapsed" desc=" public method ">
     protected void _loadInternalSetting() {
         initDefaultHandler();
-        if (PlatformMode.DESKTOP.equals(PLAT_MODE)) {
-            setLookAndFeel(LookAndFeel.METAL.getName(), null);
-            UIManager.put("PopupMenu.consumeEventOnClose", false);
-            UIManager.put("nimbusBase", EDT_COLOR_ON_FOCUS.darker());
-            UIManager.put("nimbusBlueGrey", EDT_COLOR_ON_FOCUS.darker());
-            UIManager.put("control", EDT_COLOR_ON_FOCUS.darker());
-        } else if (PlatformMode.WEB.equals(PLAT_MODE)) {
-            FILE_APPL_CONF = new File(getFileSystConfPath(), S_APPL_CONF);
-            FILE_APPL_LCNS = new File(getFileSystConfPath(), S_APPL_LCNS);
-            FILE_DTBS_CONF = new File(getFileSystConfPath(), S_DTBS_CONF);
-        }
+        executeMandatoryFile();
     }
 
     protected void _loadExternalSetting() {
         load(CCLanguage.LanguagePack.EN);
-    }
-
-    protected void _initScreen() {
-        if (PlatformMode.DESKTOP.equals(PLAT_MODE)) {
-            getApplLogo().setIcon(getClass().getResource(APPL_LOGO));
-            getApplName().setText(APPL_NAME);
-            getApplVer().setText(APPL_VER);
-            getMainScreen().setIconImage(new ImageIcon(getClass().getResource(APPL_LOGO)).getImage());
-            getMainScreen().setTitle(APPL_NAME + " " + APPL_VER);
-            centerScreen(getMainScreen(), true, true);
-            _clearUserConfig();
-            getMainScreen().setVisible(true);
-        } else if (PlatformMode.WEB.equals(PLAT_MODE)) {
-            throw new UnsupportedOperationException(turn(Not_supported_yet));
+        File file = getFileSystConfFile(S_APPL_CONF);
+        if (file.exists()) {
+            updateNonContent(readObject(file));
         }
     }
 
-    public void end() {
-        if (PlatformMode.DESKTOP.equals(PLAT_MODE)) {
-            System.exit(0);
-        } else if (PlatformMode.WEB.equals(PLAT_MODE)) {
-            throw new UnsupportedOperationException(turn(Not_supported_yet));
-        }
-    }
+    protected abstract void _initScreen();
+
+    public abstract void end();
 
     protected void _initDatabaseProfile() {
         if (PlatformMode.DESKTOP.equals(PLAT_MODE)) {
@@ -187,26 +158,19 @@ public abstract class CFApplCtrl {
         HIBERNATE.reloadDatabaseConfig();
     }
 
+    protected abstract CFApplUae _initInitialDataUaeUtility(CFApplUae applUae);
+
     public boolean initInitialData() {
         return true;
     }
 
-    public boolean showDatabaseSettingScreen() {
-        if (PlatformMode.DESKTOP.equals(PLAT_MODE)) {
-            return new PnlDatabaseSettingCtrl().init();
-        } else if (PlatformMode.WEB.equals(PLAT_MODE)) {
-            throw new UnsupportedOperationException(turn(Not_supported_yet));
-        } else {
-            throw new UnsupportedOperationException(turn(Not_supported_yet));
-        }
-    }
+    public abstract boolean showDatabaseSettingScreen();
 
     protected boolean _login(String username, String password) {
         return new UtilUserBo().login(username, password);
     }
 
-    public void updateNonContent(Object object) {
-    }
+    public abstract void updateNonContent(Object object);
 
     protected void _initDatabaseFilter() {
     }
@@ -217,27 +181,17 @@ public abstract class CFApplCtrl {
     public void clearDatabaseFilter() {
     }
 
-    protected abstract void _applyUserConfig();
+    protected abstract CFApplUae _applyUserConfigUaeUtility(CFApplUae applUae);
 
-    protected void _clearUserConfig() {
-        if (PlatformMode.DESKTOP.equals(PLAT_MODE)) {
-            getMenubarH().setVisible(false);
-            getMenubarV().setVisible(false);
-            getMainScreen().validate();
-        } else if (PlatformMode.WEB.equals(PLAT_MODE)) {
-            throw new UnsupportedOperationException(turn(Not_supported_yet));
-        }
+    protected void _applyUserConfig() {
+        UtilConfAppl confAppl = new UtilConfigBo().loadConfAppl();
+        updateNonContent(confAppl);
+        MENU_POST = MenuPosition.values()[parseInt(confAppl.getApplMenuPosition())];
     }
 
-    protected boolean _showLoginScreen() {
-        if (PlatformMode.DESKTOP.equals(PLAT_MODE)) {
-            return new PnlLoginCtrl().init();
-        } else if (PlatformMode.WEB.equals(PLAT_MODE)) {
-            throw new UnsupportedOperationException(turn(Not_supported_yet));
-        } else {
-            throw new UnsupportedOperationException(turn(Not_supported_yet));
-        }
-    }
+    protected abstract void _clearUserConfig();
+
+    protected abstract boolean _showLoginScreen();
 
     protected boolean _showHomeScreen() {
         return true;

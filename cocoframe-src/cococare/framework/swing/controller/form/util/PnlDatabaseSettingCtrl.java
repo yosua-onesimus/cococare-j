@@ -1,7 +1,7 @@
 package cococare.framework.swing.controller.form.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import static cococare.common.CCLogic.isNull;
+import static cococare.common.CCLogic.coalesce;
 import cococare.database.CCDatabaseConfig;
 import cococare.framework.common.CFApplCtrl;
 import cococare.framework.model.mdl.util.UtilityModule;
@@ -27,11 +27,7 @@ public class PnlDatabaseSettingCtrl extends CFSwingCtrl {
 
     @Override
     protected void _initObjEntity() {
-        CCDatabaseConfig databaseConfig = UtilityModule.INSTANCE.getCCHibernate().getDatabaseConfig();
-        if (isNull(databaseConfig)) {
-            databaseConfig = new CCDatabaseConfig();
-        }
-        objEntity = databaseConfig;
+        objEntity = coalesce(UtilityModule.INSTANCE.getCCHibernate().getDatabaseConfig(), new CCDatabaseConfig());
     }
 
     @Override

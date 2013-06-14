@@ -3,6 +3,7 @@ package cococare.framework.model.obj.util;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import static cococare.common.CCFormat.getBoolean;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import cococare.framework.common.CFApplCtrl;
@@ -153,7 +154,7 @@ public class UtilUserGroup implements CCEntity {
     }
 
     public boolean isRoot() {
-        return root != null && root;
+        return getBoolean(root);
     }
 
     public void setRoot(Boolean root) {

@@ -42,7 +42,7 @@ public class PnlShortcutCtrl extends CFSwingCtrl {
     @Override
     protected void _initObjEntity() {
         super._initObjEntity();
-        if (newEntity && isNotNull(parameter.get("tracker"))) {
+        if (isNotNull(parameter.get("tracker"))) {
             ((NoteShortcut) objEntity).setTracker((NoteTracker) parameter.get("tracker"));
         }
     }

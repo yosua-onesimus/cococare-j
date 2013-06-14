@@ -46,7 +46,6 @@ public class PnlLoggerListCtrl extends CFSwingCtrl {
     protected void _initTable() {
         super._initTable();
         tblEntity.addField(0, new CCCustomField() {
-
             @Override
             public String getLabel() {
                 return "Created On";
@@ -59,7 +58,6 @@ public class PnlLoggerListCtrl extends CFSwingCtrl {
         });
         tblEntity.setColumnWidth(150, 100, 100, 100, 150, 100, null);
         tblEntity.setHqlFilters(new CCHibernateFilter() {
-
             @Override
             public String getFieldName() {
                 return "username";
@@ -70,7 +68,6 @@ public class PnlLoggerListCtrl extends CFSwingCtrl {
                 return cmbUsername.getSelectedItem();
             }
         }, new CCHibernateFilter() {
-
             @Override
             public String getFieldName() {
                 return "screen";
@@ -81,7 +78,6 @@ public class PnlLoggerListCtrl extends CFSwingCtrl {
                 return cmbScreen.getSelectedItem();
             }
         }, new CCHibernateFilter() {
-
             @Override
             public String getFieldName() {
                 return "action";
@@ -99,7 +95,6 @@ public class PnlLoggerListCtrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         ActionListener alSearch = new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doSearch();

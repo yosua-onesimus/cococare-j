@@ -24,7 +24,6 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
     private UtilUserGroupBo userGroupBo;
     private CCTable tblPrivilege;
     private ActionListener alSelect = new ActionListener() {
-
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             _doSelect(((JCheckBox) actionEvent.getSource()).isSelected());
@@ -59,7 +58,6 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
         tblPrivilege = newCCTable(getContainer(), "tblPrivilege", UtilPrivilege.class);
         tblPrivilege.setVisibleField(false, "name");
         tblPrivilege.addField(0, new CCCustomField() {
-
             @Override
             public Object getCustomView(Object object) {
                 UtilPrivilege privilege = (UtilPrivilege) object;
@@ -69,7 +67,6 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
             }
         });
         tblPrivilege.addField(1, new CCCustomField() {
-
             @Override
             public String getLabel() {
                 return "Privilege";

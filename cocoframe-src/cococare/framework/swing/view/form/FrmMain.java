@@ -60,7 +60,7 @@ public class FrmMain extends javax.swing.JFrame {
             .addGap(0, 58, Short.MAX_VALUE)
         );
 
-        aApplName.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        aApplName.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         aApplName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout northWestLayout = new javax.swing.GroupLayout(northWest);
@@ -98,7 +98,7 @@ public class FrmMain extends javax.swing.JFrame {
             .addGap(0, 58, Short.MAX_VALUE)
         );
 
-        aCompName.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        aCompName.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         aCompName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         javax.swing.GroupLayout northEastLayout = new javax.swing.GroupLayout(northEast);

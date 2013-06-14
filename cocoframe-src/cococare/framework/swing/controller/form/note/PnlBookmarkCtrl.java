@@ -51,7 +51,7 @@ public class PnlBookmarkCtrl extends CFSwingCtrl {
     @Override
     protected void _initObjEntity() {
         super._initObjEntity();
-        if (newEntity && isNotNull(parameter.get("tracker"))) {
+        if (isNotNull(parameter.get("tracker"))) {
             ((NoteBookmark) objEntity).setTracker((NoteTracker) parameter.get("tracker"));
         }
     }

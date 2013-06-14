@@ -106,11 +106,11 @@ public class NoteTracker implements CCEntity {
     @ManyToOne
     @CCFieldConfig(componentId = "bndObjective", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
     private NoteObjective objective;
-    @CCFieldConfig(componentId = "cmbTrackerType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.note.NoteEnum$TrackerType", optionReflectKey = "trackerType", visible = false)
-    private Integer trackerTypeIndex;
+    @CCFieldConfig(componentId = "cmbType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.note.NoteEnum$TrackerType", optionReflectKey = "type", visible = false)
+    private Integer typeIndex;
     @Column(length = 16)
     @CCFieldConfig(maxLength = 16)
-    private String trackerType;
+    private String type;
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "tracker")
     private List<NoteBookmark> bookmarks;
@@ -151,20 +151,20 @@ public class NoteTracker implements CCEntity {
         this.objective = objective;
     }
 
-    public Integer getTrackerTypeIndex() {
-        return trackerTypeIndex;
+    public Integer getTypeIndex() {
+        return typeIndex;
     }
 
-    public void setTrackerTypeIndex(Integer trackerTypeIndex) {
-        this.trackerTypeIndex = trackerTypeIndex;
+    public void setTypeIndex(Integer typeIndex) {
+        this.typeIndex = typeIndex;
     }
 
-    public String getTrackerType() {
-        return trackerType;
+    public String getType() {
+        return type;
     }
 
-    public void setTrackerType(String trackerType) {
-        this.trackerType = trackerType;
+    public void setType(String type) {
+        this.type = type;
     }
 //</editor-fold>
 }

@@ -10,12 +10,13 @@ import static cococare.common.CCLogic.isNotNull;
 import static cococare.common.CCLogic.isNull;
 import cococare.common.CCTrackable;
 import static cococare.database.CCLoginInfo.INSTANCE_isCompAccessible;
+import cococare.framework.common.CFApplUae;
+import cococare.framework.common.CFViewCtrl;
 import cococare.framework.model.bo.util.UtilInitInitialDataBo;
 import cococare.framework.model.obj.util.UtilPrivilege;
 import static cococare.framework.swing.CFSwingMap.getViewForm;
 import cococare.swing.component.CCButton;
 import cococare.swing.component.CCMenuBar;
-import cococare.swing.component.CCMenuBar.MenuCandidate;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,8 +29,55 @@ import javax.swing.AbstractButton;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class CFSwingUae {
+public class CFSwingUae extends CFApplUae {
 
+//<editor-fold defaultstate="collapsed" desc=" private class ">
+//<editor-fold defaultstate="collapsed" desc=" MenuCandidate ">
+    private static class MenuCandidate {
+
+//<editor-fold defaultstate="collapsed" desc=" private object ">
+        private Integer parentCode;
+        private int code;
+        private String label;
+        private String icon;
+        private Class<? extends CFViewCtrl> controllerClass;
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" MenuCandidate ">
+        public MenuCandidate(Integer parentCode, int code, String label, String icon, Class<? extends CFViewCtrl> controllerClass) {
+            this.parentCode = parentCode;
+            this.code = code;
+            this.label = label;
+            this.icon = icon;
+            this.controllerClass = controllerClass;
+        }
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" getter-setter ">
+        public Integer getParentCode() {
+            return parentCode;
+        }
+
+        public int getCode() {
+            return code;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+
+        public String getIcon() {
+            return icon;
+        }
+
+        public Class<? extends CFViewCtrl> getControllerClass() {
+            return controllerClass;
+        }
+//</editor-fold>
+    }
+//</editor-fold>
+//</editor-fold>
+    //
 //<editor-fold defaultstate="collapsed" desc=" private object ">
 //<editor-fold defaultstate="collapsed" desc=" register controllerClass to create privilege ">
     private String screenCode = "00";
@@ -38,7 +86,7 @@ public class CFSwingUae {
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc=" register controllerClass to menuBar ">
     private CCMenuBar menuBar;
-    private List<Class<? extends CFSwingCtrl>> menuRoot = new ArrayList();
+    private List<Class<? extends CFViewCtrl>> menuRoot = new ArrayList();
     private int pc = 1;
     private int cc = 1;
     private boolean leftSide = true;
@@ -94,7 +142,7 @@ public class CFSwingUae {
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" register controllerClass to menuBar ">
-    private MenuCandidate _addMenuCandidate(Integer parentCode, int code, String label, String icon, Class<? extends CFSwingCtrl> controllerClass) {
+    private MenuCandidate _addMenuCandidate(Integer parentCode, int code, String label, String icon, Class<? extends CFViewCtrl> controllerClass) {
         MenuCandidate menuCandidate = new MenuCandidate(parentCode, code, label, icon, controllerClass);
         if (leftSide) {
             leftSideMenus.put(code, menuCandidate);
@@ -129,6 +177,7 @@ public class CFSwingUae {
 
 //<editor-fold defaultstate="collapsed" desc=" public method ">
 //<editor-fold defaultstate="collapsed" desc=" register controllerClass to create privilege ">
+    @Override
     public void reg(String moduleCode, String screenName, Class controllerClass) {
         Class containerClass = getViewForm(controllerClass);
         if (instanceOf(Container.class, containerClass)) {
@@ -143,6 +192,7 @@ public class CFSwingUae {
         }
     }
 
+    @Override
     public boolean compile() {
         return new UtilInitInitialDataBo().initFirstData(privileges);
     }
@@ -151,6 +201,7 @@ public class CFSwingUae {
 //<editor-fold defaultstate="collapsed" desc=" register controllerClass to menuBar ">
     public void initMenuBar(CCMenuBar menuBar) {
         this.menuBar = menuBar;
+        menuBar.setVisible(true);
         menuBar.clearMenu();
         menuRoot.clear();
         pc = 1;
@@ -167,7 +218,7 @@ public class CFSwingUae {
         menuRoot.addAll(Arrays.asList(controllerClasses));
     }
 
-    public void addMenu(Integer parentCode, int code, String label, String icon, Class<? extends CFSwingCtrl> controllerClass) {
+    public void addMenu(Integer parentCode, int code, String label, String icon, Class<? extends CFViewCtrl> controllerClass) {
         if (isNull(parentCode)) {
             boolean isAccessible = false;
             if (isNotNull(controllerClass)) {
@@ -191,11 +242,13 @@ public class CFSwingUae {
         }
     }
 
-    public void addMenuParent(String label, String icon, Class<? extends CFSwingCtrl> controllerClass) {
+    @Override
+    public void addMenuParent(String label, String icon, Class<? extends CFViewCtrl> controllerClass) {
         addMenu(null, pc = cc++, label, icon, controllerClass);
     }
 
-    public void addMenuChild(String label, String icon, Class<? extends CFSwingCtrl> controllerClass) {
+    @Override
+    public void addMenuChild(String label, String icon, Class<? extends CFViewCtrl> controllerClass) {
         addMenu(pc, cc++, label, icon, controllerClass);
     }
 
@@ -213,6 +266,7 @@ public class CFSwingUae {
         leftSide = !leftSide;
     }
 
+    @Override
     public void compileMenu() {
         for (MenuCandidate menuCandidate : leftSideMenus.values()) {
             _addMenu(menuCandidate);

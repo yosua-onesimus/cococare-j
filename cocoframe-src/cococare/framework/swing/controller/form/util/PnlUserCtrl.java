@@ -55,7 +55,6 @@ public class PnlUserCtrl extends CFSwingCtrl {
     @Override
     protected void _initEditor() {
         super._initEditor();
-        bndUserGroup.getTable().setHqlFilters(UtilFilter.IsUserGroupNotRoot);
         //
         if (!newEntity) {
             edtEntity.unreg("xPassword");
@@ -63,6 +62,7 @@ public class PnlUserCtrl extends CFSwingCtrl {
             edtEntity.unreg("xRetypePassword");
             edtEntity.unreg("txtRetypePassword");
         }
+        bndUserGroup.getTable().setHqlFilters(UtilFilter.IsUserGroupNotRoot);
         //privilege
         _initTblPrivilege();
     }
@@ -106,10 +106,10 @@ public class PnlUserCtrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         //privilege
-        getCCBandBox(getContainer(), "bndUserGroup").addEventListenerOnSelect(new ActionListener() {
+        bndUserGroup.addEventListenerOnSelect(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                userBo.getPrivileges((UtilUserGroup) getCCBandBox(getContainer(), "bndUserGroup").getObject());
+                userBo.getPrivileges((UtilUserGroup) bndUserGroup.getObject());
                 tblPrivilege.reloadItems();
             }
         });
