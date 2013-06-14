@@ -1,7 +1,7 @@
 package model.mdl.fb;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.framework.common.CFApplCtrl;
+import cococare.framework.swing.CFSwingMain;
 import cococare.framework.swing.CFSwingMap;
 import cococare.framework.swing.CFSwingUae;
 import cococare.framework.swing.controller.form.util.PnlLoginCtrl;
@@ -10,7 +10,7 @@ import controller.form.fb.PnlActorListCtrl;
 import controller.form.fb.PnlClassListCtrl;
 //</editor-fold>
 
-public class FableMain extends CFApplCtrl {
+public class FableMain extends CFSwingMain {
 
     @Override
     protected void _loadInternalSetting() {
@@ -39,13 +39,7 @@ public class FableMain extends CFApplCtrl {
     protected void _applyUserConfig() {
         super._applyUserConfig();
         CFSwingUae swingUae = new CFSwingUae();
-        if (MenuPosition.LEFT_SIDE == MENU_POST) {
-            CFSwingMap.getMenubarV().setVisible(true);
-            swingUae.initMenuBar(CFSwingMap.getMenubarV());
-        } else {
-            CFSwingMap.getMenubarH().setVisible(true);
-            swingUae.initMenuBar(CFSwingMap.getMenubarH());
-        }
+        swingUae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? CFSwingMap.getMenubarV() : CFSwingMap.getMenubarH());
         swingUae.addMenuRoot(PnlLoginCtrl.class);
         swingUae.addMenuParent("FaBle Engine", null, null);
         swingUae.addMenuChild("Action", null, PnlActionListCtrl.class);

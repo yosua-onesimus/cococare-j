@@ -3,15 +3,15 @@ package model.mdl.inv;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCLanguage;
 import cococare.database.CCLoginInfo;
-import cococare.framework.common.CFApplCtrl;
 import cococare.framework.model.obj.util.UtilUser;
+import cococare.framework.swing.CFSwingMain;
 import cococare.framework.swing.CFSwingMap;
 import cococare.framework.swing.CFSwingUae;
 import cococare.framework.swing.controller.form.util.PnlLoginCtrl;
 import controller.form.inv.*;
 //</editor-fold>
 
-public class InventoryMain extends CFApplCtrl {
+public class InventoryMain extends CFSwingMain {
 
     @Override
     protected void _loadInternalSetting() {
@@ -40,13 +40,7 @@ public class InventoryMain extends CFApplCtrl {
     protected void _applyUserConfig() {
         super._applyUserConfig();
         CFSwingUae swingUae = new CFSwingUae();
-        if (MenuPosition.LEFT_SIDE == MENU_POST) {
-            CFSwingMap.getMenubarV().setVisible(true);
-            swingUae.initMenuBar(CFSwingMap.getMenubarV());
-        } else {
-            CFSwingMap.getMenubarH().setVisible(true);
-            swingUae.initMenuBar(CFSwingMap.getMenubarH());
-        }
+        swingUae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? CFSwingMap.getMenubarV() : CFSwingMap.getMenubarH());
         swingUae.addMenuRoot(PnlLoginCtrl.class);
         if (CCLoginInfo.INSTANCE_getUserLogin() != null && ((UtilUser) CCLoginInfo.INSTANCE_getUserLogin()).getUserGroup().isRoot()) {
             swingUae.addMenuRoot(PnlInventory2ListCtrl.class, PnlInventory3ListCtrl.class);
