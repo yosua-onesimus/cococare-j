@@ -27,7 +27,6 @@ public class DlgCalculator extends javax.swing.JDialog {
         ActionListener alTypingCurr = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ((JButton) actionEvent.getSource()).getText();
                 _typingCurr(((JButton) actionEvent.getSource()).getText());
             }
         };
@@ -66,7 +65,6 @@ public class DlgCalculator extends javax.swing.JDialog {
         ActionListener alTypingOperator = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ((JButton) actionEvent.getSource()).getText();
                 _typingOperator(((JButton) actionEvent.getSource()).getText());
             }
         };

@@ -16,8 +16,8 @@ public class ScheduleMain extends CFSwingMain {
     protected void _loadInternalSetting() {
         APPL_CODE = "smpl-schdl";
         APPL_NAME = "simple-schedule";
-        //CCLoginInfo.INSTANCE = null;//without login
         super._loadInternalSetting();
+        //CCLoginInfo.INSTANCE = null;//without login
     }
 
     @Override
@@ -36,7 +36,6 @@ public class ScheduleMain extends CFSwingMain {
 
     @Override
     protected void _applyUserConfig() {
-        super._applyUserConfig();
         CFSwingUae swingUae = new CFSwingUae();
         swingUae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? CFSwingMap.getMenubarV() : CFSwingMap.getMenubarH());
         swingUae.addMenuRoot(PnlLoginCtrl.class);

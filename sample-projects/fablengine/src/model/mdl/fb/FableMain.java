@@ -16,8 +16,8 @@ public class FableMain extends CFSwingMain {
     protected void _loadInternalSetting() {
         APPL_CODE = "fablengine";
         APPL_NAME = "<html><b>F</b>a<b>B</b>l<b>E</b>ngine</html>";
-        //CCLoginInfo.INSTANCE = null;//without login
         super._loadInternalSetting();
+        //CCLoginInfo.INSTANCE = null;//without login
     }
 
     @Override
@@ -37,7 +37,6 @@ public class FableMain extends CFSwingMain {
 
     @Override
     protected void _applyUserConfig() {
-        super._applyUserConfig();
         CFSwingUae swingUae = new CFSwingUae();
         swingUae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? CFSwingMap.getMenubarV() : CFSwingMap.getMenubarH());
         swingUae.addMenuRoot(PnlLoginCtrl.class);

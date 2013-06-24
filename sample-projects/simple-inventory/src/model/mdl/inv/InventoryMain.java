@@ -17,8 +17,8 @@ public class InventoryMain extends CFSwingMain {
     protected void _loadInternalSetting() {
         APPL_CODE = "smpl-invntry";
         APPL_NAME = "simple-inventory";
-        //CCLoginInfo.INSTANCE = null;//without login
         super._loadInternalSetting();
+        //CCLoginInfo.INSTANCE = null;//without login
     }
 
     @Override
@@ -38,7 +38,6 @@ public class InventoryMain extends CFSwingMain {
 
     @Override
     protected void _applyUserConfig() {
-        super._applyUserConfig();
         CFSwingUae swingUae = new CFSwingUae();
         swingUae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? CFSwingMap.getMenubarV() : CFSwingMap.getMenubarH());
         swingUae.addMenuRoot(PnlLoginCtrl.class);
