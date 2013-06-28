@@ -1,6 +1,7 @@
 package model.obj;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.common.CCMessage;
 import cococare.swing.CCSwing;
 import cococare.swing.component.CCImage;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 import static model.mdl.SnakeAndLadderMain.gameOption;
 import static model.mdl.SnakeAndLadderMain.questions;
+import model.obj.Enum.GameMode;
 import model.obj.Enum.QuestionOrder;
 import view.form.PnlSquare;
 //</editor-fold>
@@ -164,12 +166,45 @@ public class GameWorld {
         CCSwing.getCCImage(getNumber_square().get(player.getSquareNumber()), "imgIcon" + (i + 1)).add(getPlayer_icon().get(player));
     }
 
-    public void nextPlayer() {
-        int index = getPlayingPlayers().indexOf(getCurrentPlayer());
-        if (++index >= gameOption.getPlayerNumber()) {
-            index = 0;
+    public boolean isCurrentSquareHasQuestion() {
+        return getNumber_square().get(getCurrentPlayer().getSquareNumber()).isHasQuestion();
+    }
+
+    public Question getCurrentQuestion() {
+        if (getPlayingQuestions().isEmpty()) {
+            registerQuestion();
         }
-        setCurrentPlayer(getPlayingPlayers().get(index));
-        getCurrentPlayer().setReverse(false);
+        return getPlayingQuestions().remove(0);
+    }
+
+    public void nextPlayer() {
+        //
+        getCurrentPlayer().incTurnNumber();
+        getCurrentPlayer().countScore();
+        if (getCurrentPlayer().getSquareNumber() >= 25) {
+            getFinishedPlayers().add(getCurrentPlayer());
+        }
+        //
+        boolean gameEnd = false;
+        GameMode gameMode = GameMode.values()[gameOption.getGameModeIndex()];
+        if (GameMode.ONE_LOSSER.equals(gameMode)) {
+            gameEnd = (getPlayingPlayers().size() - getFinishedPlayers().size()) == 1;
+        } else if (GameMode.ONE_WINNER.equals(gameMode)) {
+            gameEnd = getFinishedPlayers().size() == 1;
+        } else if (GameMode.TEN_TURN.equals(gameMode)) {
+        }
+        //
+        if (gameEnd) {
+            CCMessage.showInformation("game end");
+        } else {
+            do {
+                int index = getPlayingPlayers().indexOf(getCurrentPlayer());
+                if (++index >= getPlayingPlayers().size()) {
+                    index = 0;
+                }
+                setCurrentPlayer(getPlayingPlayers().get(index));
+            } while (getCurrentPlayer().getSquareNumber() >= 25);
+            getCurrentPlayer().setReverse(false);
+        }
     }
 }

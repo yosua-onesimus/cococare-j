@@ -12,11 +12,11 @@ public class DlgQuestion extends javax.swing.JDialog {
     private void initComponents() {
 
         pnlQuestion = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblQuestion = new javax.swing.JLabel();
+        txtAnswer = new javax.swing.JTextField();
+        lblTimer = new javax.swing.JLabel();
+        btnEnter = new javax.swing.JButton();
+        lblCorrectAnswer = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Question");
@@ -24,49 +24,51 @@ public class DlgQuestion extends javax.swing.JDialog {
 
         pnlQuestion.setLayout(null);
 
-        jLabel1.setText("Question");
-        pnlQuestion.add(jLabel1);
-        jLabel1.setBounds(50, 30, 330, 60);
-        pnlQuestion.add(jTextField1);
-        jTextField1.setBounds(50, 120, 360, 20);
+        lblQuestion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblQuestion.setText("Question");
+        pnlQuestion.add(lblQuestion);
+        lblQuestion.setBounds(10, 10, 300, 59);
 
-        jButton1.setText("jButton1");
-        pnlQuestion.add(jButton1);
-        jButton1.setBounds(420, 120, 73, 23);
+        txtAnswer.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        pnlQuestion.add(txtAnswer);
+        txtAnswer.setBounds(10, 70, 300, 29);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Timer");
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlQuestion.add(jLabel2);
-        jLabel2.setBounds(420, 30, 70, 60);
+        lblTimer.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTimer.setText("Timer");
+        lblTimer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlQuestion.add(lblTimer);
+        lblTimer.setBounds(310, 10, 100, 59);
 
-        jLabel3.setText("jLabel3");
-        pnlQuestion.add(jLabel3);
-        jLabel3.setBounds(50, 170, 450, 60);
+        btnEnter.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnEnter.setText("Enter");
+        btnEnter.setFocusable(false);
+        pnlQuestion.add(btnEnter);
+        btnEnter.setBounds(310, 70, 100, 29);
+
+        lblCorrectAnswer.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        pnlQuestion.add(lblCorrectAnswer);
+        lblCorrectAnswer.setBounds(10, 100, 300, 29);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 92, Short.MAX_VALUE))
+            .addComponent(pnlQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 45, Short.MAX_VALUE))
+            .addComponent(pnlQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btnEnter;
+    private javax.swing.JLabel lblCorrectAnswer;
+    private javax.swing.JLabel lblQuestion;
+    private javax.swing.JLabel lblTimer;
     private javax.swing.JPanel pnlQuestion;
+    private javax.swing.JTextField txtAnswer;
     // End of variables declaration//GEN-END:variables
 }

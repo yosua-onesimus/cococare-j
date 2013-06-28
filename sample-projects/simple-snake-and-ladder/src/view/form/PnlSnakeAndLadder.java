@@ -16,10 +16,12 @@ public class PnlSnakeAndLadder extends javax.swing.JPanel {
         xHallOfFame = new javax.swing.JLabel();
         scrPlayer = new javax.swing.JScrollPane();
         tblPlayer = new javax.swing.JTable();
-        lblPlayer = new javax.swing.JLabel();
+        separator1 = new javax.swing.JSeparator();
+        imgPlayerIcon = new cococare.swing.component.CCImage();
+        lblPlayerName = new javax.swing.JLabel();
         imgDice = new cococare.swing.component.CCImage();
         btnThrowDice = new javax.swing.JButton();
-        separator1 = new javax.swing.JSeparator();
+        separator2 = new javax.swing.JSeparator();
         btnNewGame = new javax.swing.JButton();
         btnEndGame = new javax.swing.JButton();
 
@@ -38,23 +40,41 @@ public class PnlSnakeAndLadder extends javax.swing.JPanel {
 
         xHallOfFame.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xHallOfFame.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        xHallOfFame.setText("Ranking Pemain");
+        xHallOfFame.setText("Nilai Pemain");
+        xHallOfFame.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         xHallOfFame.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        xHallOfFame.setOpaque(true);
         pnlNavi.add(xHallOfFame);
-        xHallOfFame.setBounds(10, 10, 200, 29);
+        xHallOfFame.setBounds(20, 20, 180, 24);
 
         tblPlayer.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         scrPlayer.setViewportView(tblPlayer);
 
         pnlNavi.add(scrPlayer);
-        scrPlayer.setBounds(10, 40, 200, 100);
+        scrPlayer.setBounds(20, 30, 180, 100);
+        pnlNavi.add(separator1);
+        separator1.setBounds(0, 150, 220, 5);
 
-        lblPlayer.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
-        lblPlayer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPlayer.setText("<html>Giliran ... untuk lempar dadu</html>");
-        lblPlayer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlNavi.add(lblPlayer);
-        lblPlayer.setBounds(20, 240, 180, 29);
+        imgPlayerIcon.setIconAutoFit(true);
+        imgPlayerIcon.setIconProportion(true);
+
+        javax.swing.GroupLayout imgPlayerIconLayout = new javax.swing.GroupLayout(imgPlayerIcon);
+        imgPlayerIcon.setLayout(imgPlayerIconLayout);
+        imgPlayerIconLayout.setHorizontalGroup(
+            imgPlayerIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+        imgPlayerIconLayout.setVerticalGroup(
+            imgPlayerIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+
+        pnlNavi.add(imgPlayerIcon);
+        imgPlayerIcon.setBounds(80, 170, 60, 60);
+
+        lblPlayerName.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        pnlNavi.add(lblPlayerName);
+        lblPlayerName.setBounds(10, 230, 200, 49);
 
         imgDice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         imgDice.setIconAutoFit(true);
@@ -79,8 +99,8 @@ public class PnlSnakeAndLadder extends javax.swing.JPanel {
         btnThrowDice.setFocusable(false);
         pnlNavi.add(btnThrowDice);
         btnThrowDice.setBounds(20, 390, 180, 29);
-        pnlNavi.add(separator1);
-        separator1.setBounds(0, 440, 220, 5);
+        pnlNavi.add(separator2);
+        separator2.setBounds(0, 440, 220, 5);
 
         btnNewGame.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnNewGame.setText("Permainan Baru");
@@ -114,11 +134,13 @@ public class PnlSnakeAndLadder extends javax.swing.JPanel {
     private javax.swing.JButton btnThrowDice;
     private cococare.swing.component.CCImage imgBoard;
     private cococare.swing.component.CCImage imgDice;
-    private javax.swing.JLabel lblPlayer;
+    private cococare.swing.component.CCImage imgPlayerIcon;
+    private javax.swing.JLabel lblPlayerName;
     private javax.swing.JPanel pnlBoard;
     private javax.swing.JPanel pnlNavi;
     private javax.swing.JScrollPane scrPlayer;
     private javax.swing.JSeparator separator1;
+    private javax.swing.JSeparator separator2;
     private javax.swing.JTable tblPlayer;
     private javax.swing.JLabel xHallOfFame;
     // End of variables declaration//GEN-END:variables

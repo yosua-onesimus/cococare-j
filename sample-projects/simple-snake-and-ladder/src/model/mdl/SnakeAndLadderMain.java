@@ -11,6 +11,7 @@ import cococare.framework.swing.CFSwingMap;
 import static cococare.framework.swing.CFSwingMap.getMainScreen;
 import cococare.framework.swing.CFSwingUae;
 import cococare.swing.CCSwing;
+import controller.form.PnlCococareCtrl;
 import controller.form.PnlExitCtrl;
 import controller.form.PnlQuestionListCtrl;
 import controller.form.PnlSnakeAndLadderCtrl;
@@ -113,9 +114,10 @@ public class SnakeAndLadderMain {
         //compile menubar
         CFSwingUae swingUae = new CFSwingUae();
         swingUae.initMenuBar(CFSwingMap.getMenubarH());
-        swingUae.addMenuParent("Ular Tangga", null, PnlSnakeAndLadderCtrl.class);
+        swingUae.addMenuParent("Permainan", null, PnlSnakeAndLadderCtrl.class);
         swingUae.addMenuParent("Edit Pertanyaan", null, PnlQuestionListCtrl.class);
         swingUae.changeMenuSide();
+        swingUae.addMenuParent("powered by: cococare", null, PnlCococareCtrl.class);
         swingUae.addMenuParent("Keluar", null, PnlExitCtrl.class);
         swingUae.compileMenu();
         //show screen

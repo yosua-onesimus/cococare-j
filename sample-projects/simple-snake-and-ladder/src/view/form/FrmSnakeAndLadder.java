@@ -14,7 +14,7 @@ public class FrmSnakeAndLadder extends javax.swing.JFrame {
         aContent = new cococare.swing.component.CCImage();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Snake And Ladder: Eric Quest");
+        setTitle("Enigma Square ~ Eric's Snake And Ladder");
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 

@@ -1,6 +1,9 @@
 package model.obj;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.common.CCFieldConfig;
+import cococare.common.CCFieldConfig.Type;
+import cococare.common.CCFormat;
 import cococare.database.CCEntity;
 import cococare.datafile.CCImage;
 import java.util.Date;
@@ -76,16 +79,24 @@ public class Player implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
+    @CCFieldConfig(type = Type.THUMB_FILE, visible = false)
     private byte[] icon = CCImage.getByteA(getClass().getResource("/resource/avatar.png"));
+    @CCFieldConfig()
     private String name = "Player";
+    @CCFieldConfig(type = Type.NUMERIC, visible = false)
     private int squareNumber;
+    @CCFieldConfig(visible = false)
     private boolean reverse = false;
     //
+    @CCFieldConfig(type = Type.NUMERIC, visible = false)
     private int turnNumber;
     //
+    @CCFieldConfig(type = Type.NUMERIC, visible = false)
     private int giftNumber;
+    @CCFieldConfig(type = Type.DECIMAL, visible = false)
     private float questionNumber;
     //
+    @CCFieldConfig(type = Type.DECIMAL, maxLength = 5)
     private float score;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
@@ -125,6 +136,10 @@ public class Player implements CCEntity {
         return turnNumber;
     }
 
+    public void incTurnNumber() {
+        turnNumber++;
+    }
+
     public void setTurnNumber(int turnNumber) {
         this.turnNumber = turnNumber;
     }
@@ -145,6 +160,15 @@ public class Player implements CCEntity {
         this.questionNumber = questionNumber;
     }
 
+    public void answerFalse() {
+        questionNumber++;
+    }
+
+    public void answerTrue() {
+        giftNumber++;
+        questionNumber++;
+    }
+
     public float getScore() {
         return score;
     }
@@ -152,9 +176,11 @@ public class Player implements CCEntity {
     public void setScore(float score) {
         this.score = score;
     }
+//</editor-fold>
 
     public void resetScore() {
         setSquareNumber(1);
+        setReverse(false);
         setTurnNumber(0);
         setGiftNumber(0);
         setQuestionNumber(0);
@@ -162,7 +188,9 @@ public class Player implements CCEntity {
     }
 
     public void countScore() {
-        setScore((getSquareNumber() * 2) + (getGiftNumber() / getQuestionNumber()) - (4 - getTurnNumber()));
+        setScore(
+                CCFormat.parseFloat(getSquareNumber() * 2)
+                + CCFormat.parseFloat((getGiftNumber() + 1) / (getQuestionNumber() + 1) * 50f)
+                + CCFormat.parseFloat(4 - getTurnNumber()));
     }
-//</editor-fold>
 }

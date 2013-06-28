@@ -8,12 +8,16 @@ import cococare.common.CCThread;
 import static cococare.common.CCThread.threadSleep;
 import cococare.framework.swing.CFSwingCtrl;
 import cococare.swing.CCSwing;
+import cococare.swing.CCTable;
 import cococare.swing.component.CCImage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import model.obj.GameWorld;
+import model.obj.Player;
+import model.obj.Question;
 import view.form.PnlSquare;
 //</editor-fold>
 
@@ -22,6 +26,9 @@ public class PnlSnakeAndLadderCtrl extends CFSwingCtrl {
 //<editor-fold defaultstate="collapsed" desc=" private ">
     private GameWorld gameWorld;
     private CCImage imgBoard;
+    private CCTable tblPlayer;
+    private CCImage imgPlayerIcon;
+    private JLabel lblPlayerName;
     private CCSprite sprDice;
     private CCImage imgDice;
     private JButton btnNewGame;
@@ -53,6 +60,7 @@ public class PnlSnakeAndLadderCtrl extends CFSwingCtrl {
         super._initComponent();
         //
         _initBoard();
+        _initTblPlayer();
     }
 
     @Override
@@ -92,8 +100,20 @@ public class PnlSnakeAndLadderCtrl extends CFSwingCtrl {
                         threadSleep();
                         threadSleep();
                     }
+                    if (gameWorld.isCurrentSquareHasQuestion()) {
+                        Question question = gameWorld.getCurrentQuestion();
+                        if (new DlgQuestionCtrl().init(question)) {
+                            System.out.println("GIFT");
+                            gameWorld.getCurrentPlayer().answerTrue();
+                        } else {
+                            System.out.println("PENALTY");
+                            gameWorld.getCurrentPlayer().answerFalse();
+                        }
+                    }
                     btnThrowDice.setEnabled(true);
                     gameWorld.nextPlayer();
+                    _doUpdateTblPlayer();
+                    _doUpdateLblPlayer();
                 }
             };
             thread.start();
@@ -127,20 +147,38 @@ public class PnlSnakeAndLadderCtrl extends CFSwingCtrl {
         imgBoard.repaint();
     }
 
-    protected void _initImageDice() {
+    protected void _initTblPlayer() {
+        tblPlayer = CCSwing.newCCTable(getContainer(), "tblPlayer", Player.class);
+        tblPlayer.setHeadersVisible(false);
+    }
+
+    protected void _initSprDice() {
         BufferedImage bufferedImage = cococare.datafile.CCImage.getImage(getClass().getResource("/resource/dice.png"));
         bufferedImage = cococare.datafile.CCImage.resizeImage(bufferedImage, 300, 200);
         BufferedImage[] bufferedImages = cococare.datafile.CCImage.splitImages(bufferedImage, 3, 2);
         sprDice = new CCSprite(bufferedImages, imgDice, 0, 0);
     }
 
+    protected void _doUpdateTblPlayer() {
+        tblPlayer.reloadItems();
+    }
+
+    protected void _doUpdateLblPlayer() {
+        imgPlayerIcon.setIcon(gameWorld.getCurrentPlayer().getIcon());
+        imgPlayerIcon.repaint();
+        lblPlayerName.setText(CCFormat.wordWrap(gameWorld.getCurrentPlayer().getName() + " sekarang giliranmu lempar dadu.."));
+    }
+
     protected void _newGame() {
         if (new DlgGameOptionCtrl().init()) {
             gameWorld = new GameWorld();
             gameWorld.registerPlayer();
+            tblPlayer.setList(gameWorld.getPlayingPlayers());
             gameWorld.registerQuestion();
             _initBoard();
-            _initImageDice();
+            _initSprDice();
+            _doUpdateTblPlayer();
+            _doUpdateLblPlayer();
             gameWorld.showPlayerOnBoard();
             imgBoard.repaint();
         }
