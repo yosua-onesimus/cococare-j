@@ -112,12 +112,17 @@ public class SnakeAndLadderMain {
         //initial main screen
         CFSwingMap.initMainScreen(FrmSnakeAndLadder.class.getName());
         //compile menubar
+        boolean admin = args.length > 0 && "-admin".equals(args[0]);
         CFSwingUae swingUae = new CFSwingUae();
         swingUae.initMenuBar(CFSwingMap.getMenubarH());
         swingUae.addMenuParent("Permainan", null, PnlSnakeAndLadderCtrl.class);
-        swingUae.addMenuParent("Edit Pertanyaan", null, PnlQuestionListCtrl.class);
+        if (admin) {
+            swingUae.addMenuParent("Edit Pertanyaan", null, PnlQuestionListCtrl.class);
+        }
         swingUae.changeMenuSide();
-        swingUae.addMenuParent("powered by: cococare", null, PnlCococareCtrl.class);
+        if (admin) {
+            swingUae.addMenuParent("created by cococare", null, PnlCococareCtrl.class);
+        }
         swingUae.addMenuParent("Keluar", null, PnlExitCtrl.class);
         swingUae.compileMenu();
         //show screen

@@ -21,6 +21,7 @@ public class DlgQuestionCtrl extends CFSwingCtrl {
     private JLabel lblQuestion;
     private JTextField txtAnswer;
     private JLabel lblTimer;
+    private Timer tmrTimer;
     private JButton btnEnter;
     private JLabel lblCorrectAnswer;
 
@@ -46,7 +47,7 @@ public class DlgQuestionCtrl extends CFSwingCtrl {
         question = (Question) objEntity;
         lblQuestion.setText(CCFormat.wordWrap(question.getQuestion()));
         lblTimer.setText(CCFormat.getString(SnakeAndLadderMain.gameOption.getQuestionTime()));
-        Timer timer = new Timer(1000, new ActionListener() {
+        tmrTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int timer = CCFormat.parseInt(lblTimer.getText());
@@ -59,7 +60,7 @@ public class DlgQuestionCtrl extends CFSwingCtrl {
                 }
             }
         });
-        timer.start();
+        tmrTimer.start();
     }
 
     @Override
@@ -82,6 +83,13 @@ public class DlgQuestionCtrl extends CFSwingCtrl {
             lblCorrectAnswer.setText(question.getAnswer());
         }
         _doCloseScreen();
+    }
+
+    @Override
+    protected void _doCloseScreen() {
+        super._doCloseScreen();
+        //
+        tmrTimer.stop();
     }
 
     @Override

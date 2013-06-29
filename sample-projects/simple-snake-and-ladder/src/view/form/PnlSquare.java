@@ -1,5 +1,9 @@
 package view.form;
 
+//<editor-fold defaultstate="collapsed" desc=" import ">
+import java.net.URL;
+//</editor-fold>
+
 public class PnlSquare extends javax.swing.JPanel {
 
     private boolean hasQuestion = false;
@@ -22,6 +26,10 @@ public class PnlSquare extends javax.swing.JPanel {
         lblSquare.setForeground(hasQuestion ? java.awt.Color.RED : java.awt.Color.BLUE);
     }
 
+    public void setIcon(URL url) {
+        imgSquare.setIcon(url);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -35,6 +43,8 @@ public class PnlSquare extends javax.swing.JPanel {
         imgIcon5 = new cococare.swing.component.CCImage();
 
         imgSquare.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        imgSquare.setIconAutoFit(true);
+        imgSquare.setIconProportion(true);
         imgSquare.setMinimumSize(new java.awt.Dimension(110, 110));
         imgSquare.setPreferredSize(new java.awt.Dimension(110, 110));
         imgSquare.setLayout(null);
@@ -44,22 +54,27 @@ public class PnlSquare extends javax.swing.JPanel {
         imgSquare.add(lblSquare);
         lblSquare.setBounds(1, 1, 29, 19);
 
+        imgIcon1.setOpaque(false);
         imgIcon1.setLayout(null);
         imgSquare.add(imgIcon1);
         imgIcon1.setBounds(20, 30, 30, 30);
 
+        imgIcon2.setOpaque(false);
         imgIcon2.setLayout(null);
         imgSquare.add(imgIcon2);
         imgIcon2.setBounds(20, 60, 30, 30);
 
+        imgIcon3.setOpaque(false);
         imgIcon3.setLayout(null);
         imgSquare.add(imgIcon3);
         imgIcon3.setBounds(60, 40, 30, 30);
 
+        imgIcon4.setOpaque(false);
         imgIcon4.setLayout(null);
         imgSquare.add(imgIcon4);
         imgIcon4.setBounds(60, 10, 30, 30);
 
+        imgIcon5.setOpaque(false);
         imgIcon5.setLayout(null);
         imgSquare.add(imgIcon5);
         imgIcon5.setBounds(60, 70, 30, 30);

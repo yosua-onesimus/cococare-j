@@ -72,7 +72,9 @@ public class PnlSnakeAndLadder extends javax.swing.JPanel {
         pnlNavi.add(imgPlayerIcon);
         imgPlayerIcon.setBounds(80, 170, 60, 60);
 
-        lblPlayerName.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblPlayerName.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        lblPlayerName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPlayerName.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlNavi.add(lblPlayerName);
         lblPlayerName.setBounds(10, 230, 200, 49);
 

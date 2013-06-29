@@ -33,6 +33,8 @@
             <LineBorder roundedCorners="true"/>
           </Border>
         </Property>
+        <Property name="iconAutoFit" type="boolean" value="true"/>
+        <Property name="iconProportion" type="boolean" value="true"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[110, 110]"/>
         </Property>
@@ -59,6 +61,9 @@
           </Constraints>
         </Component>
         <Container class="cococare.swing.component.CCImage" name="imgIcon1">
+          <Properties>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="20" y="30" width="30" height="30"/>
@@ -70,6 +75,9 @@
           </Layout>
         </Container>
         <Container class="cococare.swing.component.CCImage" name="imgIcon2">
+          <Properties>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="20" y="60" width="30" height="30"/>
@@ -81,6 +89,9 @@
           </Layout>
         </Container>
         <Container class="cococare.swing.component.CCImage" name="imgIcon3">
+          <Properties>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="60" y="40" width="30" height="30"/>
@@ -92,6 +103,9 @@
           </Layout>
         </Container>
         <Container class="cococare.swing.component.CCImage" name="imgIcon4">
+          <Properties>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="60" y="10" width="30" height="30"/>
@@ -103,6 +117,9 @@
           </Layout>
         </Container>
         <Container class="cococare.swing.component.CCImage" name="imgIcon5">
+          <Properties>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="60" y="70" width="30" height="30"/>

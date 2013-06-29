@@ -24,41 +24,40 @@ public class DlgQuestion extends javax.swing.JDialog {
 
         pnlQuestion.setLayout(null);
 
-        lblQuestion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        lblQuestion.setText("Question");
+        lblQuestion.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         pnlQuestion.add(lblQuestion);
-        lblQuestion.setBounds(10, 10, 300, 59);
+        lblQuestion.setBounds(10, 10, 400, 149);
 
-        txtAnswer.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtAnswer.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         pnlQuestion.add(txtAnswer);
-        txtAnswer.setBounds(10, 70, 300, 29);
+        txtAnswer.setBounds(10, 160, 400, 29);
 
-        lblTimer.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblTimer.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         lblTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTimer.setText("Timer");
         lblTimer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlQuestion.add(lblTimer);
-        lblTimer.setBounds(310, 10, 100, 59);
+        lblTimer.setBounds(410, 10, 100, 149);
 
-        btnEnter.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnEnter.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         btnEnter.setText("Enter");
         btnEnter.setFocusable(false);
         pnlQuestion.add(btnEnter);
-        btnEnter.setBounds(310, 70, 100, 29);
+        btnEnter.setBounds(410, 160, 100, 29);
 
         lblCorrectAnswer.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         pnlQuestion.add(lblCorrectAnswer);
-        lblCorrectAnswer.setBounds(10, 100, 300, 29);
+        lblCorrectAnswer.setBounds(10, 160, 300, 29);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

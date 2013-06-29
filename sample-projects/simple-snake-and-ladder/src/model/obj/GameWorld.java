@@ -1,9 +1,9 @@
 package model.obj;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.common.CCMessage;
 import cococare.swing.CCSwing;
 import cococare.swing.component.CCImage;
+import controller.form.DlgGameOverCtrl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +28,7 @@ public class GameWorld {
     //
     private Player currentPlayer;
     private int currentDice;
+    private boolean gameEnd;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public List<Player> getPlayingPlayers() {
@@ -85,6 +86,14 @@ public class GameWorld {
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
+
+    public int getCurrentDice() {
+        return currentDice;
+    }
+
+    public void setCurrentDice(int currentDice) {
+        this.currentDice = currentDice;
+    }
 //</editor-fold>
 
     public void registerPlayer() {
@@ -97,6 +106,7 @@ public class GameWorld {
             imgIcon.setIcon(player.getIcon());
             imgIcon.setIconAutoFit(true);
             imgIcon.setIconProportion(true);
+            imgIcon.setOpaque(false);
             imgIcon.setToolTipText(player.getName());
             getPlayer_icon().put(player, imgIcon);
         }
@@ -110,6 +120,7 @@ public class GameWorld {
             }
         }
         setCurrentPlayer(gameOption.getPlayers().get(0));
+        gameEnd = false;
     }
 
     public void registerQuestion() {
@@ -149,12 +160,8 @@ public class GameWorld {
         while (diceEyes.size() < 10) {
             diceEyes.add(random.nextInt(6));
         }
-        currentDice = diceEyes.get(diceEyes.size() - 1) + 1;
+        setCurrentDice(diceEyes.get(diceEyes.size() - 1) + 1);
         return diceEyes.toArray(new Integer[0]);
-    }
-
-    public int getCurrentDice() {
-        return currentDice;
     }
 
     public void showPlayerOnBoardOnNextSquare(Player player) {
@@ -162,6 +169,15 @@ public class GameWorld {
             player.setReverse(true);
         }
         player.setSquareNumber(player.getSquareNumber() + (player.isReverse() ? -1 : +1));
+        int i = gameOption.getPlayers().indexOf(player);
+        CCSwing.getCCImage(getNumber_square().get(player.getSquareNumber()), "imgIcon" + (i + 1)).add(getPlayer_icon().get(player));
+    }
+
+    public void showPlayerOnBoardOnPrevSquare(Player player) {
+        if (player.getSquareNumber() <= 1) {
+            player.setReverse(true);
+        }
+        player.setSquareNumber(player.getSquareNumber() - (player.isReverse() ? -1 : +1));
         int i = gameOption.getPlayers().indexOf(player);
         CCSwing.getCCImage(getNumber_square().get(player.getSquareNumber()), "imgIcon" + (i + 1)).add(getPlayer_icon().get(player));
     }
@@ -185,17 +201,18 @@ public class GameWorld {
             getFinishedPlayers().add(getCurrentPlayer());
         }
         //
-        boolean gameEnd = false;
         GameMode gameMode = GameMode.values()[gameOption.getGameModeIndex()];
         if (GameMode.ONE_LOSSER.equals(gameMode)) {
             gameEnd = (getPlayingPlayers().size() - getFinishedPlayers().size()) == 1;
         } else if (GameMode.ONE_WINNER.equals(gameMode)) {
             gameEnd = getFinishedPlayers().size() == 1;
         } else if (GameMode.TEN_TURN.equals(gameMode)) {
+        } else {
+            gameEnd = false;
         }
         //
         if (gameEnd) {
-            CCMessage.showInformation("game end");
+            new DlgGameOverCtrl().init(this);
         } else {
             do {
                 int index = getPlayingPlayers().indexOf(getCurrentPlayer());
