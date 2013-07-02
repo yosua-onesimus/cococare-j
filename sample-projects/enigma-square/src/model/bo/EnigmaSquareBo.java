@@ -102,8 +102,8 @@ public class EnigmaSquareBo {
     }
 
     private void _showPlayerPawnOnNextSquare(Player player, boolean forward) {
-        if ((forward && player.getSquareNumber() >= 25) || (!forward && player.getSquareNumber() <= 1)) {
-            player.setReverse(true);
+        if (player.getSquareNumber() >= 25 || (!forward && player.getSquareNumber() <= 1)) {
+            player.setReverse(forward);
         }
         player.setSquareNumber(player.getSquareNumber() + ((forward ? 1 : -1) * (player.isReverse() ? -1 : +1)));
         int i = gameOption.getPlayers().indexOf(player);
@@ -332,7 +332,7 @@ public class EnigmaSquareBo {
         } else if (GameMode.TEN_TURN.equals(gameMode)) {
             gameEnd = getGameTurn() > 10;
         } else {
-            gameEnd = false;
+            gameEnd = getUnfinishedPlayers().isEmpty();
         }
         //next player
         if (isGameEnd()) {

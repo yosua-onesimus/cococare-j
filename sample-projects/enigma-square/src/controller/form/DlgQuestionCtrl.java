@@ -87,6 +87,11 @@ public class DlgQuestionCtrl extends CFSwingCtrl {
     }
 
     @Override
+    protected void _doClose() {
+        _doCloseScreen();
+    }
+
+    @Override
     protected void _doCloseScreen() {
         super._doCloseScreen();
         //
