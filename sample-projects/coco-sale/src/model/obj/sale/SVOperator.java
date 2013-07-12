@@ -3,6 +3,7 @@ package model.obj.sale;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCFieldConfig.OnDelete;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
@@ -97,17 +98,8 @@ public class SVOperator implements CCEntity {
     private String name;
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "operator")
+    @CCFieldConfig(onDelete = OnDelete.RESTRICT)
     private List<SVVoucherType> voucherTypes;
-//</editor-fold>
-
-//<editor-fold defaultstate="collapsed" desc=" SVOperator ">
-    public SVOperator() {
-    }
-
-    public SVOperator(String code, String name) {
-        this.code = code;
-        this.name = name;
-    }
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

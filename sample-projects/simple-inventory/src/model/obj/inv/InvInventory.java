@@ -3,6 +3,7 @@ package model.obj.inv;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCFieldConfig.OnDelete;
 import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
@@ -107,6 +108,7 @@ public class InvInventory implements CCEntity {
     private Integer quantityAvailable = 0;
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "inventory")
+    @CCFieldConfig(onDelete = OnDelete.RESTRICT)
     private List<InvOwnership> ownerships;
 //</editor-fold>
 

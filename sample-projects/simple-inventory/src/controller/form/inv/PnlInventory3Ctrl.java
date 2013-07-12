@@ -45,7 +45,6 @@ public class PnlInventory3Ctrl extends CFSwingCtrl {
         super._initListener();
         //
         CCSwing.addKeyListener(txtQuantityTotal, new KeyAdapter() {
-
             @Override
             public void keyReleased(KeyEvent e) {
                 txtQuantityAvailable.setText(CCFormat.formatInteger(CCFormat.parseInt(txtQuantityTotal.getText()) - CCFormat.parseInt(txtQuantityUsed.getText())));

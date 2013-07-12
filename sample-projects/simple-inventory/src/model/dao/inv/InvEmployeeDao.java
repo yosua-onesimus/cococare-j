@@ -7,8 +7,10 @@ import model.obj.inv.InvEmployee;
 
 public class InvEmployeeDao extends InventoryDao {
 
+//<editor-fold defaultstate="collapsed" desc=" private method ">
     @Override
     protected Class getEntity() {
         return InvEmployee.class;
     }
+//</editor-fold>
 }

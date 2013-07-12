@@ -3,10 +3,12 @@ package model.obj.sale;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCFieldConfig.OnDelete;
 import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 //</editor-fold>
 
@@ -99,6 +101,11 @@ public class SVVoucherType implements CCEntity {
     private Double purchasePrice = 0d;
     @CCFieldConfig(componentId = "txtSalePrice", accessible = Accessible.MANDATORY, type = Type.NUMBER_FORMAT, maxLength = 24)
     private Double salePrice = 0d;
+//<editor-fold defaultstate="collapsed" desc=" cascade ">
+    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "voucherType")
+    @CCFieldConfig(onDelete = OnDelete.RESTRICT)
+    private List<SVSelling> sellings;
+//</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public SVOperator getOperator() {

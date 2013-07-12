@@ -3,10 +3,12 @@ package model.obj.sale;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCFieldConfig.OnDelete;
 import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 //</editor-fold>
 
@@ -110,6 +112,11 @@ public class SCustomer implements CCEntity {
      */
     @CCFieldConfig(componentId = "txtBalance", accessible = Accessible.READONLY, type = Type.NUMBER_FORMAT, maxLength = 24)
     private Double balance = 0d;
+//<editor-fold defaultstate="collapsed" desc=" cascade ">
+    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "customer")
+    @CCFieldConfig(onDelete = OnDelete.RESTRICT)
+    private List<SVSelling> sellings;
+//</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getName() {

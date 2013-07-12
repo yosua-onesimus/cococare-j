@@ -18,16 +18,26 @@ public class PnlEmployee extends javax.swing.JPanel {
         txtCode = new javax.swing.JTextField();
         xName = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        separator = new javax.swing.JSeparator();
-        xInventory = new javax.swing.JLabel();
-        bndInventory = new cococare.swing.component.CCBandBox();
-        btnAddInventory = new cococare.swing.component.CCButton();
-        btnRemoveInventory = new cococare.swing.component.CCButton();
-        scrOwnership = new javax.swing.JScrollPane();
-        tblOwnership = new javax.swing.JTable();
+        tabEmployee = new javax.swing.JTabbedPane();
+        pnlBasicData = new javax.swing.JPanel();
+        xBirthPlace = new javax.swing.JLabel();
+        txtBirthPlace = new javax.swing.JTextField();
+        xBirthDate = new javax.swing.JLabel();
+        dtpBirthDate = new cococare.swing.component.CCDatePicker();
+        xGender = new javax.swing.JLabel();
+        cmbGender = new javax.swing.JComboBox();
+        xBloodType = new javax.swing.JLabel();
+        cmbBloodType = new javax.swing.JComboBox();
+        xPhone = new javax.swing.JLabel();
+        txtPhone = new javax.swing.JTextField();
+        xEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        xPhoto = new javax.swing.JLabel();
+        attPhoto = new cococare.swing.component.CCAttachment();
+        pnlOwnership = new javax.swing.JPanel();
 
-        setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(600, 400));
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         pnlEditor.setMinimumSize(new java.awt.Dimension(600, 400));
         pnlEditor.setPreferredSize(new java.awt.Dimension(600, 400));
@@ -48,49 +58,123 @@ public class PnlEmployee extends javax.swing.JPanel {
 
         txtName.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
-        xInventory.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        xInventory.setText("Inventory");
+        tabEmployee.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
-        bndInventory.setVisibleClearButton(false);
+        xBirthPlace.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xBirthPlace.setText("Birth Place");
 
-        btnAddInventory.setType(cococare.swing.component.CCButton.Type.ADD);
+        txtBirthPlace.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
-        btnRemoveInventory.setType(cococare.swing.component.CCButton.Type.REMOVE);
+        xBirthDate.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xBirthDate.setText(",");
 
-        tblOwnership.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        scrOwnership.setViewportView(tblOwnership);
+        xGender.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xGender.setText("Gender");
+
+        xBloodType.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xBloodType.setText("BloodType");
+
+        xPhone.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xPhone.setText("Phone");
+
+        txtPhone.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        xEmail.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xEmail.setText("Email");
+
+        txtEmail.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        xPhoto.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xPhoto.setText("Photo");
+
+        javax.swing.GroupLayout pnlBasicDataLayout = new javax.swing.GroupLayout(pnlBasicData);
+        pnlBasicData.setLayout(pnlBasicDataLayout);
+        pnlBasicDataLayout.setHorizontalGroup(
+            pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBasicDataLayout.createSequentialGroup()
+                .addComponent(xBirthPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtBirthPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(xBirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(dtpBirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlBasicDataLayout.createSequentialGroup()
+                .addComponent(xGender, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlBasicDataLayout.createSequentialGroup()
+                .addComponent(xBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(cmbBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlBasicDataLayout.createSequentialGroup()
+                .addComponent(xPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlBasicDataLayout.createSequentialGroup()
+                .addComponent(xEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlBasicDataLayout.createSequentialGroup()
+                .addComponent(xPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(attPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnlBasicDataLayout.setVerticalGroup(
+            pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBasicDataLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xBirthPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBirthPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(xBirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dtpBirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xGender, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(attPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        tabEmployee.addTab("Basic Data", pnlBasicData);
+
+        pnlOwnership.setLayout(new java.awt.BorderLayout());
+        tabEmployee.addTab("Ownership", pnlOwnership);
 
         javax.swing.GroupLayout pnlEditorLayout = new javax.swing.GroupLayout(pnlEditor);
         pnlEditor.setLayout(pnlEditorLayout);
         pnlEditorLayout.setHorizontalGroup(
             pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEditorLayout.createSequentialGroup()
-                .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlEditorLayout.createSequentialGroup()
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlEditorLayout.createSequentialGroup()
-                        .addComponent(xCode, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlEditorLayout.createSequentialGroup()
-                        .addComponent(xName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlEditorLayout.createSequentialGroup()
-                        .addComponent(xInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(bndInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(btnAddInventory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(btnRemoveInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(scrOwnership, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlEditorLayout.createSequentialGroup()
+                .addComponent(xCode, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlEditorLayout.createSequentialGroup()
+                .addComponent(xName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(tabEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         pnlEditorLayout.setVerticalGroup(
             pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,43 +193,45 @@ public class PnlEmployee extends javax.swing.JPanel {
                     .addComponent(xName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(xInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bndInventory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddInventory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRemoveInventory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
-                .addComponent(scrOwnership, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+                .addComponent(tabEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cococare.swing.component.CCBandBox bndInventory;
-    private cococare.swing.component.CCButton btnAddInventory;
+    private cococare.swing.component.CCAttachment attPhoto;
     private cococare.swing.component.CCButton btnClose;
     private cococare.swing.component.CCButton btnEdit;
-    private cococare.swing.component.CCButton btnRemoveInventory;
     private cococare.swing.component.CCButton btnSave;
+    private javax.swing.JComboBox cmbBloodType;
+    private javax.swing.JComboBox cmbGender;
+    private cococare.swing.component.CCDatePicker dtpBirthDate;
+    private javax.swing.JPanel pnlBasicData;
     private javax.swing.JPanel pnlEditor;
-    private javax.swing.JScrollPane scrOwnership;
-    private javax.swing.JSeparator separator;
-    private javax.swing.JTable tblOwnership;
+    private javax.swing.JPanel pnlOwnership;
+    private javax.swing.JTabbedPane tabEmployee;
+    private javax.swing.JTextField txtBirthPlace;
     private javax.swing.JTextField txtCode;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPhone;
+    private javax.swing.JLabel xBirthDate;
+    private javax.swing.JLabel xBirthPlace;
+    private javax.swing.JLabel xBloodType;
     private javax.swing.JLabel xCode;
-    private javax.swing.JLabel xInventory;
+    private javax.swing.JLabel xEmail;
+    private javax.swing.JLabel xGender;
     private javax.swing.JLabel xName;
+    private javax.swing.JLabel xPhone;
+    private javax.swing.JLabel xPhoto;
     // End of variables declaration//GEN-END:variables
 }

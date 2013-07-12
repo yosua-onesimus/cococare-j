@@ -11,10 +11,12 @@ import model.obj.inv.InvOwnership;
 
 public class InvOwnershipDao extends InventoryDao {
 
+//<editor-fold defaultstate="collapsed" desc=" private method ">
     @Override
     protected Class getEntity() {
         return InvOwnership.class;
     }
+//</editor-fold>
 
     public int getQuantityUsed(InvInventory inventory) {
         hql.start().
