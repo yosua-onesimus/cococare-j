@@ -17,11 +17,13 @@ import model.obj.sale.SVVoucherType;
 
 public class PnlVoucherTypeCtrl extends CFSwingCtrl {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
     private SVConfigBo configBo;
     private SVConfig config;
     private JTextField txtPurchasePrice;
     private JTextField txtSalePrice;
     private CCButton btnCalc;
+//</editor-fold>
 
     @Override
     protected Class _getEntity() {

@@ -50,6 +50,8 @@
                   <Component id="xCode" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="txtCode" min="-2" pref="150" max="-2" attributes="0"/>
+                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                  <Component id="lblFormatVoucherSelling" min="-2" pref="250" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <Component id="xDate" min="-2" pref="100" max="-2" attributes="0"/>
@@ -72,6 +74,8 @@
                   <Component id="xPurchasePrice" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="txtPurchasePrice" min="-2" pref="150" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <Component id="btnVoucherTypeUpdate" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <Component id="xSalePrice" min="-2" pref="100" max="-2" attributes="0"/>
@@ -100,6 +104,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="xCode" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="txtCode" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="lblFormatVoucherSelling" min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -121,6 +126,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="xPurchasePrice" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="txtPurchasePrice" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="btnVoucherTypeUpdate" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -174,6 +180,13 @@
             </Property>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="lblFormatVoucherSelling">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="1"/>
+            </Property>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JLabel" name="xDate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -223,6 +236,16 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="cococare.swing.component.CCButton" name="btnVoucherTypeUpdate">
+          <Properties>
+            <Property name="mnemonic" type="int" value="85"/>
+            <Property name="text" type="java.lang.String" value="Update"/>
+            <Property name="toolTipText" type="java.lang.String" value="Update"/>
+            <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
+              <Value id="SAVE"/>
             </Property>
           </Properties>
         </Component>

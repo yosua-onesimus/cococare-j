@@ -53,21 +53,54 @@
                   <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="btnSave" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSave" min="-2" pref="150" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="btnClose" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="xMinimalProfit" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="xMinimalProfit" min="-2" pref="150" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="txtMinimalProfit" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="txtMinimalProfit" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="xSalePriceRound" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="xSalePriceRound" min="-2" pref="150" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="txtSalePriceRound" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="txtSalePriceRound" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="xPin" min="-2" pref="150" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="btnCalc" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPin" min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="xFormatChangePin" min="-2" pref="150" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="txtFormatChangePin" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="xFormatCheckSaldo" min="-2" pref="150" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="txtFormatCheckSaldo" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="xFormatCheckVoucherPrice" min="-2" pref="150" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="txtFormatCheckVoucherPrice" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="xFormatVoucherSelling" min="-2" pref="150" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="txtFormatVoucherSelling" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="xFormatComplain" min="-2" pref="150" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="txtFormatComplain" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="xCenterPhone" min="-2" pref="150" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="txtCenterPhone" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -90,7 +123,41 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="xSalePriceRound" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="txtSalePriceRound" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="btnCalc" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="xPin" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="txtPin" min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="xFormatChangePin" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="txtFormatChangePin" min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="xFormatCheckSaldo" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="txtFormatCheckSaldo" min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="xFormatCheckVoucherPrice" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="txtFormatCheckVoucherPrice" min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="xFormatVoucherSelling" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="txtFormatVoucherSelling" min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="xFormatComplain" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="txtFormatComplain" min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="xCenterPhone" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="txtCenterPhone" min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -99,6 +166,7 @@
       <SubComponents>
         <Component class="cococare.swing.component.CCButton" name="btnSave">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Save &amp; Calc"/>
             <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
               <Value id="SAVE"/>
             </Property>
@@ -129,7 +197,7 @@
         <Component class="javax.swing.JLabel" name="xSalePriceRound">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="10" style="1"/>
+              <Font name="Verdana" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Sale Price Round"/>
           </Properties>
@@ -141,11 +209,108 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="cococare.swing.component.CCButton" name="btnCalc">
+        <Component class="javax.swing.JLabel" name="xPin">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Calc"/>
-            <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
-              <Value id="ACCEPT"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Pin"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtPin">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="xFormatChangePin">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Format Change Pin"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtFormatChangePin">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="xFormatCheckSaldo">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Format Check Saldo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtFormatCheckSaldo">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="xFormatCheckVoucherPrice">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Format Check Price"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtFormatCheckVoucherPrice">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="xFormatVoucherSelling">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Format Selling"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtFormatVoucherSelling">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="xFormatComplain">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Format Complain"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtFormatComplain">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="xCenterPhone">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Center Phone"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtCenterPhone">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="0"/>
             </Property>
           </Properties>
         </Component>

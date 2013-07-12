@@ -16,6 +16,7 @@ public class PnlSelling extends javax.swing.JPanel {
         btnClose = new cococare.swing.component.CCButton();
         xCode = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
+        lblFormatVoucherSelling = new javax.swing.JLabel();
         xDate = new javax.swing.JLabel();
         dtpDate = new cococare.swing.component.CCDatePicker();
         xCustomer = new javax.swing.JLabel();
@@ -25,6 +26,7 @@ public class PnlSelling extends javax.swing.JPanel {
         bndVoucherType = new cococare.swing.component.CCBandBox();
         xPurchasePrice = new javax.swing.JLabel();
         txtPurchasePrice = new javax.swing.JTextField();
+        btnVoucherTypeUpdate = new cococare.swing.component.CCButton();
         xSalePrice = new javax.swing.JLabel();
         txtSalePrice = new javax.swing.JTextField();
         xAmountPaid = new javax.swing.JLabel();
@@ -45,6 +47,8 @@ public class PnlSelling extends javax.swing.JPanel {
 
         txtCode.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
+        lblFormatVoucherSelling.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+
         xDate.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xDate.setText("Date");
 
@@ -60,6 +64,11 @@ public class PnlSelling extends javax.swing.JPanel {
         xPurchasePrice.setText("Purchase Price");
 
         txtPurchasePrice.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        btnVoucherTypeUpdate.setMnemonic('U');
+        btnVoucherTypeUpdate.setText("Update");
+        btnVoucherTypeUpdate.setToolTipText("Update");
+        btnVoucherTypeUpdate.setType(cococare.swing.component.CCButton.Type.SAVE);
 
         xSalePrice.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xSalePrice.setText("Sale Price");
@@ -89,7 +98,9 @@ public class PnlSelling extends javax.swing.JPanel {
             .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addComponent(xCode, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(lblFormatVoucherSelling, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addComponent(xDate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -107,7 +118,9 @@ public class PnlSelling extends javax.swing.JPanel {
             .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addComponent(xPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(txtPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnVoucherTypeUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addComponent(xSalePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -130,7 +143,8 @@ public class PnlSelling extends javax.swing.JPanel {
                 .addGap(11, 11, 11)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xCode, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFormatVoucherSelling, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xDate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,7 +161,8 @@ public class PnlSelling extends javax.swing.JPanel {
                 .addGap(1, 1, 1)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoucherTypeUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xSalePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,7 +193,9 @@ public class PnlSelling extends javax.swing.JPanel {
     private cococare.swing.component.CCButton btnEdit;
     private cococare.swing.component.CCButton btnEven;
     private cococare.swing.component.CCButton btnSave;
+    private cococare.swing.component.CCButton btnVoucherTypeUpdate;
     private cococare.swing.component.CCDatePicker dtpDate;
+    private javax.swing.JLabel lblFormatVoucherSelling;
     private javax.swing.JPanel pnlEditor;
     private javax.swing.JTextField txtAmountPaid;
     private javax.swing.JTextField txtCode;

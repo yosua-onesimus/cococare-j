@@ -96,10 +96,10 @@ public class SCustomer implements CCEntity {
     @CCFieldConfig(componentId = "txtAddress", visible = false)
     private String address;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtPhone", maxLength = 16, type = Type.PHONE_NUMBER, unique = true)
+    @CCFieldConfig(componentId = "txtPhone", type = Type.PHONE_NUMBER, maxLength = 16, unique = true)
     private String phone;
     @Column(length = 32)
-    @CCFieldConfig(componentId = "txtEmail", maxLength = 32, type = Type.EMAIL, unique = true)
+    @CCFieldConfig(componentId = "txtEmail", type = Type.EMAIL, maxLength = 32, unique = true)
     private String email;
     @Column(length = 32)
     @CCFieldConfig(componentId = "txtFacebook", maxLength = 32, unique = true)

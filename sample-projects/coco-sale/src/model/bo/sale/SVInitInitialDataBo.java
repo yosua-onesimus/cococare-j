@@ -12,6 +12,7 @@ import model.obj.sale.SVVoucherType;
 
 public class SVInitInitialDataBo extends CCHibernateBo {
 
+//<editor-fold defaultstate="collapsed" desc=" public method ">
     public synchronized boolean initFirstData() {
         List list = new ArrayList();
         CCDom dom = new CCDom();
@@ -21,4 +22,5 @@ public class SVInitInitialDataBo extends CCHibernateBo {
         list.addAll(dom.readList(SVVoucherType.class));
         return SaleModule.INSTANCE.getCCHibernate().restore(list);
     }
+//</editor-fold>
 }

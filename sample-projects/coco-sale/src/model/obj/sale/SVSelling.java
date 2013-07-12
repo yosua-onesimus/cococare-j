@@ -102,7 +102,7 @@ public class SVSelling implements CCEntity {
     @ManyToOne
     @CCFieldConfig(componentId = "bndVoucherType", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "@operator.name-@nominal")
     private SVVoucherType voucherType;
-    @CCFieldConfig(componentId = "txtPurchasePrice", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMBER_FORMAT, maxLength = 24)
+    @CCFieldConfig(componentId = "txtPurchasePrice", accessible = Accessible.MANDATORY, type = Type.NUMBER_FORMAT, maxLength = 24)
     private Double purchasePrice = 0d;
     @CCFieldConfig(componentId = "txtSalePrice", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMBER_FORMAT, maxLength = 24)
     private Double salePrice = 0d;
