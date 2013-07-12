@@ -15,9 +15,12 @@ import cococare.swing.CCEditor;
 import cococare.swing.CCHotkey;
 import static cococare.swing.CCSwing.*;
 import cococare.swing.CCTable;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 // </editor-fold>
 
 /**
@@ -31,6 +34,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     //
     protected CFSwingView swingView;
     //
+    protected List<Component> reinitComponents = new ArrayList();
     protected CCTable tblEntity;
     protected ActionListener alAdd;
     protected ActionListener alView;
@@ -94,7 +98,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 
     @Override
     protected void _initComponent() {
-        initComponent(getContainer(), this);
+        initComponent(getContainer(), this, reinitComponents);
         super._initComponent();
     }
 
@@ -393,7 +397,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected void _doCloseScreen() {
         if (ShowMode.PANEL_MODE.equals(_getShowMode())) {
             if (isNull(callerCtrl)) {
-                showPanel(getContent(), null);
+                removePanel(getContent(), getContainer());
             } else {
                 callerCtrl.init();
             }
@@ -401,7 +405,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             swingView.getDialog().dispose();
         } else if (ShowMode.TAB_MODE.equals(_getShowMode())) {
             if (isNull(callerCtrl)) {
-                showPanel(getContent(), null);
+                removePanel(getContent(), getContainer());
             } else {
                 callerCtrl.doCloseTab(sysRef);
                 if (updateCaller) {

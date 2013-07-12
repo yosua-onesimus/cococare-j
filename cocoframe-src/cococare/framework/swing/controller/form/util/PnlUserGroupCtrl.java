@@ -91,7 +91,7 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
 
     @Override
     protected boolean _doSaveEntity() {
-        return userGroupBo.save();
+        return userGroupBo.saveOrUpdate();
     }
 
     protected void _doSelect(boolean selected) {

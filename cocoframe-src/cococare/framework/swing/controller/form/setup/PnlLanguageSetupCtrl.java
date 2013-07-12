@@ -48,14 +48,12 @@ public class PnlLanguageSetupCtrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         addActionListener(btnLoad, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doLoad();
             }
         });
         addActionListener(btnSave, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doSave();

@@ -36,6 +36,7 @@ public abstract class CFViewCtrl implements CCTrackable {
         PANEL_MODE, DIALOG_MODE, TAB_MODE;
     }
 //</editor-fold>
+    //
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     //
     protected HashMap<String, Object> parameter = new HashMap();

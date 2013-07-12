@@ -62,77 +62,66 @@ public class PnlJavaxCommSetupCtrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         addActionListener(btnBrowseJavaHome, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doBrowseJavaHome();
             }
         });
         addActionListener(btnBrowseJavaHomeBin, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doBrowseJavaHomeBin();
             }
         });
         addActionListener(btnBrowseJavaHomeLib, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doBrowseJavaHomeLib();
             }
         });
         addActionListener(btnCopy, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doCopy();
             }
         });
         addActionListener(btnAscii2Port, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doAscii2Port();
             }
         });
         addActionListener(btnText2Display, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doText2Display();
             }
         });
         addActionListener(btnText2Port, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doText2Port();
             }
         });
         addActionListener(btnOpenDrawer1, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doOpenDrawer1();
             }
         });
         addActionListener(btnOpenDrawer2, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doOpenDrawer2();
             }
         });
         addActionListener(btnOpenDrawer3, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doOpenDrawer3();
             }
         });
         addActionListener(btnOpenDrawer4, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doOpenDrawer4();

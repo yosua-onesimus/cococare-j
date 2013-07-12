@@ -58,27 +58,27 @@ public abstract class CFApplCtrl {
     //
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     //
-    protected PlatformMode PLAT_MODE = PlatformMode.DESKTOP;
-    protected DatabaseMode DTBS_MODE = DatabaseMode.SINGLE;
-    protected MenuPosition MENU_POST = MenuPosition.LEFT_SIDE;
+    protected static PlatformMode PLAT_MODE = PlatformMode.DESKTOP;
+    protected static DatabaseMode DTBS_MODE = DatabaseMode.SINGLE;
+    protected static MenuPosition MENU_POST = MenuPosition.LEFT_SIDE;
     //
-    protected String APPL_ID = "appl.id";
+    protected static String APPL_ID = "appl.id";
     public static String APPL_CODE = "appl.code";
-    protected String APPL_LOGO = "/cococare/resource/icon-cococare.jpg";
-    protected String APPL_NAME = "appl.name";
-    protected String APPL_VER = "1.0.120317";
+    protected static String APPL_LOGO = "/cococare/resource/icon-cococare.jpg";
+    protected static String APPL_NAME = "appl.name";
+    protected static String APPL_VER = "1.0.130317";
     //
-    public static String S_APPL_CONF = "appl.conf";
-    public static String S_APPL_LCNS = "appl.lcns";
-    public static String S_DTBS_CONF = "dtbs.conf";
+    public static final String S_APPL_CONF = "appl.conf";
+    public static final String S_APPL_LCNS = "appl.lcns";
+    public static final String S_DTBS_CONF = "dtbs.conf";
     //
-    protected File FILE_APPL_CONF = new File(getFileSystConfPath(), S_APPL_CONF);
-    protected File FILE_APPL_LCNS = new File(getFileSystConfPath(), S_APPL_LCNS);
-    protected File FILE_DTBS_CONF = new File(getFileSystConfPath(), S_DTBS_CONF);
+    protected static File FILE_APPL_CONF = new File(getFileSystConfPath(), S_APPL_CONF);
+    protected static File FILE_APPL_LCNS = new File(getFileSystConfPath(), S_APPL_LCNS);
+    protected static File FILE_DTBS_CONF = new File(getFileSystConfPath(), S_DTBS_CONF);
     //
-    protected CCHibernate HIBERNATE;
+    protected static CCHibernate HIBERNATE;
     //
-    protected boolean databaseConnected = true;
+    protected static boolean databaseConnected = true;
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" CFApplCtrl ">
@@ -105,7 +105,7 @@ public abstract class CFApplCtrl {
 
     protected void _loadExternalSetting() {
         load(CCLanguage.LanguagePack.EN);
-        File file = getFileSystConfFile(S_APPL_CONF);
+        File file = getFileUserConfFile(S_APPL_CONF);
         if (file.exists()) {
             updateNonContent(readObject(file));
         }
@@ -183,11 +183,7 @@ public abstract class CFApplCtrl {
 
     protected abstract CFApplUae _applyUserConfigUaeUtility(CFApplUae applUae);
 
-    protected void _applyUserConfig() {
-        UtilConfAppl confAppl = new UtilConfigBo().loadConfAppl();
-        updateNonContent(confAppl);
-        MENU_POST = MenuPosition.values()[parseInt(confAppl.getApplMenuPosition())];
-    }
+    protected abstract void _applyUserConfig();
 
     protected abstract void _clearUserConfig();
 
@@ -198,7 +194,17 @@ public abstract class CFApplCtrl {
     }
 
     public void showScreen() {
+        if (PlatformMode.WEB.equals(PLAT_MODE)) {
+            _initScreen();
+        }
         if (databaseConnected) {
+            UtilConfAppl confAppl = new UtilConfigBo().loadConfAppl();
+            updateNonContent(confAppl);
+            MENU_POST = MenuPosition.values()[parseInt(confAppl.getApplMenuPosition())];
+        }
+        if ((PlatformMode.DESKTOP.equals(PLAT_MODE) && databaseConnected)
+                || (PlatformMode.WEB.equals(PLAT_MODE) && DatabaseMode.SINGLE.equals(DTBS_MODE) && databaseConnected)
+                || (PlatformMode.WEB.equals(PLAT_MODE) && DatabaseMode.MULTIPLE.equals(DTBS_MODE))) {
             if (INSTANCE_hasLogged()) {
                 applyDatabaseFilter();
                 _applyUserConfig();
@@ -208,6 +214,8 @@ public abstract class CFApplCtrl {
                 _clearUserConfig();
                 _showLoginScreen();
             }
+        } else if (PlatformMode.WEB.equals(PLAT_MODE) && DatabaseMode.SINGLE.equals(DTBS_MODE) && !databaseConnected) {
+            showDatabaseSettingScreen();
         }
     }
 

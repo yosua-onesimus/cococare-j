@@ -110,7 +110,7 @@ public class UtilUserGroupBo extends CCHibernateBo {
         }
     }
 
-    public synchronized boolean save() {
+    public synchronized boolean saveOrUpdate() {
         Transaction transaction = userGroupDao.newTransaction();
         //
         transaction.saveOrUpdate(userGroup);

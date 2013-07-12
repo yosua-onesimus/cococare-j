@@ -44,7 +44,6 @@ public class PnlShortcutListCtrl extends CFSwingCtrl {
         super._initTable();
         tblEntity.setVisibleField(false, "path");
         tblEntity.addField(2, new CCCustomField() {
-
             @Override
             public String getLabel() {
                 return "Path";
@@ -61,7 +60,6 @@ public class PnlShortcutListCtrl extends CFSwingCtrl {
         tblEntity.getTable().setRowHeight(29);
         if (isNotNull(parameter.get("tracker"))) {
             tblEntity.setHqlFilters(new CCHibernateFilter() {
-
                 @Override
                 public String getFieldName() {
                     return "tracker";

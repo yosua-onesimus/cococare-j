@@ -178,7 +178,7 @@ public class CFSwingUae extends CFApplUae {
 //<editor-fold defaultstate="collapsed" desc=" public method ">
 //<editor-fold defaultstate="collapsed" desc=" register controllerClass to create privilege ">
     @Override
-    public void reg(String moduleCode, String screenName, Class controllerClass) {
+    public void reg(String moduleCode, String screenName, Class<? extends CFViewCtrl> controllerClass) {
         Class containerClass = getViewForm(controllerClass);
         if (instanceOf(Container.class, containerClass)) {
             UtilPrivilege screen = new UtilPrivilege(_getScreenComp(controllerClass), _getScreenCode(moduleCode), screenName);
@@ -258,6 +258,7 @@ public class CFSwingUae extends CFApplUae {
         }
     }
 
+    @Override
     public void addMenuSeparator() {
         addMenuSeparator(cc - 1);
     }

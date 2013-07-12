@@ -125,7 +125,7 @@ public class UtilUserBo extends CCHibernateBo {
         }
     }
 
-    public synchronized boolean save() {
+    public synchronized boolean saveOrUpdate() {
         Transaction transaction = userDao.newTransaction();
         //
         transaction.saveOrUpdate(user);

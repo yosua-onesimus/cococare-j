@@ -9,7 +9,6 @@ import cococare.framework.model.obj.util.UtilPrivilege;
 import cococare.framework.model.obj.util.UtilUser;
 import cococare.framework.model.obj.util.UtilUserGroup;
 import cococare.framework.swing.CFSwingCtrl;
-import static cococare.swing.CCSwing.getCCBandBox;
 import static cococare.swing.CCSwing.newCCTable;
 import cococare.swing.CCTable;
 import cococare.swing.component.CCBandBox;
@@ -117,7 +116,7 @@ public class PnlUserCtrl extends CFSwingCtrl {
 
     @Override
     protected boolean _doSaveEntity() {
-        return userBo.save();
+        return userBo.saveOrUpdate();
     }
 
     protected void _doSelect(boolean selected) {

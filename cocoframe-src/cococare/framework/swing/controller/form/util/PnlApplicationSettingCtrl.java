@@ -2,7 +2,7 @@ package cococare.framework.swing.controller.form.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.database.CCEntity;
-import static cococare.datafile.CCFile.getFileSystConfFile;
+import static cococare.datafile.CCFile.getFileUserConfFile;
 import static cococare.datafile.CCFile.writeObject;
 import cococare.framework.common.CFApplCtrl;
 import cococare.framework.model.bo.util.UtilConfigBo;
@@ -36,7 +36,7 @@ public class PnlApplicationSettingCtrl extends CFSwingCtrl {
 
     @Override
     protected boolean _doSaveEntity() {
-        updateCaller = configBo.saveConf(objEntity) && writeObject((CCEntity) objEntity, getFileSystConfFile(CFApplCtrl.S_APPL_CONF));
+        updateCaller = configBo.saveConf(objEntity) && writeObject((CCEntity) objEntity, getFileUserConfFile(CFApplCtrl.S_APPL_CONF));
         if (updateCaller) {
             CFApplCtrl.INSTANCE.updateNonContent(objEntity);
         }

@@ -44,7 +44,6 @@ public class PnlBookmarkListCtrl extends CFSwingCtrl {
         super._initTable();
         tblEntity.setVisibleField(false, "url");
         tblEntity.addField(2, new CCCustomField() {
-
             @Override
             public String getLabel() {
                 return "URL";
@@ -61,7 +60,6 @@ public class PnlBookmarkListCtrl extends CFSwingCtrl {
         tblEntity.getTable().setRowHeight(29);
         if (isNotNull(parameter.get("tracker"))) {
             tblEntity.setHqlFilters(new CCHibernateFilter() {
-
                 @Override
                 public String getFieldName() {
                     return "tracker";

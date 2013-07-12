@@ -14,6 +14,7 @@ import cococare.framework.swing.controller.form.util.*;
 import cococare.swing.CCSwing.LookAndFeel;
 import static cococare.swing.CCSwing.centerScreen;
 import static cococare.swing.CCSwing.setLookAndFeel;
+import java.awt.Color;
 import javax.swing.UIManager;
 //</editor-fold>
 
@@ -29,6 +30,8 @@ public abstract class CFSwingMain extends CFApplCtrl {
     protected void _loadInternalSetting() {
         setLookAndFeel(LookAndFeel.METAL.getName(), null);
         UIManager.put("PopupMenu.consumeEventOnClose", false);
+        UIManager.put("Separator.background", Color.BLACK);
+        UIManager.put("Separator.foreground", Color.BLACK);
         UIManager.put("nimbusBase", EDT_COLOR_ON_FOCUS.darker());
         UIManager.put("nimbusBlueGrey", EDT_COLOR_ON_FOCUS.darker());
         UIManager.put("control", EDT_COLOR_ON_FOCUS.darker());
@@ -87,10 +90,11 @@ public abstract class CFSwingMain extends CFApplCtrl {
         applUae.addMenuChild(turn(User_Group), null, PnlUserGroupListCtrl.class);
         applUae.addMenuChild(turn(User), null, PnlUserListCtrl.class);
         applUae.addMenuChild(turn(Change_Password), null, PnlChangePasswordCtrl.class);
+        applUae.addMenuSeparator();
         applUae.addMenuChild(turn(Logger_History), null, PnlLoggerListCtrl.class);
         applUae.addMenuChild(turn(Application_Setting), null, PnlApplicationSettingCtrl.class);
         applUae.addMenuChild(turn(Database_Setting), null, PnlDatabaseSettingCtrl.class);
-        applUae.addMenuChild(turn(Log_Out), null, PnlLoginCtrl.class);
+        applUae.addMenuParent(turn(Log_Out), null, PnlLoginCtrl.class);
         return applUae;
     }
 

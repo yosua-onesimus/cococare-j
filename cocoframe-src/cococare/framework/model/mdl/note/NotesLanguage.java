@@ -11,6 +11,7 @@ import cococare.common.CCLanguage;
  */
 public class NotesLanguage extends CCLanguage {
 
+    public static String Note;
     //menu
     public static String Notes;
     public static String Bookmark;

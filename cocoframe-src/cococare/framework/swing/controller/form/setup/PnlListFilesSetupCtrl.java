@@ -104,14 +104,12 @@ public class PnlListFilesSetupCtrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         addActionListener(btnBrowse, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doBrowse();
             }
         });
         addActionListener(btnCopy, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doCopy();
