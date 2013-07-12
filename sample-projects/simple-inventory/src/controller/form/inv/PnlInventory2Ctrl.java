@@ -1,9 +1,10 @@
 package controller.form.inv;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.common.CCFormat;
+import static cococare.common.CCFormat.formatInteger;
+import static cococare.common.CCFormat.parseInt;
 import cococare.framework.swing.CFSwingCtrl;
-import cococare.swing.CCSwing;
+import static cococare.swing.CCSwing.addKeyListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
@@ -44,10 +45,10 @@ public class PnlInventory2Ctrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         //
-        CCSwing.addKeyListener(txtQuantityTotal, new KeyAdapter() {
+        addKeyListener(txtQuantityTotal, new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                txtQuantityAvailable.setText(CCFormat.formatInteger(CCFormat.parseInt(txtQuantityTotal.getText()) - CCFormat.parseInt(txtQuantityUsed.getText())));
+                txtQuantityAvailable.setText(formatInteger(parseInt(txtQuantityTotal.getText()) - parseInt(txtQuantityUsed.getText())));
             }
         });
     }

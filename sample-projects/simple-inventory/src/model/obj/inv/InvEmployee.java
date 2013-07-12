@@ -101,7 +101,7 @@ public class InvEmployee implements CCEntity {
     @CCFieldConfig(componentId = "txtBirthPlace", maxLength = 32, visible = false)
     private String birthPlace;
     @Temporal(value = TemporalType.DATE)
-    @CCFieldConfig(componentId = "dtpBirthDate", type = Type.DATE_PAST, maxLength = 8)
+    @CCFieldConfig(componentId = "dtpBirthDate", type = Type.DATE_PAST, maxLength = 12)
     private Date birthDate;
     @CCFieldConfig(componentId = "cmbGender", accessible = Accessible.MANDATORY, optionSource = "model.obj.inv.InvEnum$Gender", optionReflectKey = "gender", visible = false)
     private Integer genderIndex;
