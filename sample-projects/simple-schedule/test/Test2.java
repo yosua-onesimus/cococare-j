@@ -1,4 +1,3 @@
-package main;
 
 import cococare.common.CCFormat;
 import java.sql.Time;
@@ -6,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class test {
+public class Test2 {
 
     public static void main(String[] args) {
         Person person = new Person();

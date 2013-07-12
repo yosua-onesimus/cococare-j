@@ -1,11 +1,10 @@
-package controller.form;
+package controller.form.sale;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.datafile.CCFile;
 import cococare.framework.swing.CFSwingCtrl;
 //</editor-fold>
 
-public class PnlCococareCtrl extends CFSwingCtrl {
+public class PnlHomeCtrl extends CFSwingCtrl {
 
     @Override
     protected Class _getEntity() {
@@ -14,12 +13,6 @@ public class PnlCococareCtrl extends CFSwingCtrl {
 
     @Override
     protected BaseFunction _getBaseFunction() {
-        return null;
-    }
-
-    @Override
-    public boolean init() {
-        CCFile.browse("http://cococare.wordpress.com/");
-        return true;
+        return BaseFunction.LIST_FUNCTION;
     }
 }

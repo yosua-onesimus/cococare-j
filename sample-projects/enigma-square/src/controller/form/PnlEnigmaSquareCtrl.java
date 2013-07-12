@@ -42,17 +42,7 @@ public class PnlEnigmaSquareCtrl extends CFSwingCtrl {
 
     @Override
     protected BaseFunction _getBaseFunction() {
-        return null;
-    }
-
-    @Override
-    protected ShowMode _getShowMode() {
-        return ShowMode.PANEL_MODE;
-    }
-
-    @Override
-    public boolean init() {
-        return super.init(null);
+        return BaseFunction.LIST_FUNCTION;
     }
 
     @Override

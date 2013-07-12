@@ -27,7 +27,7 @@ public class DlgQuestionCtrl extends CFSwingCtrl {
 
     @Override
     protected Class _getEntity() {
-        return Question.class;
+        return null;
     }
 
     @Override
@@ -87,21 +87,9 @@ public class DlgQuestionCtrl extends CFSwingCtrl {
     }
 
     @Override
-    protected void _doClose() {
-        _doCloseScreen();
-    }
-
-    @Override
     protected void _doCloseScreen() {
-        super._doCloseScreen();
-        //
         tmrTimer.stop();
-    }
-
-    @Override
-    protected void _doUpdateEditor() {
-        super._doUpdateEditor();
         //
-        txtAnswer.setText("");
+        super._doCloseScreen();
     }
 }

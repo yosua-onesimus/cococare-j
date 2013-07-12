@@ -2,7 +2,6 @@ package controller.form;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFormat;
-import cococare.framework.common.CFViewCtrl;
 import cococare.framework.swing.CFSwingCtrl;
 import cococare.swing.CCSwing;
 import cococare.swing.CCTable;
@@ -28,12 +27,12 @@ public class DlgGameOverCtrl extends CFSwingCtrl {
     }
 
     @Override
-    protected CFViewCtrl.BaseFunction _getBaseFunction() {
-        return null;
+    protected BaseFunction _getBaseFunction() {
+        return BaseFunction.FORM_FUNCTION;
     }
 
     @Override
-    protected CFViewCtrl.ShowMode _getShowMode() {
+    protected ShowMode _getShowMode() {
         return ShowMode.DIALOG_MODE;
     }
 
