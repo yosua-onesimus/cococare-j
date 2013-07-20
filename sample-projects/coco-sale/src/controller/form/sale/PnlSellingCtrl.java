@@ -145,7 +145,7 @@ public class PnlSellingCtrl extends CFSwingCtrl {
     }
 
     protected void _doUpdateTxtVoucherType() {
-        if (newEntity) {
+        if (newEntity && isNotNull(bndVoucherType.getObject())) {
             SVVoucherType voucherType = (SVVoucherType) bndVoucherType.getObject();
             txtPurchasePrice.setText(formatNumber(isNull(voucherType) ? 0 : voucherType.getPurchasePrice()));
             txtSalePrice.setText(formatNumber(isNull(voucherType) ? 0 : voucherType.getSalePrice()));
