@@ -100,6 +100,9 @@ public class SVSelling implements CCEntity {
     @CCFieldConfig(componentId = "bndCustomer", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "@name-@phone")
     private SCustomer customer;
     @ManyToOne
+    @CCFieldConfig(componentId = "bndCustomerPhone", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "@customer.name-@phone")
+    private SCustomerPhone customerPhone;
+    @ManyToOne
     @CCFieldConfig(componentId = "bndVoucherType", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "@operator.name-@nominal")
     private SVVoucherType voucherType;
     @CCFieldConfig(componentId = "txtPurchasePrice", accessible = Accessible.MANDATORY, type = Type.NUMBER_FORMAT, maxLength = 24)
@@ -132,6 +135,14 @@ public class SVSelling implements CCEntity {
 
     public void setCustomer(SCustomer customer) {
         this.customer = customer;
+    }
+
+    public SCustomerPhone getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(SCustomerPhone customerPhone) {
+        this.customerPhone = customerPhone;
     }
 
     public SVVoucherType getVoucherType() {

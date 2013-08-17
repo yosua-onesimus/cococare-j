@@ -68,5 +68,8 @@ public class SaleMain extends CFSwingMain {
 
     public static void main(String[] args) {
         new SaleMain().showScreen();
+        //SaleRepair.repairName();//repair customer name
+        //SaleRepair.repairPhone1();//repair customer phone
+        //SaleRepair.repairPhone2();//repair customer phone
     }
 }

@@ -4,6 +4,7 @@ package model.mdl.sale;
 import cococare.database.CCHibernate;
 import cococare.database.CCHibernateModule;
 import model.obj.sale.SCustomer;
+import model.obj.sale.SCustomerPhone;
 import model.obj.sale.SVDeposit;
 import model.obj.sale.SVOperator;
 import model.obj.sale.SVSelling;
@@ -20,6 +21,7 @@ public class SaleModule extends CCHibernateModule {
         super.init(hibernate);
         //
         hibernate.addAnnotatedClass(SCustomer.class);
+        hibernate.addAnnotatedClass(SCustomerPhone.class);
         //
         hibernate.addAnnotatedClass(SVOperator.class);
         hibernate.addAnnotatedClass(SVVoucherType.class);
