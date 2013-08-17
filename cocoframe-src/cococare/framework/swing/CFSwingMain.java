@@ -64,6 +64,9 @@ public abstract class CFSwingMain extends CFApplCtrl {
         applUae.reg(turn(Utility), turn(Logger_History), PnlLoggerListCtrl.class);
         applUae.reg(turn(Utility), turn(Application_Setting), PnlApplicationSettingCtrl.class);
         applUae.reg(turn(Utility), turn(Database_Setting), PnlDatabaseSettingCtrl.class);
+        if (LICENSE_ACTIVE) {
+            applUae.reg(turn(Utility), turn(Registration), PnlRegistrationCtrl.class);
+        }
         return applUae;
     }
 
@@ -94,6 +97,10 @@ public abstract class CFSwingMain extends CFApplCtrl {
         applUae.addMenuChild(turn(Logger_History), null, PnlLoggerListCtrl.class);
         applUae.addMenuChild(turn(Application_Setting), null, PnlApplicationSettingCtrl.class);
         applUae.addMenuChild(turn(Database_Setting), null, PnlDatabaseSettingCtrl.class);
+        if (LICENSE_ACTIVE) {
+            applUae.addMenuSeparator();
+            applUae.addMenuChild(turn(Registration), null, PnlRegistrationCtrl.class);
+        }
         applUae.addMenuParent(turn(Log_Out), null, PnlLoginCtrl.class);
         return applUae;
     }

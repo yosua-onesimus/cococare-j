@@ -2,6 +2,7 @@ package cococare.framework.model.obj.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
+import cococare.common.CCFieldConfig.OnDelete;
 import static cococare.common.CCFormat.getBoolean;
 import static cococare.common.CCLogic.isNotNullAndNotEmpty;
 import cococare.database.CCEntity;
@@ -126,10 +127,13 @@ public class UtilPrivilege implements CCEntity {
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "parent")
+    @CCFieldConfig(onDelete = OnDelete.CASCADE)
     private List<UtilPrivilege> privileges;
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "privilege")
+    @CCFieldConfig(onDelete = OnDelete.CASCADE)
     private List<UtilUserGroupPrivilege> userGroupPrivileges;
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "privilege")
+    @CCFieldConfig(onDelete = OnDelete.CASCADE)
     private List<UtilUserPrivilege> userPrivileges;
 //</editor-fold>
 

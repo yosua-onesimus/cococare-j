@@ -4,6 +4,7 @@ package cococare.framework.model.obj.util;
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.CompareRule;
+import cococare.common.CCFieldConfig.OnDelete;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import cococare.framework.common.CFApplCtrl;
@@ -130,8 +131,10 @@ public class UtilUser implements CCEntity {
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "user")
+    @CCFieldConfig(onDelete = OnDelete.CASCADE)
     private List<UtilUserIp> userIps;
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "user")
+    @CCFieldConfig(onDelete = OnDelete.CASCADE)
     private List<UtilUserPrivilege> userPrivileges;
 //</editor-fold>
 

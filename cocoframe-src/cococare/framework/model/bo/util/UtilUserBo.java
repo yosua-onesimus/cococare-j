@@ -5,14 +5,12 @@ import static cococare.common.CCFormat.parseInt;
 import static cococare.common.CCLanguage.*;
 import static cococare.common.CCLogic.isNotNull;
 import static cococare.common.CCLogic.isNull;
-import static cococare.common.CCMessage.setCauseMessage;
-import static cococare.common.CCMessage.setErrorMessage;
+import static cococare.common.CCMessage.*;
 import cococare.common.trial.MD5;
 import cococare.database.CCDatabaseConfig;
 import cococare.database.CCHibernateBo;
 import cococare.database.CCHibernateDao.Transaction;
-import cococare.database.CCLoginInfo;
-import static cococare.database.CCLoginInfo.INSTANCE_getUserLoginIp;
+import static cococare.database.CCLoginInfo.*;
 import cococare.framework.model.dao.util.UtilPrivilegeDao;
 import cococare.framework.model.dao.util.UtilUserDao;
 import cococare.framework.model.dao.util.UtilUserIpDao;
@@ -150,8 +148,13 @@ public class UtilUserBo extends CCHibernateBo {
 
 //<editor-fold defaultstate="collapsed" desc=" changePassword ">
     public synchronized boolean changePassword(UtilUser user) {
-        user.setPassword(user.getNewPassword());
-        return userDao.saveOrUpdate(user);
+        try {
+            user.setPassword(user.getNewPassword());
+            return userDao.saveOrUpdate(user);
+        } catch (Exception exception) {
+            logp(exception);
+            return false;
+        }
     }
 //</editor-fold>
 
@@ -165,7 +168,7 @@ public class UtilUserBo extends CCHibernateBo {
     }
 
     public synchronized boolean login(String username, String password) {
-        CCLoginInfo.INSTANCE.resetDomainAndUserLoginIp();
+        INSTANCE_resetDomainAndUserLoginIp();
         CCDatabaseConfig databaseConfig = UtilityModule.INSTANCE.getCCHibernate().getDatabaseConfig();
         if (isNull(databaseConfig) || !databaseConfig.isValidDate()) {
             setErrorMessage(turn(Can_not_log_you_in));
@@ -188,7 +191,7 @@ public class UtilUserBo extends CCHibernateBo {
             setCauseMessage(turn(Your_IP_has_been_restricted));
             return false;
         }
-        CCLoginInfo.INSTANCE.login(user, getUserPrivilege(user));
+        INSTANCE_login(user, getUserPrivilege(user));
         return true;
     }
 //</editor-fold>

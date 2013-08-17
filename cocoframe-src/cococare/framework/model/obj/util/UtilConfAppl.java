@@ -90,7 +90,7 @@ public class UtilConfAppl implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @CCFieldConfig(componentId = "cmbApplLanguage", accessible = Accessible.MANDATORY, optionSource = "cococare.common.CCLanguage$LanguagePack")
+    @CCFieldConfig(componentId = "cmbApplLanguage", accessible = Accessible.MANDATORY, optionSource = "cococare.common.CCLanguage$LanguagePack", requestFocus = true)
     private String applLanguage = "0";
     @CCFieldConfig(componentId = "cmbApplLookAndFeel", accessible = Accessible.MANDATORY, optionSource = "cococare.swing.CCSwing$LookAndFeel")
     private String applLookAndFeel = "0";

@@ -6,6 +6,7 @@ import cococare.common.CCLanguage;
 import static cococare.common.CCLanguage.load;
 import static cococare.common.CCLogic.isNull;
 import static cococare.common.CCMessage.initDefaultHandler;
+import cococare.common.trial.CCLicense;
 import cococare.database.CCDatabaseConfig;
 import cococare.database.CCHibernate;
 import cococare.database.CCLoginInfo;
@@ -68,17 +69,20 @@ public abstract class CFApplCtrl {
     protected static String APPL_NAME = "appl.name";
     protected static String APPL_VER = "1.0.130317";
     //
-    public static final String S_APPL_CONF = "appl.conf";
-    public static final String S_APPL_LCNS = "appl.lcns";
-    public static final String S_DTBS_CONF = "dtbs.conf";
+    protected static final String S_APPL_CONF = "appl.conf";
+    protected static final String S_APPL_LCNS = "appl.lcns";
+    protected static final String S_DTBS_CONF = "dtbs.conf";
     //
-    protected static File FILE_APPL_CONF = new File(getFileSystConfPath(), S_APPL_CONF);
+    public static File FILE_APPL_CONF = new File(getFileUserConfPath(), S_APPL_CONF);
     protected static File FILE_APPL_LCNS = new File(getFileSystConfPath(), S_APPL_LCNS);
     protected static File FILE_DTBS_CONF = new File(getFileSystConfPath(), S_DTBS_CONF);
     //
     protected static CCHibernate HIBERNATE;
     //
     protected static boolean databaseConnected = true;
+    //
+    public static CCLicense LICENSE;
+    protected static boolean LICENSE_ACTIVE = false;
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" CFApplCtrl ">
@@ -108,6 +112,9 @@ public abstract class CFApplCtrl {
         File file = getFileUserConfFile(S_APPL_CONF);
         if (file.exists()) {
             updateNonContent(readObject(file));
+        }
+        if (LICENSE_ACTIVE) {
+            LICENSE = new CCLicense(APPL_ID, FILE_APPL_LCNS);
         }
     }
 

@@ -3,6 +3,7 @@ package cococare.framework.model.obj.note;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCFieldConfig.OnDelete;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
@@ -110,6 +111,7 @@ public class NoteObjective implements CCEntity {
     private String status;
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "objective")
+    @CCFieldConfig(onDelete = OnDelete.CASCADE)
     private List<NoteTracker> trackers;
 //</editor-fold>
 
