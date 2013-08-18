@@ -2,12 +2,13 @@ package cococare.framework.swing;
 
 // <editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCAccessibleListener;
-import static cococare.common.CCClass.getUniqueKeyValue;
-import static cococare.common.CCClass.newObject;
+import static cococare.common.CCClass.*;
 import static cococare.common.CCFinal.btnEdit;
+import static cococare.common.CCFormat.getBoolean;
 import static cococare.common.CCLanguage.*;
 import static cococare.common.CCLogic.*;
 import static cococare.common.CCMessage.*;
+import cococare.database.CCHibernateFilter;
 import static cococare.database.CCLoginInfo.INSTANCE_isCompAccessible;
 import cococare.framework.common.CFViewCtrl;
 import static cococare.framework.swing.CFSwingMap.*;
@@ -109,6 +110,21 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             tblEntity = new CCTable(swingView.getTblEntity(), _getEntity());
             swingView.getTblEntity().requestFocusInWindow();
         }
+        //parent-childs-screen
+        if (isNotNull(parameter.get(toString() + parentValue))) {
+            final Object dummy = this;
+            tblEntity.setHqlFilters(new CCHibernateFilter() {
+                @Override
+                public String getFieldName() {
+                    return parameter.get(dummy.toString() + parentField).toString();
+                }
+
+                @Override
+                public Object getFieldValue() {
+                    return parameter.get(dummy.toString() + parentValue);
+                }
+            });
+        }
     }
 
     @Override
@@ -134,6 +150,10 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     @Override
     protected void _initObjEntity() {
         edtEntity.initSequence(objEntity);
+        //parent-childs-screen
+        if (isNotNull(parameter.get(toString() + parentValue))) {
+            setValue(objEntity, parameter.get(toString() + parentField).toString(), parameter.get(toString() + parentValue));
+        }
     }
 
     @Override
@@ -284,7 +304,12 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 
     @Override
     protected boolean _doDeleteEntity() {
-        return tblEntity.deleteById(_getSelectedItem()) > 0;
+        //parent-childs-screen
+        if (getBoolean(parameter.get(toString() + parentNewEntity))) {
+            return ((List) parameter.get(toString() + childsValue)).remove(_getSelectedItem());
+        } else {
+            return tblEntity.deleteById(_getSelectedItem()) > 0;
+        }
     }
 
     @Override
@@ -343,7 +368,14 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 
     @Override
     protected boolean _doSaveEntity() {
-        return edtEntity.saveOrUpdate(objEntity);
+        //return edtEntity.saveOrUpdate(objEntity);
+        //parent-childs-screen
+        if (getBoolean(parameter.get(toString() + parentNewEntity))) {
+            List list = (List) parameter.get(toString() + childsValue);
+            return list.contains(objEntity) ? true : list.add(objEntity);
+        } else {
+            return edtEntity.saveOrUpdate(objEntity, _getEntityChilds());
+        }
     }
 
     @Override
@@ -364,15 +396,18 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 
     @Override
     protected void _doShowScreen() {
-        if (ShowMode.PANEL_MODE.equals(_getShowMode())) {
-            showPanel(getContent(), swingView.getPanel());
-        } else if (ShowMode.DIALOG_MODE.equals(_getShowMode())) {
-            showDialog(getMainScreen(), swingView.getDialog());
-        } else if (ShowMode.TAB_MODE.equals(_getShowMode())) {
-            if (isNull(callerCtrl)) {
+        //parent-childs-screen
+        if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction()) || isNull(parameter.get(toString() + parentValue))) {
+            if (ShowMode.PANEL_MODE.equals(_getShowMode())) {
                 showPanel(getContent(), swingView.getPanel());
-            } else {
-                callerCtrl.doShowTab(sysRef, newEntity ? turn(New) : coalesce(getUniqueKeyValue(objEntity), readonly ? turn(View) : turn(Edit)).toString(), this);
+            } else if (ShowMode.DIALOG_MODE.equals(_getShowMode())) {
+                showDialog(getMainScreen(), swingView.getDialog());
+            } else if (ShowMode.TAB_MODE.equals(_getShowMode())) {
+                if (isNull(callerCtrl)) {
+                    showPanel(getContent(), swingView.getPanel());
+                } else {
+                    callerCtrl.doShowTab(sysRef, newEntity ? turn(New) : coalesce(getUniqueKeyValue(objEntity), readonly ? turn(View) : turn(Edit)).toString(), this);
+                }
             }
         }
     }
@@ -424,7 +459,12 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     @Override
     public void doUpdateTable() {
         if (_hasTblEntity()) {
-            tblEntity.search();
+            //parent-childs-screen
+            if (getBoolean(parameter.get(toString() + parentNewEntity))) {
+                tblEntity.setList((List) parameter.get(toString() + childsValue));
+            } else {
+                tblEntity.search();
+            }
         }
     }
 
@@ -444,4 +484,15 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
         }
     }
 //</editor-fold>
+
+    //parent-childs-screen
+    protected void _addChildScreen(String parentField, CFSwingCtrl childCtrl, String childView) {
+        parameter.put(childCtrl.toString() + this.parentField, parentField);
+        parameter.put(childCtrl.toString() + this.parentValue, objEntity);
+        parameter.put(childCtrl.toString() + this.parentNewEntity, newEntity);
+        parameter.put(childCtrl.toString() + this.childsValue, new ArrayList());
+        childCtrl.with(parameter).init();
+        showPanel(getJPanel(getContainer(), childView), childCtrl.getContainer());
+        childsValueKeys.add(childCtrl.toString() + this.childsValue);
+    }
 }

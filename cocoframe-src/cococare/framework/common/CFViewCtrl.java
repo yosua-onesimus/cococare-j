@@ -4,6 +4,7 @@ package cococare.framework.common;
 import cococare.common.CCAccessibleListener;
 import static cococare.common.CCClass.*;
 import cococare.common.CCField;
+import static cococare.common.CCFormat.getBoolean;
 import static cococare.common.CCFormat.maxLength;
 import static cococare.common.CCLanguage.Not_supported_yet;
 import static cococare.common.CCLanguage.turn;
@@ -14,6 +15,7 @@ import static cococare.database.CCEntityConfig.FIELD_ID;
 import cococare.database.CCHibernateBo;
 import cococare.framework.model.bo.util.UtilLoggerBo;
 import cococare.framework.model.mdl.util.UtilityModule;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 // </editor-fold>
@@ -61,6 +63,12 @@ public abstract class CFViewCtrl implements CCTrackable {
     };
     //
     protected UtilLoggerBo loggerBo;
+    //parent-childs-screen
+    protected final String parentField = "parentField";
+    protected final String parentValue = "parentValue";
+    protected final String parentNewEntity = "parentNewEntity";
+    protected final String childsValue = "childsValue";
+    protected List<String> childsValueKeys = new ArrayList();
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" CFViewCtrl ">
@@ -102,6 +110,12 @@ public abstract class CFViewCtrl implements CCTrackable {
 
     public CFViewCtrl with(CFViewCtrl callerCtrl) {
         this.callerCtrl = callerCtrl;
+        //parent-childs-screen
+        parameter.put(toString() + parentField, parameter.get(callerCtrl.toString() + parentField));
+        parameter.put(toString() + parentValue, parameter.get(callerCtrl.toString() + parentValue));
+        parameter.put(toString() + parentNewEntity, parameter.get(callerCtrl.toString() + parentNewEntity));
+        parameter.put(toString() + childsValue, parameter.get(callerCtrl.toString() + childsValue));
+        //
         return this;
     }
 
@@ -159,11 +173,20 @@ public abstract class CFViewCtrl implements CCTrackable {
 
     protected void _initObject() {
         newEntity = isNotNull(objEntity) && isNull(getValue(objEntity, FIELD_ID));
+        //parent-childs-screen
+        if (newEntity && getBoolean(parameter.get(toString() + parentNewEntity))) {
+            newEntity = !((List) parameter.get(toString() + childsValue)).contains(objEntity);
+        }
+        //
         updateCaller = false;
     }
 
     protected String _getSysRef(Object objEntity) {
-        return getSysRef(objEntity);
+        return getSysRef(objEntity)
+                //parent-childs-screen
+                + (getBoolean(parameter.get(toString() + parentNewEntity))
+                ? ((List) parameter.get(toString() + childsValue)).indexOf(objEntity)
+                : "");
     }
 
     protected void _initComponent() {
@@ -306,6 +329,14 @@ public abstract class CFViewCtrl implements CCTrackable {
     protected abstract boolean _isSureSave();
 
     protected abstract void _getValueFromEditor();
+
+    protected List _getEntityChilds() {
+        List list = new ArrayList();
+        for (String childsValueKey : childsValueKeys) {
+            list.addAll((List) parameter.get(childsValueKey));
+        }
+        return list;
+    }
 
     protected abstract boolean _doSaveEntity();
 
