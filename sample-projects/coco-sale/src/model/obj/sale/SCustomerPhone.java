@@ -90,10 +90,10 @@ public class SCustomerPhone implements CCEntity {
     }
 //</editor-fold>
     @ManyToOne
-    @CCFieldConfig(componentId = "bndCustomer", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentId = "bndCustomer", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name", visible = false)
     private SCustomer customer;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtPhone", type = Type.PHONE_NUMBER, maxLength = 16, unique = true)
+    @CCFieldConfig(componentId = "txtPhone", accessible = Accessible.MANDATORY, type = Type.PHONE_NUMBER, maxLength = 16, unique = true, requestFocus = true)
     private String phone;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

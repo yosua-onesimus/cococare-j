@@ -19,8 +19,8 @@ public class PnlSelling extends javax.swing.JPanel {
         lblFormatVoucherSelling = new javax.swing.JLabel();
         xDate = new javax.swing.JLabel();
         dtpDate = new cococare.swing.component.CCDatePicker();
-        xCustomer = new javax.swing.JLabel();
-        bndCustomer = new cococare.swing.component.CCBandBox();
+        xCustomerPhone = new javax.swing.JLabel();
+        bndCustomerPhone = new cococare.swing.component.CCBandBox();
         btnCustomerAdd = new cococare.swing.component.CCButton();
         xVoucherType = new javax.swing.JLabel();
         bndVoucherType = new cococare.swing.component.CCBandBox();
@@ -52,8 +52,8 @@ public class PnlSelling extends javax.swing.JPanel {
         xDate.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xDate.setText("Date");
 
-        xCustomer.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        xCustomer.setText("Customer");
+        xCustomerPhone.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        xCustomerPhone.setText("Customer Phone");
 
         btnCustomerAdd.setType(cococare.swing.component.CCButton.Type.ADD);
 
@@ -106,9 +106,9 @@ public class PnlSelling extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(dtpDate, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEditorLayout.createSequentialGroup()
-                .addComponent(xCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(xCustomerPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(bndCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bndCustomerPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnCustomerAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEditorLayout.createSequentialGroup()
@@ -151,8 +151,8 @@ public class PnlSelling extends javax.swing.JPanel {
                     .addComponent(dtpDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(xCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bndCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(xCustomerPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bndCustomerPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCustomerAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +186,7 @@ public class PnlSelling extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cococare.swing.component.CCBandBox bndCustomer;
+    private cococare.swing.component.CCBandBox bndCustomerPhone;
     private cococare.swing.component.CCBandBox bndVoucherType;
     private cococare.swing.component.CCButton btnClose;
     private cococare.swing.component.CCButton btnCustomerAdd;
@@ -203,7 +203,7 @@ public class PnlSelling extends javax.swing.JPanel {
     private javax.swing.JTextField txtSalePrice;
     private javax.swing.JLabel xAmountPaid;
     private javax.swing.JLabel xCode;
-    private javax.swing.JLabel xCustomer;
+    private javax.swing.JLabel xCustomerPhone;
     private javax.swing.JLabel xDate;
     private javax.swing.JLabel xPurchasePrice;
     private javax.swing.JLabel xSalePrice;

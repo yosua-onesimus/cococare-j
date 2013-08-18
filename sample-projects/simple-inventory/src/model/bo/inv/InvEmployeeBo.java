@@ -5,7 +5,6 @@ import cococare.database.CCHibernateBo;
 import java.util.List;
 import model.dao.inv.InvEmployeeDao;
 import model.obj.inv.InvEmployee;
-import model.obj.inv.InvOwnership;
 //</editor-fold>
 
 public class InvEmployeeBo extends CCHibernateBo {
@@ -15,11 +14,11 @@ public class InvEmployeeBo extends CCHibernateBo {
     //Dao
     private InvEmployeeDao employeeDao;
 
-    public synchronized boolean saveOrUpdate(InvEmployee employee, List<InvOwnership> ownerships) {
+    public synchronized boolean saveOrUpdate(InvEmployee employee, List employeeChilds) {
         return employeeDao.newTransaction().start().
                 saveOrUpdate(employee).
-                saveOrUpdate(ownerships).
+                saveOrUpdate(employeeChilds).
                 execute()
-                && employeeDao.saveOrUpdate(recalculationBo.recalcInventory(ownerships));
+                && employeeDao.saveOrUpdate(recalculationBo.recalcInventory(employeeChilds));
     }
 }

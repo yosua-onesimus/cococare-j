@@ -9,6 +9,7 @@ public class SaleLanguage extends CCLanguage {
     public static String Sale;
     //menu
     public static String Customer;
+    public static String Customer_Phone;
     //
     public static String Voucher;
     public static String Operator;

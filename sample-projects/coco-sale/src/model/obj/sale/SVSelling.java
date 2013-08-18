@@ -97,7 +97,7 @@ public class SVSelling implements CCEntity {
     @CCFieldConfig(componentId = "dtpDate", accessible = Accessible.MANDATORY, maxLength = 12)
     private Date date = new Date();
     @ManyToOne
-    @CCFieldConfig(componentId = "bndCustomer", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "@name-@phone")
+    @CCFieldConfig(componentId = "bndCustomer", accessible = Accessible.NORMAL, maxLength = 32, uniqueKey = "@name-@phone", visible = false)
     private SCustomer customer;
     @ManyToOne
     @CCFieldConfig(componentId = "bndCustomerPhone", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "@customer.name-@phone")

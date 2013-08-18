@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import model.bo.sale.SVConfigBo;
-import model.obj.sale.SCustomer;
+import model.obj.sale.SCustomerPhone;
 import model.obj.sale.SVConfig;
 import model.obj.sale.SVSelling;
 import model.obj.sale.SVVoucherType;
@@ -30,7 +30,7 @@ public class PnlSellingCtrl extends CFSwingCtrl {
     private SVConfigBo configBo;
     private SVConfig config;
     private JLabel lblFormatVoucherSelling;
-    private CCBandBox bndCustomer;
+    private CCBandBox bndCustomerPhone;
     private CCButton btnCustomerAdd;
     private CCBandBox bndVoucherType;
     private JTextField txtPurchasePrice;
@@ -61,7 +61,7 @@ public class PnlSellingCtrl extends CFSwingCtrl {
     protected void _initEditor() {
         super._initEditor();
         //
-        bndCustomer.getTable().initFields("name", "phone");
+        bndCustomerPhone.getTable().initFields("customer.name", "phone");
         bndVoucherType.getTable().setHqlOrderSyntax("operator.id ASC, purchasePrice ASC");
     }
 
@@ -91,7 +91,7 @@ public class PnlSellingCtrl extends CFSwingCtrl {
                 _doCustomerAdd();
             }
         });
-        bndCustomer.addEventListenerOnSelect(new ActionListener() {
+        bndCustomerPhone.addEventListenerOnSelect(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doUpdateLblFormatVoucherSelling();
@@ -136,9 +136,9 @@ public class PnlSellingCtrl extends CFSwingCtrl {
 
     protected void _doUpdateLblFormatVoucherSelling() {
         String formatVoucherSelling = config.getFormatVoucherSelling();
-        if (isNotNull(bndCustomer.getObject()) && isNotNull(bndVoucherType.getObject())) {
+        if (isNotNull(bndCustomerPhone.getObject()) && isNotNull(bndVoucherType.getObject())) {
             formatVoucherSelling = formatVoucherSelling.replaceFirst("NOMINAL", ((SVVoucherType) bndVoucherType.getObject()).getNominal());
-            formatVoucherSelling = formatVoucherSelling.replaceFirst("PHONE", ((SCustomer) bndCustomer.getObject()).getPhone());
+            formatVoucherSelling = formatVoucherSelling.replaceFirst("PHONE", ((SCustomerPhone) bndCustomerPhone.getObject()).getPhone());
             formatVoucherSelling = formatVoucherSelling.replaceFirst("PIN", config.getPin());
         }
         lblFormatVoucherSelling.setText(formatVoucherSelling);

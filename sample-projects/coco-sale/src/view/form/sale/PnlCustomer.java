@@ -18,14 +18,13 @@ public class PnlCustomer extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         xAddress = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
-        xPhone = new javax.swing.JLabel();
-        txtPhone = new javax.swing.JTextField();
         xEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         xFacebook = new javax.swing.JLabel();
         txtFacebook = new javax.swing.JTextField();
         xBalance = new javax.swing.JLabel();
         txtBalance = new javax.swing.JTextField();
+        pnlCustomerPhone = new javax.swing.JPanel();
 
         setMinimumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(600, 400));
@@ -46,11 +45,6 @@ public class PnlCustomer extends javax.swing.JPanel {
 
         txtAddress.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
-        xPhone.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        xPhone.setText("Phone");
-
-        txtPhone.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-
         xEmail.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xEmail.setText("Email");
 
@@ -65,6 +59,8 @@ public class PnlCustomer extends javax.swing.JPanel {
         xBalance.setText("Balance");
 
         txtBalance.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        pnlCustomerPhone.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout pnlEditorLayout = new javax.swing.GroupLayout(pnlEditor);
         pnlEditor.setLayout(pnlEditorLayout);
@@ -85,10 +81,6 @@ public class PnlCustomer extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEditorLayout.createSequentialGroup()
-                .addComponent(xPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addComponent(xEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -100,6 +92,7 @@ public class PnlCustomer extends javax.swing.JPanel {
                 .addComponent(xBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(txtBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(pnlCustomerPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
         pnlEditorLayout.setVerticalGroup(
             pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,10 +112,6 @@ public class PnlCustomer extends javax.swing.JPanel {
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(xPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
-                .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
@@ -132,7 +121,9 @@ public class PnlCustomer extends javax.swing.JPanel {
                 .addGap(1, 1, 1)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addComponent(pnlCustomerPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -150,18 +141,17 @@ public class PnlCustomer extends javax.swing.JPanel {
     private cococare.swing.component.CCButton btnClose;
     private cococare.swing.component.CCButton btnEdit;
     private cococare.swing.component.CCButton btnSave;
+    private javax.swing.JPanel pnlCustomerPhone;
     private javax.swing.JPanel pnlEditor;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtBalance;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFacebook;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPhone;
     private javax.swing.JLabel xAddress;
     private javax.swing.JLabel xBalance;
     private javax.swing.JLabel xEmail;
     private javax.swing.JLabel xFacebook;
     private javax.swing.JLabel xName;
-    private javax.swing.JLabel xPhone;
     // End of variables declaration//GEN-END:variables
 }

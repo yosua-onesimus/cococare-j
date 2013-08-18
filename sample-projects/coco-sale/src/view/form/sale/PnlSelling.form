@@ -59,9 +59,9 @@
                   <Component id="dtpDate" min="-2" pref="150" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
-                  <Component id="xCustomer" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="xCustomerPhone" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="bndCustomer" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="bndCustomerPhone" min="-2" pref="200" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="btnCustomerAdd" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -113,8 +113,8 @@
                   </Group>
                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="xCustomer" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="bndCustomer" min="-2" max="-2" attributes="0"/>
+                      <Component id="xCustomerPhone" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="bndCustomerPhone" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCustomerAdd" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
@@ -197,15 +197,15 @@
         </Component>
         <Component class="cococare.swing.component.CCDatePicker" name="dtpDate">
         </Component>
-        <Component class="javax.swing.JLabel" name="xCustomer">
+        <Component class="javax.swing.JLabel" name="xCustomerPhone">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="12" style="1"/>
+              <Font name="Verdana" size="10" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Customer"/>
+            <Property name="text" type="java.lang.String" value="Customer Phone"/>
           </Properties>
         </Component>
-        <Component class="cococare.swing.component.CCBandBox" name="bndCustomer">
+        <Component class="cococare.swing.component.CCBandBox" name="bndCustomerPhone">
         </Component>
         <Component class="cococare.swing.component.CCButton" name="btnCustomerAdd">
           <Properties>

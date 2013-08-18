@@ -2,25 +2,18 @@ package controller.form.sale;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.framework.swing.CFSwingCtrl;
-import model.obj.sale.SCustomer;
+import model.obj.sale.SCustomerPhone;
 //</editor-fold>
 
-public class PnlCustomerCtrl extends CFSwingCtrl {
+public class PnlCustomerPhoneCtrl extends CFSwingCtrl {
 
     @Override
     protected Class _getEntity() {
-        return SCustomer.class;
+        return SCustomerPhone.class;
     }
 
     @Override
     protected BaseFunction _getBaseFunction() {
         return BaseFunction.FORM_FUNCTION;
-    }
-
-    @Override
-    protected void _initComponent() {
-        super._initComponent();
-        //
-        _addChildScreen("customer", new PnlCustomerPhoneListCtrl(), "pnlCustomerPhone");
     }
 }

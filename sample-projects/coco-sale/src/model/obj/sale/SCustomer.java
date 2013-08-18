@@ -98,7 +98,7 @@ public class SCustomer implements CCEntity {
     @CCFieldConfig(componentId = "txtAddress", visible = false)
     private String address;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtPhone", type = Type.PHONE_NUMBER, maxLength = 16, unique = true)
+    @CCFieldConfig(componentId = "txtPhone", type = Type.PHONE_NUMBER, maxLength = 16, unique = true, visible = false)
     private String phone;
     @Column(length = 32)
     @CCFieldConfig(componentId = "txtEmail", type = Type.EMAIL, maxLength = 32, unique = true)
@@ -114,7 +114,7 @@ public class SCustomer implements CCEntity {
     private Double balance = 0d;
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "customer")
-    @CCFieldConfig(onDelete = OnDelete.RESTRICT)
+    @CCFieldConfig(onDelete = OnDelete.CASCADE)
     private List<SCustomerPhone> customerPhones;
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "customer")
     @CCFieldConfig(onDelete = OnDelete.RESTRICT)
