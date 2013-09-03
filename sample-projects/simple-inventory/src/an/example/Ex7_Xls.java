@@ -10,7 +10,7 @@ import java.util.List;
 import model.obj.inv.InvEmployee;
 //</editor-fold>
 
-public class Ex6_Xls {
+public class Ex7_Xls {
 
     public static InvEmployee newEmployee(String code, String name, String birthPlace, Date birthDate) {
         InvEmployee employee = new InvEmployee();
