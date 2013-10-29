@@ -28,6 +28,7 @@ public class UtilConfig implements CCEntityHash {
     private String logChangedBy;
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date logChangedOn;
+    @Version
     private Integer logSaveTimes = 0;
     @Column(name = "key_")
     private String key;

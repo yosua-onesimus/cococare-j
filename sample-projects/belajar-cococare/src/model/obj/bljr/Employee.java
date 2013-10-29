@@ -25,6 +25,7 @@ public class Employee implements CCEntity {
     private String logChangedBy;
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date logChangedOn;
+    @Version
     private Integer logSaveTimes = 0;
 
     @Override

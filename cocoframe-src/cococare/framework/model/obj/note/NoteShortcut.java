@@ -16,7 +16,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "note_shortcuts")
-@CCTypeConfig(label = "Shortcut", uniqueKey = "name")
+@CCTypeConfig(label = "Shortcut", uniqueKey = "name", customizable = true, parameter = true)
 public class NoteShortcut implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
@@ -31,6 +31,7 @@ public class NoteShortcut implements CCEntity {
     private String logChangedBy;
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date logChangedOn;
+    @Version
     private Integer logSaveTimes = 0;
 
     @Override

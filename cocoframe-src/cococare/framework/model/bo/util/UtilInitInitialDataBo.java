@@ -33,6 +33,7 @@ public class UtilInitInitialDataBo extends CCHibernateBo {
         UtilPrivilege oldPrivilege = privilegeDao.getByComp(privilege.getComp());
         if (isNotNull(oldPrivilege)) {
             privilege.setId(oldPrivilege.getId());
+            privilege.setLogSaveTimes(oldPrivilege.getLogSaveTimes());
         }
         validPrivileges.add(privilege);
         for (UtilPrivilege child : privilege.getChilds()) {

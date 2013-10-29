@@ -11,6 +11,7 @@ import cococare.database.CCDatabaseConfig;
 import cococare.database.CCHibernate;
 import cococare.database.CCLoginInfo;
 import static cococare.database.CCLoginInfo.INSTANCE_hasLogged;
+import cococare.database.model.bo.cc.CCCustomFieldConfigBo;
 import static cococare.datafile.CCFile.*;
 import static cococare.datafile.CCSetup.executeMandatoryFile;
 import cococare.framework.model.bo.util.UtilConfigBo;
@@ -81,8 +82,8 @@ public abstract class CFApplCtrl {
     //
     protected static boolean databaseConnected = true;
     //
-    public static CCLicense LICENSE;
     protected static boolean LICENSE_ACTIVE = false;
+    public static CCLicense LICENSE;
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" CFApplCtrl ">
@@ -167,8 +168,13 @@ public abstract class CFApplCtrl {
 
     protected abstract CFApplUae _initInitialDataUaeUtility(CFApplUae applUae);
 
+    /**
+     * Initial custom field configuration.
+     *
+     * @return true if success; false if fail.
+     */
     public boolean initInitialData() {
-        return true;
+        return new CCCustomFieldConfigBo().initCustomFieldConfig();
     }
 
     public abstract boolean showDatabaseSettingScreen();

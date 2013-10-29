@@ -18,7 +18,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "note_objectives")
-@CCTypeConfig(label = "Objective", uniqueKey = "name")
+@CCTypeConfig(label = "Objective", uniqueKey = "name", customizable = true, parameter = true)
 public class NoteObjective implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
@@ -33,6 +33,7 @@ public class NoteObjective implements CCEntity {
     private String logChangedBy;
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date logChangedOn;
+    @Version
     private Integer logSaveTimes = 0;
 
     @Override
@@ -107,11 +108,11 @@ public class NoteObjective implements CCEntity {
     @CCFieldConfig(componentId = "cmbStatus", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.note.NoteEnum$ObjectiveStatus", optionReflectKey = "status", visible = false)
     private Integer statusIndex;
     @Column(length = 16)
-    @CCFieldConfig(maxLength = 16)
+    @CCFieldConfig(maxLength = 16, visible2 = false)
     private String status;
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "objective")
-    @CCFieldConfig(onDelete = OnDelete.CASCADE)
+    @CCFieldConfig(onDelete = OnDelete.CASCADE, visible2 = false)
     private List<NoteTracker> trackers;
 //</editor-fold>
 

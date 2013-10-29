@@ -9,6 +9,7 @@
 	private String logChangedBy;&#13;
 	@Temporal(value = TemporalType.TIMESTAMP)&#13;
 	private Date logChangedOn;&#13;
+	@Version&#13;
 	private Integer logSaveTimes = 0;&#13;
 &#13;
 	public Long getId() {&#13;
@@ -68,6 +69,7 @@
 	private String logChangedBy;&#13;
 	@Temporal(value = TemporalType.TIMESTAMP)&#13;
 	private Date logChangedOn;&#13;
+	@Version&#13;
 	private Integer logSaveTimes = 0;&#13;
 	@Column(name = "key_")&#13;
 	private String key;&#13;

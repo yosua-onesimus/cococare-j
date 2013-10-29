@@ -113,6 +113,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
         //parent-childs-screen
         if (isNotNull(parameter.get(toString() + parentValue))) {
             final Object dummy = this;
+            tblEntity.setVisibleField(false, parameter.get(toString() + parentField).toString());
             tblEntity.setHqlFilters(new CCHibernateFilter() {
                 @Override
                 public String getFieldName() {

@@ -43,11 +43,12 @@ public class NotesMain extends CFSwingMain {
 
     @Override
     public boolean initInitialData() {
+        super.initInitialData();
         CFSwingUae swingUae = new CFSwingUae();
-        swingUae.reg(turn(Note), turn(Bookmark), PnlBookmarkListCtrl.class);
-        swingUae.reg(turn(Note), turn(Shortcut), PnlShortcutListCtrl.class);
-        swingUae.reg(turn(Note), turn(Objective), PnlObjectiveListCtrl.class);
-        swingUae.reg(turn(Note), turn(Tracker), PnlTrackerListCtrl.class);
+        swingUae.reg(Note, Bookmark, PnlBookmarkListCtrl.class);
+        swingUae.reg(Note, Shortcut, PnlShortcutListCtrl.class);
+        swingUae.reg(Note, Objective, PnlObjectiveListCtrl.class);
+        swingUae.reg(Note, Tracker, PnlTrackerListCtrl.class);
         swingUae.reg("Setup", "Javax.Comm Setup", PnlJavaxCommSetupCtrl.class);
         swingUae.reg("Setup", "List Files Setup", PnlListFilesSetupCtrl.class);
         swingUae.reg("Setup", "Language Setup", PnlLanguageSetupCtrl.class);
@@ -59,11 +60,11 @@ public class NotesMain extends CFSwingMain {
         CFSwingUae swingUae = new CFSwingUae();
         swingUae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? getMenubarV() : getMenubarH());
         swingUae.addMenuRoot(PnlLoginCtrl.class);
-        swingUae.addMenuParent(turn(Notes), null, null);
-        swingUae.addMenuChild(turn(Bookmark), null, PnlBookmarkListCtrl.class);
-        swingUae.addMenuChild(turn(Shortcut), null, PnlShortcutListCtrl.class);
-        swingUae.addMenuChild(turn(Objective), null, PnlObjectiveListCtrl.class);
-        swingUae.addMenuChild(turn(Tracker), null, PnlTrackerListCtrl.class);
+        swingUae.addMenuParent(Notes, null, null);
+        swingUae.addMenuChild(Bookmark, null, PnlBookmarkListCtrl.class);
+        swingUae.addMenuChild(Shortcut, null, PnlShortcutListCtrl.class);
+        swingUae.addMenuChild(Objective, null, PnlObjectiveListCtrl.class);
+        swingUae.addMenuChild(Tracker, null, PnlTrackerListCtrl.class);
         swingUae.addMenuParent("Setup", null, null);
         swingUae.addMenuChild("Javax.Comm Setup", null, PnlJavaxCommSetupCtrl.class);
         swingUae.addMenuChild("List Files Setup", null, PnlListFilesSetupCtrl.class);

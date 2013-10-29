@@ -34,6 +34,7 @@ public class UtilPrivilege implements CCEntity {
     private String logChangedBy;
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date logChangedOn;
+    @Version
     private Integer logSaveTimes = 0;
 
     @Override
@@ -114,17 +115,6 @@ public class UtilPrivilege implements CCEntity {
     private UtilPrivilege parent;
     @CCFieldConfig(visible = false)
     transient private List<UtilPrivilege> childs = new ArrayList();
-
-//<editor-fold defaultstate="collapsed" desc=" UtilPrivilege ">
-    public UtilPrivilege() {
-    }
-
-    public UtilPrivilege(String comp, String code, String name) {
-        this.comp = comp;
-        this.code = code;
-        this.name = name;
-    }
-//</editor-fold>
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "parent")
     @CCFieldConfig(onDelete = OnDelete.CASCADE)
@@ -135,6 +125,17 @@ public class UtilPrivilege implements CCEntity {
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "privilege")
     @CCFieldConfig(onDelete = OnDelete.CASCADE)
     private List<UtilUserPrivilege> userPrivileges;
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" UtilPrivilege ">
+    public UtilPrivilege() {
+    }
+
+    public UtilPrivilege(String comp, String code, String name) {
+        this.comp = comp;
+        this.code = code;
+        this.name = name;
+    }
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

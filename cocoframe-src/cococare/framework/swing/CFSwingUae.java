@@ -6,6 +6,7 @@ import static cococare.common.CCClass.*;
 import cococare.common.CCField;
 import static cococare.common.CCFormat.nextSequence;
 import static cococare.common.CCFormat.toHumanizeCase;
+import static cococare.common.CCLanguage.turn;
 import static cococare.common.CCLogic.isNotNull;
 import static cococare.common.CCLogic.isNull;
 import cococare.common.CCTrackable;
@@ -179,6 +180,7 @@ public class CFSwingUae extends CFApplUae {
 //<editor-fold defaultstate="collapsed" desc=" register controllerClass to create privilege ">
     @Override
     public void reg(String moduleCode, String screenName, Class<? extends CFViewCtrl> controllerClass) {
+        screenName = turn(screenName);
         Class containerClass = getViewForm(controllerClass);
         if (instanceOf(Container.class, containerClass)) {
             UtilPrivilege screen = new UtilPrivilege(_getScreenComp(controllerClass), _getScreenCode(moduleCode), screenName);
@@ -219,6 +221,7 @@ public class CFSwingUae extends CFApplUae {
     }
 
     public void addMenu(Integer parentCode, int code, String label, String icon, Class<? extends CFViewCtrl> controllerClass) {
+        label = turn(label);
         if (isNull(parentCode)) {
             boolean isAccessible = false;
             if (isNotNull(controllerClass)) {

@@ -35,6 +35,7 @@ public class UtilUser implements CCEntity {
     private String logChangedBy;
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date logChangedOn;
+    @Version
     private Integer logSaveTimes = 0;
 
     @Override
@@ -117,6 +118,14 @@ public class UtilUser implements CCEntity {
     private UtilUserGroup userGroup;
     @CCFieldConfig(componentId = "chkActive", maxLength = 4)
     private Boolean active = true;
+//<editor-fold defaultstate="collapsed" desc=" cascade ">
+    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "user")
+    @CCFieldConfig(onDelete = OnDelete.CASCADE)
+    private List<UtilUserIp> userIps;
+    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "user")
+    @CCFieldConfig(onDelete = OnDelete.CASCADE)
+    private List<UtilUserPrivilege> userPrivileges;
+//</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" UtilUser ">
     public UtilUser() {
@@ -128,14 +137,6 @@ public class UtilUser implements CCEntity {
         this.fullname = fullname;
         this.userGroup = userGroup;
     }
-//</editor-fold>
-//<editor-fold defaultstate="collapsed" desc=" cascade ">
-    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "user")
-    @CCFieldConfig(onDelete = OnDelete.CASCADE)
-    private List<UtilUserIp> userIps;
-    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "user")
-    @CCFieldConfig(onDelete = OnDelete.CASCADE)
-    private List<UtilUserPrivilege> userPrivileges;
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

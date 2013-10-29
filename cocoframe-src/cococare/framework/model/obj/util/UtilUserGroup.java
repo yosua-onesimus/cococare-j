@@ -35,6 +35,7 @@ public class UtilUserGroup implements CCEntity {
     private String logChangedBy;
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date logChangedOn;
+    @Version
     private Integer logSaveTimes = 0;
 
     @Override
@@ -109,17 +110,6 @@ public class UtilUserGroup implements CCEntity {
     private Boolean root = false;
     @CCFieldConfig(componentId = "chkApplyToUser", visible = false)
     transient private boolean applyToUser = false;
-
-//<editor-fold defaultstate="collapsed" desc=" UtilUserGroup ">
-    public UtilUserGroup() {
-    }
-
-    public UtilUserGroup(String code, String name, boolean root) {
-        this.code = code;
-        this.name = name;
-        this.root = root;
-    }
-//</editor-fold>
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "userGroup")
     @CCFieldConfig(onDelete = OnDelete.RESTRICT)
@@ -130,6 +120,17 @@ public class UtilUserGroup implements CCEntity {
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "userGroup")
     @CCFieldConfig(onDelete = OnDelete.CASCADE)
     private List<UtilUserGroupPrivilege> userGroupPrivileges;
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" UtilUserGroup ">
+    public UtilUserGroup() {
+    }
+
+    public UtilUserGroup(String code, String name, boolean root) {
+        this.code = code;
+        this.name = name;
+        this.root = root;
+    }
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

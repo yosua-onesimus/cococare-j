@@ -61,7 +61,9 @@ public abstract class CFSwingMain extends CFApplCtrl {
         applUae.reg(turn(Utility), turn(User_Group), PnlUserGroupListCtrl.class);
         applUae.reg(turn(Utility), turn(User), PnlUserListCtrl.class);
         applUae.reg(turn(Utility), turn(Change_Password), PnlChangePasswordCtrl.class);
+        applUae.reg(turn(Utility), turn(Parameter), PnlParameterListCtrl.class);
         applUae.reg(turn(Utility), turn(Logger_History), PnlLoggerListCtrl.class);
+        applUae.reg(turn(Utility), turn(Screen_Setting), PnlScreenSettingListCtrl.class);
         applUae.reg(turn(Utility), turn(Application_Setting), PnlApplicationSettingCtrl.class);
         applUae.reg(turn(Utility), turn(Database_Setting), PnlDatabaseSettingCtrl.class);
         if (LICENSE_ACTIVE) {
@@ -94,7 +96,14 @@ public abstract class CFSwingMain extends CFApplCtrl {
         applUae.addMenuChild(turn(User), null, PnlUserListCtrl.class);
         applUae.addMenuChild(turn(Change_Password), null, PnlChangePasswordCtrl.class);
         applUae.addMenuSeparator();
+        if (!HIBERNATE.getParameterClasses().isEmpty()) {
+            applUae.addMenuChild(turn(Parameter), null, PnlParameterListCtrl.class);
+        }
         applUae.addMenuChild(turn(Logger_History), null, PnlLoggerListCtrl.class);
+        applUae.addMenuSeparator();
+        if (!HIBERNATE.getCustomizableClasses().isEmpty()) {
+            applUae.addMenuChild(turn(Screen_Setting), null, PnlScreenSettingListCtrl.class);
+        }
         applUae.addMenuChild(turn(Application_Setting), null, PnlApplicationSettingCtrl.class);
         applUae.addMenuChild(turn(Database_Setting), null, PnlDatabaseSettingCtrl.class);
         if (LICENSE_ACTIVE) {
