@@ -14,7 +14,9 @@ import javax.swing.JPanel;
  */
 public class PnlParameterCtrl extends CFSwingCtrl {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
     private JPanel pnlGenerator;
+//</editor-fold>
 
     @Override
     protected Class _getEntity() {

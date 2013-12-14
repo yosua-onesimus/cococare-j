@@ -92,11 +92,11 @@ public class UtilConfAppl implements CCEntity {
     }
 //</editor-fold>
     @CCFieldConfig(componentId = "cmbApplLanguage", accessible = Accessible.MANDATORY, optionSource = "cococare.common.CCLanguage$LanguagePack", requestFocus = true)
-    private String applLanguage = "0";
+    private Integer applLanguage = 0;
     @CCFieldConfig(componentId = "cmbApplLookAndFeel", accessible = Accessible.MANDATORY, optionSource = "cococare.swing.CCSwing$LookAndFeel")
-    private String applLookAndFeel = "0";
+    private Integer applLookAndFeel = 0;
     @CCFieldConfig(componentId = "cmbApplMenuPosition", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.common.CFApplCtrl$MenuPosition")
-    private String applMenuPosition = "0";
+    private Integer applMenuPosition = 0;
     @Column(length = Integer.MAX_VALUE)
     @CCFieldConfig(componentId = "attApplWallpaper", type = Type.IMAGE_FILE, optionReflectKey = "applWallpaperName")
     private byte[] applWallpaper;
@@ -111,9 +111,9 @@ public class UtilConfAppl implements CCEntity {
     @CCFieldConfig(componentId = "txtCompanyAddress", accessible = Accessible.MANDATORY)
     private String companyAddress;
     @CCFieldConfig(componentId = "cmbCompanyCity", accessible = Accessible.MANDATORY, optionSource = "IndonesiaCities.txt")
-    private String companyCity = "147";
+    private Integer companyCity = 147;
     @CCFieldConfig(componentId = "cmbCompanyProvince", accessible = Accessible.MANDATORY, optionSource = "IndonesiaProvinces.txt")
-    private String companyProvince = "10";
+    private Integer companyProvince = 10;
     @CCFieldConfig(componentId = "txtCompanyState", accessible = Accessible.MANDATORY_READONLY)
     private String companyState = "Indonesia";
     @CCFieldConfig(componentId = "txtCompanyPhone", type = Type.PHONE_NUMBER)
@@ -135,27 +135,27 @@ public class UtilConfAppl implements CCEntity {
     private String ownerNpwp;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public String getApplLanguage() {
+    public Integer getApplLanguage() {
         return applLanguage;
     }
 
-    public void setApplLanguage(String applLanguage) {
+    public void setApplLanguage(Integer applLanguage) {
         this.applLanguage = applLanguage;
     }
 
-    public String getApplLookAndFeel() {
+    public Integer getApplLookAndFeel() {
         return applLookAndFeel;
     }
 
-    public void setApplLookAndFeel(String applLookAndFeel) {
+    public void setApplLookAndFeel(Integer applLookAndFeel) {
         this.applLookAndFeel = applLookAndFeel;
     }
 
-    public String getApplMenuPosition() {
+    public Integer getApplMenuPosition() {
         return applMenuPosition;
     }
 
-    public void setApplMenuPosition(String applMenuPosition) {
+    public void setApplMenuPosition(Integer applMenuPosition) {
         this.applMenuPosition = applMenuPosition;
     }
 
@@ -207,19 +207,19 @@ public class UtilConfAppl implements CCEntity {
         this.companyAddress = companyAddress;
     }
 
-    public String getCompanyCity() {
+    public Integer getCompanyCity() {
         return companyCity;
     }
 
-    public void setCompanyCity(String companyCity) {
+    public void setCompanyCity(Integer companyCity) {
         this.companyCity = companyCity;
     }
 
-    public String getCompanyProvince() {
+    public Integer getCompanyProvince() {
         return companyProvince;
     }
 
-    public void setCompanyProvince(String companyProvince) {
+    public void setCompanyProvince(Integer companyProvince) {
         this.companyProvince = companyProvince;
     }
 

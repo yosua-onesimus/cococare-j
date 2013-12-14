@@ -6,8 +6,7 @@ import static cococare.common.CCClass.*;
 import cococare.common.CCField;
 import static cococare.common.CCFormat.getBoolean;
 import static cococare.common.CCFormat.maxLength;
-import static cococare.common.CCLanguage.Not_supported_yet;
-import static cococare.common.CCLanguage.turn;
+import static cococare.common.CCLanguage.*;
 import static cococare.common.CCLogic.*;
 import static cococare.common.CCMessage.logp;
 import cococare.common.CCTrackable;
@@ -220,7 +219,7 @@ public abstract class CFViewCtrl implements CCTrackable {
 
 //<editor-fold defaultstate="collapsed" desc=" LIST_FUNCTION ">
     protected void _doAdd() {
-        if (isNotNull(_hasTblEntity())) {
+        if (_hasTblEntity()) {
             if (_doShowEditor(false, _newObjEntity())) {
                 doUpdateTable();
             }
@@ -354,6 +353,10 @@ public abstract class CFViewCtrl implements CCTrackable {
 
     protected abstract boolean _isSureDataNotSaved();
 //</editor-fold>
+
+    protected String _getTabTitle() {
+        return newEntity ? turn(New) : coalesce(getUniqueKeyValue(objEntity), readonly ? turn(View) : turn(Edit)).toString();
+    }
 
     protected abstract void _doShowScreen();
 

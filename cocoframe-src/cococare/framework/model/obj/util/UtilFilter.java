@@ -6,7 +6,7 @@ import cococare.database.CCHibernateFilter;
 
 public class UtilFilter {
 
-    public static CCHibernateFilter IsUserGroupNotRoot = new CCHibernateFilter() {
+    public static CCHibernateFilter isUserGroupNotRoot = new CCHibernateFilter() {
         @Override
         public String getFieldName() {
             return "root";
@@ -17,7 +17,7 @@ public class UtilFilter {
             return false;
         }
     };
-    public static CCHibernateFilter IsUserNotRoot = new CCHibernateFilter() {
+    public static CCHibernateFilter isUserNotRoot = new CCHibernateFilter() {
         @Override
         public String getFieldName() {
             return "userGroup.root";

@@ -58,16 +58,20 @@ public abstract class CFSwingMain extends CFApplCtrl {
 
     @Override
     protected CFApplUae _initInitialDataUaeUtility(CFApplUae applUae) {
-        applUae.reg(turn(Utility), turn(User_Group), PnlUserGroupListCtrl.class);
-        applUae.reg(turn(Utility), turn(User), PnlUserListCtrl.class);
-        applUae.reg(turn(Utility), turn(Change_Password), PnlChangePasswordCtrl.class);
-        applUae.reg(turn(Utility), turn(Parameter), PnlParameterListCtrl.class);
-        applUae.reg(turn(Utility), turn(Logger_History), PnlLoggerListCtrl.class);
-        applUae.reg(turn(Utility), turn(Screen_Setting), PnlScreenSettingListCtrl.class);
-        applUae.reg(turn(Utility), turn(Application_Setting), PnlApplicationSettingCtrl.class);
-        applUae.reg(turn(Utility), turn(Database_Setting), PnlDatabaseSettingCtrl.class);
+        applUae.reg(Utility, User_Group, PnlUserGroupListCtrl.class);
+        applUae.reg(Utility, User, PnlUserListCtrl.class);
+        applUae.reg(Utility, Change_Password, PnlChangePasswordCtrl.class);
+        if (!HIBERNATE.getParameterClasses().isEmpty()) {
+            applUae.reg(Utility, Parameter, PnlParameterListCtrl.class);
+        }
+        applUae.reg(Utility, Logger_History, PnlLoggerListCtrl.class);
+        if (!HIBERNATE.getCustomizableClasses().isEmpty()) {
+            applUae.reg(Utility, Screen_Setting, PnlScreenSettingListCtrl.class);
+        }
+        applUae.reg(Utility, Application_Setting, PnlApplicationSettingCtrl.class);
+        applUae.reg(Utility, Database_Setting, PnlDatabaseSettingCtrl.class);
         if (LICENSE_ACTIVE) {
-            applUae.reg(turn(Utility), turn(Registration), PnlRegistrationCtrl.class);
+            applUae.reg(Utility, Registration, PnlRegistrationCtrl.class);
         }
         return applUae;
     }
@@ -91,26 +95,26 @@ public abstract class CFSwingMain extends CFApplCtrl {
 
     @Override
     protected CFApplUae _applyUserConfigUaeUtility(CFApplUae applUae) {
-        applUae.addMenuParent(turn(Utility), null, null);
-        applUae.addMenuChild(turn(User_Group), null, PnlUserGroupListCtrl.class);
-        applUae.addMenuChild(turn(User), null, PnlUserListCtrl.class);
-        applUae.addMenuChild(turn(Change_Password), null, PnlChangePasswordCtrl.class);
+        applUae.addMenuParent(Utility, null, null);
+        applUae.addMenuChild(User_Group, null, PnlUserGroupListCtrl.class);
+        applUae.addMenuChild(User, null, PnlUserListCtrl.class);
+        applUae.addMenuChild(Change_Password, null, PnlChangePasswordCtrl.class);
         applUae.addMenuSeparator();
         if (!HIBERNATE.getParameterClasses().isEmpty()) {
-            applUae.addMenuChild(turn(Parameter), null, PnlParameterListCtrl.class);
+            applUae.addMenuChild(Parameter, null, PnlParameterListCtrl.class);
         }
-        applUae.addMenuChild(turn(Logger_History), null, PnlLoggerListCtrl.class);
+        applUae.addMenuChild(Logger_History, null, PnlLoggerListCtrl.class);
         applUae.addMenuSeparator();
         if (!HIBERNATE.getCustomizableClasses().isEmpty()) {
-            applUae.addMenuChild(turn(Screen_Setting), null, PnlScreenSettingListCtrl.class);
+            applUae.addMenuChild(Screen_Setting, null, PnlScreenSettingListCtrl.class);
         }
-        applUae.addMenuChild(turn(Application_Setting), null, PnlApplicationSettingCtrl.class);
-        applUae.addMenuChild(turn(Database_Setting), null, PnlDatabaseSettingCtrl.class);
+        applUae.addMenuChild(Application_Setting, null, PnlApplicationSettingCtrl.class);
+        applUae.addMenuChild(Database_Setting, null, PnlDatabaseSettingCtrl.class);
         if (LICENSE_ACTIVE) {
             applUae.addMenuSeparator();
-            applUae.addMenuChild(turn(Registration), null, PnlRegistrationCtrl.class);
+            applUae.addMenuChild(Registration, null, PnlRegistrationCtrl.class);
         }
-        applUae.addMenuParent(turn(Log_Out), null, PnlLoginCtrl.class);
+        applUae.addMenuParent(Log_Out, null, PnlLoginCtrl.class);
         return applUae;
     }
 

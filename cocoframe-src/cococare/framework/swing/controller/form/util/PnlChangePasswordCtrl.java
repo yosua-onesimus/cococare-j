@@ -14,7 +14,9 @@ import cococare.framework.swing.CFSwingCtrl;
  */
 public class PnlChangePasswordCtrl extends CFSwingCtrl {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
     private UtilUserBo userBo;
+//</editor-fold>
 
     @Override
     protected Class _getEntity() {

@@ -11,7 +11,6 @@ import cococare.framework.swing.controller.form.note.PnlShortcutListCtrl;
 import cococare.framework.swing.controller.form.note.PnlTrackerListCtrl;
 import cococare.framework.swing.controller.form.setup.PnlJavaxCommSetupCtrl;
 import cococare.framework.swing.controller.form.setup.PnlLanguageSetupCtrl;
-import cococare.framework.swing.controller.form.setup.PnlListFilesSetupCtrl;
 import cococare.framework.swing.controller.form.util.PnlLoginCtrl;
 //</editor-fold>
 
@@ -50,7 +49,6 @@ public class NotesMain extends CFSwingMain {
         swingUae.reg(Note, Objective, PnlObjectiveListCtrl.class);
         swingUae.reg(Note, Tracker, PnlTrackerListCtrl.class);
         swingUae.reg("Setup", "Javax.Comm Setup", PnlJavaxCommSetupCtrl.class);
-        swingUae.reg("Setup", "List Files Setup", PnlListFilesSetupCtrl.class);
         swingUae.reg("Setup", "Language Setup", PnlLanguageSetupCtrl.class);
         return _initInitialDataUaeUtility(swingUae).compile();
     }
@@ -67,7 +65,6 @@ public class NotesMain extends CFSwingMain {
         swingUae.addMenuChild(Tracker, null, PnlTrackerListCtrl.class);
         swingUae.addMenuParent("Setup", null, null);
         swingUae.addMenuChild("Javax.Comm Setup", null, PnlJavaxCommSetupCtrl.class);
-        swingUae.addMenuChild("List Files Setup", null, PnlListFilesSetupCtrl.class);
         swingUae.addMenuChild("Language Setup", null, PnlLanguageSetupCtrl.class);
         swingUae.changeMenuSide();
         _applyUserConfigUaeUtility(swingUae).compileMenu();

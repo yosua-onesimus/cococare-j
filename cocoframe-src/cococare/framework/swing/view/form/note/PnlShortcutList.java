@@ -24,10 +24,8 @@ public class PnlShortcutList extends javax.swing.JPanel {
         pnlNorth = new javax.swing.JPanel();
         pnlNorthWest = new javax.swing.JPanel();
         btnAdd = new cococare.swing.component.CCButton();
-        btnView = new cococare.swing.component.CCButton();
         btnEdit = new cococare.swing.component.CCButton();
         btnDelete = new cococare.swing.component.CCButton();
-        btnExport = new cococare.swing.component.CCButton();
         pnlNorthEast = new javax.swing.JPanel();
         txtKeyword = new javax.swing.JTextField();
         scrEntity = new javax.swing.JScrollPane();
@@ -53,21 +51,13 @@ public class PnlShortcutList extends javax.swing.JPanel {
         pnlNorthWest.add(btnAdd);
         btnAdd.setBounds(0, 10, 100, 29);
 
-        btnView.setType(cococare.swing.component.CCButton.Type.VIEW);
-        pnlNorthWest.add(btnView);
-        btnView.setBounds(100, 10, 100, 29);
-
         btnEdit.setType(cococare.swing.component.CCButton.Type.EDIT);
         pnlNorthWest.add(btnEdit);
-        btnEdit.setBounds(200, 10, 100, 29);
+        btnEdit.setBounds(100, 10, 100, 29);
 
         btnDelete.setType(cococare.swing.component.CCButton.Type.DELETE);
         pnlNorthWest.add(btnDelete);
-        btnDelete.setBounds(300, 10, 100, 29);
-
-        btnExport.setType(cococare.swing.component.CCButton.Type.EXPORT);
-        pnlNorthWest.add(btnExport);
-        btnExport.setBounds(400, 10, 100, 29);
+        btnDelete.setBounds(200, 10, 100, 29);
 
         pnlNorth.add(pnlNorthWest, java.awt.BorderLayout.WEST);
 
@@ -105,8 +95,6 @@ public class PnlShortcutList extends javax.swing.JPanel {
     private cococare.swing.component.CCButton btnAdd;
     private cococare.swing.component.CCButton btnDelete;
     private cococare.swing.component.CCButton btnEdit;
-    private cococare.swing.component.CCButton btnExport;
-    private cococare.swing.component.CCButton btnView;
     private cococare.swing.component.CCPaging pgnEntity;
     private javax.swing.JPanel pnlList;
     private javax.swing.JPanel pnlNorth;

@@ -56,6 +56,7 @@ public class CFSwingMap {
         }
     }
 // </editor-fold>
+    //
 // <editor-fold defaultstate="collapsed" desc=" private object ">
     private static final String PATH_MAIN_SCREEN = FrmMain.class.getName();
     private static JFrame frmMain;

@@ -20,9 +20,11 @@ import javax.swing.JComboBox;
  */
 public class PnlLoggerListCtrl extends CFSwingCtrl {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
     private JComboBox cmbUsername;
     private JComboBox cmbScreen;
     private JComboBox cmbAction;
+//</editor-fold>
 
     @Override
     protected Class _getEntity() {

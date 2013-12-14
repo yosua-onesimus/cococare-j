@@ -26,6 +26,6 @@ public class PnlUserGroupListCtrl extends CFSwingCtrl {
     @Override
     protected void _initTable() {
         super._initTable();
-        tblEntity.setHqlFilters(UtilFilter.IsUserGroupNotRoot);
+        tblEntity.setHqlFilters(UtilFilter.isUserGroupNotRoot);
     }
 }

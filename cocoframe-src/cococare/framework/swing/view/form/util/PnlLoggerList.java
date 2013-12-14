@@ -26,7 +26,6 @@ public class PnlLoggerList extends javax.swing.JPanel {
         cmbUsername = new javax.swing.JComboBox();
         cmbScreen = new javax.swing.JComboBox();
         cmbAction = new javax.swing.JComboBox();
-        btnExport = new cococare.swing.component.CCButton();
         pnlNorthEast = new javax.swing.JPanel();
         txtKeyword = new javax.swing.JTextField();
         scrEntity = new javax.swing.JScrollPane();
@@ -59,10 +58,6 @@ public class PnlLoggerList extends javax.swing.JPanel {
         cmbAction.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         pnlNorthWest.add(cmbAction);
         cmbAction.setBounds(250, 10, 100, 29);
-
-        btnExport.setType(cococare.swing.component.CCButton.Type.EXPORT);
-        pnlNorthWest.add(btnExport);
-        btnExport.setBounds(350, 10, 100, 29);
 
         pnlNorth.add(pnlNorthWest, java.awt.BorderLayout.WEST);
 
@@ -97,7 +92,6 @@ public class PnlLoggerList extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cococare.swing.component.CCButton btnExport;
     private javax.swing.JComboBox cmbAction;
     private javax.swing.JComboBox cmbScreen;
     private javax.swing.JComboBox cmbUsername;

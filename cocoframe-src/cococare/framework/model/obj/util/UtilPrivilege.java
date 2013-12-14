@@ -99,7 +99,7 @@ public class UtilPrivilege implements CCEntity {
 //</editor-fold>
     @Column(length = 32)
     private String appl = CFApplCtrl.APPL_CODE;
-    @CCFieldConfig(label = "S", tooltiptext = "Selected", maxLength = 2)
+    @CCFieldConfig(label = "S", tooltiptext = "Selected", maxLength = 2, visible = false)
     transient private Boolean selected = false;
     @Column(length = 255)
     @CCFieldConfig(visible = false)

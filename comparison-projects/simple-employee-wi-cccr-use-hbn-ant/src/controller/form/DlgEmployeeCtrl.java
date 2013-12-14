@@ -18,7 +18,7 @@ public class DlgEmployeeCtrl {
     private CCEditor edtEntity = new CCEditor(dlgEmployee, Employee.class);
 
     public boolean init(Employee employee) {
-        CCSwing.initComponent(dlgEmployee, this);
+        CCSwing.initComponent(dlgEmployee, this, null);
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -129,9 +129,10 @@ public abstract class CFApplCtrl {
         }
         HIBERNATE = new CCHibernate();
         HIBERNATE.loadDatabaseConfig(FILE_DTBS_CONF);
-        if (PlatformMode.WEB.equals(PLAT_MODE)) {
-            HIBERNATE.setProperty_C3P0();
-        }
+        //if (PlatformMode.WEB.equals(PLAT_MODE)) {
+        //needed by hibernate to read external changes
+        HIBERNATE.setProperty_C3P0();
+        //}
         _initDatabaseEntity();
         _initDatabaseFilter();
         if (DatabaseMode.SINGLE.equals(DTBS_MODE)) {

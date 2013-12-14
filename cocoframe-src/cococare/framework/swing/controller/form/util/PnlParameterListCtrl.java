@@ -21,7 +21,9 @@ import java.awt.event.ActionListener;
  */
 public class PnlParameterListCtrl extends CFSwingCtrl {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
     private CCComboBox cmbEntity;
+//</editor-fold>
 
     @Override
     protected Class _getEntity() {

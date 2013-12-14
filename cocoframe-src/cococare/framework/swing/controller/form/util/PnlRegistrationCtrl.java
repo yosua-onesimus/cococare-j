@@ -6,12 +6,14 @@ import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.CompareRule;
 import cococare.common.CCFieldConfig.Type;
 import static cococare.common.CCFormat.getString;
+import static cococare.common.CCFormat.getStringOrBlank;
 import static cococare.common.CCLanguage.Not_supported_yet;
 import static cococare.common.CCLanguage.turn;
 import static cococare.common.CCMessage.showInformation;
 import static cococare.framework.common.CFApplCtrl.LICENSE;
 import cococare.framework.swing.CFSwingCtrl;
 import cococare.swing.CCEditor;
+import static cococare.swing.CCEditor.requestFocusInWindow;
 import static cococare.swing.CCSwing.addActionListener;
 import cococare.swing.component.CCButton;
 import java.awt.event.ActionEvent;
@@ -26,6 +28,7 @@ import javax.swing.JTextField;
  */
 public class PnlRegistrationCtrl extends CFSwingCtrl {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
     private CCButton btnRegister;
     private JTextField txtLock;
     private JTextField txtRegTo;
@@ -34,6 +37,7 @@ public class PnlRegistrationCtrl extends CFSwingCtrl {
     private JTextField txtMaxData;
     private JTextField txtRunLast;
     private JTextField txtRunUntil;
+//</editor-fold>
 
     @Override
     protected Class _getEntity() {
@@ -69,7 +73,7 @@ public class PnlRegistrationCtrl extends CFSwingCtrl {
         });
     }
 
-    protected void _doRegister() {
+    private void _doRegister() {
         showInformation(turn(Not_supported_yet));
     }
 
@@ -79,9 +83,9 @@ public class PnlRegistrationCtrl extends CFSwingCtrl {
         txtRegTo.setText(getString(getValue(LICENSE, "applRegTo")));
         txtRunFirst.setText(getString(getValue(LICENSE, "runFirst")));
         txtRunTime.setText(getString(getValue(LICENSE, "runTime")));
-        txtMaxData.setText(getString(getValue(LICENSE, "maxData")));
+        txtMaxData.setText(getStringOrBlank(getValue(LICENSE, "maxData")));
         txtRunLast.setText(getString(getValue(LICENSE, "runLast")));
-        txtRunUntil.setText(getString(getValue(LICENSE, "runUntil")));
-        CCEditor.requestFocusInWindow(txtRegTo);
+        txtRunUntil.setText(getStringOrBlank(getValue(LICENSE, "runUntil")));
+        requestFocusInWindow(txtRegTo);
     }
 }

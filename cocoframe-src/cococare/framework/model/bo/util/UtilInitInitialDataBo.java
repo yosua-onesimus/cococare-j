@@ -100,7 +100,6 @@ public class UtilInitInitialDataBo extends CCHibernateBo {
         //2. save privileges
         if (isNull(privileges) || privilegeDao.saveOrUpdate(privileges)) {
             Transaction transaction = privilegeDao.newTransaction();
-            transaction.start();
             //3. create root
             UtilUserGroup userGroup = _newUserGroup(ROOT, ROOT, true);
             List<UtilUserGroupPrivilege> userGroupPrivileges = _newUserGroupPrivileges(userGroup);

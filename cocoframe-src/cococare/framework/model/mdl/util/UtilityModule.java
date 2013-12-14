@@ -35,8 +35,9 @@ public class UtilityModule extends CCHibernateModule {
         hibernate.addAnnotatedClass(UtilUserIp.class);
         hibernate.addAnnotatedClass(UtilUserPrivilege.class);
         //
+        hibernate.addAnnotatedClass(UtilPerson.class);
+        //
         addFilters(new CCHibernateFilter() {
-
             @Override
             public String getFieldName() {
                 return FIELD_APPL;

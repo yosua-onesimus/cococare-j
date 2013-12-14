@@ -24,6 +24,7 @@ import javax.swing.JCheckBox;
  */
 public class PnlUserCtrl extends CFSwingCtrl {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
     private UtilUserBo userBo;
     private CCBandBox bndUserGroup;
     private CCTable tblPrivilege;
@@ -33,6 +34,7 @@ public class PnlUserCtrl extends CFSwingCtrl {
             _doSelect(((JCheckBox) actionEvent.getSource()).isSelected());
         }
     };
+//</editor-fold>
 
     @Override
     protected Class _getEntity() {
@@ -61,12 +63,12 @@ public class PnlUserCtrl extends CFSwingCtrl {
             edtEntity.unreg("xRetypePassword");
             edtEntity.unreg("txtRetypePassword");
         }
-        bndUserGroup.getTable().setHqlFilters(UtilFilter.IsUserGroupNotRoot);
+        bndUserGroup.getTable().setHqlFilters(UtilFilter.isUserGroupNotRoot);
         //privilege
         _initTblPrivilege();
     }
 
-    protected void _initTblPrivilege() {
+    private void _initTblPrivilege() {
         tblPrivilege = newCCTable(getContainer(), "tblPrivilege", UtilPrivilege.class);
         tblPrivilege.setVisibleField(false, "name");
         tblPrivilege.addField(0, new CCCustomField() {
@@ -119,7 +121,7 @@ public class PnlUserCtrl extends CFSwingCtrl {
         return userBo.saveOrUpdate();
     }
 
-    protected void _doSelect(boolean selected) {
+    private void _doSelect(boolean selected) {
         UtilPrivilege privilege = (UtilPrivilege) tblPrivilege.getSelectedItem();
         privilege.setSelected(selected);
         tblPrivilege.reloadSelectedItem();
@@ -146,7 +148,7 @@ public class PnlUserCtrl extends CFSwingCtrl {
         _doUpdateTblPrivilege();
     }
 
-    protected void _doUpdateTblPrivilege() {
+    private void _doUpdateTblPrivilege() {
         tblPrivilege.setList(userBo.getPrivileges());
     }
 }

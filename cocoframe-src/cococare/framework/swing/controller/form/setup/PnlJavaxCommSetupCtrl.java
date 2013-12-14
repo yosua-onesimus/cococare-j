@@ -27,6 +27,7 @@ import javax.swing.JTextField;
  */
 public class PnlJavaxCommSetupCtrl extends CFSwingCtrl {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
     //
     private JTextField txtJavaHome;
     private JTextField txtJavaHomeBin;
@@ -47,6 +48,7 @@ public class PnlJavaxCommSetupCtrl extends CFSwingCtrl {
     private CCButton btnOpenDrawer2;
     private CCButton btnOpenDrawer3;
     private CCButton btnOpenDrawer4;
+//</editor-fold>
 
     @Override
     protected Class _getEntity() {

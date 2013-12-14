@@ -24,7 +24,7 @@ public class FrmEmployeeListCtrl {
     private CCTable tblEntity = CCSwing.newCCTable(frmEmployeeList, "tblEntity", Employee.class);
 
     public void init() {
-        CCSwing.initComponent(frmEmployeeList, this);
+        CCSwing.initComponent(frmEmployeeList, this, null);
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

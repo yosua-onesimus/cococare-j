@@ -18,10 +18,12 @@ import javax.swing.JTextField;
  */
 public class PnlLoginCtrl extends CFSwingCtrl {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
     private JTextField txtUsername;
     private JTextField txtPassword;
     private JButton btnLogin;
     private JButton btnExit;
+//</editor-fold>
 
     @Override
     protected Class _getEntity() {

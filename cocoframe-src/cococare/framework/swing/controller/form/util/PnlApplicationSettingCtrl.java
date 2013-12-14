@@ -16,7 +16,9 @@ import cococare.framework.swing.CFSwingCtrl;
  */
 public class PnlApplicationSettingCtrl extends CFSwingCtrl {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
     private UtilConfigBo configBo;
+//</editor-fold>
 
     @Override
     protected Class _getEntity() {

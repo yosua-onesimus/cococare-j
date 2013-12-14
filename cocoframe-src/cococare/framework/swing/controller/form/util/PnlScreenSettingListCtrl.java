@@ -17,8 +17,10 @@ import java.awt.event.ActionListener;
  */
 public class PnlScreenSettingListCtrl extends CFSwingCtrl {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
     private CCCustomFieldConfigBo customFieldConfigBo;
     private CCComboBox cmbEntity;
+//</editor-fold>
 
     @Override
     protected Class _getEntity() {

@@ -21,10 +21,12 @@ import javax.swing.JComboBox;
  */
 public class PnlLanguageSetupCtrl extends CFSwingCtrl {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
     private JComboBox cmbLanguagePack;
     private CCButton btnLoad;
     private CCButton btnSave;
     private CCTable tblLanguage;
+//</editor-fold>
 
     @Override
     protected Class _getEntity() {

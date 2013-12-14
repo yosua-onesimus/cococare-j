@@ -21,6 +21,7 @@ import javax.swing.JCheckBox;
  */
 public class PnlUserGroupCtrl extends CFSwingCtrl {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
     private UtilUserGroupBo userGroupBo;
     private CCTable tblPrivilege;
     private ActionListener alSelect = new ActionListener() {
@@ -29,6 +30,7 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
             _doSelect(((JCheckBox) actionEvent.getSource()).isSelected());
         }
     };
+//</editor-fold>
 
     @Override
     protected Class _getEntity() {
@@ -54,7 +56,7 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
         _initTblPrivilege();
     }
 
-    protected void _initTblPrivilege() {
+    private void _initTblPrivilege() {
         tblPrivilege = newCCTable(getContainer(), "tblPrivilege", UtilPrivilege.class);
         tblPrivilege.setVisibleField(false, "name");
         tblPrivilege.addField(0, new CCCustomField() {
@@ -94,7 +96,7 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
         return userGroupBo.saveOrUpdate();
     }
 
-    protected void _doSelect(boolean selected) {
+    private void _doSelect(boolean selected) {
         UtilPrivilege privilege = (UtilPrivilege) tblPrivilege.getSelectedItem();
         privilege.setSelected(selected);
         tblPrivilege.reloadSelectedItem();
@@ -121,7 +123,7 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
         _doUpdateTblPrivilege();
     }
 
-    protected void _doUpdateTblPrivilege() {
+    private void _doUpdateTblPrivilege() {
         tblPrivilege.setList(userGroupBo.getPrivileges());
     }
 }
