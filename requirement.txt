@@ -40,6 +40,7 @@ cococare-j Requirement:
       junique-1.0.2.jar
       jxl.jar
       mail-1.4.5.jar
+	  ojdbc6.jar
       rcmd.exe
       win32com.dll
     Other Lib (Optional - Look And Feel) (https://github.com/yosua-onesimus/libraries/tree/master/java/look-and-feel-lib)
