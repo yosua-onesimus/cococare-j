@@ -23,7 +23,7 @@ public class SVConfigBo extends CCHibernateBo {
 
 //<editor-fold defaultstate="collapsed" desc=" public method ">
     public synchronized SVConfig loadSVConfig() {
-        return (SVConfig) configDao.loadHash(SVConfig.class);
+        return configDao.loadHash(SVConfig.class);
     }
 
     public synchronized boolean saveConf(Object object) {
