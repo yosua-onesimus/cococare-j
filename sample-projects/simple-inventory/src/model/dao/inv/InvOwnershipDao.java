@@ -45,7 +45,7 @@ public class InvOwnershipDao extends InventoryDao {
         parameters.start().
                 set("employee", employee).
                 set("inventory", inventory);
-        return (InvOwnership) getBy(hql.value(), parameters.value());
+        return getBy(hql.value(), parameters.value());
     }
 
     public List<InvOwnership> getListUnlimitedBy(InvEmployee employee) {

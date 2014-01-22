@@ -37,7 +37,7 @@ public class SchScheduleDao extends ScheduleDao {
         parameters.start();
         _addWherePerson(hql, parameters, person);
         _addWhereDateRange(hql, parameters, dateBegin, dateEnd);
-        return (SchSchedule) getBy(hql.value(), parameters.value());
+        return getBy(hql.value(), parameters.value());
     }
 
     public List<SchSchedule> getSchedules(SchPerson person, Date dateBegin, Date dateEnd, Date timeBegin, Date timeEnd) {
