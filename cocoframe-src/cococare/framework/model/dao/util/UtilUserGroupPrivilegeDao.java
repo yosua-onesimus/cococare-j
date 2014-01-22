@@ -29,7 +29,7 @@ public class UtilUserGroupPrivilegeDao extends UtilityDao {
         parameters.start().
                 set("userGroup", userGroup).
                 set("privilege", privilege);
-        return (UtilUserGroupPrivilege) getBy(hql.value(), parameters.value());
+        return getBy(hql.value(), parameters.value());
     }
 //</editor-fold>
 }

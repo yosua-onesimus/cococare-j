@@ -23,7 +23,7 @@ public class NoteTracker implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(length = 32)
     private String logCreatedBy;
@@ -102,8 +102,8 @@ public class NoteTracker implements CCEntity {
     @Column(length = 32)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
     private String name;
-    @Column(length = Integer.MAX_VALUE)
-    @CCFieldConfig(componentId = "txtDescription", maxLength = Integer.MAX_VALUE, visible = false)
+    @Column(length = Short.MAX_VALUE)
+    @CCFieldConfig(componentId = "txtDescription", maxLength = Short.MAX_VALUE, visible = false)
     private String description;
     @ManyToOne
     @CCFieldConfig(componentId = "bndObjective", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")

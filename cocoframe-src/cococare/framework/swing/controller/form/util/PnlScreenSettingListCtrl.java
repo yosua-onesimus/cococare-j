@@ -5,6 +5,7 @@ import cococare.database.CCHibernateFilter;
 import cococare.database.model.bo.cc.CCCustomFieldConfigBo;
 import cococare.database.model.obj.cc.CCCustomFieldConfig;
 import cococare.framework.swing.CFSwingCtrl;
+import static cococare.swing.CCSwing.addActionListener;
 import cococare.swing.component.CCComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,7 +36,6 @@ public class PnlScreenSettingListCtrl extends CFSwingCtrl {
     @Override
     protected void _initComponent() {
         super._initComponent();
-        //
         cmbEntity.initList(null, CCCustomFieldConfig.class, "entityName");
         cmbEntity.setList(customFieldConfigBo.getListDistinctEntity());
     }
@@ -43,7 +43,6 @@ public class PnlScreenSettingListCtrl extends CFSwingCtrl {
     @Override
     protected void _initTable() {
         super._initTable();
-        //
         tblEntity.setHqlFilters(new CCHibernateFilter() {
             @Override
             public String getFieldName() {
@@ -60,8 +59,7 @@ public class PnlScreenSettingListCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        //
-        cmbEntity.addActionListener(new ActionListener() {
+        addActionListener(cmbEntity, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doSearch();

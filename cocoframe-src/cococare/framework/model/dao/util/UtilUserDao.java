@@ -23,7 +23,7 @@ public class UtilUserDao extends UtilityDao {
 
 //<editor-fold defaultstate="collapsed" desc=" initialData ">
     public UtilUser getByUsername(String username) {
-        return (UtilUser) getByField("username", username);
+        return getByField("username", username);
     }
 //</editor-fold>
 

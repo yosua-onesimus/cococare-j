@@ -18,7 +18,7 @@ public class UtilConfig implements CCEntityHash {
 
 //<editor-fold defaultstate="collapsed" desc=" entity hash base ">
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(length = 32)
     private String logCreatedBy;

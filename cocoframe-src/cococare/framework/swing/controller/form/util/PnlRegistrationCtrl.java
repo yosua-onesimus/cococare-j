@@ -7,8 +7,7 @@ import cococare.common.CCFieldConfig.CompareRule;
 import cococare.common.CCFieldConfig.Type;
 import static cococare.common.CCFormat.getString;
 import static cococare.common.CCFormat.getStringOrBlank;
-import static cococare.common.CCLanguage.Not_supported_yet;
-import static cococare.common.CCLanguage.turn;
+import static cococare.common.CCLanguage.*;
 import static cococare.common.CCMessage.showInformation;
 import static cococare.framework.common.CFApplCtrl.LICENSE;
 import cococare.framework.swing.CFSwingCtrl;
@@ -29,9 +28,12 @@ import javax.swing.JTextField;
 public class PnlRegistrationCtrl extends CFSwingCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
+    //if hasRegister then user may re-register..
+    private boolean hasRegister = LICENSE.hasRegister();
     private CCButton btnRegister;
     private JTextField txtLock;
     private JTextField txtRegTo;
+    private JTextField txtPass;
     private JTextField txtRunFirst;
     private JTextField txtRunTime;
     private JTextField txtMaxData;
@@ -53,7 +55,8 @@ public class PnlRegistrationCtrl extends CFSwingCtrl {
     protected void _initEditor() {
         edtEntity = new CCEditor(getContainer());
         edtEntity.reg(null, null, txtLock, Accessible.READONLY, Type.TEXT, 0, null, CompareRule.NONE, null);
-        edtEntity.reg("Register To", "Register To", txtRegTo, Accessible.MANDATORY, Type.TEXT, 0, null, CompareRule.NONE, null);
+        edtEntity.reg("Register To", "Register To", txtRegTo, hasRegister ? Accessible.MANDATORY : Accessible.MANDATORY, Type.TEXT, 0, null, CompareRule.NONE, null);
+        edtEntity.reg("Pass", "Pass", txtPass, hasRegister ? Accessible.MANDATORY : Accessible.MANDATORY, Type.TEXT, 0, null, CompareRule.NONE, null);
         edtEntity.reg(null, null, txtRunFirst, Accessible.READONLY, Type.TEXT, 0, null, CompareRule.NONE, null);
         edtEntity.reg(null, null, txtRunTime, Accessible.READONLY, Type.NUMERIC, 0, null, CompareRule.NONE, null);
         edtEntity.reg(null, null, txtMaxData, Accessible.READONLY, Type.NUMERIC, 0, null, CompareRule.NONE, null);
@@ -64,28 +67,45 @@ public class PnlRegistrationCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        //
-        addActionListener(btnRegister, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                _doRegister();
-            }
-        });
+        if (hasRegister) {
+            addActionListener(btnRegister, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    _doRegister();
+                }
+            });
+        } else {
+            addActionListener(btnRegister, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    _doRegister();
+                }
+            });
+        }
     }
 
     private void _doRegister() {
-        showInformation(turn(Not_supported_yet));
+        if (edtEntity.isValueValid()) {
+            if (hasRegister = LICENSE.register(txtRegTo.getText(), txtPass.getText())) {
+                _doUpdateEditor();
+            }
+            showInformation(turn(hasRegister ? Registration_success : Invalid_serial_number));
+        }
     }
 
     @Override
     protected void _doUpdateEditor() {
         txtLock.setText(getString(getValue(LICENSE, "applLock")));
         txtRegTo.setText(getString(getValue(LICENSE, "applRegTo")));
+        txtPass.setText(getStringOrBlank(getValue(LICENSE, "applPass")));
         txtRunFirst.setText(getString(getValue(LICENSE, "runFirst")));
         txtRunTime.setText(getString(getValue(LICENSE, "runTime")));
         txtMaxData.setText(getStringOrBlank(getValue(LICENSE, "maxData")));
         txtRunLast.setText(getString(getValue(LICENSE, "runLast")));
         txtRunUntil.setText(getStringOrBlank(getValue(LICENSE, "runUntil")));
-        requestFocusInWindow(txtRegTo);
+        if (hasRegister) {
+        } else {
+            requestFocusInWindow(txtRegTo);
+        }
     }
 }

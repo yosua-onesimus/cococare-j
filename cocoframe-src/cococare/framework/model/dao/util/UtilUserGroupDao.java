@@ -21,7 +21,7 @@ public class UtilUserGroupDao extends UtilityDao {
 
 //<editor-fold defaultstate="collapsed" desc=" initialData ">
     public UtilUserGroup getByCode(String code) {
-        return (UtilUserGroup) getByField("code", code);
+        return getByField("code", code);
     }
 //</editor-fold>
 }

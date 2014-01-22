@@ -19,7 +19,7 @@ public class UtilLogger implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(length = 32)
     private String logCreatedBy;
@@ -94,8 +94,8 @@ public class UtilLogger implements CCEntity {
 //</editor-fold>
     @Column(length = 32)
     private String appl = CFApplCtrl.APPL_CODE;
-    @Column(length = 15)
-    @CCFieldConfig(label = "IP", maxLength = 15)
+    @Column(length = 40)
+    @CCFieldConfig(label = "IP", maxLength = 40)
     private String ip;
     @Column(length = 32)
     @CCFieldConfig(label = "Group Name", maxLength = 32)

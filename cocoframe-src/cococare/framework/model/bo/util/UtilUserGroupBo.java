@@ -21,23 +21,19 @@ import java.util.List;
 public class UtilUserGroupBo extends CCHibernateBo {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
-    //Dao
-    private UtilPrivilegeDao privilegeDao;
     //
+    private UtilPrivilegeDao privilegeDao;
     private UtilUserGroupDao userGroupDao;
     private UtilUserGroupPrivilegeDao userGroupPrivilegeDao;
     private UtilUserGroupIpDao userGroupIpDao;
-    //
     private UtilUserDao userDao;
     private UtilUserPrivilegeDao userPrivilegeDao;
     private UtilUserIpDao userIpDao;
-    //Collection & Object
-    private UtilUserGroup userGroup;
     //
+    private UtilUserGroup userGroup;
     private List<UtilPrivilege> privileges;
     private HashMap<UtilPrivilege, Integer> privilege_index;
     private List<Boolean> privilegeSelecteds;
-    //
     private List<UtilUserGroupIp> userGroupIps;
     private List<UtilUserGroupIp> removedUserGroupIps;
 //</editor-fold>

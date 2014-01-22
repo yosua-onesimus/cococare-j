@@ -21,7 +21,7 @@ public class UtilUserGroupIp implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(length = 32)
     private String logCreatedBy;
@@ -99,8 +99,8 @@ public class UtilUserGroupIp implements CCEntity {
     @ManyToOne
     @CCFieldConfig(visible = false)
     private UtilUserGroup userGroup;
-    @Column(length = 15)
-    @CCFieldConfig(componentId = "txtIp", label = "IP", accessible = Accessible.MANDATORY, type = Type.IP, maxLength = 15)
+    @Column(length = 40)
+    @CCFieldConfig(componentId = "txtIp", label = "IP", accessible = Accessible.MANDATORY, type = Type.IP, maxLength = 40)
     private String ip;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

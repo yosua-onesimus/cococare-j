@@ -35,7 +35,6 @@ public class PnlParameterCtrl extends CFSwingCtrl {
     @Override
     protected void _initEditor() {
         super._initEditor();
-        //
         edtEntity.generateDefaultEditor(pnlGenerator);
     }
 }

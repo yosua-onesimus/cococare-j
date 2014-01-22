@@ -8,6 +8,7 @@ import static cococare.common.jasperreports.CCJasper.getBellFile;
 import static cococare.common.jasperreports.CCJasper.printTextFile;
 import static cococare.datafile.CCFile.showOpenDialog;
 import cococare.datafile.CCSetup;
+import static cococare.datafile.CCSystem.ENTER;
 import static cococare.datafile.CCSystem.JAVA_HOME;
 import cococare.framework.swing.CFSwingCtrl;
 import static cococare.swing.CCSwing.addActionListener;
@@ -157,7 +158,7 @@ public class PnlJavaxCommSetupCtrl extends CFSwingCtrl {
         setup.addSetupMap("win32com.dll", txtJavaHomeBin.getText());
         setup.addSetupMap("comm.jar", txtJavaHomeLib.getText());
         setup.addSetupMap("javax.comm.properties", txtJavaHomeLib.getText());
-        showInformation("Setup " + (setup.execute() ? "success!" : ("failed!\n" + getErrorMessage())));
+        showInformation("Setup " + (setup.execute() ? "success!" : ("failed!" + ENTER + getErrorMessage())));
     }
 
     private void _doAscii2Port() {
@@ -179,7 +180,7 @@ public class PnlJavaxCommSetupCtrl extends CFSwingCtrl {
 
     private void _doText2Port() {
         if (!writeWordToPort(
-                txtText1.getText() + "\n" + txtText2.getText(),
+                txtText1.getText() + ENTER + txtText2.getText(),
                 cmbPort.getSelectedItem().toString())) {
             showError();
         }

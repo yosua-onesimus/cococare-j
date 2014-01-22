@@ -127,9 +127,9 @@ public class CFSwingUae extends CFApplUae {
         List<CCButton> buttons = new ArrayList();
         for (CCField field : getCCFields(container)) {
             if (field.getValue() instanceof CCButton) {
-                CCButton cCButton = (CCButton) field.getValue();
-                cCButton.setName(field.getFieldName());
-                buttons.add(cCButton);
+                CCButton button = (CCButton) field.getValue();
+                button.setName(field.getFieldName());
+                buttons.add(button);
             } else if (field.getValue() instanceof CCTrackable && field.getValue() instanceof Container) {
                 buttons.addAll(_getButton((Container) field.getValue()));
             }
@@ -164,7 +164,7 @@ public class CFSwingUae extends CFApplUae {
                     : new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    ((CFSwingCtrl) newObject(menuCandidate.getControllerClass())).init();
+                    newObject(menuCandidate.getControllerClass()).init();
                 }
             });
             separatorParentCode = null;
@@ -181,10 +181,10 @@ public class CFSwingUae extends CFApplUae {
     @Override
     public void reg(String moduleCode, String screenName, Class<? extends CFViewCtrl> controllerClass) {
         screenName = turn(screenName);
-        Class containerClass = getViewForm(controllerClass);
+        Class<? extends Container> containerClass = getViewForm(controllerClass);
         if (instanceOf(Container.class, containerClass)) {
             UtilPrivilege screen = new UtilPrivilege(_getScreenComp(controllerClass), _getScreenCode(moduleCode), screenName);
-            for (CCButton button : _getButton((Container) newObject(containerClass))) {
+            for (CCButton button : _getButton(newObject(containerClass))) {
                 if (_isValidAction(button)) {
                     UtilPrivilege action = new UtilPrivilege(_getActionComp(controllerClass, button), _getActionCode(moduleCode), _getActionName(button));
                     screen.addChilds(action);

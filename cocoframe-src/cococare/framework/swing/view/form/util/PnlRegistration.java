@@ -26,6 +26,8 @@ public class PnlRegistration extends javax.swing.JPanel {
         txtLock = new javax.swing.JTextField();
         xRegTo = new javax.swing.JLabel();
         txtRegTo = new javax.swing.JTextField();
+        xPass = new javax.swing.JLabel();
+        txtPass = new javax.swing.JTextField();
         pnlInfo = new javax.swing.JPanel();
         xRunFirst = new javax.swing.JLabel();
         txtRunFirst = new javax.swing.JTextField();
@@ -59,6 +61,11 @@ public class PnlRegistration extends javax.swing.JPanel {
         xRegTo.setText("Reg.To");
 
         txtRegTo.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+
+        xPass.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xPass.setText("Pass");
+
+        txtPass.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
         pnlInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Info", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         pnlInfo.setMinimumSize(new java.awt.Dimension(550, 160));
@@ -158,6 +165,10 @@ public class PnlRegistration extends javax.swing.JPanel {
                         .addComponent(xRegTo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(txtRegTo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlEditorLayout.createSequentialGroup()
+                        .addComponent(xPass, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pnlInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         pnlEditorLayout.setVerticalGroup(
@@ -175,7 +186,11 @@ public class PnlRegistration extends javax.swing.JPanel {
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xRegTo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRegTo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(1, 1, 1)
+                .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xPass, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
                 .addComponent(pnlInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -201,6 +216,7 @@ public class PnlRegistration extends javax.swing.JPanel {
     private javax.swing.JPanel pnlInfo;
     private javax.swing.JTextField txtLock;
     private javax.swing.JTextField txtMaxData;
+    private javax.swing.JTextField txtPass;
     private javax.swing.JTextField txtRegTo;
     private javax.swing.JTextField txtRunFirst;
     private javax.swing.JTextField txtRunLast;
@@ -208,6 +224,7 @@ public class PnlRegistration extends javax.swing.JPanel {
     private javax.swing.JTextField txtRunUntil;
     private javax.swing.JLabel xLock;
     private javax.swing.JLabel xMaxData;
+    private javax.swing.JLabel xPass;
     private javax.swing.JLabel xRegTo;
     private javax.swing.JLabel xRunFirst;
     private javax.swing.JLabel xRunLast;

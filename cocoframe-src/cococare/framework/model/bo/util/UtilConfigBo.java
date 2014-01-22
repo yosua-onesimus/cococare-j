@@ -19,7 +19,7 @@ public class UtilConfigBo extends CCHibernateBo {
 
 //<editor-fold defaultstate="collapsed" desc=" public method ">
     public synchronized UtilConfAppl loadConfAppl() {
-        return (UtilConfAppl) configDao.loadHash(UtilConfAppl.class);
+        return configDao.loadHash(UtilConfAppl.class);
     }
 
     public synchronized boolean saveConf(Object object) {

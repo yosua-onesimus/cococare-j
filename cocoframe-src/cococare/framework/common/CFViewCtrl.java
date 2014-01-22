@@ -156,7 +156,7 @@ public abstract class CFViewCtrl implements CCTrackable {
         } else if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction())) {
             return init(_hasEntity() ? _newObjEntity() : null);
         } else {
-            throw new UnsupportedOperationException(turn(Not_supported_yet));
+            throw logp(new UnsupportedOperationException(turn(Not_supported_yet)));
         }
     }
 
@@ -275,13 +275,13 @@ public abstract class CFViewCtrl implements CCTrackable {
 
     protected abstract boolean _hasTblEntity();
 
-    protected Object _newObjEntity() {
-        return newObject(_getEntity());
+    protected <T> T _newObjEntity() {
+        return (T) newObject(_getEntity());
     }
 
     protected abstract boolean _isSelected();
 
-    protected abstract Object _getSelectedItem();
+    protected abstract <T> T _getSelectedItem();
 
     protected abstract boolean _isSureDelete();
 
@@ -408,7 +408,7 @@ public abstract class CFViewCtrl implements CCTrackable {
             }
         }
         if (isNull(UtilityModule.INSTANCE.getCCHibernate())) {
-            logp(screen + " :: " + action + " :: " + coalesce(note, "~").toString());
+            logp(screen + " :: " + action + " :: " + coalesce(note, "~"));
         } else {
             loggerBo.logger(screen, action, coalesce(note, "~").toString());
         }

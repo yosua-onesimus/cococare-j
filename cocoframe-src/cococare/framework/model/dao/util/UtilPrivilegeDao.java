@@ -24,7 +24,7 @@ public class UtilPrivilegeDao extends UtilityDao {
 
 //<editor-fold defaultstate="collapsed" desc=" initialData ">
     public UtilPrivilege getByComp(String comp) {
-        return (UtilPrivilege) getByField("comp", comp);
+        return getByField("comp", comp);
     }
 //</editor-fold>
 

@@ -122,7 +122,7 @@ public class PnlUserCtrl extends CFSwingCtrl {
     }
 
     private void _doSelect(boolean selected) {
-        UtilPrivilege privilege = (UtilPrivilege) tblPrivilege.getSelectedItem();
+        UtilPrivilege privilege = tblPrivilege.getSelectedItem();
         privilege.setSelected(selected);
         tblPrivilege.reloadSelectedItem();
         if (selected) {

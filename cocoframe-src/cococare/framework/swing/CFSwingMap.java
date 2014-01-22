@@ -71,7 +71,7 @@ public class CFSwingMap {
      * @param clazz CONTROLLER_FORM | VIEW_FORM_LIST | VIEW_FORM
      * @return VIEW_FORM
      */
-    public static Class getViewForm(Class clazz) {
+    public static Class<? extends Container> getViewForm(Class clazz) {
         String className = clazz.getName();
         String viewForm = null;
         if (_isClassType(className, ClassType.CONTROLLER_FORM)) {
@@ -89,11 +89,11 @@ public class CFSwingMap {
      * @return JDialog | JPanel
      */
     public static Container newContainer(Class controllerClass) {
-        Class viewClass = getViewForm(controllerClass);
+        Class<? extends Container> viewClass = getViewForm(controllerClass);
         if (instanceOf(JDialog.class, viewClass)) {
-            return (Container) newObject(viewClass, new Class[]{Frame.class, boolean.class}, new Object[]{getMainScreen(), true});
+            return newObject(viewClass, new Class[]{Frame.class, boolean.class}, new Object[]{getMainScreen(), true});
         } else if (instanceOf(JPanel.class, viewClass)) {
-            return (Container) newObject(viewClass);
+            return newObject(viewClass);
         } else {
             return null;
         }
@@ -103,7 +103,7 @@ public class CFSwingMap {
      * @param clazz VIEW_FORM | CONTROLLER_FORM_LIST | CONTROLLER_FORM
      * @return CONTROLLER_FORM
      */
-    public static Class getControllerForm(Class clazz) {
+    public static Class<? extends CFSwingCtrl> getControllerForm(Class clazz) {
         String className = clazz.getName();
         String controllerForm = null;
         if (_isClassType(className, ClassType.VIEW_FORM)) {
@@ -128,7 +128,7 @@ public class CFSwingMap {
      * @param frmMainPath the frmMainPath.
      */
     public static void initMainScreen(String frmMainPath) {
-        frmMain = (JFrame) newObject(frmMainPath);
+        frmMain = newObject(frmMainPath);
     }
 
     /**

@@ -298,7 +298,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     }
 
     @Override
-    protected Object _getSelectedItem() {
+    protected <T> T _getSelectedItem() {
         return tblEntity.getSelectedItem();
     }
 
@@ -427,7 +427,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             swingView.getTabEntity().setSelectedComponent(swingCtrl.getContainer());
             return false;
         } else {
-            return ((CFSwingCtrl) newObject(getControllerForm(getClass()))).with(parameter).with(this).with(readonly).init(objEntity);
+            return newObject(getControllerForm(getClass())).with(parameter).with(this).with(readonly).init(objEntity);
         }
     }
 //</editor-fold>

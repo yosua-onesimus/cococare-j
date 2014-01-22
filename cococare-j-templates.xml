@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><templates><template autoinsert="true" context="java" deleted="false" description="cococare-entity-base" enabled="true" name="ccbase">	@Id&#13;
-	@GeneratedValue(strategy = GenerationType.IDENTITY)&#13;
+	@GeneratedValue(strategy = GenerationType.AUTO)&#13;
 	private Long id;&#13;
 	@Column(length = 32)&#13;
 	private String logCreatedBy;&#13;
@@ -59,7 +59,7 @@
 	public void setLogSaveTimes(Integer logSaveTimes) {&#13;
 		this.logSaveTimes = logSaveTimes;&#13;
 	}</template><template autoinsert="true" context="java" deleted="false" description="cococare-entity-hash-base" enabled="true" name="cchash">	@Id&#13;
-	@GeneratedValue(strategy = GenerationType.IDENTITY)&#13;
+	@GeneratedValue(strategy = GenerationType.AUTO)&#13;
 	private Long id;&#13;
 	@Column(length = 32)&#13;
 	private String logCreatedBy;&#13;

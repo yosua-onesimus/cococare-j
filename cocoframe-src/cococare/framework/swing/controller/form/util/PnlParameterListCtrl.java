@@ -7,8 +7,7 @@ import static cococare.common.CCLogic.isNotNull;
 import cococare.database.CCEntityModule;
 import cococare.framework.model.obj.util.UtilConfig;
 import cococare.framework.swing.CFSwingCtrl;
-import static cococare.swing.CCSwing.addAccessibleListener;
-import static cococare.swing.CCSwing.applyAccessible;
+import static cococare.swing.CCSwing.*;
 import cococare.swing.component.CCComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,7 +41,6 @@ public class PnlParameterListCtrl extends CFSwingCtrl {
     @Override
     protected void _initComponent() {
         super._initComponent();
-        //
         for (Class clazz : CCEntityModule.INSTANCE.getCCHibernate().getParameterClasses()) {
             cmbEntity.addItem(getCCTypeConfig(clazz).label());
         }
@@ -51,7 +49,6 @@ public class PnlParameterListCtrl extends CFSwingCtrl {
     @Override
     protected void _initNaviElements() {
         super._initNaviElements();
-        //
         CCAccessibleListener notUtilConfig = new CCAccessibleListener() {
             @Override
             public boolean isAccessible() {
@@ -66,8 +63,7 @@ public class PnlParameterListCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        //
-        cmbEntity.addActionListener(new ActionListener() {
+        addActionListener(cmbEntity, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doSearch();
@@ -79,7 +75,6 @@ public class PnlParameterListCtrl extends CFSwingCtrl {
     public void doUpdateTable() {
         applyAccessible(swingView.getBtnAdd());
         tblEntity.setEntity(_getEntity());
-        //
         super.doUpdateTable();
     }
 }

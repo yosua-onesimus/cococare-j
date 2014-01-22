@@ -29,7 +29,7 @@ public class UtilUserGroupIpDao extends UtilityDao {
         parameters.start().
                 set("userGroup", userGroup).
                 set("ip", ip);
-        return (UtilUserGroupIp) getBy(hql.value(), parameters.value());
+        return getBy(hql.value(), parameters.value());
     }
 
     public List<UtilUserGroupIp> getListUnlimitedBy(UtilUserGroup userGroup) {

@@ -1,6 +1,7 @@
 package cococare.framework.common;
 
 // <editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCConfig.HBN_MULTI_DOMAIN;
 import static cococare.common.CCFormat.parseInt;
 import cococare.common.CCLanguage;
 import static cococare.common.CCLanguage.load;
@@ -37,11 +38,6 @@ public abstract class CFApplCtrl {
         DESKTOP, WEB;
     }
 
-    protected enum DatabaseMode {
-
-        SINGLE, MULTIPLE;
-    }
-
     protected enum MenuPosition {
 
         LEFT_SIDE("Left Side"), TOP_SIDE("Top Side");
@@ -61,7 +57,6 @@ public abstract class CFApplCtrl {
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     //
     protected static PlatformMode PLAT_MODE = PlatformMode.DESKTOP;
-    protected static DatabaseMode DTBS_MODE = DatabaseMode.SINGLE;
     protected static MenuPosition MENU_POST = MenuPosition.LEFT_SIDE;
     //
     protected static String APPL_ID = "appl.id";
@@ -135,11 +130,11 @@ public abstract class CFApplCtrl {
         //}
         _initDatabaseEntity();
         _initDatabaseFilter();
-        if (DatabaseMode.SINGLE.equals(DTBS_MODE)) {
+        if (!HBN_MULTI_DOMAIN) {
             if (!(databaseConnected = openDatabaseConnection(HIBERNATE.getDatabaseConfig(), false))) {
                 showDatabaseSettingScreen();
             }
-        } else if (DatabaseMode.MULTIPLE.equals(DTBS_MODE)) {
+        } else {
             HIBERNATE.buildSessionFactories();
         }
         if (PlatformMode.DESKTOP.equals(PLAT_MODE)) {
@@ -217,8 +212,8 @@ public abstract class CFApplCtrl {
             MENU_POST = MenuPosition.values()[parseInt(confAppl.getApplMenuPosition())];
         }
         if ((PlatformMode.DESKTOP.equals(PLAT_MODE) && databaseConnected)
-                || (PlatformMode.WEB.equals(PLAT_MODE) && DatabaseMode.SINGLE.equals(DTBS_MODE) && databaseConnected)
-                || (PlatformMode.WEB.equals(PLAT_MODE) && DatabaseMode.MULTIPLE.equals(DTBS_MODE))) {
+                || (PlatformMode.WEB.equals(PLAT_MODE) && !HBN_MULTI_DOMAIN && databaseConnected)
+                || (PlatformMode.WEB.equals(PLAT_MODE) && HBN_MULTI_DOMAIN)) {
             if (INSTANCE_hasLogged()) {
                 applyDatabaseFilter();
                 _applyUserConfig();
@@ -228,7 +223,7 @@ public abstract class CFApplCtrl {
                 _clearUserConfig();
                 _showLoginScreen();
             }
-        } else if (PlatformMode.WEB.equals(PLAT_MODE) && DatabaseMode.SINGLE.equals(DTBS_MODE) && !databaseConnected) {
+        } else if (PlatformMode.WEB.equals(PLAT_MODE) && !HBN_MULTI_DOMAIN && !databaseConnected) {
             showDatabaseSettingScreen();
         }
     }

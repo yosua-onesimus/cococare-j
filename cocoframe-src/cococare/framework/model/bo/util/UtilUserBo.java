@@ -30,19 +30,16 @@ import java.util.List;
 public class UtilUserBo extends CCHibernateBo {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
-    //Dao
-    private UtilPrivilegeDao privilegeDao;
     //
+    private UtilPrivilegeDao privilegeDao;
     private UtilUserDao userDao;
     private UtilUserPrivilegeDao userPrivilegeDao;
     private UtilUserIpDao userIpDao;
-    //Collection & Object
-    private UtilUser user;
     //
+    private UtilUser user;
     private List<UtilPrivilege> privileges;
     private HashMap<UtilPrivilege, Integer> privilege_index;
     private List<Boolean> privilegeSelecteds;
-    //
     private List<UtilUserIp> userIps;
     private List<UtilUserIp> removedUserIps;
 //</editor-fold>
