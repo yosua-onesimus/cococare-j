@@ -28,22 +28,22 @@ public class ScheduleMain extends CFSwingMain {
 
     @Override
     public boolean initInitialData() {
-        CFSwingUae swingUae = new CFSwingUae();
-        swingUae.reg("Schedule", "Person", PnlPersonListCtrl.class);
-        swingUae.reg("Schedule", "Schedule", PnlScheduleListCtrl.class);
-        return _initInitialDataUaeUtility(swingUae).compile();
+        CFSwingUae uae = new CFSwingUae();
+        uae.reg("Schedule", "Person", PnlPersonListCtrl.class);
+        uae.reg("Schedule", "Schedule", PnlScheduleListCtrl.class);
+        return _initInitialDataUaeUtility(uae).compile();
     }
 
     @Override
     protected void _applyUserConfig() {
-        CFSwingUae swingUae = new CFSwingUae();
-        swingUae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? CFSwingMap.getMenubarV() : CFSwingMap.getMenubarH());
-        swingUae.addMenuRoot(PnlLoginCtrl.class);
-        swingUae.addMenuParent(CCLanguage.Archive, null, null);
-        swingUae.addMenuChild("Person", null, PnlPersonListCtrl.class);
-        swingUae.addMenuChild("Schedule", null, PnlScheduleListCtrl.class);
-        swingUae.changeMenuSide();
-        _applyUserConfigUaeUtility(swingUae).compileMenu();
+        CFSwingUae uae = new CFSwingUae();
+        uae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? CFSwingMap.getMenubarV() : CFSwingMap.getMenubarH());
+        uae.addMenuRoot(PnlLoginCtrl.class);
+        uae.addMenuParent(CCLanguage.Archive, null, null);
+        uae.addMenuChild("Person", null, PnlPersonListCtrl.class);
+        uae.addMenuChild("Schedule", null, PnlScheduleListCtrl.class);
+        uae.changeMenuSide();
+        _applyUserConfigUaeUtility(uae).compileMenu();
         CFSwingMap.getMainScreen().validate();
     }
 

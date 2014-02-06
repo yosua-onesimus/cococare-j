@@ -43,31 +43,31 @@ public class NotesMain extends CFSwingMain {
     @Override
     public boolean initInitialData() {
         super.initInitialData();
-        CFSwingUae swingUae = new CFSwingUae();
-        swingUae.reg(Note, Bookmark, PnlBookmarkListCtrl.class);
-        swingUae.reg(Note, Shortcut, PnlShortcutListCtrl.class);
-        swingUae.reg(Note, Objective, PnlObjectiveListCtrl.class);
-        swingUae.reg(Note, Tracker, PnlTrackerListCtrl.class);
-        swingUae.reg("Setup", "Javax.Comm Setup", PnlJavaxCommSetupCtrl.class);
-        swingUae.reg("Setup", "Language Setup", PnlLanguageSetupCtrl.class);
-        return _initInitialDataUaeUtility(swingUae).compile();
+        CFSwingUae uae = new CFSwingUae();
+        uae.reg(Note, Bookmark, PnlBookmarkListCtrl.class);
+        uae.reg(Note, Shortcut, PnlShortcutListCtrl.class);
+        uae.reg(Note, Objective, PnlObjectiveListCtrl.class);
+        uae.reg(Note, Tracker, PnlTrackerListCtrl.class);
+        uae.reg("Setup", "Javax.Comm Setup", PnlJavaxCommSetupCtrl.class);
+        uae.reg("Setup", "Language Setup", PnlLanguageSetupCtrl.class);
+        return _initInitialDataUaeUtility(uae).compile();
     }
 
     @Override
     protected void _applyUserConfig() {
-        CFSwingUae swingUae = new CFSwingUae();
-        swingUae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? getMenubarV() : getMenubarH());
-        swingUae.addMenuRoot(PnlLoginCtrl.class);
-        swingUae.addMenuParent(Notes, null, null);
-        swingUae.addMenuChild(Bookmark, null, PnlBookmarkListCtrl.class);
-        swingUae.addMenuChild(Shortcut, null, PnlShortcutListCtrl.class);
-        swingUae.addMenuChild(Objective, null, PnlObjectiveListCtrl.class);
-        swingUae.addMenuChild(Tracker, null, PnlTrackerListCtrl.class);
-        swingUae.addMenuParent("Setup", null, null);
-        swingUae.addMenuChild("Javax.Comm Setup", null, PnlJavaxCommSetupCtrl.class);
-        swingUae.addMenuChild("Language Setup", null, PnlLanguageSetupCtrl.class);
-        swingUae.changeMenuSide();
-        _applyUserConfigUaeUtility(swingUae).compileMenu();
+        CFSwingUae uae = new CFSwingUae();
+        uae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? getMenubarV() : getMenubarH());
+        uae.addMenuRoot(PnlLoginCtrl.class);
+        uae.addMenuParent(Notes, null, null);
+        uae.addMenuChild(Bookmark, null, PnlBookmarkListCtrl.class);
+        uae.addMenuChild(Shortcut, null, PnlShortcutListCtrl.class);
+        uae.addMenuChild(Objective, null, PnlObjectiveListCtrl.class);
+        uae.addMenuChild(Tracker, null, PnlTrackerListCtrl.class);
+        uae.addMenuParent("Setup", null, null);
+        uae.addMenuChild("Javax.Comm Setup", null, PnlJavaxCommSetupCtrl.class);
+        uae.addMenuChild("Language Setup", null, PnlLanguageSetupCtrl.class);
+        uae.changeMenuSide();
+        _applyUserConfigUaeUtility(uae).compileMenu();
         getMainScreen().validate();
     }
 

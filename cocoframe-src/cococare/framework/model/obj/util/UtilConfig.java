@@ -34,7 +34,7 @@ public class UtilConfig implements CCEntityHash {
     private String key;
     @Column(name = "value_")
     private String value;
-    @Column(length = Integer.MAX_VALUE)
+    @Column(name = "file_", length = Integer.MAX_VALUE)
     private byte[] file;
 
     @Override

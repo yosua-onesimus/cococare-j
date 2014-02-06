@@ -33,31 +33,31 @@ public class SaleMain extends CFSwingMain {
 
     @Override
     public boolean initInitialData() {
-        CFSwingUae swingUae = new CFSwingUae();
-        swingUae.reg(Sale, Customer, PnlCustomerListCtrl.class);
-        swingUae.reg(Sale, Operator, PnlOperatorListCtrl.class);
-        swingUae.reg(Sale, Voucher_Type, PnlVoucherTypeListCtrl.class);
-        swingUae.reg(Sale, Deposit, PnlDepositListCtrl.class);
-        swingUae.reg(Sale, Selling, PnlSellingListCtrl.class);
-        swingUae.reg(Sale, Config, PnlConfigCtrl.class);
-        return _initInitialDataUaeUtility(swingUae).compile() && new SVInitInitialDataBo().initFirstData();
+        CFSwingUae uae = new CFSwingUae();
+        uae.reg(Sale, Customer, PnlCustomerListCtrl.class);
+        uae.reg(Sale, Operator, PnlOperatorListCtrl.class);
+        uae.reg(Sale, Voucher_Type, PnlVoucherTypeListCtrl.class);
+        uae.reg(Sale, Deposit, PnlDepositListCtrl.class);
+        uae.reg(Sale, Selling, PnlSellingListCtrl.class);
+        uae.reg(Sale, Config, PnlConfigCtrl.class);
+        return _initInitialDataUaeUtility(uae).compile() && new SVInitInitialDataBo().initFirstData();
     }
 
     @Override
     protected void _applyUserConfig() {
-        CFSwingUae swingUae = new CFSwingUae();
-        swingUae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? getMenubarV() : getMenubarH());
-        swingUae.addMenuRoot(PnlLoginCtrl.class, PnlHomeCtrl.class);
-        swingUae.addMenuParent(Home, null, PnlHomeCtrl.class);
-        swingUae.addMenuParent(Customer, null, PnlCustomerListCtrl.class);
-        swingUae.addMenuParent(Voucher, null, null);
-        swingUae.addMenuChild(Operator, null, PnlOperatorListCtrl.class);
-        swingUae.addMenuChild(Voucher_Type, null, PnlVoucherTypeListCtrl.class);
-        swingUae.addMenuChild(Deposit, null, PnlDepositListCtrl.class);
-        swingUae.addMenuChild(Selling, null, PnlSellingListCtrl.class);
-        swingUae.addMenuChild(Config, null, PnlConfigCtrl.class);
-        swingUae.changeMenuSide();
-        _applyUserConfigUaeUtility(swingUae).compileMenu();
+        CFSwingUae uae = new CFSwingUae();
+        uae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? getMenubarV() : getMenubarH());
+        uae.addMenuRoot(PnlLoginCtrl.class, PnlHomeCtrl.class);
+        uae.addMenuParent(Home, null, PnlHomeCtrl.class);
+        uae.addMenuParent(Customer, null, PnlCustomerListCtrl.class);
+        uae.addMenuParent(Voucher, null, null);
+        uae.addMenuChild(Operator, null, PnlOperatorListCtrl.class);
+        uae.addMenuChild(Voucher_Type, null, PnlVoucherTypeListCtrl.class);
+        uae.addMenuChild(Deposit, null, PnlDepositListCtrl.class);
+        uae.addMenuChild(Selling, null, PnlSellingListCtrl.class);
+        uae.addMenuChild(Config, null, PnlConfigCtrl.class);
+        uae.changeMenuSide();
+        _applyUserConfigUaeUtility(uae).compileMenu();
         getMainScreen().validate();
     }
 

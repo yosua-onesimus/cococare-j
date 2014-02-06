@@ -29,31 +29,31 @@ public class InventoryMain extends CFSwingMain {
 
     @Override
     public boolean initInitialData() {
-        CFSwingUae swingUae = new CFSwingUae();
-        swingUae.reg("Inventory", "Inventory", PnlInventoryListCtrl.class);
-        swingUae.reg("Inventory", "Employee", PnlEmployeeListCtrl.class);
-        swingUae.reg("Inventory", "Ownership", PnlOwnershipListCtrl.class);
-        return _initInitialDataUaeUtility(swingUae).compile();
+        CFSwingUae uae = new CFSwingUae();
+        uae.reg("Inventory", "Inventory", PnlInventoryListCtrl.class);
+        uae.reg("Inventory", "Employee", PnlEmployeeListCtrl.class);
+        uae.reg("Inventory", "Ownership", PnlOwnershipListCtrl.class);
+        return _initInitialDataUaeUtility(uae).compile();
     }
 
     @Override
     protected void _applyUserConfig() {
-        CFSwingUae swingUae = new CFSwingUae();
-        swingUae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? CFSwingMap.getMenubarV() : CFSwingMap.getMenubarH());
-        swingUae.addMenuRoot(PnlLoginCtrl.class);
+        CFSwingUae uae = new CFSwingUae();
+        uae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? CFSwingMap.getMenubarV() : CFSwingMap.getMenubarH());
+        uae.addMenuRoot(PnlLoginCtrl.class);
         if (CCLoginInfo.INSTANCE_getUserLogin() != null && ((UtilUser) CCLoginInfo.INSTANCE_getUserLogin()).getUserGroup().isRoot()) {
-            swingUae.addMenuRoot(PnlInventory2ListCtrl.class, PnlInventory3ListCtrl.class);
+            uae.addMenuRoot(PnlInventory2ListCtrl.class, PnlInventory3ListCtrl.class);
         }
-        swingUae.addMenuParent(CCLanguage.Archive, null, null);
-        swingUae.addMenuChild("Inventory", null, PnlInventoryListCtrl.class);
-        swingUae.addMenuChild("Employee", null, PnlEmployeeListCtrl.class);
-        swingUae.addMenuChild("Ownership", null, PnlOwnershipListCtrl.class);
-        swingUae.addMenuParent("Dialog Flow Sample", null, null);
-        swingUae.addMenuChild("Inventory", null, PnlInventory2ListCtrl.class);
-        swingUae.addMenuParent("Panel Flow Sample", null, null);
-        swingUae.addMenuChild("Inventory", null, PnlInventory3ListCtrl.class);
-        swingUae.changeMenuSide();
-        _applyUserConfigUaeUtility(swingUae).compileMenu();
+        uae.addMenuParent(CCLanguage.Archive, null, null);
+        uae.addMenuChild("Inventory", null, PnlInventoryListCtrl.class);
+        uae.addMenuChild("Employee", null, PnlEmployeeListCtrl.class);
+        uae.addMenuChild("Ownership", null, PnlOwnershipListCtrl.class);
+        uae.addMenuParent("Dialog Flow Sample", null, null);
+        uae.addMenuChild("Inventory", null, PnlInventory2ListCtrl.class);
+        uae.addMenuParent("Panel Flow Sample", null, null);
+        uae.addMenuChild("Inventory", null, PnlInventory3ListCtrl.class);
+        uae.changeMenuSide();
+        _applyUserConfigUaeUtility(uae).compileMenu();
         CFSwingMap.getMainScreen().validate();
     }
 

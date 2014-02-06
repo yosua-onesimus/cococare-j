@@ -24,20 +24,20 @@ public class BljrMain extends CFSwingMain {
 
     @Override
     public boolean initInitialData() {
-        CFSwingUae swingUae = new CFSwingUae();
-        swingUae.reg("Bljr", "Employee", PnlEmployeeListCtrl.class);
-        return _initInitialDataUaeUtility(swingUae).compile();
+        CFSwingUae uae = new CFSwingUae();
+        uae.reg("Bljr", "Employee", PnlEmployeeListCtrl.class);
+        return _initInitialDataUaeUtility(uae).compile();
     }
 
     @Override
     protected void _applyUserConfig() {
-        CFSwingUae swingUae = new CFSwingUae();
-        swingUae.initMenuBar(CFSwingMap.getMenubarV());
-        swingUae.addMenuRoot(PnlLoginCtrl.class);
-        swingUae.addMenuParent(CCLanguage.Archive, null, null);
-        swingUae.addMenuChild("Employee", null, PnlEmployeeListCtrl.class);
-        swingUae.changeMenuSide();
-        _applyUserConfigUaeUtility(swingUae).compileMenu();
+        CFSwingUae uae = new CFSwingUae();
+        uae.initMenuBar(CFSwingMap.getMenubarV());
+        uae.addMenuRoot(PnlLoginCtrl.class);
+        uae.addMenuParent(CCLanguage.Archive, null, null);
+        uae.addMenuChild("Employee", null, PnlEmployeeListCtrl.class);
+        uae.changeMenuSide();
+        _applyUserConfigUaeUtility(uae).compileMenu();
         CFSwingMap.getMainScreen().validate();
     }
 

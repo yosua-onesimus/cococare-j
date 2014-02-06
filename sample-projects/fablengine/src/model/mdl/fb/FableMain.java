@@ -28,24 +28,24 @@ public class FableMain extends CFSwingMain {
 
     @Override
     public boolean initInitialData() {
-        CFSwingUae swingUae = new CFSwingUae();
-        swingUae.reg("FB", "Action", PnlActionListCtrl.class);
-        swingUae.reg("FB", "Class", PnlClassListCtrl.class);
-        swingUae.reg("FB", "Actor", PnlActorListCtrl.class);
-        return _initInitialDataUaeUtility(swingUae).compile();
+        CFSwingUae uae = new CFSwingUae();
+        uae.reg("FB", "Action", PnlActionListCtrl.class);
+        uae.reg("FB", "Class", PnlClassListCtrl.class);
+        uae.reg("FB", "Actor", PnlActorListCtrl.class);
+        return _initInitialDataUaeUtility(uae).compile();
     }
 
     @Override
     protected void _applyUserConfig() {
-        CFSwingUae swingUae = new CFSwingUae();
-        swingUae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? CFSwingMap.getMenubarV() : CFSwingMap.getMenubarH());
-        swingUae.addMenuRoot(PnlLoginCtrl.class);
-        swingUae.addMenuParent("FaBle Engine", null, null);
-        swingUae.addMenuChild("Action", null, PnlActionListCtrl.class);
-        swingUae.addMenuChild("Class", null, PnlClassListCtrl.class);
-        swingUae.addMenuChild("Actor", null, PnlActorListCtrl.class);
-        swingUae.changeMenuSide();
-        _applyUserConfigUaeUtility(swingUae).compileMenu();
+        CFSwingUae uae = new CFSwingUae();
+        uae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? CFSwingMap.getMenubarV() : CFSwingMap.getMenubarH());
+        uae.addMenuRoot(PnlLoginCtrl.class);
+        uae.addMenuParent("FaBle Engine", null, null);
+        uae.addMenuChild("Action", null, PnlActionListCtrl.class);
+        uae.addMenuChild("Class", null, PnlClassListCtrl.class);
+        uae.addMenuChild("Actor", null, PnlActorListCtrl.class);
+        uae.changeMenuSide();
+        _applyUserConfigUaeUtility(uae).compileMenu();
         CFSwingMap.getMainScreen().validate();
     }
 
