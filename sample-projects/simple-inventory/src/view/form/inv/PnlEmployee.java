@@ -34,6 +34,8 @@ public class PnlEmployee extends javax.swing.JPanel {
         txtEmail = new javax.swing.JTextField();
         xPhoto = new javax.swing.JLabel();
         attPhoto = new cococare.swing.component.CCAttachment();
+        xSalary = new javax.swing.JLabel();
+        txtSalary = new javax.swing.JTextField();
         pnlOwnership = new javax.swing.JPanel();
 
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -87,6 +89,11 @@ public class PnlEmployee extends javax.swing.JPanel {
         xPhoto.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xPhoto.setText("Photo");
 
+        xSalary.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xSalary.setText("Salary");
+
+        txtSalary.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout pnlBasicDataLayout = new javax.swing.GroupLayout(pnlBasicData);
         pnlBasicData.setLayout(pnlBasicDataLayout);
         pnlBasicDataLayout.setHorizontalGroup(
@@ -119,6 +126,10 @@ public class PnlEmployee extends javax.swing.JPanel {
                 .addComponent(xPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(attPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlBasicDataLayout.createSequentialGroup()
+                .addComponent(xSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlBasicDataLayout.setVerticalGroup(
             pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +159,11 @@ public class PnlEmployee extends javax.swing.JPanel {
                 .addGap(1, 1, 1)
                 .addGroup(pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(attPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(attPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         tabEmployee.addTab("Basic Data", pnlBasicData);
@@ -224,6 +239,7 @@ public class PnlEmployee extends javax.swing.JPanel {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtSalary;
     private javax.swing.JLabel xBirthDate;
     private javax.swing.JLabel xBirthPlace;
     private javax.swing.JLabel xBloodType;
@@ -233,5 +249,6 @@ public class PnlEmployee extends javax.swing.JPanel {
     private javax.swing.JLabel xName;
     private javax.swing.JLabel xPhone;
     private javax.swing.JLabel xPhoto;
+    private javax.swing.JLabel xSalary;
     // End of variables declaration//GEN-END:variables
 }

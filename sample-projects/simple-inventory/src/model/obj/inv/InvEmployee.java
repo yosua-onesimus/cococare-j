@@ -126,6 +126,9 @@ public class InvEmployee implements CCEntity {
     @Column(length = 255)
     @CCFieldConfig(visible = false)
     private String photoName;
+    //
+    @CCFieldConfig(componentId = "txtSalary", accessible = Accessible.MANDATORY, type = Type.NUMBER_FORMAT, maxLength = 24, visible = false)
+    private Double salary = 0d;
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "employee")
     @CCFieldConfig(onDelete = OnDelete.CASCADE)
@@ -227,6 +230,14 @@ public class InvEmployee implements CCEntity {
 
     public void setPhotoName(String photoName) {
         this.photoName = photoName;
+    }
+
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
     }
 //</editor-fold>
 }

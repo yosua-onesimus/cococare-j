@@ -199,6 +199,11 @@
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="attPhoto" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="xSalary" min="-2" pref="100" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="txtSalary" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -235,6 +240,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="xPhoto" min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="attPhoto" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="xSalary" min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="txtSalary" min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -325,6 +335,21 @@
                   </Properties>
                 </Component>
                 <Component class="cococare.swing.component.CCAttachment" name="attPhoto">
+                </Component>
+                <Component class="javax.swing.JLabel" name="xSalary">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Verdana" size="12" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Salary"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtSalary">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Verdana" size="12" style="0"/>
+                    </Property>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>

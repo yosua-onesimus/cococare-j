@@ -33,6 +33,7 @@ public class InventoryMain extends CFSwingMain {
         uae.reg("Inventory", "Inventory", PnlInventoryListCtrl.class);
         uae.reg("Inventory", "Employee", PnlEmployeeListCtrl.class);
         uae.reg("Inventory", "Ownership", PnlOwnershipListCtrl.class);
+        uae.reg("Inventory", "Config", PnlConfigCtrl.class);
         return _initInitialDataUaeUtility(uae).compile();
     }
 
@@ -48,6 +49,7 @@ public class InventoryMain extends CFSwingMain {
         uae.addMenuChild("Inventory", null, PnlInventoryListCtrl.class);
         uae.addMenuChild("Employee", null, PnlEmployeeListCtrl.class);
         uae.addMenuChild("Ownership", null, PnlOwnershipListCtrl.class);
+        uae.addMenuChild("Config", null, PnlConfigCtrl.class);
         uae.addMenuParent("Dialog Flow Sample", null, null);
         uae.addMenuChild("Inventory", null, PnlInventory2ListCtrl.class);
         uae.addMenuParent("Panel Flow Sample", null, null);
