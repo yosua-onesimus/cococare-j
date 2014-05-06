@@ -129,6 +129,10 @@ public class InvEmployee implements CCEntity {
     //
     @CCFieldConfig(componentId = "txtSalary", accessible = Accessible.MANDATORY, type = Type.NUMBER_FORMAT, maxLength = 24, visible = false)
     private Double salary = 0d;
+    @CCFieldConfig(componentId = "txtBonusPercent", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6, visible = false)
+    private Float bonusPercent = 0f;
+    @CCFieldConfig(componentId = "txtBonusAmount", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMBER_FORMAT, maxLength = 24, visible = false)
+    private Double bonusAmount = 0d;
 //<editor-fold defaultstate="collapsed" desc=" cascade ">
     @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "employee")
     @CCFieldConfig(onDelete = OnDelete.CASCADE)
@@ -238,6 +242,22 @@ public class InvEmployee implements CCEntity {
 
     public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    public Float getBonusPercent() {
+        return bonusPercent;
+    }
+
+    public void setBonusPercent(Float bonusPercent) {
+        this.bonusPercent = bonusPercent;
+    }
+
+    public Double getBonusAmount() {
+        return bonusAmount;
+    }
+
+    public void setBonusAmount(Double bonusAmount) {
+        this.bonusAmount = bonusAmount;
     }
 //</editor-fold>
 }

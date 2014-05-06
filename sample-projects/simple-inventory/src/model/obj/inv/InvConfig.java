@@ -88,6 +88,8 @@ public class InvConfig implements CCEntity {
 //</editor-fold>
     @CCFieldConfig(componentId = "txtDefaultSalary", accessible = Accessible.MANDATORY, type = Type.NUMBER_FORMAT, maxLength = 24)
     private Double defaultSalary = 0d;
+    @CCFieldConfig(componentId = "txtDefaultBonus", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
+    private Float defaultBonus = 0f;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public Double getDefaultSalary() {
@@ -96,6 +98,14 @@ public class InvConfig implements CCEntity {
 
     public void setDefaultSalary(Double defaultSalary) {
         this.defaultSalary = defaultSalary;
+    }
+
+    public Float getDefaultBonus() {
+        return defaultBonus;
+    }
+
+    public void setDefaultBonus(Float defaultBonus) {
+        this.defaultBonus = defaultBonus;
     }
 //</editor-fold>
 }

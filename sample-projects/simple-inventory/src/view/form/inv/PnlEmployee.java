@@ -36,6 +36,10 @@ public class PnlEmployee extends javax.swing.JPanel {
         attPhoto = new cococare.swing.component.CCAttachment();
         xSalary = new javax.swing.JLabel();
         txtSalary = new javax.swing.JTextField();
+        xBonusPercent = new javax.swing.JLabel();
+        txtBonusPercent = new javax.swing.JTextField();
+        xBonusAmount = new javax.swing.JLabel();
+        txtBonusAmount = new javax.swing.JTextField();
         pnlOwnership = new javax.swing.JPanel();
 
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -94,6 +98,16 @@ public class PnlEmployee extends javax.swing.JPanel {
 
         txtSalary.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
+        xBonusPercent.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xBonusPercent.setText("Bonus (%)");
+
+        txtBonusPercent.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        xBonusAmount.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xBonusAmount.setText("Bonus");
+
+        txtBonusAmount.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout pnlBasicDataLayout = new javax.swing.GroupLayout(pnlBasicData);
         pnlBasicData.setLayout(pnlBasicDataLayout);
         pnlBasicDataLayout.setHorizontalGroup(
@@ -130,6 +144,14 @@ public class PnlEmployee extends javax.swing.JPanel {
                 .addComponent(xSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlBasicDataLayout.createSequentialGroup()
+                .addComponent(xBonusPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtBonusPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlBasicDataLayout.createSequentialGroup()
+                .addComponent(xBonusAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtBonusAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlBasicDataLayout.setVerticalGroup(
             pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +185,15 @@ public class PnlEmployee extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xBonusPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBonusPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(pnlBasicDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xBonusAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBonusAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         tabEmployee.addTab("Basic Data", pnlBasicData);
@@ -235,6 +265,8 @@ public class PnlEmployee extends javax.swing.JPanel {
     private javax.swing.JPanel pnlOwnership;
     private javax.swing.JTabbedPane tabEmployee;
     private javax.swing.JTextField txtBirthPlace;
+    private javax.swing.JTextField txtBonusAmount;
+    private javax.swing.JTextField txtBonusPercent;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
@@ -243,6 +275,8 @@ public class PnlEmployee extends javax.swing.JPanel {
     private javax.swing.JLabel xBirthDate;
     private javax.swing.JLabel xBirthPlace;
     private javax.swing.JLabel xBloodType;
+    private javax.swing.JLabel xBonusAmount;
+    private javax.swing.JLabel xBonusPercent;
     private javax.swing.JLabel xCode;
     private javax.swing.JLabel xEmail;
     private javax.swing.JLabel xGender;

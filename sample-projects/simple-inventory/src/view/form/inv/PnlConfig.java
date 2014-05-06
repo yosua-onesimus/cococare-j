@@ -14,12 +14,11 @@ public class PnlConfig extends javax.swing.JPanel {
         btnSave = new cococare.swing.component.CCButton();
         xDefaultSalary = new javax.swing.JLabel();
         txtDefaultSalary = new javax.swing.JTextField();
+        xDefaultBonus = new javax.swing.JLabel();
+        txtDefaultBonus = new javax.swing.JTextField();
 
         setMinimumSize(new java.awt.Dimension(400, 300));
         setPreferredSize(new java.awt.Dimension(400, 300));
-
-        pnlEditor.setMinimumSize(new java.awt.Dimension(600, 400));
-        pnlEditor.setPreferredSize(new java.awt.Dimension(600, 400));
 
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
 
@@ -27,6 +26,11 @@ public class PnlConfig extends javax.swing.JPanel {
         xDefaultSalary.setText("Default Salary");
 
         txtDefaultSalary.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        xDefaultBonus.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xDefaultBonus.setText("Default Bonus");
+
+        txtDefaultBonus.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout pnlEditorLayout = new javax.swing.GroupLayout(pnlEditor);
         pnlEditor.setLayout(pnlEditorLayout);
@@ -37,6 +41,10 @@ public class PnlConfig extends javax.swing.JPanel {
                 .addComponent(xDefaultSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(txtDefaultSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlEditorLayout.createSequentialGroup()
+                .addComponent(xDefaultBonus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtDefaultBonus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlEditorLayout.setVerticalGroup(
             pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -46,7 +54,11 @@ public class PnlConfig extends javax.swing.JPanel {
                 .addGap(11, 11, 11)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xDefaultSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDefaultSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtDefaultSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xDefaultBonus, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDefaultBonus, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -63,7 +75,9 @@ public class PnlConfig extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cococare.swing.component.CCButton btnSave;
     private javax.swing.JPanel pnlEditor;
+    private javax.swing.JTextField txtDefaultBonus;
     private javax.swing.JTextField txtDefaultSalary;
+    private javax.swing.JLabel xDefaultBonus;
     private javax.swing.JLabel xDefaultSalary;
     // End of variables declaration//GEN-END:variables
 }
