@@ -9,6 +9,7 @@ import cococare.framework.swing.CFSwingMap;
 import cococare.framework.swing.CFSwingUae;
 import cococare.framework.swing.controller.form.util.PnlLoginCtrl;
 import controller.form.inv.*;
+import model.obj.inv.InvReport;
 //</editor-fold>
 
 public class InventoryMain extends CFSwingMain {
@@ -18,6 +19,7 @@ public class InventoryMain extends CFSwingMain {
         APPL_CODE = "smpl-invntry";
         APPL_NAME = "simple-inventory";
         super._loadInternalSetting();
+        InvReport.setupReportFile();
         //CCLoginInfo.INSTANCE = null;//without login
     }
 
@@ -34,6 +36,7 @@ public class InventoryMain extends CFSwingMain {
         uae.reg("Inventory", "Employee", PnlEmployeeListCtrl.class);
         uae.reg("Inventory", "Ownership", PnlOwnershipListCtrl.class);
         uae.reg("Inventory", "Config", PnlConfigCtrl.class);
+        uae.reg("Inventory", "Report", PnlReportListCtrl.class);
         return _initInitialDataUaeUtility(uae).compile();
     }
 
@@ -50,6 +53,7 @@ public class InventoryMain extends CFSwingMain {
         uae.addMenuChild("Employee", null, PnlEmployeeListCtrl.class);
         uae.addMenuChild("Ownership", null, PnlOwnershipListCtrl.class);
         uae.addMenuChild("Config", null, PnlConfigCtrl.class);
+        uae.addMenuChild("Report", null, PnlReportListCtrl.class);
         uae.addMenuParent("Dialog Flow Sample", null, null);
         uae.addMenuChild("Inventory", null, PnlInventory2ListCtrl.class);
         uae.addMenuParent("Panel Flow Sample", null, null);
