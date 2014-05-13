@@ -1,0 +1,27 @@
+package model.bo.lib;
+
+//<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.database.CCHibernateBo;
+import cococare.framework.model.dao.util.UtilConfigDao;
+import model.obj.lib.LibConfig;
+//</editor-fold>
+
+/**
+ * @author Yosua Onesimus
+ * @since 13.03.17
+ * @version 13.03.17
+ */
+public class LibConfigBo extends CCHibernateBo {
+
+//<editor-fold defaultstate="collapsed" desc=" private object ">
+    private UtilConfigDao configDao;
+//</editor-fold>
+
+    public synchronized LibConfig loadLibConfig() {
+        return configDao.loadHash(LibConfig.class);
+    }
+
+    public synchronized boolean saveConf(Object object) {
+        return configDao.saveHash(object);
+    }
+}
