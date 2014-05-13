@@ -3,10 +3,12 @@ package model.obj.lib;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCFieldConfig.OnDelete;
 import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 //</editor-fold>
 
@@ -100,15 +102,20 @@ public class LibBorrowing implements CCEntity {
     private String code;
     @Temporal(value = TemporalType.DATE)
     @Column(name = "date_")
-    @CCFieldConfig(componentId = "dtpdate", accessible = Accessible.MANDATORY, maxLength = 12)
+    @CCFieldConfig(componentId = "dtpDate", accessible = Accessible.MANDATORY, maxLength = 12)
     private Date date = new Date();
     @ManyToOne
-    @CCFieldConfig(componentId = "bndMember", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "fullName")
+    @CCFieldConfig(componentId = "bndMember", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "fullName", requestFocus = true)
     private LibMember member_;
     @CCFieldConfig(label = "T. Item", tooltiptext = "Total Item", componentId = "txtTotalItem", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 2)
     private Integer totalItem;
     @CCFieldConfig(label = "T. Cost", tooltiptext = "Total Cost", componentId = "txtTotalCost", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMBER_FORMAT, maxLength = 24)
     private Double totalCost;
+//<editor-fold defaultstate="collapsed" desc=" cascade ">
+    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "borrowing")
+    @CCFieldConfig(onDelete = OnDelete.CASCADE)
+    private List<LibBorrowingItem> borrowingItems;
+//</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {

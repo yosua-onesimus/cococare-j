@@ -44,7 +44,7 @@ public class PnlBorrowingItemCtrl extends CFSwingCtrl {
     @Override
     protected void _initComponent() {
         super._initComponent();
-        dtpdate = (CCDatePicker) parameter.get(callerCtrl.toString() + "dtpdate");
+        dtpdate = (CCDatePicker) parameter.get(callerCtrl.toString() + "dtpDate");
     }
 
     @Override
@@ -56,7 +56,6 @@ public class PnlBorrowingItemCtrl extends CFSwingCtrl {
                 _doUpdateBookInfo();
             }
         };
-        //dtpdate.addEventListenerOnSelect(alUpdateBookInfo);
         bndBook.addEventListenerOnSelect(alUpdateBookInfo);
     }
 

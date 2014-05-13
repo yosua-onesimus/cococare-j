@@ -99,9 +99,9 @@ public class LibBorrowingItem implements CCEntity {
     @CCFieldConfig(componentId = "bndBorrowing", accessible = Accessible.MANDATORY, maxLength = 12, uniqueKey = "code")
     private LibBorrowing borrowing;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndBook", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "title")
+    @CCFieldConfig(componentId = "bndBook", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "title", requestFocus = true)
     private LibBook book;
-    @CCFieldConfig(label = "Cost", tooltiptext = "Borrowing Cost", componentId = "txtBorrowingCost", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMBER_FORMAT, maxLength = 24, visible = false)
+    @CCFieldConfig(label = "Cost", tooltiptext = "Borrowing Cost", componentId = "txtBorrowingCost", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMBER_FORMAT, maxLength = 24)
     private Double borrowingCost;
     @Temporal(value = TemporalType.DATE)
     @CCFieldConfig(componentId = "dtpDateReturn", accessible = Accessible.MANDATORY_READONLY, maxLength = 12)

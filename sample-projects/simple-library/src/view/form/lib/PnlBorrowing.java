@@ -20,8 +20,8 @@ public class PnlBorrowing extends javax.swing.JPanel {
         btnClose = new cococare.swing.component.CCButton();
         xCode = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
-        xdate = new javax.swing.JLabel();
-        dtpdate = new cococare.swing.component.CCDatePicker();
+        xDate = new javax.swing.JLabel();
+        dtpDate = new cococare.swing.component.CCDatePicker();
         xMember = new javax.swing.JLabel();
         bndMember = new cococare.swing.component.CCBandBox();
         pnlBorrowingItem = new javax.swing.JPanel();
@@ -42,8 +42,8 @@ public class PnlBorrowing extends javax.swing.JPanel {
 
         txtCode.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
-        xdate.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        xdate.setText("Date");
+        xDate.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xDate.setText("Date");
 
         xMember.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xMember.setText("Member");
@@ -73,9 +73,9 @@ public class PnlBorrowing extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(110, 110, 110)
-                .addComponent(xdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(xDate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(dtpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(dtpDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addComponent(xMember, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -101,8 +101,8 @@ public class PnlBorrowing extends javax.swing.JPanel {
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xCode, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(xdate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dtpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(xDate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dtpDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xMember, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,16 +132,16 @@ public class PnlBorrowing extends javax.swing.JPanel {
     private cococare.swing.component.CCBandBox bndMember;
     private cococare.swing.component.CCButton btnClose;
     private cococare.swing.component.CCButton btnSave;
-    private cococare.swing.component.CCDatePicker dtpdate;
+    private cococare.swing.component.CCDatePicker dtpDate;
     private javax.swing.JPanel pnlBorrowingItem;
     private javax.swing.JPanel pnlEditor;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtTotalCost;
     private javax.swing.JTextField txtTotalItem;
     private javax.swing.JLabel xCode;
+    private javax.swing.JLabel xDate;
     private javax.swing.JLabel xMember;
     private javax.swing.JLabel xTotalCost;
     private javax.swing.JLabel xTotalItem;
-    private javax.swing.JLabel xdate;
     // End of variables declaration//GEN-END:variables
 }

@@ -49,9 +49,9 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="txtCode" min="-2" pref="150" max="-2" attributes="0"/>
                   <EmptySpace min="110" pref="110" max="-2" attributes="0"/>
-                  <Component id="xdate" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="xDate" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="dtpdate" min="-2" max="-2" attributes="0"/>
+                  <Component id="dtpDate" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <Component id="xMember" min="-2" pref="100" max="-2" attributes="0"/>
@@ -82,8 +82,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="xCode" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="txtCode" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="xdate" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="dtpdate" min="-2" max="-2" attributes="0"/>
+                      <Component id="xDate" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="dtpDate" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -133,7 +133,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="xdate">
+        <Component class="javax.swing.JLabel" name="xDate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="1"/>
@@ -141,7 +141,7 @@
             <Property name="text" type="java.lang.String" value="Date"/>
           </Properties>
         </Component>
-        <Component class="cococare.swing.component.CCDatePicker" name="dtpdate">
+        <Component class="cococare.swing.component.CCDatePicker" name="dtpDate">
         </Component>
         <Component class="javax.swing.JLabel" name="xMember">
           <Properties>
