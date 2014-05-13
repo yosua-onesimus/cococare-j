@@ -24,6 +24,9 @@ import java.io.File;
 // </editor-fold>
 
 /**
+ * CFApplCtrl is an abstract class which functions as an application controller,
+ * in charge of controlling the flow of applications in general.
+ *
  * @author Yosua Onesimus
  * @since 13.03.17
  * @version 13.03.17
@@ -82,6 +85,10 @@ public abstract class CFApplCtrl {
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" CFApplCtrl ">
+    /**
+     * CFApplCtrl is an abstract class which functions as an application
+     * controller, in charge of controlling the flow of applications in general.
+     */
     public CFApplCtrl() {
         __init();
     }
@@ -98,11 +105,26 @@ public abstract class CFApplCtrl {
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" public method ">
+    /**
+     * <b>Line Number: 109</b>
+     * <ol>
+     * <li>Add a default log Handler to receive logging messages.</li>
+     * <li>Execute setup for mandatory file.</li>
+     * </ol>
+     */
     protected void _loadInternalSetting() {
         initDefaultHandler();
         executeMandatoryFile();
     }
 
+    /**
+     * <b>Line Number: 121</b>
+     * <ol>
+     * <li>Load a language pack for some domains.</li>
+     * <li>Get user configuration file.</li>
+     * <li>updateNonContent(readObject(file)): ...</li>
+     * </ol>
+     */
     protected void _loadExternalSetting() {
         load(CCLanguage.LanguagePack.EN);
         File file = getFileUserConfFile(S_APPL_CONF);
@@ -114,10 +136,29 @@ public abstract class CFApplCtrl {
         }
     }
 
+    /**
+     * <b>Line Number: 140</b>
+     */
     protected abstract void _initScreen();
 
+    /**
+     * <b>Line Number: 145</b>
+     */
     public abstract void end();
 
+    /**
+     * <b>Line Number: 150</b>
+     * <ol>
+     * <li>Load a list databaseConfig from a file.</li>
+     * <li>Automatic set C3P0 property.</li>
+     * <li>_initDatabaseEntity(): ...</li>
+     * <li>_initDatabaseFilter(): ...</li>
+     * <li>[singleDomain]openDatabaseConnection(HIBERNATE.getDatabaseConfig(),
+     * false): ..</li>
+     * <li>[multiDomain]Instantiate a new SessionFactory, using the properties
+     * and mappings in this configuration.</li>
+     * </ol>
+     */
     protected void _initDatabaseProfile() {
         if (PlatformMode.DESKTOP.equals(PLAT_MODE)) {
             getCCProgressbar().start();
@@ -131,9 +172,7 @@ public abstract class CFApplCtrl {
         _initDatabaseEntity();
         _initDatabaseFilter();
         if (!HBN_MULTI_DOMAIN) {
-            if (!(databaseConnected = openDatabaseConnection(HIBERNATE.getDatabaseConfig(), false))) {
-                showDatabaseSettingScreen();
-            }
+            databaseConnected = openDatabaseConnection(HIBERNATE.getDatabaseConfig(), false);
         } else {
             HIBERNATE.buildSessionFactories();
         }
@@ -142,10 +181,29 @@ public abstract class CFApplCtrl {
         }
     }
 
+    /**
+     * <b>Line Number: 185</b>
+     * <ol>
+     * <li>Initialization module with the specified hibernate.</li>
+     * </ol>
+     */
     protected void _initDatabaseEntity() {
         UtilityModule.INSTANCE.init(HIBERNATE);
     }
 
+    /**
+     * <b>Line Number: 195</b>
+     * <ol>
+     * <li>Check whether the connection is valid or not.</li>
+     * <li>Add a databaseConfig and instantiate a new SessionFactory.</li>
+     * <li>initInitialData(): ...</li>
+     * <li>Save databaseConfig to the file.</li>
+     * </ol>
+     *
+     * @param databaseConfig the databaseConfig.
+     * @param autoCreateDatabase the autoCreateDatabase.
+     * @return true if the database connection is open.
+     */
     public boolean openDatabaseConnection(CCDatabaseConfig databaseConfig, boolean autoCreateDatabase) {
         if (HIBERNATE.isDatabaseConfigValid(databaseConfig, autoCreateDatabase)) {
             HIBERNATE.addDatabaseConfig(databaseConfig, autoCreateDatabase);
@@ -158,14 +216,29 @@ public abstract class CFApplCtrl {
         }
     }
 
+    /**
+     * <b>Line Number: 220</b>
+     * <ol>
+     * <li>Reload databaseConfig from the file.</li>
+     * </ol>
+     */
     public void reloadDatabaseConfig() {
         HIBERNATE.reloadDatabaseConfig();
     }
 
+    /**
+     * <b>Line Number: 230</b>
+     *
+     * @param applUae the applUae.
+     * @return the applUae.
+     */
     protected abstract CFApplUae _initInitialDataUaeUtility(CFApplUae applUae);
 
     /**
-     * Initial custom field configuration.
+     * <b>Line Number: 238</b>
+     * <ol>
+     * <li>Initial custom field configuration.</li>
+     * </ol>
      *
      * @return true if success; false if fail.
      */
@@ -173,35 +246,110 @@ public abstract class CFApplCtrl {
         return new CCCustomFieldConfigBo().initCustomFieldConfig();
     }
 
+    /**
+     * <b>Line Number: 250</b>
+     *
+     * @return true if success; false if fail.
+     */
     public abstract boolean showDatabaseSettingScreen();
 
+    /**
+     * <b>Line Number: 257</b>
+     *
+     * @param username the username.
+     * @param password the password.
+     * @return true if success; false if fail.
+     */
     protected boolean _login(String username, String password) {
         return new UtilUserBo().login(username, password);
     }
 
+    /**
+     * <b>Line Number: 268</b>
+     *
+     * @param object the object.
+     */
     public abstract void updateNonContent(Object object);
 
+    /**
+     * <b>Line Number: 275</b>
+     * <ol>
+     * <li>Initial database filter. Default blank.</li>
+     * </ol>
+     */
     protected void _initDatabaseFilter() {
     }
 
+    /**
+     * <b>Line Number: 284</b>
+     * <ol>
+     * <li>Initial database filter. Default blank.</li>
+     * </ol>
+     */
     public void applyDatabaseFilter() {
     }
 
+    /**
+     * <b>Line Number: 293</b>
+     * <ol>
+     * <li>Initial database filter. Default blank.</li>
+     * </ol>
+     */
     public void clearDatabaseFilter() {
     }
 
+    /**
+     * <b>Line Number: 302</b>
+     *
+     * @param applUae the applUae.
+     * @return the applUae.
+     */
     protected abstract CFApplUae _applyUserConfigUaeUtility(CFApplUae applUae);
 
+    /**
+     * <b>Line Number: 310</b>
+     */
     protected abstract void _applyUserConfig();
 
+    /**
+     * <b>Line Number: 315</b>
+     */
     protected abstract void _clearUserConfig();
 
+    /**
+     * <b>Line Number: 320</b>
+     *
+     * @return true if success; false if fail.
+     */
     protected abstract boolean _showLoginScreen();
 
+    /**
+     * <b>Line Number: 327</b>
+     * <ol>
+     * <li>Show home screen. Default blank.</li>
+     * </ol>
+     *
+     * @return true if success; false if fail.
+     */
     protected boolean _showHomeScreen() {
         return true;
     }
 
+    /**
+     * <b>Line Number: 339</b>
+     * <ol>
+     * <li>[webPlatform]_initScreen(): ...</li>
+     * <li>[databaseConnected]Load configuration application.</li>
+     * <li>[databaseConnected]updateNonContent(confAppl): ...</li>
+     * <li>[hasLogged]applyDatabaseFilter(): ...</li>
+     * <li>[hasLogged]_applyUserConfig(): ...</li>
+     * <li>[hasLogged]_showHomeScreen(): ...</li>
+     * <li>[notLogYet]clearDatabaseFilter(): ...</li>
+     * <li>[notLogYet]_clearUserConfig(): ...</li>
+     * <li>[notLogYet]_showLoginScreen(): ...</li>
+     * <li>[databaseNotConnected]showDatabaseSettingScreen(): ...</li>
+     * </ol>
+     */
     public void showScreen() {
         if (PlatformMode.WEB.equals(PLAT_MODE)) {
             _initScreen();
@@ -223,11 +371,23 @@ public abstract class CFApplCtrl {
                 _clearUserConfig();
                 _showLoginScreen();
             }
-        } else if (PlatformMode.WEB.equals(PLAT_MODE) && !HBN_MULTI_DOMAIN && !databaseConnected) {
+        } else if ((PlatformMode.DESKTOP.equals(PLAT_MODE) && !databaseConnected)
+                || (PlatformMode.WEB.equals(PLAT_MODE) && !HBN_MULTI_DOMAIN && !databaseConnected)) {
             showDatabaseSettingScreen();
         }
     }
 
+    /**
+     * <b>Line Number: 381</b>
+     * <ol>
+     * <li>_login(username, password): ...</li>
+     * <li>showScreen(): ...</li>
+     * </ol>
+     *
+     * @param username the username.
+     * @param password the password.
+     * @return true if success; false if fail.
+     */
     public boolean login(String username, String password) {
         if (_login(username, password)) {
             showScreen();
@@ -237,6 +397,15 @@ public abstract class CFApplCtrl {
         }
     }
 
+    /**
+     * <b>Line Number: 381</b>
+     * <ol>
+     * <li>Clear session values.</li>
+     * <li>showScreen(): ...</li>
+     * </ol>
+     *
+     * @return true if success; false if fail.
+     */
     public boolean logout() {
         if (INSTANCE_hasLogged()) {
             CCLoginInfo.INSTANCE.logout();

@@ -51,11 +51,9 @@ public class UtilInitInitialDataBo extends CCHibernateBo {
     }
 
     private synchronized UtilUserGroup _newUserGroup(String code, String name, boolean root) {
-        UtilUserGroup userGroup = userGroupDao.getByCode(code);
-        if (isNull(userGroup)) {
-            userGroup = new UtilUserGroup(code, name, root);
-        }
-        return userGroup;
+        return coalesce(
+                userGroupDao.getByCode(code),
+                new UtilUserGroup(code, name, root));
     }
 
     private synchronized List<UtilUserGroupPrivilege> _newUserGroupPrivileges(UtilUserGroup userGroup) {
@@ -71,11 +69,9 @@ public class UtilInitInitialDataBo extends CCHibernateBo {
     }
 
     private synchronized UtilUser _newUser(String username, String password, String fullname, UtilUserGroup userGroup) {
-        UtilUser user = userDao.getByUsername(username);
-        if (isNull(user)) {
-            user = new UtilUser(username, password, fullname, userGroup);
-        }
-        return user;
+        return coalesce(
+                userDao.getByUsername(username),
+                new UtilUser(username, password, fullname, userGroup));
     }
 
     private synchronized List<UtilUserPrivilege> _newUserPrivileges(UtilUser user) {

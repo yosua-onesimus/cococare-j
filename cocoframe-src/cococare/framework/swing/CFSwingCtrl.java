@@ -22,6 +22,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javax.swing.JPanel;
 // </editor-fold>
 
 /**
@@ -313,7 +314,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
         if (getBoolean(parameter.get(toString() + parentNewEntity))) {
             return ((List) parameter.get(toString() + childsValue)).remove(_getSelectedItem());
         } else {
-            return tblEntity.deleteById(_getSelectedItem()) > 0;
+            return tblEntity.deleteBySetting(_getSelectedItem()) > 0;
         }
     }
 
@@ -399,20 +400,26 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     }
 //</editor-fold>
 
+    protected JPanel _getContent() {
+        //parent-childs-screen
+        if (isNull(parameter.get(toString() + childContentId))) {
+            return getContent();
+        } else {
+            return getJPanel(((CFSwingCtrl) callerCtrl).getContainer(), parameter.get(toString() + childContentId).toString());
+        }
+    }
+
     @Override
     protected void _doShowScreen() {
-        //parent-childs-screen
-        if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction()) || isNull(parameter.get(toString() + parentValue))) {
-            if (ShowMode.PANEL_MODE.equals(_getShowMode())) {
-                showPanel(getContent(), swingView.getPanel());
-            } else if (ShowMode.DIALOG_MODE.equals(_getShowMode())) {
-                showDialog(getMainScreen(), swingView.getDialog());
-            } else if (ShowMode.TAB_MODE.equals(_getShowMode())) {
-                if (isNull(callerCtrl)) {
-                    showPanel(getContent(), swingView.getPanel());
-                } else {
-                    callerCtrl.doShowTab(sysRef, _getTabTitle(), this);
-                }
+        if (ShowMode.PANEL_MODE.equals(_getShowMode())) {
+            showPanel(_getContent(), swingView.getPanel());
+        } else if (ShowMode.DIALOG_MODE.equals(_getShowMode())) {
+            showDialog(getMainScreen(), swingView.getDialog());
+        } else if (ShowMode.TAB_MODE.equals(_getShowMode())) {
+            if (isNull(callerCtrl)) {
+                showPanel(_getContent(), swingView.getPanel());
+            } else {
+                callerCtrl.doShowTab(sysRef, _getTabTitle(), this);
             }
         }
     }
@@ -437,7 +444,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected void _doCloseScreen() {
         if (ShowMode.PANEL_MODE.equals(_getShowMode())) {
             if (isNull(callerCtrl)) {
-                removePanel(getContent(), getContainer());
+                removePanel(_getContent(), getContainer());
             } else {
                 callerCtrl.init();
             }
@@ -445,7 +452,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             swingView.getDialog().dispose();
         } else if (ShowMode.TAB_MODE.equals(_getShowMode())) {
             if (isNull(callerCtrl)) {
-                removePanel(getContent(), getContainer());
+                removePanel(_getContent(), getContainer());
             } else {
                 callerCtrl.doCloseTab(sysRef);
                 if (updateCaller) {
@@ -489,15 +496,4 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
         }
     }
 //</editor-fold>
-
-    //parent-childs-screen
-    protected void _addChildScreen(String parentField, CFSwingCtrl childCtrl, String childView) {
-        parameter.put(childCtrl.toString() + this.parentField, parentField);
-        parameter.put(childCtrl.toString() + this.parentValue, objEntity);
-        parameter.put(childCtrl.toString() + this.parentNewEntity, newEntity);
-        parameter.put(childCtrl.toString() + this.childsValue, new ArrayList());
-        childCtrl.with(parameter).init();
-        showPanel(getJPanel(getContainer(), childView), childCtrl.getContainer());
-        childsValueKeys.add(childCtrl.toString() + this.childsValue);
-    }
 }

@@ -66,6 +66,7 @@ public abstract class CFViewCtrl implements CCTrackable {
     protected final String parentField = "parentField";
     protected final String parentValue = "parentValue";
     protected final String parentNewEntity = "parentNewEntity";
+    protected final String childContentId = "childContentId";
     protected final String childsValue = "childsValue";
     protected List<String> childsValueKeys = new ArrayList();
 //</editor-fold>
@@ -110,11 +111,12 @@ public abstract class CFViewCtrl implements CCTrackable {
     public CFViewCtrl with(CFViewCtrl callerCtrl) {
         this.callerCtrl = callerCtrl;
         //parent-childs-screen
-        parameter.put(toString() + parentField, parameter.get(callerCtrl.toString() + parentField));
-        parameter.put(toString() + parentValue, parameter.get(callerCtrl.toString() + parentValue));
-        parameter.put(toString() + parentNewEntity, parameter.get(callerCtrl.toString() + parentNewEntity));
-        parameter.put(toString() + childsValue, parameter.get(callerCtrl.toString() + childsValue));
-        //
+        if (BaseFunction.LIST_FUNCTION.equals(callerCtrl._getBaseFunction())) {
+            parameter.put(toString() + parentField, parameter.get(callerCtrl.toString() + parentField));
+            parameter.put(toString() + parentValue, parameter.get(callerCtrl.toString() + parentValue));
+            parameter.put(toString() + parentNewEntity, parameter.get(callerCtrl.toString() + parentNewEntity));
+            parameter.put(toString() + childsValue, parameter.get(callerCtrl.toString() + childsValue));
+        }
         return this;
     }
 
@@ -384,6 +386,17 @@ public abstract class CFViewCtrl implements CCTrackable {
 
 //<editor-fold defaultstate="collapsed" desc=" FORM_FUNCTION ">
     protected abstract void _doUpdateEditor();
+
+    //parent-childs-screen
+    protected void _addChildScreen(String parentField, CFViewCtrl childCtrl, String childContentId) {
+        parameter.put(childCtrl.toString() + this.parentField, parentField);
+        parameter.put(childCtrl.toString() + this.parentValue, objEntity);
+        parameter.put(childCtrl.toString() + this.parentNewEntity, newEntity);
+        parameter.put(childCtrl.toString() + this.childContentId, childContentId);
+        parameter.put(childCtrl.toString() + this.childsValue, new ArrayList());
+        childsValueKeys.add(childCtrl.toString() + this.childsValue);
+        childCtrl.with(parameter).with(this).with(readonly).init();
+    }
 //</editor-fold>
 
     protected void _logger(Object note) {

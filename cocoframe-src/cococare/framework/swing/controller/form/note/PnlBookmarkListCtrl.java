@@ -32,7 +32,9 @@ public class PnlBookmarkListCtrl extends CFSwingCtrl {
         tblEntity.addField(2, new CCCustomField() {
             @Override
             public Object getCustomView(Object object) {
-                return new CCLink(((NoteBookmark) object).getUrl());
+                return new CCLink(((NoteBookmark) object).getUrl()).
+                        addActionListener(tblEntity.getStopCellEditingListener()).
+                        toBookmark();
             }
         });
         tblEntity.setColumnForeground(2, Color.BLUE);

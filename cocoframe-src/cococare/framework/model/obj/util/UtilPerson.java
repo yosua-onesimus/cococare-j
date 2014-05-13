@@ -232,7 +232,7 @@ public class UtilPerson implements CCEntity {
     @Column()
     @CCFieldConfig(visible = false, visible2 = false)
     private String photoName;
-    //----------------------------------------------------------------------------------------------
+    //selfEvident-----------------------------------------------------------------------------------
     @Column(length = 16)
     @CCFieldConfig(componentId = "txtKtp", maxLength = 16, visible = false)
     private String ktp;

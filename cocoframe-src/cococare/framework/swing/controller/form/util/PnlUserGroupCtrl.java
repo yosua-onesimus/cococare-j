@@ -65,6 +65,7 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
                 UtilPrivilege privilege = (UtilPrivilege) object;
                 JCheckBox checkBox = new JCheckBox(null, null, privilege.isSelected());
                 checkBox.addActionListener(alSelect);
+                checkBox.addActionListener(tblPrivilege.getStopCellEditingListener());
                 return checkBox;
             }
         });
@@ -77,7 +78,7 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
             @Override
             public Object getCustomView(Object object) {
                 UtilPrivilege privilege = (UtilPrivilege) object;
-                return (isNull(privilege.getParent()) ? "" : "    ") + privilege.getName();
+                return (isNull(privilege.getParent()) ? "" : "    ") + privilege.getCode() + "-" + privilege.getName();
             }
         });
         tblPrivilege.setCheckboxColumn(true, 0);

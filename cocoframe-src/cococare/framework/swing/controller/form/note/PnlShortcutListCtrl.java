@@ -32,7 +32,9 @@ public class PnlShortcutListCtrl extends CFSwingCtrl {
         tblEntity.addField(2, new CCCustomField() {
             @Override
             public Object getCustomView(Object object) {
-                return new CCLink(((NoteShortcut) object).getPath()).toShortcut();
+                return new CCLink(((NoteShortcut) object).getPath()).
+                        addActionListener(tblEntity.getStopCellEditingListener()).
+                        toShortcut();
             }
         });
         tblEntity.setColumnForeground(2, Color.BLUE);
