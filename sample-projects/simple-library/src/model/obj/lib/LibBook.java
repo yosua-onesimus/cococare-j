@@ -17,7 +17,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "lib_books")
-@CCTypeConfig(label = "Book", uniqueKey = "name")
+@CCTypeConfig(label = "Book", uniqueKey = "title")
 public class LibBook implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">

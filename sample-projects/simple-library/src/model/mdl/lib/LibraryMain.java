@@ -7,9 +7,7 @@ import cococare.framework.swing.CFSwingMain;
 import static cococare.framework.swing.CFSwingMap.*;
 import cococare.framework.swing.CFSwingUae;
 import cococare.framework.swing.controller.form.util.PnlLoginCtrl;
-import controller.form.lib.PnlBookListCtrl;
-import controller.form.lib.PnlBorrowingListCtrl;
-import controller.form.lib.PnlMemberListCtrl;
+import controller.form.lib.*;
 import static model.mdl.lib.LibraryLanguage.*;
 //</editor-fold>
 
@@ -45,9 +43,11 @@ public class LibraryMain extends CFSwingMain {
     public boolean initInitialData() {
         super.initInitialData();
         CFSwingUae uae = new CFSwingUae();
+        uae.reg(Lib, Config, PnlConfigCtrl.class);
         uae.reg(Lib, Book, PnlBookListCtrl.class);
         uae.reg(Lib, Member, PnlMemberListCtrl.class);
         uae.reg(Lib, Borrowing, PnlBorrowingListCtrl.class);
+        uae.reg(Lib, Returning, PnlReturningListCtrl.class);
         return _initInitialDataUaeUtility(uae).compile();
     }
 
@@ -57,10 +57,12 @@ public class LibraryMain extends CFSwingMain {
         uae.initMenuBar(CFApplCtrl.MenuPosition.LEFT_SIDE.equals(MENU_POST) ? getMenubarV() : getMenubarH());
         uae.addMenuRoot(PnlLoginCtrl.class);
         uae.addMenuParent(Archive, null, null);
+        uae.addMenuChild(Config, null, PnlConfigCtrl.class);
         uae.addMenuChild(Book, null, PnlBookListCtrl.class);
         uae.addMenuChild(Member, null, PnlMemberListCtrl.class);
         uae.addMenuParent(Transaction, null, null);
         uae.addMenuChild(Borrowing, null, PnlBorrowingListCtrl.class);
+        uae.addMenuChild(Returning, null, PnlReturningListCtrl.class);
         uae.changeMenuSide();
         _applyUserConfigUaeUtility(uae).compileMenu();
         getMainScreen().validate();

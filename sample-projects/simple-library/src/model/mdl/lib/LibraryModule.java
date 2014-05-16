@@ -29,6 +29,8 @@ public class LibraryModule extends CCHibernateModule {
         //transaction
         hibernate.addAnnotatedClass(LibBorrowing.class);
         hibernate.addAnnotatedClass(LibBorrowingItem.class);
+        hibernate.addAnnotatedClass(LibReturning.class);
+        hibernate.addAnnotatedClass(LibReturningItem.class);
     }
 //</editor-fold>
 }

@@ -51,8 +51,8 @@ public class PnlBorrowingItemListCtrl extends CFSwingCtrl {
 
     private void _doUpdateParentField() {
         ((ActionListener) parameter.get(callerCtrl.toString()
-                + (tblEntity.getRowCount() == 0 ? "dtpDate-MANDATORY" : "dtpDate-MANDATORY_READONLY")))
-                .actionPerformed(null);
+                + (tblEntity.getRowCount() == 0 ? "dtpDate-MANDATORY" : "dtpDate-MANDATORY_READONLY"))).
+                actionPerformed(null);
         txtTotalItem.setText(formatNumeric(tblEntity.getRowCount()));
         double totalCost = 0;
         for (Object object : tblEntity.getList()) {

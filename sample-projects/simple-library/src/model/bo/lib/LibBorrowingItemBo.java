@@ -4,6 +4,9 @@ package model.bo.lib;
 import static cococare.common.CCFormat.getNextDate;
 import cococare.database.CCHibernateBo;
 import java.util.Date;
+import java.util.List;
+import model.dao.lib.LibBorrowingItemDao;
+import model.obj.lib.LibBook;
 //</editor-fold>
 
 /**
@@ -13,7 +16,17 @@ import java.util.Date;
  */
 public class LibBorrowingItemBo extends CCHibernateBo {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
+    private LibBorrowingItemDao borrowingItemDao;
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" crud ">
+    public synchronized List<LibBook> getUnlimitedBorrowedBooks() {
+        return borrowingItemDao.getUnlimitedBorrowedBooks();
+    }
+
     public synchronized Date calculateDateReturn(Date borrowedDate, Integer borrowingLimit) {
         return getNextDate(borrowedDate, borrowingLimit);
     }
+//</editor-fold>
 }

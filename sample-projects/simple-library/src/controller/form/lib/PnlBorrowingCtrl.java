@@ -3,11 +3,14 @@ package controller.form.lib;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.framework.swing.CFSwingCtrl;
+import cococare.swing.component.CCBandBox;
 import cococare.swing.component.CCDatePicker;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextField;
+import model.bo.lib.LibBorrowingBo;
 import model.obj.lib.LibBorrowing;
+import static model.obj.lib.LibFilter.isSuspendFalse;
 //</editor-fold>
 
 /**
@@ -18,7 +21,9 @@ import model.obj.lib.LibBorrowing;
 public class PnlBorrowingCtrl extends CFSwingCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
+    private LibBorrowingBo borrowingBo;
     private CCDatePicker dtpDate;
+    private CCBandBox bndMember;
     private JTextField txtTotalItem;
     private JTextField txtTotalCost;
 //</editor-fold>
@@ -52,6 +57,17 @@ public class PnlBorrowingCtrl extends CFSwingCtrl {
             }
         });
         _addChildScreen("borrowing", new PnlBorrowingItemListCtrl(), "pnlBorrowingItem");
+    }
+
+    @Override
+    protected void _initEditor() {
+        super._initEditor();
+        bndMember.getTable().setHqlFilters(isSuspendFalse);
+    }
+
+    @Override
+    protected boolean _doSaveEntity() {
+        return borrowingBo.saveOrUpdate((LibBorrowing) objEntity, _getEntityChilds());
     }
 
     private void _doUpdateDtpDate(Accessible accessible) {
