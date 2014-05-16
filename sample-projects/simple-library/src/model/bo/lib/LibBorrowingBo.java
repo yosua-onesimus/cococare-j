@@ -5,7 +5,6 @@ import static cococare.common.CCLogic.isEmpty;
 import cococare.database.CCHibernateBo;
 import cococare.database.CCHibernateDao.Transaction;
 import java.util.List;
-import model.dao.lib.LibBorrowingDao;
 import model.dao.lib.LibBorrowingItemDao;
 import model.obj.lib.LibBook;
 import model.obj.lib.LibBorrowing;
@@ -20,16 +19,15 @@ import model.obj.lib.LibBorrowingItem;
 public class LibBorrowingBo extends CCHibernateBo {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
-    private LibBorrowingDao borrowingDao;
     private LibBorrowingItemDao borrowingItemDao;
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" crud ">
     public synchronized boolean saveOrUpdate(LibBorrowing borrowing, List<LibBorrowingItem> borrowingItems) {
-        Transaction transaction = borrowingDao.newTransaction();
+        Transaction transaction = borrowingItemDao.newTransaction();
         //if borrowing is already saved in the database, borrowingItems must be empty
         if (isEmpty(borrowingItems)) {
-            borrowingItems = borrowingItemDao.getUnlimitedBorrowingItem(borrowing);
+            borrowingItems = borrowingItemDao.getUnlimitedBorrowingItems(borrowing);
         }
         for (LibBorrowingItem borrowingItem : borrowingItems) {
             LibBook book = borrowingItem.getBook();

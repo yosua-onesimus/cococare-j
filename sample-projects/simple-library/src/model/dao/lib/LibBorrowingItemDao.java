@@ -6,6 +6,7 @@ import model.mdl.lib.LibraryDao;
 import model.obj.lib.LibBook;
 import model.obj.lib.LibBorrowing;
 import model.obj.lib.LibBorrowingItem;
+import model.obj.lib.LibMember;
 //</editor-fold>
 
 /**
@@ -27,12 +28,20 @@ public class LibBorrowingItemDao extends LibraryDao {
         hql.start().
                 alias("borrowingItem").
                 select("borrowingItem.book").
-                where("borrowingItem.book.borrowed = TRUE");
+                where("borrowingItem.returned = FALSE");
         return getListUnlimitedBy(hql.value(), parameters.value());
     }
 
-    public List<LibBorrowingItem> getUnlimitedBorrowingItem(LibBorrowing borrowing) {
+    public List<LibBorrowingItem> getUnlimitedBorrowingItems(LibBorrowing borrowing) {
         return getListUnlimitedByField("borrowing", borrowing, false);
+    }
+
+    public List<LibMember> getUnlimitedBorrowingMembers() {
+        hql.start().
+                alias("borrowingItem").
+                select("borrowingItem.borrowing.member_").
+                where("borrowingItem.returned = FALSE");
+        return getListUnlimitedBy(hql.value(), parameters.value());
     }
 //</editor-fold>
 }

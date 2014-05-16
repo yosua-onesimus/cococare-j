@@ -17,4 +17,15 @@ public class LibFilter {
             return false;
         }
     };
+    public static CCHibernateFilter isReturnedFalse = new CCHibernateFilter() {
+        @Override
+        public String getFieldName() {
+            return "returned";
+        }
+
+        @Override
+        public Object getFieldValue() {
+            return false;
+        }
+    };
 }

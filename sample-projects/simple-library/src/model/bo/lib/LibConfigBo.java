@@ -17,6 +17,7 @@ public class LibConfigBo extends CCHibernateBo {
     private UtilConfigDao configDao;
 //</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc=" crud ">
     public synchronized LibConfig loadLibConfig() {
         return configDao.loadHash(LibConfig.class);
     }
@@ -24,4 +25,5 @@ public class LibConfigBo extends CCHibernateBo {
     public synchronized boolean saveConf(Object object) {
         return configDao.saveHash(object);
     }
+//</editor-fold>
 }

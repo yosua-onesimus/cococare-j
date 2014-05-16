@@ -99,12 +99,9 @@ public class LibReturningItem implements CCEntity {
     @CCFieldConfig(componentId = "bndReturning", accessible = Accessible.MANDATORY, maxLength = 12, uniqueKey = "code")
     private LibReturning returning;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndBorrowingItem", accessible = Accessible.MANDATORY, maxLength = 12, uniqueKey = "book.title")
+    @CCFieldConfig(label = "Book", componentId = "bndBorrowingItem", accessible = Accessible.MANDATORY, maxLength = 12, uniqueKey = "book.title", requestFocus = true)
     private LibBorrowingItem borrowingItem;
-    @Temporal(value = TemporalType.DATE)
-    @CCFieldConfig(componentId = "dtpDateReturn", accessible = Accessible.MANDATORY_READONLY, maxLength = 12)
-    private Date dateReturn = new Date();
-    @CCFieldConfig(label = "Fine", tooltiptext = "Borrowing Fine", componentId = "txtBorrowingFine", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMBER_FORMAT, maxLength = 24, visible = false)
+    @CCFieldConfig(label = "Fine", tooltiptext = "Borrowing Fine", componentId = "txtBorrowingFine", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMBER_FORMAT, maxLength = 24)
     private Double borrowingFine;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
@@ -122,14 +119,6 @@ public class LibReturningItem implements CCEntity {
 
     public void setBorrowingItem(LibBorrowingItem borrowingItem) {
         this.borrowingItem = borrowingItem;
-    }
-
-    public Date getDateReturn() {
-        return dateReturn;
-    }
-
-    public void setDateReturn(Date dateReturn) {
-        this.dateReturn = dateReturn;
     }
 
     public Double getBorrowingFine() {
