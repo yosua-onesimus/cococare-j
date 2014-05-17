@@ -13,6 +13,7 @@ import controller.form.lib.*;
 import controller.form.sample.PnlBook2ListCtrl;
 import controller.form.sample.PnlBook3ListCtrl;
 import static model.mdl.lib.LibraryLanguage.*;
+import model.obj.lib.LibReport;
 //</editor-fold>
 
 /**
@@ -29,6 +30,7 @@ public class LibraryMain extends CFSwingMain {
         APPL_CODE = "simple-library";
         APPL_NAME = "Simple Library";
         super._loadInternalSetting();
+        LibReport.setupReportFile();
     }
 
     @Override
@@ -52,6 +54,7 @@ public class LibraryMain extends CFSwingMain {
         uae.reg(Lib, Member, PnlMemberListCtrl.class);
         uae.reg(Lib, Borrowing, PnlBorrowingListCtrl.class);
         uae.reg(Lib, Returning, PnlReturningListCtrl.class);
+        uae.reg(Lib, Report, PnlReportListCtrl.class);
         return _initInitialDataUaeUtility(uae).compile();
     }
 
@@ -72,6 +75,8 @@ public class LibraryMain extends CFSwingMain {
         uae.addMenuParent(Transaction, "/resource/Transaction.png", null);
         uae.addMenuChild(Borrowing, "/resource/Borrowing.png", PnlBorrowingListCtrl.class);
         uae.addMenuChild(Returning, "/resource/Returning.png", PnlReturningListCtrl.class);
+        uae.addMenuParent(Report, "/resource/Report.png", null);
+        uae.addMenuChild(Report, "/resource/Report.png", PnlReportListCtrl.class);
         uae.addMenuParent("Other Flow Sample", "/resource/Sample.png", null);
         uae.addMenuChild("Dialog Flow Sample", "/resource/Sample.png", PnlBook2ListCtrl.class);
         uae.addMenuChild("Panel Flow Sample", "/resource/Sample.png", PnlBook3ListCtrl.class);
