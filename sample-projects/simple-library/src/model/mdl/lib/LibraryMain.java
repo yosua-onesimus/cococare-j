@@ -1,13 +1,17 @@
 package model.mdl.lib;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.framework.common.CFApplCtrl;
+import static cococare.common.CCLogic.isNotNull;
+import static cococare.database.CCLoginInfo.INSTANCE_getUserLogin;
 import static cococare.framework.common.CFApplCtrl.APPL_CODE;
+import cococare.framework.model.obj.util.UtilUser;
 import cococare.framework.swing.CFSwingMain;
 import static cococare.framework.swing.CFSwingMap.*;
 import cococare.framework.swing.CFSwingUae;
 import cococare.framework.swing.controller.form.util.PnlLoginCtrl;
 import controller.form.lib.*;
+import controller.form.sample.PnlBook2ListCtrl;
+import controller.form.sample.PnlBook3ListCtrl;
 import static model.mdl.lib.LibraryLanguage.*;
 //</editor-fold>
 
@@ -54,15 +58,23 @@ public class LibraryMain extends CFSwingMain {
     @Override
     protected void _applyUserConfig() {
         CFSwingUae uae = new CFSwingUae();
-        uae.initMenuBar(CFApplCtrl.MenuPosition.LEFT_SIDE.equals(MENU_POST) ? getMenubarV() : getMenubarH());
+        uae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? getMenubarV() : getMenubarH());
+        //screen that does not require privileged
         uae.addMenuRoot(PnlLoginCtrl.class);
-        uae.addMenuParent(Archive, null, null);
-        uae.addMenuChild(Config, null, PnlConfigCtrl.class);
-        uae.addMenuChild(Book, null, PnlBookListCtrl.class);
-        uae.addMenuChild(Member, null, PnlMemberListCtrl.class);
-        uae.addMenuParent(Transaction, null, null);
-        uae.addMenuChild(Borrowing, null, PnlBorrowingListCtrl.class);
-        uae.addMenuChild(Returning, null, PnlReturningListCtrl.class);
+        if (isNotNull(INSTANCE_getUserLogin()) && ((UtilUser) INSTANCE_getUserLogin()).getUserGroup().isRoot()) {
+            //login with root-root to access the following two examples
+            uae.addMenuRoot(PnlBook2ListCtrl.class, PnlBook3ListCtrl.class);
+        }
+        uae.addMenuParent(Archive, "/resource/Archive.png", null);
+        uae.addMenuChild(Config, "/resource/Config.png", PnlConfigCtrl.class);
+        uae.addMenuChild(Book, "/resource/Book.png", PnlBookListCtrl.class);
+        uae.addMenuChild(Member, "/resource/Member.png", PnlMemberListCtrl.class);
+        uae.addMenuParent(Transaction, "/resource/Transaction.png", null);
+        uae.addMenuChild(Borrowing, "/resource/Borrowing.png", PnlBorrowingListCtrl.class);
+        uae.addMenuChild(Returning, "/resource/Returning.png", PnlReturningListCtrl.class);
+        uae.addMenuParent("Other Flow Sample", "/resource/Sample.png", null);
+        uae.addMenuChild("Dialog Flow Sample", "/resource/Sample.png", PnlBook2ListCtrl.class);
+        uae.addMenuChild("Panel Flow Sample", "/resource/Sample.png", PnlBook3ListCtrl.class);
         uae.changeMenuSide();
         _applyUserConfigUaeUtility(uae).compileMenu();
         getMainScreen().validate();
