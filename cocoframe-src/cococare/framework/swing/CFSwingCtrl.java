@@ -26,6 +26,9 @@ import javax.swing.JPanel;
 // </editor-fold>
 
 /**
+ * CFSwingCtrl is an abstract class which functions as an view controller, in
+ * charge of controlling the flow of applications in specific view.
+ *
  * @author Yosua Onesimus
  * @since 13.03.17
  * @version 13.03.17
