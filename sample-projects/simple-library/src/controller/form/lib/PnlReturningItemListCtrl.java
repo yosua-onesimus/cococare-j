@@ -45,6 +45,11 @@ public class PnlReturningItemListCtrl extends CFSwingCtrl {
         txtTotalFine = (JTextField) parameter.get(callerCtrl.toString() + "txtTotalFine");
         parameter.put(toString() + "dtpDate", dtpDate);
         parameter.put(toString() + "bndMember", bndMember);
+    }
+
+    @Override
+    protected void _initTable() {
+        super._initTable();
         tblEntity.addEventListenerOnChange(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

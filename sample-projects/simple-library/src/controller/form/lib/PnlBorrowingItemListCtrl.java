@@ -41,6 +41,11 @@ public class PnlBorrowingItemListCtrl extends CFSwingCtrl {
         txtTotalItem = (JTextField) parameter.get(callerCtrl.toString() + "txtTotalItem");
         txtTotalCost = (JTextField) parameter.get(callerCtrl.toString() + "txtTotalCost");
         parameter.put(toString() + "dtpDate", dtpDate);
+    }
+
+    @Override
+    protected void _initTable() {
+        super._initTable();
         tblEntity.addEventListenerOnChange(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
