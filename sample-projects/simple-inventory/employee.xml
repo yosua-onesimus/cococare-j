@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<root>
-  <InvEmployee birthDate="06/06/1984" birthPlace="Tegal" code="E001" logSaveTimes="0" name="Onesimus"/>
-  <InvEmployee birthDate="16/06/1989" birthPlace="Jakarta" code="E002" logSaveTimes="0" name="Euodia"/>
-  <InvEmployee birthDate="27/09/1992" birthPlace="Ungaran" code="E003" logSaveTimes="0" name="Angela"/>
-  <InvEmployee birthDate="17/03/1984" birthPlace="Surakarta" code="E004" logSaveTimes="0" name="Heriati"/>
-</root>
