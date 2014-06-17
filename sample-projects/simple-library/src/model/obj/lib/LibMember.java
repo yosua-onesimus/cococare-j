@@ -109,7 +109,7 @@ public class LibMember implements CCEntity {
     @Column(length = 8)
     @CCFieldConfig(maxLength = 8, visible = false, visible2 = false)
     private String gender;
-    @Column()
+    @Column(length = 255)
     @CCFieldConfig(componentId = "txtAddress", visible = false)
     private String address;
     @Column(length = 16)
