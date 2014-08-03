@@ -28,4 +28,22 @@ public class UtilFilter {
             return false;
         }
     };
+
+    public static abstract class isIdNotInIds extends CCHibernateFilter {
+
+        @Override
+        public String getFieldName() {
+            return "id";
+        }
+
+        @Override
+        public String getExpression() {
+            return "id NOT IN (:ids)";
+        }
+
+        @Override
+        public String getParameterName() {
+            return "ids";
+        }
+    }
 }

@@ -11,10 +11,7 @@ import cococare.database.CCDatabaseConfig;
 import cococare.database.CCHibernateBo;
 import cococare.database.CCHibernateDao.Transaction;
 import static cococare.database.CCLoginInfo.*;
-import cococare.framework.model.dao.util.UtilPrivilegeDao;
-import cococare.framework.model.dao.util.UtilUserDao;
-import cococare.framework.model.dao.util.UtilUserIpDao;
-import cococare.framework.model.dao.util.UtilUserPrivilegeDao;
+import cococare.framework.model.dao.util.*;
 import cococare.framework.model.mdl.util.UtilityModule;
 import cococare.framework.model.obj.util.*;
 import java.util.ArrayList;
@@ -35,6 +32,7 @@ public class UtilUserBo extends CCHibernateBo {
     private UtilUserDao userDao;
     private UtilUserPrivilegeDao userPrivilegeDao;
     private UtilUserIpDao userIpDao;
+    private UtilUserAreaDao userAreaDao;
     //
     private UtilUser user;
     private List<UtilPrivilege> privileges;
@@ -42,6 +40,8 @@ public class UtilUserBo extends CCHibernateBo {
     private List<Boolean> privilegeSelecteds;
     private List<UtilUserIp> userIps;
     private List<UtilUserIp> removedUserIps;
+    private List<UtilUserArea> userAreas;
+    private List<UtilUserArea> removedUserAreas;
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" crud ">
@@ -65,6 +65,8 @@ public class UtilUserBo extends CCHibernateBo {
         //
         userIps = isNull(user.getId()) ? new ArrayList() : userIpDao.getListUnlimitedBy(user);
         removedUserIps = new ArrayList();
+        userAreas = isNull(user.getId()) ? new ArrayList() : userAreaDao.getListUnlimitedBy(user);
+        removedUserAreas = new ArrayList();
     }
 
     public synchronized List<UtilPrivilege> getPrivileges() {
@@ -88,7 +90,7 @@ public class UtilUserBo extends CCHibernateBo {
     }
 
     public synchronized void addUserIp(String ip) {
-        UtilUserIp userIp = userIpDao.getBy(user, ip);
+        UtilUserIp userIp = isNull(user.getId()) ? null : userIpDao.getBy(user, ip);
         if (isNull(userIp)) {
             userIp = new UtilUserIp();
             userIp.setUser(user);
@@ -120,6 +122,43 @@ public class UtilUserBo extends CCHibernateBo {
         }
     }
 
+    public synchronized List<UtilUserArea> getUserAreas() {
+        return userAreas;
+    }
+
+    public synchronized void addUserArea(UtilArea area) {
+        UtilUserArea userArea = isNull(user.getId()) ? null : userAreaDao.getBy(user, area);
+        if (isNull(userArea)) {
+            userArea = new UtilUserArea();
+            userArea.setUser(user);
+            userArea.setArea(area);
+        } else {
+            for (UtilUserArea old : removedUserAreas) {
+                if (old.getArea().getId().equals(area.getId())) {
+                    removedUserAreas.remove(old);
+                    break;
+                }
+            }
+        }
+        boolean isNew = true;
+        for (UtilUserArea old : userAreas) {
+            if (old.getArea().getId().equals(area.getId())) {
+                isNew = false;
+                break;
+            }
+        }
+        if (isNew) {
+            userAreas.add(userArea);
+        }
+    }
+
+    public synchronized void removeUserArea(int index) {
+        UtilUserArea userArea = userAreas.remove(index);
+        if (isNotNull(userArea.getId())) {
+            removedUserAreas.add(userArea);
+        }
+    }
+
     public synchronized boolean saveOrUpdate() {
         Transaction transaction = userDao.newTransaction();
         //
@@ -137,7 +176,9 @@ public class UtilUserBo extends CCHibernateBo {
         }
         //
         transaction.saveOrUpdate(userIps).
-                delete(removedUserIps);
+                delete(removedUserIps).
+                saveOrUpdate(userAreas).
+                delete(removedUserAreas);
         //
         return transaction.execute();
     }

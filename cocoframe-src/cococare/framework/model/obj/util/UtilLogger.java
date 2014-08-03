@@ -2,6 +2,7 @@ package cococare.framework.model.obj.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
+import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import cococare.framework.common.CFApplCtrl;
 import java.util.Date;
@@ -15,6 +16,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "util_loggers")
+@CCTypeConfig(label = "Logger", uniqueKey = "id")
 public class UtilLogger implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">

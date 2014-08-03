@@ -1,6 +1,7 @@
 package cococare.framework.swing.controller.form.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCClass.getLabel;
 import static cococare.common.CCLogic.isNotNull;
 import cococare.framework.model.obj.util.UtilConfig;
 import cococare.framework.swing.CFSwingCtrl;
@@ -36,5 +37,10 @@ public class PnlParameterCtrl extends CFSwingCtrl {
     protected void _initEditor() {
         super._initEditor();
         edtEntity.generateDefaultEditor(pnlGenerator);
+    }
+
+    @Override
+    protected String _getTabTitle() {
+        return getLabel(_getEntity()) + ": " + super._getTabTitle();
     }
 }

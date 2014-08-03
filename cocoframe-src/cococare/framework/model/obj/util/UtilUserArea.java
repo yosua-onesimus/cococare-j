@@ -1,14 +1,12 @@
-package cococare.framework.model.obj.note;
+package cococare.framework.model.obj.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
-import cococare.common.CCFieldConfig.OnDelete;
 import cococare.common.CCTypeConfig;
-import cococare.common.CCTypeConfig.AuditType;
 import cococare.database.CCEntity;
+import cococare.framework.common.CFApplCtrl;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.*;
 //</editor-fold>
 
@@ -18,9 +16,9 @@ import javax.persistence.*;
  * @version 13.03.17
  */
 @Entity
-@Table(name = "note_objectives")
-@CCTypeConfig(label = "Objective", uniqueKey = "name", customizable = true, parameter = true, auditType = AuditType.AUTO_APPROVED)
-public class NoteObjective implements CCEntity {
+@Table(name = "util_user_areas")
+@CCTypeConfig(label = "Area", uniqueKey = "@area.name")
+public class UtilUserArea implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -97,65 +95,38 @@ public class NoteObjective implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "O000", requestFocus = true, unique = true)
-    private String code;
     @Column(length = 32)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
-    private String name;
-    @Column(length = 255)
-    @CCFieldConfig(componentId = "txtDescription")
-    private String description;
-    @CCFieldConfig(componentId = "cmbStatus", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.note.NoteEnum$ObjectiveStatus", optionReflectKey = "status", visible = false)
-    private Integer statusIndex;
-    @Column(length = 16)
-    @CCFieldConfig(maxLength = 16, visible2 = false)
-    private String status;
-//<editor-fold defaultstate="collapsed" desc=" cascade ">
-    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "objective")
-    @CCFieldConfig(onDelete = OnDelete.CASCADE, visible2 = false)
-    private List<NoteTracker> trackers;
-//</editor-fold>
+    private String appl = CFApplCtrl.APPL_CODE;
+    @ManyToOne
+    @CCFieldConfig(visible = false)
+    private UtilUser user;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndArea", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
+    private UtilArea area;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public String getCode() {
-        return code;
+    public String getAppl() {
+        return appl;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setAppl(String appl) {
+        this.appl = appl;
     }
 
-    public String getName() {
-        return name;
+    public UtilUser getUser() {
+        return user;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUser(UtilUser user) {
+        this.user = user;
     }
 
-    public String getDescription() {
-        return description;
+    public UtilArea getArea() {
+        return area;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getStatusIndex() {
-        return statusIndex;
-    }
-
-    public void setStatusIndex(Integer statusIndex) {
-        this.statusIndex = statusIndex;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setArea(UtilArea area) {
+        this.area = area;
     }
 //</editor-fold>
 }

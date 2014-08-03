@@ -4,6 +4,7 @@ package cococare.framework.model.obj.note;
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCTypeConfig;
+import cococare.common.CCTypeConfig.AuditType;
 import cococare.database.CCEntity;
 import java.util.Date;
 import javax.persistence.*;
@@ -16,7 +17,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "note_bookmarks")
-@CCTypeConfig(label = "Bookmark", uniqueKey = "name", customizable = true, parameter = true)
+@CCTypeConfig(label = "Bookmark", uniqueKey = "name", customizable = true, parameter = true, auditType = AuditType.AUTO_APPROVED)
 public class NoteBookmark implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">

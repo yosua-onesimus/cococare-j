@@ -51,7 +51,7 @@ public class PnlLoggerListCtrl extends CFSwingCtrl {
         tblEntity.addField(0, new CCCustomField() {
             @Override
             public String getLabel() {
-                return "Created On";
+                return "Date Time";
             }
 
             @Override

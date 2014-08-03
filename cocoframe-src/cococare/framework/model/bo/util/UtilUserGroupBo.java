@@ -26,9 +26,11 @@ public class UtilUserGroupBo extends CCHibernateBo {
     private UtilUserGroupDao userGroupDao;
     private UtilUserGroupPrivilegeDao userGroupPrivilegeDao;
     private UtilUserGroupIpDao userGroupIpDao;
+    private UtilUserGroupAreaDao userGroupAreaDao;
     private UtilUserDao userDao;
     private UtilUserPrivilegeDao userPrivilegeDao;
     private UtilUserIpDao userIpDao;
+    private UtilUserAreaDao userAreaDao;
     //
     private UtilUserGroup userGroup;
     private List<UtilPrivilege> privileges;
@@ -36,6 +38,8 @@ public class UtilUserGroupBo extends CCHibernateBo {
     private List<Boolean> privilegeSelecteds;
     private List<UtilUserGroupIp> userGroupIps;
     private List<UtilUserGroupIp> removedUserGroupIps;
+    private List<UtilUserGroupArea> userGroupAreas;
+    private List<UtilUserGroupArea> removedUserGroupAreas;
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" crud ">
@@ -59,6 +63,8 @@ public class UtilUserGroupBo extends CCHibernateBo {
         //
         userGroupIps = isNull(userGroup.getId()) ? new ArrayList() : userGroupIpDao.getListUnlimitedBy(userGroup);
         removedUserGroupIps = new ArrayList();
+        userGroupAreas = isNull(userGroup.getId()) ? new ArrayList() : userGroupAreaDao.getListUnlimitedBy(userGroup);
+        removedUserGroupAreas = new ArrayList();
     }
 
     public synchronized List<UtilPrivilege> getPrivileges() {
@@ -74,7 +80,7 @@ public class UtilUserGroupBo extends CCHibernateBo {
     }
 
     public synchronized void addUserGroupIp(String ip) {
-        UtilUserGroupIp userGroupIp = userGroupIpDao.getBy(userGroup, ip);
+        UtilUserGroupIp userGroupIp = isNull(userGroup.getId()) ? null : userGroupIpDao.getBy(userGroup, ip);
         if (isNull(userGroupIp)) {
             userGroupIp = new UtilUserGroupIp();
             userGroupIp.setUserGroup(userGroup);
@@ -106,6 +112,43 @@ public class UtilUserGroupBo extends CCHibernateBo {
         }
     }
 
+    public synchronized List<UtilUserGroupArea> getUserGroupAreas() {
+        return userGroupAreas;
+    }
+
+    public synchronized void addUserGroupArea(UtilArea area) {
+        UtilUserGroupArea userGroupArea = isNull(userGroup.getId()) ? null : userGroupAreaDao.getBy(userGroup, area);
+        if (isNull(userGroupArea)) {
+            userGroupArea = new UtilUserGroupArea();
+            userGroupArea.setUserGroup(userGroup);
+            userGroupArea.setArea(area);
+        } else {
+            for (UtilUserGroupArea old : removedUserGroupAreas) {
+                if (old.getArea().getId().equals(area.getId())) {
+                    removedUserGroupAreas.remove(old);
+                    break;
+                }
+            }
+        }
+        boolean isNew = true;
+        for (UtilUserGroupArea old : userGroupAreas) {
+            if (old.getArea().getId().equals(area.getId())) {
+                isNew = false;
+                break;
+            }
+        }
+        if (isNew) {
+            userGroupAreas.add(userGroupArea);
+        }
+    }
+
+    public synchronized void removeUserGroupArea(int index) {
+        UtilUserGroupArea userGroupArea = userGroupAreas.remove(index);
+        if (isNotNull(userGroupArea.getId())) {
+            removedUserGroupAreas.add(userGroupArea);
+        }
+    }
+
     public synchronized boolean saveOrUpdate() {
         Transaction transaction = userGroupDao.newTransaction();
         //
@@ -123,7 +166,9 @@ public class UtilUserGroupBo extends CCHibernateBo {
         }
         //
         transaction.saveOrUpdate(userGroupIps).
-                delete(removedUserGroupIps);
+                delete(removedUserGroupIps).
+                saveOrUpdate(userGroupAreas).
+                delete(removedUserGroupAreas);
         //
         if (isNotNull(userGroup.getId()) && userGroup.isApplyToUser()) {
             for (UtilUser user : userDao.getListUnlimitedBy(userGroup)) {
@@ -142,11 +187,21 @@ public class UtilUserGroupBo extends CCHibernateBo {
                 //
                 for (UtilUserGroupIp userGroupIp : userGroupIps) {
                     UtilUserIp userIp = userIpDao.getBy(user, userGroupIp.getIp());
-                    if (isNotNull(userIp)) {
+                    if (isNull(userIp)) {
                         userIp = new UtilUserIp();
                         userIp.setUser(user);
                         userIp.setIp(userGroupIp.getIp());
                         transaction.saveOrUpdate(userIp);
+                    }
+                }
+                //
+                for (UtilUserGroupArea userGroupArea : userGroupAreas) {
+                    UtilUserArea userArea = userAreaDao.getBy(user, userGroupArea.getArea());
+                    if (isNull(userArea)) {
+                        userArea = new UtilUserArea();
+                        userArea.setUser(user);
+                        userArea.setArea(userGroupArea.getArea());
+                        transaction.saveOrUpdate(userArea);
                     }
                 }
             }

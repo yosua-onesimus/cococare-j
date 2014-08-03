@@ -117,22 +117,22 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
         if (_hasEntity() && isNotNull(swingView.getTblEntity())) {
             tblEntity = new CCTable(swingView.getTblEntity(), _getEntity());
             swingView.getTblEntity().requestFocusInWindow();
-        }
-        //parent-childs-screen
-        if (isNotNull(parameter.get(toString() + parentValue))) {
-            final Object dummy = this;
-            tblEntity.setVisibleField(false, parameter.get(toString() + parentField).toString());
-            tblEntity.setHqlFilters(new CCHibernateFilter() {
-                @Override
-                public String getFieldName() {
-                    return parameter.get(dummy.toString() + parentField).toString();
-                }
+            //parent-childs-screen
+            if (isNotNull(parameter.get(toString() + parentValue))) {
+                final Object dummy = this;
+                tblEntity.setVisibleField(false, parameter.get(toString() + parentField).toString());
+                tblEntity.setHqlFilters(new CCHibernateFilter() {
+                    @Override
+                    public String getFieldName() {
+                        return parameter.get(dummy.toString() + parentField).toString();
+                    }
 
-                @Override
-                public Object getFieldValue() {
-                    return parameter.get(dummy.toString() + parentValue);
-                }
-            });
+                    @Override
+                    public Object getFieldValue() {
+                        return parameter.get(dummy.toString() + parentValue);
+                    }
+                });
+            }
         }
     }
 

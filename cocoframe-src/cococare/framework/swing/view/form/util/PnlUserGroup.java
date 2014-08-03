@@ -1,5 +1,9 @@
 package cococare.framework.swing.view.form.util;
 
+//<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.common.CCLanguage;
+//</editor-fold>
+
 /**
  * @author Yosua Onesimus
  * @since 13.03.17
@@ -23,9 +27,24 @@ public class PnlUserGroup extends javax.swing.JPanel {
         xName = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         chkApplyToUser = new javax.swing.JCheckBox();
-        separator = new javax.swing.JSeparator();
+        tab = new javax.swing.JTabbedPane();
+        pnlPrivilege = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         tblPrivilege = new javax.swing.JTable();
+        pnlIp = new javax.swing.JPanel();
+        xIp = new javax.swing.JLabel();
+        txtIp = new javax.swing.JTextField();
+        btnIpAdd = new cococare.swing.component.CCButton();
+        btnIpRemove = new cococare.swing.component.CCButton();
+        scrIp = new javax.swing.JScrollPane();
+        tblIp = new javax.swing.JTable();
+        pnlArea = new javax.swing.JPanel();
+        xArea = new javax.swing.JLabel();
+        bndArea = new cococare.swing.component.CCBandBox();
+        btnAreaAdd = new cococare.swing.component.CCButton();
+        btnAreaRemove = new cococare.swing.component.CCButton();
+        scrArea = new javax.swing.JScrollPane();
+        tblArea = new javax.swing.JTable();
 
         setMinimumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(600, 400));
@@ -47,10 +66,105 @@ public class PnlUserGroup extends javax.swing.JPanel {
         chkApplyToUser.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         chkApplyToUser.setText("Apply To User");
 
-        separator.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-
         tblPrivilege.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         scrollPane.setViewportView(tblPrivilege);
+
+        javax.swing.GroupLayout pnlPrivilegeLayout = new javax.swing.GroupLayout(pnlPrivilege);
+        pnlPrivilege.setLayout(pnlPrivilegeLayout);
+        pnlPrivilegeLayout.setHorizontalGroup(
+            pnlPrivilegeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+        );
+        pnlPrivilegeLayout.setVerticalGroup(
+            pnlPrivilegeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+        );
+
+        tab.addTab(CCLanguage.turn(CCLanguage.Privilege), pnlPrivilege);
+
+        xIp.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xIp.setText("IP");
+
+        txtIp.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        btnIpAdd.setType(cococare.swing.component.CCButton.Type.ADD);
+
+        btnIpRemove.setType(cococare.swing.component.CCButton.Type.REMOVE);
+
+        tblIp.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        scrIp.setViewportView(tblIp);
+
+        javax.swing.GroupLayout pnlIpLayout = new javax.swing.GroupLayout(pnlIp);
+        pnlIp.setLayout(pnlIpLayout);
+        pnlIpLayout.setHorizontalGroup(
+            pnlIpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlIpLayout.createSequentialGroup()
+                .addComponent(xIp, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtIp, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnIpAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnIpRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(scrIp)
+        );
+        pnlIpLayout.setVerticalGroup(
+            pnlIpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlIpLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlIpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xIp, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIp, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIpAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIpRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addComponent(scrIp, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
+        );
+
+        tab.addTab(CCLanguage.turn(CCLanguage.IP), pnlIp);
+
+        xArea.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xArea.setText("Area");
+
+        bndArea.setVisibleClearButton(false);
+
+        btnAreaAdd.setType(cococare.swing.component.CCButton.Type.ADD);
+
+        btnAreaRemove.setType(cococare.swing.component.CCButton.Type.REMOVE);
+
+        tblArea.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        scrArea.setViewportView(tblArea);
+
+        javax.swing.GroupLayout pnlAreaLayout = new javax.swing.GroupLayout(pnlArea);
+        pnlArea.setLayout(pnlAreaLayout);
+        pnlAreaLayout.setHorizontalGroup(
+            pnlAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAreaLayout.createSequentialGroup()
+                .addComponent(xArea, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(bndArea, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnAreaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnAreaRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(scrArea)
+        );
+        pnlAreaLayout.setVerticalGroup(
+            pnlAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAreaLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xArea, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bndArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAreaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAreaRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addComponent(scrArea, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
+        );
+
+        tab.addTab(CCLanguage.turn(CCLanguage.Area), pnlArea);
 
         javax.swing.GroupLayout pnlEditorLayout = new javax.swing.GroupLayout(pnlEditor);
         pnlEditor.setLayout(pnlEditorLayout);
@@ -71,8 +185,7 @@ public class PnlUserGroup extends javax.swing.JPanel {
             .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(chkApplyToUser, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(tab)
         );
         pnlEditorLayout.setVerticalGroup(
             pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,10 +204,8 @@ public class PnlUserGroup extends javax.swing.JPanel {
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addComponent(chkApplyToUser, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addComponent(tab))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -109,16 +220,31 @@ public class PnlUserGroup extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private cococare.swing.component.CCBandBox bndArea;
+    private cococare.swing.component.CCButton btnAreaAdd;
+    private cococare.swing.component.CCButton btnAreaRemove;
     private cococare.swing.component.CCButton btnClose;
+    private cococare.swing.component.CCButton btnIpAdd;
+    private cococare.swing.component.CCButton btnIpRemove;
     private cococare.swing.component.CCButton btnSave;
     private javax.swing.JCheckBox chkApplyToUser;
+    private javax.swing.JPanel pnlArea;
     private javax.swing.JPanel pnlEditor;
+    private javax.swing.JPanel pnlIp;
+    private javax.swing.JPanel pnlPrivilege;
+    private javax.swing.JScrollPane scrArea;
+    private javax.swing.JScrollPane scrIp;
     private javax.swing.JScrollPane scrollPane;
-    private javax.swing.JSeparator separator;
+    private javax.swing.JTabbedPane tab;
+    private javax.swing.JTable tblArea;
+    private javax.swing.JTable tblIp;
     private javax.swing.JTable tblPrivilege;
     private javax.swing.JTextField txtCode;
+    private javax.swing.JTextField txtIp;
     private javax.swing.JTextField txtName;
+    private javax.swing.JLabel xArea;
     private javax.swing.JLabel xCode;
+    private javax.swing.JLabel xIp;
     private javax.swing.JLabel xName;
     // End of variables declaration//GEN-END:variables
 }

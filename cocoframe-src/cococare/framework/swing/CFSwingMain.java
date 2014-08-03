@@ -67,6 +67,9 @@ public abstract class CFSwingMain extends CFApplCtrl {
         if (!HIBERNATE.getParameterClasses().isEmpty()) {
             applUae.reg(Utility, Parameter, PnlParameterListCtrl.class);
         }
+        if (!HIBERNATE.getAuditableClasses().isEmpty()) {
+            applUae.reg(Utility, Audit_Trail, PnlAuditTrailListCtrl.class);
+        }
         applUae.reg(Utility, Logger_History, PnlLoggerListCtrl.class);
         if (!HIBERNATE.getCustomizableClasses().isEmpty()) {
             applUae.reg(Utility, Screen_Setting, PnlScreenSettingListCtrl.class);
@@ -105,6 +108,9 @@ public abstract class CFSwingMain extends CFApplCtrl {
         applUae.addMenuSeparator();
         if (!HIBERNATE.getParameterClasses().isEmpty()) {
             applUae.addMenuChild(Parameter, null, PnlParameterListCtrl.class);
+        }
+        if (!HIBERNATE.getAuditableClasses().isEmpty()) {
+            applUae.addMenuChild(Audit_Trail, null, PnlAuditTrailListCtrl.class);
         }
         applUae.addMenuChild(Logger_History, null, PnlLoggerListCtrl.class);
         applUae.addMenuSeparator();

@@ -3,6 +3,7 @@ package cococare.framework.model.obj.util;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import cococare.framework.common.CFApplCtrl;
 import java.util.Date;
@@ -16,6 +17,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "util_user_group_privileges")
+@CCTypeConfig(label = "Privilege", uniqueKey = "@privilege.code-@privilege.name")
 public class UtilUserGroupPrivilege implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">

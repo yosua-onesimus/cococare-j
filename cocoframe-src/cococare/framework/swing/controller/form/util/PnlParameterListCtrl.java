@@ -2,7 +2,7 @@ package cococare.framework.swing.controller.form.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCAccessibleListener;
-import static cococare.common.CCClass.getCCTypeConfig;
+import static cococare.common.CCClass.getLabel;
 import static cococare.common.CCLogic.isNotNull;
 import cococare.database.CCEntityModule;
 import cococare.framework.model.obj.util.UtilConfig;
@@ -42,7 +42,7 @@ public class PnlParameterListCtrl extends CFSwingCtrl {
     protected void _initComponent() {
         super._initComponent();
         for (Class clazz : CCEntityModule.INSTANCE.getCCHibernate().getParameterClasses()) {
-            cmbEntity.addItem(getCCTypeConfig(clazz).label());
+            cmbEntity.addItem(getLabel(clazz));
         }
     }
 

@@ -194,7 +194,7 @@ public class UtilPerson implements CCEntity {
     @CCFieldConfig(componentId = "txtWork", maxLength = 16, visible = false)
     private String work;
     //----------------------------------------------------------------------------------------------
-    @Column()
+    @Column(length = 255)
     @CCFieldConfig(componentId = "txtAddress", visible = false)
     private String address;
     @Column(length = 16)
@@ -229,7 +229,7 @@ public class UtilPerson implements CCEntity {
     @Column(length = Integer.MAX_VALUE)
     @CCFieldConfig(componentId = "attPhoto", type = Type.THUMB_FILE, optionReflectKey = "photoName", visible = false)
     private byte[] photo;
-    @Column()
+    @Column(length = 255)
     @CCFieldConfig(visible = false, visible2 = false)
     private String photoName;
     //selfEvident-----------------------------------------------------------------------------------

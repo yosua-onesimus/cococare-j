@@ -5,6 +5,7 @@ import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.OnDelete;
 import cococare.common.CCTypeConfig;
+import cococare.common.CCTypeConfig.AuditType;
 import cococare.database.CCEntity;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +19,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "note_trackers")
-@CCTypeConfig(label = "Tracker", uniqueKey = "name", customizable = true, parameter = true)
+@CCTypeConfig(label = "Tracker", uniqueKey = "name", customizable = true, parameter = true, auditType = AuditType.AUTO_APPROVED)
 public class NoteTracker implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">

@@ -5,6 +5,7 @@ import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.OnDelete;
 import static cococare.common.CCFormat.getBoolean;
 import static cococare.common.CCLogic.isNotNullAndNotEmpty;
+import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import cococare.framework.common.CFApplCtrl;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "util_privileges")
+@CCTypeConfig(label = "Privilege", uniqueKey = "@code-@name")
 public class UtilPrivilege implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">

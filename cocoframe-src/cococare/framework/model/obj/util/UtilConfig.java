@@ -1,6 +1,7 @@
 package cococare.framework.model.obj.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.common.CCTypeConfig;
 import cococare.database.CCEntityHash;
 import cococare.framework.common.CFApplCtrl;
 import java.util.Date;
@@ -14,6 +15,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "util_configs")
+@CCTypeConfig(label = "Config", uniqueKey = "key")
 public class UtilConfig implements CCEntityHash {
 
 //<editor-fold defaultstate="collapsed" desc=" entity hash base ">

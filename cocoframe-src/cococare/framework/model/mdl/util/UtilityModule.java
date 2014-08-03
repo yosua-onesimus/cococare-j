@@ -26,14 +26,17 @@ public class UtilityModule extends CCHibernateModule {
         hibernate.addAnnotatedClass(UtilConfig.class);
         hibernate.addAnnotatedClass(UtilLogger.class);
         hibernate.addAnnotatedClass(UtilPrivilege.class);
+        hibernate.addAnnotatedClass(UtilArea.class);
         //
         hibernate.addAnnotatedClass(UtilUserGroup.class);
-        hibernate.addAnnotatedClass(UtilUserGroupIp.class);
         hibernate.addAnnotatedClass(UtilUserGroupPrivilege.class);
+        hibernate.addAnnotatedClass(UtilUserGroupIp.class);
+        hibernate.addAnnotatedClass(UtilUserGroupArea.class);
         //
         hibernate.addAnnotatedClass(UtilUser.class);
-        hibernate.addAnnotatedClass(UtilUserIp.class);
         hibernate.addAnnotatedClass(UtilUserPrivilege.class);
+        hibernate.addAnnotatedClass(UtilUserIp.class);
+        hibernate.addAnnotatedClass(UtilUserArea.class);
         //
         hibernate.addAnnotatedClass(UtilPerson.class);
         //
