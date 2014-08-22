@@ -2,10 +2,8 @@ package model.mdl.bljr;
 
 import cococare.common.CCLanguage;
 import cococare.database.CCLoginInfo;
+import cococare.framework.common.CFApplUae;
 import cococare.framework.swing.CFSwingMain;
-import cococare.framework.swing.CFSwingMap;
-import cococare.framework.swing.CFSwingUae;
-import cococare.framework.swing.controller.form.util.PnlLoginCtrl;
 import controller.form.bljr.PnlEmployeeListCtrl;
 
 public class BljrMain extends CFSwingMain {
@@ -23,27 +21,19 @@ public class BljrMain extends CFSwingMain {
     }
 
     @Override
-    public boolean initInitialData() {
-        CFSwingUae uae = new CFSwingUae();
+    protected void _initInitialUaeBody(CFApplUae uae) {
         uae.reg("Bljr", "Employee", PnlEmployeeListCtrl.class);
-        return _initInitialDataUaeUtility(uae).compile();
     }
 
     @Override
-    protected void _applyUserConfig() {
-        CFSwingUae uae = new CFSwingUae();
-        uae.initMenuBar(CFSwingMap.getMenubarV());
-        uae.addMenuRoot(PnlLoginCtrl.class);
+    protected void _applyUserConfigUaeBody(CFApplUae uae) {
         uae.addMenuParent(CCLanguage.Archive, null, null);
         uae.addMenuChild("Employee", null, PnlEmployeeListCtrl.class);
-        uae.changeMenuSide();
-        _applyUserConfigUaeUtility(uae).compileMenu();
-        CFSwingMap.getMainScreen().validate();
     }
 
     @Override
     public void showScreen() {
-        //super.showScreen();//with login
+//        super.showScreen();//with login
         _applyUserConfig();//without login
     }
 

@@ -1,10 +1,8 @@
 package model.mdl.fb;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.framework.common.CFApplUae;
 import cococare.framework.swing.CFSwingMain;
-import cococare.framework.swing.CFSwingMap;
-import cococare.framework.swing.CFSwingUae;
-import cococare.framework.swing.controller.form.util.PnlLoginCtrl;
 import controller.form.fb.PnlActionListCtrl;
 import controller.form.fb.PnlActorListCtrl;
 import controller.form.fb.PnlClassListCtrl;
@@ -27,26 +25,18 @@ public class FableMain extends CFSwingMain {
     }
 
     @Override
-    public boolean initInitialData() {
-        CFSwingUae uae = new CFSwingUae();
+    protected void _initInitialUaeBody(CFApplUae uae) {
         uae.reg("FB", "Action", PnlActionListCtrl.class);
         uae.reg("FB", "Class", PnlClassListCtrl.class);
         uae.reg("FB", "Actor", PnlActorListCtrl.class);
-        return _initInitialDataUaeUtility(uae).compile();
     }
 
     @Override
-    protected void _applyUserConfig() {
-        CFSwingUae uae = new CFSwingUae();
-        uae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? CFSwingMap.getMenubarV() : CFSwingMap.getMenubarH());
-        uae.addMenuRoot(PnlLoginCtrl.class);
+    protected void _applyUserConfigUaeBody(CFApplUae uae) {
         uae.addMenuParent("FaBle Engine", null, null);
         uae.addMenuChild("Action", null, PnlActionListCtrl.class);
         uae.addMenuChild("Class", null, PnlClassListCtrl.class);
         uae.addMenuChild("Actor", null, PnlActorListCtrl.class);
-        uae.changeMenuSide();
-        _applyUserConfigUaeUtility(uae).compileMenu();
-        CFSwingMap.getMainScreen().validate();
     }
 
     @Override

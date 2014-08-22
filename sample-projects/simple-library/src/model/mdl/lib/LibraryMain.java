@@ -4,11 +4,9 @@ package model.mdl.lib;
 import static cococare.common.CCLogic.isNotNull;
 import static cococare.database.CCLoginInfo.INSTANCE_getUserLogin;
 import static cococare.framework.common.CFApplCtrl.APPL_CODE;
+import cococare.framework.common.CFApplUae;
 import cococare.framework.model.obj.util.UtilUser;
 import cococare.framework.swing.CFSwingMain;
-import static cococare.framework.swing.CFSwingMap.*;
-import cococare.framework.swing.CFSwingUae;
-import cococare.framework.swing.controller.form.util.PnlLoginCtrl;
 import controller.form.lib.*;
 import controller.form.sample.PnlBook2ListCtrl;
 import controller.form.sample.PnlBook3ListCtrl;
@@ -46,24 +44,17 @@ public class LibraryMain extends CFSwingMain {
     }
 
     @Override
-    public boolean initInitialData() {
-        super.initInitialData();
-        CFSwingUae uae = new CFSwingUae();
+    protected void _initInitialUaeBody(CFApplUae uae) {
         uae.reg(Lib, Config, PnlConfigCtrl.class);
         uae.reg(Lib, Book, PnlBookListCtrl.class);
         uae.reg(Lib, Member, PnlMemberListCtrl.class);
         uae.reg(Lib, Borrowing, PnlBorrowingListCtrl.class);
         uae.reg(Lib, Returning, PnlReturningListCtrl.class);
         uae.reg(Lib, Report, PnlReportListCtrl.class);
-        return _initInitialDataUaeUtility(uae).compile();
     }
 
     @Override
-    protected void _applyUserConfig() {
-        CFSwingUae uae = new CFSwingUae();
-        uae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? getMenubarV() : getMenubarH());
-        //screen that does not require privileged
-        uae.addMenuRoot(PnlLoginCtrl.class);
+    protected void _applyUserConfigUaeBody(CFApplUae uae) {
         if (isNotNull(INSTANCE_getUserLogin()) && ((UtilUser) INSTANCE_getUserLogin()).getUserGroup().isRoot()) {
             //login with root-root to access the following two examples
             uae.addMenuRoot(PnlBook2ListCtrl.class, PnlBook3ListCtrl.class);
@@ -80,9 +71,6 @@ public class LibraryMain extends CFSwingMain {
         uae.addMenuParent("Other Flow Sample", "/resource/Sample.png", null);
         uae.addMenuChild("Dialog Flow Sample", "/resource/Sample.png", PnlBook2ListCtrl.class);
         uae.addMenuChild("Panel Flow Sample", "/resource/Sample.png", PnlBook3ListCtrl.class);
-        uae.changeMenuSide();
-        _applyUserConfigUaeUtility(uae).compileMenu();
-        getMainScreen().validate();
     }
 
     public static void main(String[] args) {
