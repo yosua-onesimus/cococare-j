@@ -164,21 +164,30 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             setValue(objEntity, parameter.get(toString() + parentField).toString(), parameter.get(toString() + parentValue));
         }
     }
+//</editor-fold>
 
     @Override
     protected void _initAccessible() {
-        if (isNotNull(getControllerForm(getClass())) && !INSTANCE_isCompAccessible(getControllerForm(getClass()).getName() + "." + btnEdit)) {
-            addAccessibleListener(swingView.getBtnEdit(), CCAccessibleListener.nonAccessible);
+        if (_hasTblEntity()) {
+            addAccessibleListener(swingView.getBtnAdd(), accessibleIfEditable);
+            addAccessibleListener(swingView.getBtnEdit(), accessibleIfEditable);
+            addAccessibleListener(swingView.getBtnDelete(), accessibleIfEditable);
+        } else if (_hasEdtEntity()) {
+            if (isNotNull(getControllerForm(getClass())) && !INSTANCE_isCompAccessible(getControllerForm(getClass()).getName() + "." + btnEdit)) {
+                addAccessibleListener(swingView.getBtnEdit(), CCAccessibleListener.nonAccessible);
+            }
+            addAccessibleListener(swingView.getBtnEdit(), accessibleIfReadonly);
+            addAccessibleListener(swingView.getBtnSave(), accessibleIfEditable);
+            addAccessibleListener(swingView.getBtnSaveAndNew(), accessibleIfEditable);
+            addAccessibleListener(swingView.getBtnCancel(), accessibleIfEditable);
         }
-        addAccessibleListener(swingView.getBtnEdit(), accessibleIfReadonly);
-        addAccessibleListener(swingView.getBtnSave(), accessibleIfEditable);
-        addAccessibleListener(swingView.getBtnSaveAndNew(), accessibleIfEditable);
-        addAccessibleListener(swingView.getBtnCancel(), accessibleIfEditable);
     }
 
     @Override
     protected void _doUpdateAccessible() {
-        if (_hasEdtEntity()) {
+        if (_hasTblEntity()) {
+            applyAccessible(swingView.getBtnAdd(), swingView.getBtnEdit(), swingView.getBtnDelete());
+        } else if (_hasEdtEntity()) {
             applyAccessible(swingView.getBtnEdit(), swingView.getBtnSave(), swingView.getBtnSaveAndNew(), swingView.getBtnCancel());
             if (readonly) {
                 edtEntity.setAccessible2Readonly();
@@ -187,7 +196,6 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             }
         }
     }
-//</editor-fold>
 
     @Override
     protected void _initListener() {

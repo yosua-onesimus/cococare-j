@@ -47,7 +47,7 @@ public class PnlDatabaseSettingCtrl extends CFSwingCtrl {
         super._initListener();
         addActionListener(cmbDriver, new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent actionEvent) {
                 _doCmbDriver();
             }
         });

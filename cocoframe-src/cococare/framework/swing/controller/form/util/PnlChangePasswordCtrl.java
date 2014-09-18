@@ -1,6 +1,7 @@
 package cococare.framework.swing.controller.form.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCMessage.logp;
 import static cococare.database.CCLoginInfo.INSTANCE_getUserLogin;
 import cococare.framework.model.bo.util.UtilUserBo;
 import cococare.framework.model.obj.util.UtilUser;
@@ -30,9 +31,13 @@ public class PnlChangePasswordCtrl extends CFSwingCtrl {
 
     @Override
     protected void _initObjEntity() {
-        objEntity = INSTANCE_getUserLogin();
-        ((UtilUser) objEntity).setNewPassword(null);
-        ((UtilUser) objEntity).setRetypePassword(null);
+        try {
+            objEntity = INSTANCE_getUserLogin();
+            ((UtilUser) objEntity).setNewPassword(null);
+            ((UtilUser) objEntity).setRetypePassword(null);
+        } catch (Exception exception) {
+            logp(exception);
+        }
     }
 
     @Override

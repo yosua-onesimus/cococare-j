@@ -96,6 +96,11 @@ public class PnlUserCtrl extends CFSwingCtrl {
                 checkBox.addActionListener(tblPrivilege.getStopCellEditingListener());
                 return checkBox;
             }
+
+            @Override
+            public Integer getColumnWidth() {
+                return 20;
+            }
         });
         tblPrivilege.addField(1, new CCCustomField() {
             @Override
@@ -110,7 +115,6 @@ public class PnlUserCtrl extends CFSwingCtrl {
             }
         });
         tblPrivilege.setCheckboxColumn(true, 0);
-        tblPrivilege.setColumnWidth(0, 20);
     }
 
     private void _initTblIp() {

@@ -216,7 +216,8 @@ public class CFSwingUae extends CFApplUae {
         accessibles.clear();
     }
 
-    public void addMenuRoot(Class<? extends CFSwingCtrl>... controllerClasses) {
+    @Override
+    public void addMenuRoot(Class<? extends CFViewCtrl>... controllerClasses) {
         menuRoot.addAll(Arrays.asList(controllerClasses));
     }
 
@@ -266,6 +267,7 @@ public class CFSwingUae extends CFApplUae {
         addMenuSeparator(cc - 1);
     }
 
+    @Override
     public void changeMenuSide() {
         leftSide = !leftSide;
     }

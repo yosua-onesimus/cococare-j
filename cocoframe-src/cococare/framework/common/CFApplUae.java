@@ -12,11 +12,15 @@ public abstract class CFApplUae {
 
     public abstract boolean compile();
 
+    public abstract void addMenuRoot(Class<? extends CFViewCtrl>... controllerClasses);
+
     public abstract void addMenuParent(String label, String icon, Class<? extends CFViewCtrl> controllerClass);
 
     public abstract void addMenuChild(String label, String icon, Class<? extends CFViewCtrl> controllerClass);
 
     public abstract void addMenuSeparator();
+
+    public abstract void changeMenuSide();
 
     public abstract void compileMenu();
 //</editor-fold>

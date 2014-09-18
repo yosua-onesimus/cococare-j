@@ -343,8 +343,8 @@ public abstract class CFViewCtrl implements CCTrackable {
      * <li>[listFunction]_initTable(): ...</li>
      * <li>[listFunction]_initNaviElements(): ...</li>
      * <li>[formFunction]_initEditor(): ...</li>
-     * <li>[formFunction]_initAccessible(): ...</li>
-     * <li>[formFunction]_doUpdateAccessible(): ...</li>
+     * <li>_initAccessible(): ...</li>
+     * <li>_doUpdateAccessible(): ...</li>
      * </ol>
      */
     protected void _initComponent() {
@@ -353,9 +353,9 @@ public abstract class CFViewCtrl implements CCTrackable {
             _initNaviElements();
         } else if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction())) {
             _initEditor();
-            _initAccessible();
-            _doUpdateAccessible();
         }
+        _initAccessible();
+        _doUpdateAccessible();
     }
 
 //<editor-fold defaultstate="collapsed" desc=" LIST_FUNCTION ">
@@ -380,17 +380,17 @@ public abstract class CFViewCtrl implements CCTrackable {
      * <b>Line Number: 380 [FORM_FUNCTION ONLY]</b>
      */
     protected abstract void _initObjEntity();
+//</editor-fold>
 
     /**
-     * <b>Line Number: 385 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 386</b>
      */
     protected abstract void _initAccessible();
 
     /**
-     * <b>Line Number: 390 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 391</b>
      */
     protected abstract void _doUpdateAccessible();
-//</editor-fold>
 
     /**
      * <b>Line Number: 396</b>

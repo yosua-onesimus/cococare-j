@@ -2,7 +2,6 @@ package cococare.framework.common;
 
 // <editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCConfig.HBN_MULTI_DOMAIN;
-import static cococare.common.CCFormat.parseInt;
 import cococare.common.CCLanguage;
 import static cococare.common.CCLanguage.load;
 import static cococare.common.CCLogic.isNull;
@@ -40,27 +39,11 @@ public abstract class CFApplCtrl {
 
         DESKTOP, WEB;
     }
-
-    protected enum MenuPosition {
-
-        LEFT_SIDE("Left Side"), TOP_SIDE("Top Side");
-        private String string;
-
-        private MenuPosition(String string) {
-            this.string = string;
-        }
-
-        @Override
-        public String toString() {
-            return string;
-        }
-    }
 // </editor-fold>
     //
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     //
     protected static PlatformMode PLAT_MODE = PlatformMode.DESKTOP;
-    protected static MenuPosition MENU_POST = MenuPosition.LEFT_SIDE;
     //
     protected static String APPL_ID = "appl.id";
     public static String APPL_CODE = "appl.code";
@@ -79,6 +62,8 @@ public abstract class CFApplCtrl {
     protected static CCHibernate HIBERNATE;
     //
     protected static boolean databaseConnected = true;
+    //
+    protected static UtilConfAppl confAppl;
     //
     protected static boolean LICENSE_ACTIVE = false;
     public static CCLicense LICENSE;
@@ -106,7 +91,7 @@ public abstract class CFApplCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" public method ">
     /**
-     * <b>Line Number: 109</b>
+     * <b>Line Number: 94</b>
      * <ol>
      * <li>Add a default log Handler to receive logging messages.</li>
      * <li>Execute setup for mandatory file.</li>
@@ -118,7 +103,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 121</b>
+     * <b>Line Number: 106</b>
      * <ol>
      * <li>Load a language pack for some domains.</li>
      * <li>Get user configuration file.</li>
@@ -129,7 +114,7 @@ public abstract class CFApplCtrl {
         load(CCLanguage.LanguagePack.EN);
         File file = getFileUserConfFile(S_APPL_CONF);
         if (file.exists()) {
-            updateNonContent(readObject(file));
+            updateNonContent(confAppl = (UtilConfAppl) readObject(file));
         }
         if (LICENSE_ACTIVE) {
             LICENSE = new CCLicense(APPL_ID, FILE_APPL_LCNS);
@@ -137,17 +122,17 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 140</b>
+     * <b>Line Number: 125</b>
      */
     protected abstract void _initScreen();
 
     /**
-     * <b>Line Number: 145</b>
+     * <b>Line Number: 130</b>
      */
     public abstract void end();
 
     /**
-     * <b>Line Number: 150</b>
+     * <b>Line Number: 135</b>
      * <ol>
      * <li>Load a list databaseConfig from a file.</li>
      * <li>Automatic set C3P0 property.</li>
@@ -182,7 +167,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 185</b>
+     * <b>Line Number: 170</b>
      * <ol>
      * <li>Initialization module with the specified hibernate.</li>
      * </ol>
@@ -192,7 +177,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 195</b>
+     * <b>Line Number: 180</b>
      * <ol>
      * <li>Check whether the connection is valid or not.</li>
      * <li>Add a databaseConfig and instantiate a new SessionFactory.</li>
@@ -217,7 +202,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 220</b>
+     * <b>Line Number: 205</b>
      * <ol>
      * <li>Reload databaseConfig from the file.</li>
      * </ol>
@@ -227,34 +212,76 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 230</b>
+     * <b>Line Number: 215</b>
+     * <ol>
+     * <li>Initial default data (custom field configuration, etc).</li>
+     * </ol>
      *
-     * @param applUae the applUae.
-     * @return the applUae.
+     * @return true if success; false if fail.
      */
-    protected abstract CFApplUae _initInitialDataUaeUtility(CFApplUae applUae);
+    protected boolean _initInitialData() {
+        return new CCCustomFieldConfigBo().initCustomFieldConfig();
+    }
 
     /**
-     * <b>Line Number: 238</b>
+     * <b>Line Number: 227</b>
+     *
+     * @return the CFApplUae.
+     */
+    protected abstract CFApplUae _initInitialUaeBegin();
+
+    /**
+     * <b>Line Number: 234</b>
+     *
+     * @param uae a CFApplUae.
+     */
+    protected abstract void _initInitialUaeBody(CFApplUae uae);
+
+    /**
+     * <b>Line Number: 241</b>
+     *
+     * @param uae a CFApplUae.
+     * @return true if success; false if fail.
+     */
+    protected abstract boolean _initInitialUaeEnd(CFApplUae uae);
+
+    /**
+     * <b>Line Number: 249</b>
      * <ol>
-     * <li>Initial custom field configuration.</li>
+     * <li>_initInitialUaeBegin(): ...</li>
+     * <li>_initInitialUaeBody(uae): ...</li>
+     * <li>_initInitialUaeEnd(uae): ...</li>
+     * </ol>
+     *
+     * @return true if success; false if fail.
+     */
+    protected boolean _initInitialUae() {
+        CFApplUae uae = _initInitialUaeBegin();
+        _initInitialUaeBody(uae);
+        return _initInitialUaeEnd(uae);
+    }
+
+    /**
+     * <b>Line Number: 265</b>
+     * <ol>
+     * <li>_initInitialData() && _initInitialUae(): ...</li>
      * </ol>
      *
      * @return true if success; false if fail.
      */
     public boolean initInitialData() {
-        return new CCCustomFieldConfigBo().initCustomFieldConfig();
+        return _initInitialData() && _initInitialUae();
     }
 
     /**
-     * <b>Line Number: 250</b>
+     * <b>Line Number: 277</b>
      *
      * @return true if success; false if fail.
      */
     public abstract boolean showDatabaseSettingScreen();
 
     /**
-     * <b>Line Number: 257</b>
+     * <b>Line Number: 284</b>
      *
      * @param username the username.
      * @param password the password.
@@ -265,14 +292,14 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 268</b>
+     * <b>Line Number: 295</b>
      *
      * @param object the object.
      */
     public abstract void updateNonContent(Object object);
 
     /**
-     * <b>Line Number: 275</b>
+     * <b>Line Number: 302</b>
      * <ol>
      * <li>Initial database filter. Default blank.</li>
      * </ol>
@@ -281,50 +308,72 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 284</b>
+     * <b>Line Number: 311</b>
      * <ol>
-     * <li>Initial database filter. Default blank.</li>
+     * <li>Apply database filter. Default blank.</li>
      * </ol>
      */
     public void applyDatabaseFilter() {
     }
 
     /**
-     * <b>Line Number: 293</b>
+     * <b>Line Number: 320</b>
      * <ol>
-     * <li>Initial database filter. Default blank.</li>
+     * <li>Clear database filter. Default blank.</li>
      * </ol>
      */
     public void clearDatabaseFilter() {
     }
 
     /**
-     * <b>Line Number: 302</b>
+     * <b>Line Number: 329</b>
      *
-     * @param applUae the applUae.
-     * @return the applUae.
+     * @return the CFApplUae.
      */
-    protected abstract CFApplUae _applyUserConfigUaeUtility(CFApplUae applUae);
+    protected abstract CFApplUae _applyUserConfigUaeBegin();
 
     /**
-     * <b>Line Number: 310</b>
+     * <b>Line Number: 336</b>
+     *
+     * @param uae a CFApplUae.
      */
-    protected abstract void _applyUserConfig();
+    protected abstract void _applyUserConfigUaeBody(CFApplUae uae);
 
     /**
-     * <b>Line Number: 315</b>
+     * <b>Line Number: 343</b>
+     *
+     * @param uae a CFApplUae.
+     */
+    protected abstract void _applyUserConfigUaeEnd(CFApplUae uae);
+
+    /**
+     * <b>Line Number: 350</b>
+     * <ol>
+     * <li>_applyUserConfigUaeBegin(): ...</li>
+     * <li>_applyUserConfigUaeBody(uae): ...</li>
+     * <li>_applyUserConfigUaeEnd(uae): ...</li>
+     * </ol>
+     */
+    protected void _applyUserConfig() {
+        CFApplUae uae = _applyUserConfigUaeBegin();
+        _applyUserConfigUaeBody(uae);
+        _applyUserConfigUaeEnd(uae);
+    }
+
+    /**
+     * <b>Line Number: 364</b>
      */
     protected abstract void _clearUserConfig();
 
     /**
-     * <b>Line Number: 320</b>
+     * <b>Line Number: 369</b>
      *
      * @return true if success; false if fail.
      */
     protected abstract boolean _showLoginScreen();
 
     /**
-     * <b>Line Number: 327</b>
+     * <b>Line Number: 376</b>
      * <ol>
      * <li>Show home screen. Default blank.</li>
      * </ol>
@@ -336,11 +385,11 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 339</b>
+     * <b>Line Number: 388</b>
      * <ol>
      * <li>[webPlatform]_initScreen(): ...</li>
-     * <li>[databaseConnected]Load configuration application.</li>
-     * <li>[databaseConnected]updateNonContent(confAppl): ...</li>
+     * <li>[databaseConnected]updateNonContent(new
+     * UtilConfigBo().loadConfAppl()): ...</li>
      * <li>[hasLogged]applyDatabaseFilter(): ...</li>
      * <li>[hasLogged]_applyUserConfig(): ...</li>
      * <li>[hasLogged]_showHomeScreen(): ...</li>
@@ -355,9 +404,7 @@ public abstract class CFApplCtrl {
             _initScreen();
         }
         if (databaseConnected) {
-            UtilConfAppl confAppl = new UtilConfigBo().loadConfAppl();
-            updateNonContent(confAppl);
-            MENU_POST = MenuPosition.values()[parseInt(confAppl.getApplMenuPosition())];
+            updateNonContent(confAppl = new UtilConfigBo().loadConfAppl());
         }
         if ((PlatformMode.DESKTOP.equals(PLAT_MODE) && databaseConnected)
                 || (PlatformMode.WEB.equals(PLAT_MODE) && !HBN_MULTI_DOMAIN && databaseConnected)
@@ -378,7 +425,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 381</b>
+     * <b>Line Number: 428</b>
      * <ol>
      * <li>_login(username, password): ...</li>
      * <li>showScreen(): ...</li>
@@ -398,7 +445,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 381</b>
+     * <b>Line Number: 448</b>
      * <ol>
      * <li>Clear session values.</li>
      * <li>showScreen(): ...</li>

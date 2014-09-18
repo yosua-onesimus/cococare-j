@@ -91,11 +91,29 @@ public class UtilConfAppl implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" public enum ">
+    public enum MenuPosition {
+
+        LEFT_SIDE("Left Side"), TOP_SIDE("Top Side");
+        private String string;
+
+        private MenuPosition(String string) {
+            this.string = string;
+        }
+
+        @Override
+        public String toString() {
+            return string;
+        }
+    }
+//</editor-fold>
+    //----------------------------------------------------------------------------------------------
     @CCFieldConfig(componentId = "cmbApplLanguage", accessible = Accessible.MANDATORY, optionSource = "cococare.common.CCLanguage$LanguagePack", requestFocus = true)
     private Integer applLanguage = 0;
     @CCFieldConfig(componentId = "cmbApplLookAndFeel", accessible = Accessible.MANDATORY, optionSource = "cococare.swing.CCSwing$LookAndFeel")
     private Integer applLookAndFeel = 0;
-    @CCFieldConfig(componentId = "cmbApplMenuPosition", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.common.CFApplCtrl$MenuPosition")
+    @CCFieldConfig(componentId = "cmbApplMenuPosition", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilConfAppl$MenuPosition")
     private Integer applMenuPosition = 0;
     @Column(length = Integer.MAX_VALUE)
     @CCFieldConfig(componentId = "attApplWallpaper", type = Type.IMAGE_FILE, optionReflectKey = "applWallpaperName")

@@ -21,11 +21,7 @@ public class PnlParameterCtrl extends CFSwingCtrl {
 
     @Override
     protected Class _getEntity() {
-        if (isNotNull(objEntity)) {
-            return objEntity.getClass();
-        } else {
-            return UtilConfig.class;
-        }
+        return isNotNull(objEntity) ? objEntity.getClass() : UtilConfig.class;
     }
 
     @Override

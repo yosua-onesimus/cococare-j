@@ -1,17 +1,15 @@
 package cococare.framework.model.mdl.note;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.framework.common.CFApplUae;
 import static cococare.framework.model.mdl.note.NotesLanguage.*;
 import cococare.framework.swing.CFSwingMain;
-import static cococare.framework.swing.CFSwingMap.*;
-import cococare.framework.swing.CFSwingUae;
 import cococare.framework.swing.controller.form.note.PnlBookmarkListCtrl;
 import cococare.framework.swing.controller.form.note.PnlObjectiveListCtrl;
 import cococare.framework.swing.controller.form.note.PnlShortcutListCtrl;
 import cococare.framework.swing.controller.form.note.PnlTrackerListCtrl;
 import cococare.framework.swing.controller.form.setup.PnlJavaxCommSetupCtrl;
 import cococare.framework.swing.controller.form.setup.PnlLanguageSetupCtrl;
-import cococare.framework.swing.controller.form.util.PnlLoginCtrl;
 //</editor-fold>
 
 /**
@@ -41,23 +39,17 @@ public class NotesMain extends CFSwingMain {
     }
 
     @Override
-    public boolean initInitialData() {
-        super.initInitialData();
-        CFSwingUae uae = new CFSwingUae();
+    protected void _initInitialUaeBody(CFApplUae uae) {
         uae.reg(Note, Bookmark, PnlBookmarkListCtrl.class);
         uae.reg(Note, Shortcut, PnlShortcutListCtrl.class);
         uae.reg(Note, Objective, PnlObjectiveListCtrl.class);
         uae.reg(Note, Tracker, PnlTrackerListCtrl.class);
         uae.reg("Setup", "Javax.Comm Setup", PnlJavaxCommSetupCtrl.class);
         uae.reg("Setup", "Language Setup", PnlLanguageSetupCtrl.class);
-        return _initInitialDataUaeUtility(uae).compile();
     }
 
     @Override
-    protected void _applyUserConfig() {
-        CFSwingUae uae = new CFSwingUae();
-        uae.initMenuBar(MenuPosition.LEFT_SIDE.equals(MENU_POST) ? getMenubarV() : getMenubarH());
-        uae.addMenuRoot(PnlLoginCtrl.class);
+    protected void _applyUserConfigUaeBody(CFApplUae uae) {
         uae.addMenuParent(Notes, null, null);
         uae.addMenuChild(Bookmark, null, PnlBookmarkListCtrl.class);
         uae.addMenuChild(Shortcut, null, PnlShortcutListCtrl.class);
@@ -66,9 +58,6 @@ public class NotesMain extends CFSwingMain {
         uae.addMenuParent("Setup", null, null);
         uae.addMenuChild("Javax.Comm Setup", null, PnlJavaxCommSetupCtrl.class);
         uae.addMenuChild("Language Setup", null, PnlLanguageSetupCtrl.class);
-        uae.changeMenuSide();
-        _applyUserConfigUaeUtility(uae).compileMenu();
-        getMainScreen().validate();
     }
 
     public static void main(String[] args) {

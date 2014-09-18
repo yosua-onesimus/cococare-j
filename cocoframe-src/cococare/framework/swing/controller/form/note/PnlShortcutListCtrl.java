@@ -36,9 +36,13 @@ public class PnlShortcutListCtrl extends CFSwingCtrl {
                         addActionListener(tblEntity.getStopCellEditingListener()).
                         toShortcut();
             }
+
+            @Override
+            public Integer getColumnWidth() {
+                return 200;
+            }
         });
         tblEntity.setColumnForeground(2, Color.BLUE);
-        tblEntity.setColumnWidth(2, 200);
         tblEntity.setEditableColumn(true, 2);
         tblEntity.getTable().setRowHeight(29);
     }

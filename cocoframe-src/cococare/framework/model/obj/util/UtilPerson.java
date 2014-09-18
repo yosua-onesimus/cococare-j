@@ -212,10 +212,16 @@ public class UtilPerson implements CCEntity {
     @Column(length = 48)
     @CCFieldConfig(tooltiptext = "Propinsi", componentId = "cmbProvince", maxLength = 48, optionSource = "IndonesiaProvinces.txt", optionReflectKey = "province", visible = false)
     private String province;
+    @Column(length = 5)
+    @CCFieldConfig(componentId = "txtZipCode", minLength = 5, maxLength = 5, type = Type.NUMBER_ONLY, visible = false)
+    private String zipCode;
     //----------------------------------------------------------------------------------------------
     @Column(length = 16)
     @CCFieldConfig(componentId = "txtPhone", type = Type.PHONE_NUMBER, maxLength = 16, visible = false)
     private String phone;
+    @Column(length = 16)
+    @CCFieldConfig(componentId = "txtFax", type = Type.PHONE_NUMBER, maxLength = 16, visible = false)
+    private String fax;
     @Column(length = 16)
     @CCFieldConfig(componentId = "txtHandPhone", type = Type.PHONE_NUMBER, maxLength = 16, visible = false)
     private String handPhone;
@@ -234,10 +240,10 @@ public class UtilPerson implements CCEntity {
     private String photoName;
     //selfEvident-----------------------------------------------------------------------------------
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtKtp", maxLength = 16, visible = false)
+    @CCFieldConfig(label = "KTP", componentId = "txtKtp", maxLength = 16, visible = false)
     private String ktp;
     @Column(length = 20)
-    @CCFieldConfig(componentId = "txtNpwp", maxLength = 20, visible = false)
+    @CCFieldConfig(label = "NPWP", componentId = "txtNpwp", maxLength = 20, visible = false)
     private String npwp;
     @Column(length = 12)
     @CCFieldConfig(componentId = "txtPassport", maxLength = 12, visible = false)
@@ -404,12 +410,28 @@ public class UtilPerson implements CCEntity {
         this.province = province;
     }
 
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
     public String getPhone() {
         return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
     }
 
     public String getHandPhone() {

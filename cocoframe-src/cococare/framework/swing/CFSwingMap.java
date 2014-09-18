@@ -10,7 +10,6 @@ import static cococare.swing.CCSwing.*;
 import cococare.swing.component.CCImage;
 import cococare.swing.component.CCMenuBar;
 import cococare.swing.component.CCProgressBar;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Frame;
 import javax.swing.JDialog;
@@ -192,15 +191,6 @@ public class CFSwingMap {
      */
     public static JLabel getCompName() {
         return getJLabel(getMainScreen(), aCompName);
-    }
-
-    /**
-     * Returns a menu bar.
-     *
-     * @return the menu bar.
-     */
-    public static Component getMenubar() {
-        return getComponent(getMainScreen(), aMenuBar);
     }
 
     /**

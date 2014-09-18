@@ -9,6 +9,7 @@ import static cococare.datafile.CCImage.getImage;
 import cococare.framework.common.CFApplCtrl;
 import cococare.framework.common.CFApplUae;
 import cococare.framework.model.obj.util.UtilConfAppl;
+import cococare.framework.model.obj.util.UtilConfAppl.MenuPosition;
 import static cococare.framework.swing.CFSwingMap.*;
 import cococare.framework.swing.controller.form.util.*;
 import cococare.swing.CCSwing.LookAndFeel;
@@ -60,26 +61,32 @@ public abstract class CFSwingMain extends CFApplCtrl {
     }
 
     @Override
-    protected CFApplUae _initInitialDataUaeUtility(CFApplUae applUae) {
-        applUae.reg(Utility, User_Group, PnlUserGroupListCtrl.class);
-        applUae.reg(Utility, User, PnlUserListCtrl.class);
-        applUae.reg(Utility, Change_Password, PnlChangePasswordCtrl.class);
+    protected CFApplUae _initInitialUaeBegin() {
+        return new CFSwingUae();
+    }
+
+    @Override
+    protected boolean _initInitialUaeEnd(CFApplUae uae) {
+        uae.reg(Utility, User_Group, PnlUserGroupListCtrl.class);
+        uae.reg(Utility, User, PnlUserListCtrl.class);
+        uae.reg(Utility, Change_Password, PnlChangePasswordCtrl.class);
         if (!HIBERNATE.getParameterClasses().isEmpty()) {
-            applUae.reg(Utility, Parameter, PnlParameterListCtrl.class);
+            uae.reg(Utility, Parameter, PnlParameterListCtrl.class);
+            uae.reg(Utility, Export_Import, PnlExportImportCtrl.class);
         }
         if (!HIBERNATE.getAuditableClasses().isEmpty()) {
-            applUae.reg(Utility, Audit_Trail, PnlAuditTrailListCtrl.class);
+            uae.reg(Utility, Audit_Trail, PnlAuditTrailListCtrl.class);
         }
-        applUae.reg(Utility, Logger_History, PnlLoggerListCtrl.class);
+        uae.reg(Utility, Logger_History, PnlLoggerListCtrl.class);
         if (!HIBERNATE.getCustomizableClasses().isEmpty()) {
-            applUae.reg(Utility, Screen_Setting, PnlScreenSettingListCtrl.class);
+            uae.reg(Utility, Screen_Setting, PnlScreenSettingListCtrl.class);
         }
-        applUae.reg(Utility, Application_Setting, PnlApplicationSettingCtrl.class);
-        applUae.reg(Utility, Database_Setting, PnlDatabaseSettingCtrl.class);
+        uae.reg(Utility, Application_Setting, PnlApplicationSettingCtrl.class);
+        uae.reg(Utility, Database_Setting, PnlDatabaseSettingCtrl.class);
         if (LICENSE_ACTIVE) {
-            applUae.reg(Utility, Registration, PnlRegistrationCtrl.class);
+            uae.reg(Utility, Registration, PnlRegistrationCtrl.class);
         }
-        return applUae;
+        return uae.compile();
     }
 
     @Override
@@ -90,7 +97,6 @@ public abstract class CFSwingMain extends CFApplCtrl {
     @Override
     public void updateNonContent(Object object) {
         if (object instanceof UtilConfAppl) {
-            UtilConfAppl confAppl = (UtilConfAppl) object;
             load(CCLanguage.LanguagePack.values()[parseInt(confAppl.getApplLanguage())]);
             setLookAndFeel(LookAndFeel.values()[parseInt(confAppl.getApplLookAndFeel())].getName(), getMainScreen());
             getContentImage().setIcon(confAppl.getApplWallpaper());
@@ -100,31 +106,42 @@ public abstract class CFSwingMain extends CFApplCtrl {
     }
 
     @Override
-    protected CFApplUae _applyUserConfigUaeUtility(CFApplUae applUae) {
-        applUae.addMenuParent(Utility, null, null);
-        applUae.addMenuChild(User_Group, null, PnlUserGroupListCtrl.class);
-        applUae.addMenuChild(User, null, PnlUserListCtrl.class);
-        applUae.addMenuChild(Change_Password, null, PnlChangePasswordCtrl.class);
-        applUae.addMenuSeparator();
+    protected CFApplUae _applyUserConfigUaeBegin() {
+        CFSwingUae uae = new CFSwingUae();
+        uae.initMenuBar(MenuPosition.LEFT_SIDE.ordinal() == confAppl.getApplMenuPosition().intValue() ? getMenubarV() : getMenubarH());
+        uae.addMenuRoot(PnlLoginCtrl.class);
+        return uae;
+    }
+
+    @Override
+    protected void _applyUserConfigUaeEnd(CFApplUae uae) {
+        uae.changeMenuSide();
+        uae.addMenuParent(Utility, null, null);
+        uae.addMenuChild(User_Group, null, PnlUserGroupListCtrl.class);
+        uae.addMenuChild(User, null, PnlUserListCtrl.class);
+        uae.addMenuChild(Change_Password, null, PnlChangePasswordCtrl.class);
+        uae.addMenuSeparator();
         if (!HIBERNATE.getParameterClasses().isEmpty()) {
-            applUae.addMenuChild(Parameter, null, PnlParameterListCtrl.class);
+            uae.addMenuChild(Parameter, null, PnlParameterListCtrl.class);
+            uae.addMenuChild(Export_Import, null, PnlExportImportCtrl.class);
         }
         if (!HIBERNATE.getAuditableClasses().isEmpty()) {
-            applUae.addMenuChild(Audit_Trail, null, PnlAuditTrailListCtrl.class);
+            uae.addMenuChild(Audit_Trail, null, PnlAuditTrailListCtrl.class);
         }
-        applUae.addMenuChild(Logger_History, null, PnlLoggerListCtrl.class);
-        applUae.addMenuSeparator();
+        uae.addMenuChild(Logger_History, null, PnlLoggerListCtrl.class);
+        uae.addMenuSeparator();
         if (!HIBERNATE.getCustomizableClasses().isEmpty()) {
-            applUae.addMenuChild(Screen_Setting, null, PnlScreenSettingListCtrl.class);
+            uae.addMenuChild(Screen_Setting, null, PnlScreenSettingListCtrl.class);
         }
-        applUae.addMenuChild(Application_Setting, null, PnlApplicationSettingCtrl.class);
-        applUae.addMenuChild(Database_Setting, null, PnlDatabaseSettingCtrl.class);
+        uae.addMenuChild(Application_Setting, null, PnlApplicationSettingCtrl.class);
+        uae.addMenuChild(Database_Setting, null, PnlDatabaseSettingCtrl.class);
         if (LICENSE_ACTIVE) {
-            applUae.addMenuSeparator();
-            applUae.addMenuChild(Registration, null, PnlRegistrationCtrl.class);
+            uae.addMenuSeparator();
+            uae.addMenuChild(Registration, null, PnlRegistrationCtrl.class);
         }
-        applUae.addMenuParent(Log_Out, null, PnlLoginCtrl.class);
-        return applUae;
+        uae.addMenuParent(Log_Out, null, PnlLoginCtrl.class);
+        uae.compileMenu();
+        getMainScreen().validate();
     }
 
     @Override
