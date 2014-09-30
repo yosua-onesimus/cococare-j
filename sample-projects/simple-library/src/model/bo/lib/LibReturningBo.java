@@ -2,8 +2,8 @@ package model.bo.lib;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCLogic.isEmpty;
+import cococare.database.CCHibernate.Transaction;
 import cococare.database.CCHibernateBo;
-import cococare.database.CCHibernateDao.Transaction;
 import java.util.List;
 import model.dao.lib.LibBorrowingItemDao;
 import model.dao.lib.LibReturningItemDao;
