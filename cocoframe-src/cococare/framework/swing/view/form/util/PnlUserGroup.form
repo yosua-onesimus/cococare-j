@@ -58,7 +58,7 @@
                   <EmptySpace min="100" pref="100" max="-2" attributes="0"/>
                   <Component id="chkApplyToUser" min="-2" pref="200" max="-2" attributes="0"/>
               </Group>
-              <Component id="tab" max="32767" attributes="0"/>
+              <Component id="tabEntity" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -82,7 +82,7 @@
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="chkApplyToUser" min="-2" pref="29" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                  <Component id="tab" max="32767" attributes="0"/>
+                  <Component id="tabEntity" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -140,7 +140,7 @@
             <Property name="text" type="java.lang.String" value="Apply To User"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JTabbedPane" name="tab">
+        <Container class="javax.swing.JTabbedPane" name="tabEntity">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
           <SubComponents>
@@ -267,95 +267,6 @@
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
                     <Component class="javax.swing.JTable" name="tblIp">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Verdana" size="12" style="0"/>
-                        </Property>
-                      </Properties>
-                    </Component>
-                  </SubComponents>
-                </Container>
-              </SubComponents>
-            </Container>
-            <Container class="javax.swing.JPanel" name="pnlArea">
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
-                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="CCLanguage.turn(CCLanguage.Area)" type="code"/>
-                    </Property>
-                  </JTabbedPaneConstraints>
-                </Constraint>
-              </Constraints>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="xArea" min="-2" pref="100" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="bndArea" min="-2" pref="200" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="btnAreaAdd" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="btnAreaRemove" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="95" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="scrArea" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="xArea" min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="bndArea" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnAreaAdd" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnAreaRemove" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                          <Component id="scrArea" pref="172" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JLabel" name="xArea">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Verdana" size="12" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Area"/>
-                  </Properties>
-                </Component>
-                <Component class="cococare.swing.component.CCBandBox" name="bndArea">
-                  <Properties>
-                    <Property name="visibleClearButton" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="cococare.swing.component.CCButton" name="btnAreaAdd">
-                  <Properties>
-                    <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
-                      <Value id="ADD"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="cococare.swing.component.CCButton" name="btnAreaRemove">
-                  <Properties>
-                    <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
-                      <Value id="REMOVE"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Container class="javax.swing.JScrollPane" name="scrArea">
-                  <AuxValues>
-                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                  </AuxValues>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JTable" name="tblArea">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>

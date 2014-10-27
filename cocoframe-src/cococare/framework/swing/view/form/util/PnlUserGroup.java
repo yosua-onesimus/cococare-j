@@ -27,7 +27,7 @@ public class PnlUserGroup extends javax.swing.JPanel {
         xName = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         chkApplyToUser = new javax.swing.JCheckBox();
-        tab = new javax.swing.JTabbedPane();
+        tabEntity = new javax.swing.JTabbedPane();
         pnlPrivilege = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         tblPrivilege = new javax.swing.JTable();
@@ -38,13 +38,6 @@ public class PnlUserGroup extends javax.swing.JPanel {
         btnIpRemove = new cococare.swing.component.CCButton();
         scrIp = new javax.swing.JScrollPane();
         tblIp = new javax.swing.JTable();
-        pnlArea = new javax.swing.JPanel();
-        xArea = new javax.swing.JLabel();
-        bndArea = new cococare.swing.component.CCBandBox();
-        btnAreaAdd = new cococare.swing.component.CCButton();
-        btnAreaRemove = new cococare.swing.component.CCButton();
-        scrArea = new javax.swing.JScrollPane();
-        tblArea = new javax.swing.JTable();
 
         setMinimumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(600, 400));
@@ -80,7 +73,7 @@ public class PnlUserGroup extends javax.swing.JPanel {
             .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
         );
 
-        tab.addTab(CCLanguage.turn(CCLanguage.Privilege), pnlPrivilege);
+        tabEntity.addTab(CCLanguage.turn(CCLanguage.Privilege), pnlPrivilege);
 
         xIp.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xIp.setText("IP");
@@ -122,49 +115,7 @@ public class PnlUserGroup extends javax.swing.JPanel {
                 .addComponent(scrIp, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
         );
 
-        tab.addTab(CCLanguage.turn(CCLanguage.IP), pnlIp);
-
-        xArea.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        xArea.setText("Area");
-
-        bndArea.setVisibleClearButton(false);
-
-        btnAreaAdd.setType(cococare.swing.component.CCButton.Type.ADD);
-
-        btnAreaRemove.setType(cococare.swing.component.CCButton.Type.REMOVE);
-
-        tblArea.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        scrArea.setViewportView(tblArea);
-
-        javax.swing.GroupLayout pnlAreaLayout = new javax.swing.GroupLayout(pnlArea);
-        pnlArea.setLayout(pnlAreaLayout);
-        pnlAreaLayout.setHorizontalGroup(
-            pnlAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAreaLayout.createSequentialGroup()
-                .addComponent(xArea, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(bndArea, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnAreaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnAreaRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(scrArea)
-        );
-        pnlAreaLayout.setVerticalGroup(
-            pnlAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAreaLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(pnlAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(xArea, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bndArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAreaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAreaRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addComponent(scrArea, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
-        );
-
-        tab.addTab(CCLanguage.turn(CCLanguage.Area), pnlArea);
+        tabEntity.addTab(CCLanguage.turn(CCLanguage.IP), pnlIp);
 
         javax.swing.GroupLayout pnlEditorLayout = new javax.swing.GroupLayout(pnlEditor);
         pnlEditor.setLayout(pnlEditorLayout);
@@ -185,7 +136,7 @@ public class PnlUserGroup extends javax.swing.JPanel {
             .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(chkApplyToUser, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(tab)
+            .addComponent(tabEntity)
         );
         pnlEditorLayout.setVerticalGroup(
             pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +156,7 @@ public class PnlUserGroup extends javax.swing.JPanel {
                 .addGap(1, 1, 1)
                 .addComponent(chkApplyToUser, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addComponent(tab))
+                .addComponent(tabEntity))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -220,29 +171,22 @@ public class PnlUserGroup extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cococare.swing.component.CCBandBox bndArea;
-    private cococare.swing.component.CCButton btnAreaAdd;
-    private cococare.swing.component.CCButton btnAreaRemove;
     private cococare.swing.component.CCButton btnClose;
     private cococare.swing.component.CCButton btnIpAdd;
     private cococare.swing.component.CCButton btnIpRemove;
     private cococare.swing.component.CCButton btnSave;
     private javax.swing.JCheckBox chkApplyToUser;
-    private javax.swing.JPanel pnlArea;
     private javax.swing.JPanel pnlEditor;
     private javax.swing.JPanel pnlIp;
     private javax.swing.JPanel pnlPrivilege;
-    private javax.swing.JScrollPane scrArea;
     private javax.swing.JScrollPane scrIp;
     private javax.swing.JScrollPane scrollPane;
-    private javax.swing.JTabbedPane tab;
-    private javax.swing.JTable tblArea;
+    private javax.swing.JTabbedPane tabEntity;
     private javax.swing.JTable tblIp;
     private javax.swing.JTable tblPrivilege;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtIp;
     private javax.swing.JTextField txtName;
-    private javax.swing.JLabel xArea;
     private javax.swing.JLabel xCode;
     private javax.swing.JLabel xIp;
     private javax.swing.JLabel xName;

@@ -1,9 +1,6 @@
 package cococare.framework.model.obj.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.common.CCFieldConfig;
-import cococare.common.CCFieldConfig.Accessible;
-import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import cococare.framework.common.CFApplCtrl;
 import java.util.Date;
@@ -16,9 +13,8 @@ import javax.persistence.*;
  * @version 13.03.17
  */
 @Entity
-@Table(name = "util_user_areas")
-@CCTypeConfig(label = "Area", uniqueKey = "@area.name")
-public class UtilUserArea implements CCEntity {
+@Table(name = "util_user_group_childs")
+public class UtilUserGroupChild implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -98,11 +94,21 @@ public class UtilUserArea implements CCEntity {
     @Column(length = 32)
     private String appl = CFApplCtrl.APPL_CODE;
     @ManyToOne
-    @CCFieldConfig(visible = false)
-    private UtilUser user;
-    @ManyToOne
-    @CCFieldConfig(componentId = "bndArea", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
-    private UtilArea area;
+    private UtilUserGroup userGroup;
+    @Column(length = 255)
+    private String className;
+    @Column(length = 255)
+    private String associativeArray;
+
+//<editor-fold defaultstate="collapsed" desc=" UtilUserGroupChild ">
+    public UtilUserGroupChild() {
+    }
+
+    public UtilUserGroupChild(UtilUserGroup userGroup, Class clazz) {
+        this.userGroup = userGroup;
+        this.className = clazz.getName();
+    }
+//</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getAppl() {
@@ -113,20 +119,28 @@ public class UtilUserArea implements CCEntity {
         this.appl = appl;
     }
 
-    public UtilUser getUser() {
-        return user;
+    public UtilUserGroup getUserGroup() {
+        return userGroup;
     }
 
-    public void setUser(UtilUser user) {
-        this.user = user;
+    public void setUserGroup(UtilUserGroup userGroup) {
+        this.userGroup = userGroup;
     }
 
-    public UtilArea getArea() {
-        return area;
+    public String getClassName() {
+        return className;
     }
 
-    public void setArea(UtilArea area) {
-        this.area = area;
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getAssociativeArray() {
+        return associativeArray;
+    }
+
+    public void setAssociativeArray(String associativeArray) {
+        this.associativeArray = associativeArray;
     }
 //</editor-fold>
 }

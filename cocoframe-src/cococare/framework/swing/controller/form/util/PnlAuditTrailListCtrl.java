@@ -35,6 +35,11 @@ public class PnlAuditTrailListCtrl extends CFSwingCtrl {
     }
 
     @Override
+    protected String _getSysRef(Object objEntity) {
+        return ((CCAuditData) objEntity).getSysRef();
+    }
+
+    @Override
     protected void _initComponent() {
         super._initComponent();
         cmbEntity.addItem("");

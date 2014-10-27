@@ -5,7 +5,6 @@ import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
-import cococare.framework.common.CFApplCtrl;
 import java.util.Date;
 import javax.persistence.*;
 //</editor-fold>
@@ -95,8 +94,6 @@ public class UtilArea implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @Column(length = 32)
-    private String appl = CFApplCtrl.APPL_CODE;
     @Column(length = 8)
     @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, requestFocus = true, sequence = "A000", unique = true)
     private String code;
@@ -105,14 +102,6 @@ public class UtilArea implements CCEntity {
     private String name;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public String getAppl() {
-        return appl;
-    }
-
-    public void setAppl(String appl) {
-        this.appl = appl;
-    }
-
     public String getCode() {
         return code;
     }

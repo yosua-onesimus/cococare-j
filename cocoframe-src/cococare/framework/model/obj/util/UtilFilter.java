@@ -29,21 +29,40 @@ public class UtilFilter {
         }
     };
 
-    public static abstract class isIdNotInIds extends CCHibernateFilter {
+    public static abstract class isId extends CCHibernateFilter {
 
         @Override
         public String getFieldName() {
             return "id";
         }
+    }
+
+    public static abstract class isIdNotId extends isId {
 
         @Override
         public String getExpression() {
-            return "id NOT IN (:ids)";
+            return "id != :id";
+        }
+    }
+
+    public static abstract class isIdInIds extends isId {
+
+        @Override
+        public String getExpression() {
+            return "id IN (:ids)";
         }
 
         @Override
         public String getParameterName() {
             return "ids";
+        }
+    }
+
+    public static abstract class isIdNotInIds extends isIdInIds {
+
+        @Override
+        public String getExpression() {
+            return "id NOT IN (:ids)";
         }
     }
 }

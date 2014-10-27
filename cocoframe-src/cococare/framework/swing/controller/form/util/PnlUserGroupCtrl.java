@@ -1,24 +1,27 @@
 package cococare.framework.swing.controller.form.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import static cococare.common.CCClass.extract;
+import static cococare.common.CCClass.getCCTypeConfig;
 import cococare.common.CCCustomField;
 import static cococare.common.CCLanguage.Privilege;
 import static cococare.common.CCLanguage.turn;
 import static cococare.common.CCLogic.*;
 import static cococare.common.CCMessage.IS_NOT_IP;
 import static cococare.common.CCMessage.showInformation;
+import cococare.common.CCTypeConfig;
 import cococare.framework.model.bo.util.UtilUserGroupBo;
-import cococare.framework.model.obj.util.UtilFilter.isIdNotInIds;
-import cococare.framework.model.obj.util.*;
+import cococare.framework.model.obj.util.UtilPrivilege;
+import cococare.framework.model.obj.util.UtilUserGroup;
+import cococare.framework.model.obj.util.UtilUserGroupIp;
 import cococare.framework.swing.CFSwingCtrl;
 import static cococare.swing.CCSwing.addActionListener;
 import static cococare.swing.CCSwing.newCCTable;
 import cococare.swing.CCTable;
-import cococare.swing.component.CCBandBox;
 import cococare.swing.component.CCButton;
+import cococare.swing.component.CCOptionBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 //</editor-fold>
@@ -43,10 +46,7 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
     private CCButton btnIpAdd;
     private CCButton btnIpRemove;
     private CCTable tblIp;
-    private CCBandBox bndArea;
-    private CCButton btnAreaAdd;
-    private CCButton btnAreaRemove;
-    private CCTable tblArea;
+    private HashMap<Class, CCOptionBox> clazz_optionBox = new HashMap();
 //</editor-fold>
 
     @Override
@@ -72,7 +72,7 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
         //privilege
         _initTblPrivilege();
         _initTblIp();
-        _initTblArea();
+        _initAdditionalTab();
     }
 
     private void _initTblPrivilege() {
@@ -113,16 +113,16 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
         tblIp.setNaviElements(null, null, btnIpRemove);
     }
 
-    private void _initTblArea() {
-        bndArea.initTable(UtilArea.class, "name");
-        bndArea.getTable().setHqlFilters(new isIdNotInIds() {
-            @Override
-            public Object getFieldValue() {
-                return extract(tblArea.getList(), "area.id");
-            }
-        });
-        tblArea = newCCTable(getContainer(), "tblArea", UtilUserGroupArea.class);
-        tblArea.setNaviElements(null, null, btnAreaRemove);
+    private void _initAdditionalTab() {
+        for (Class clazz : userGroupBo.getUtilAdditionalTabClass()) {
+            CCTypeConfig typeConfig = getCCTypeConfig(clazz);
+            CCOptionBox optionBox = new CCOptionBox();
+            swingView.getTabEntity().addTab(typeConfig.label(), optionBox);
+            optionBox.initList(false, clazz, typeConfig.uniqueKey());
+            optionBox.setList(userGroupBo.getListBy(clazz));
+            optionBox.setSelectedItem(true, userGroupBo.getSelectedItem(clazz).toArray());
+            clazz_optionBox.put(clazz, optionBox);
+        }
     }
 
     @Override
@@ -147,18 +147,14 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
                 _doIpRemove();
             }
         });
-        addActionListener(btnAreaAdd, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                _doAreaAdd();
-            }
-        });
-        addActionListener(btnAreaRemove, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                _doAreaRemove();
-            }
-        });
+    }
+
+    @Override
+    protected void _getValueFromEditor() {
+        super._getValueFromEditor();
+        for (Class clazz : userGroupBo.getUtilAdditionalTabClass()) {
+            userGroupBo.addChild(clazz, clazz_optionBox.get(clazz).getSelectedItems());
+        }
     }
 
     @Override
@@ -203,30 +199,12 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
         _doUpdateTblIp();
     }
 
-    private void _doAreaAdd() {
-        UtilArea area = bndArea.getObject();
-        if (isNotNull(area)) {
-            userGroupBo.addUserGroupArea(area);
-            bndArea.setObject(null);
-            bndArea.getTable().search();
-            _doUpdateTblArea();
-        }
-    }
-
-    private void _doAreaRemove() {
-        bndArea.setObject(null);
-        bndArea.getTable().search();
-        userGroupBo.removeUserGroupArea(tblArea.getSelectedRow());
-        _doUpdateTblArea();
-    }
-
     @Override
     protected void _doUpdateComponent() {
         super._doUpdateComponent();
         //privilege
         _doUpdateTblPrivilege();
         _doUpdateTblIp();
-        _doUpdateTblArea();
     }
 
     private void _doUpdateTblPrivilege() {
@@ -235,9 +213,5 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
 
     private void _doUpdateTblIp() {
         tblIp.setList(userGroupBo.getUserGroupIps());
-    }
-
-    private void _doUpdateTblArea() {
-        tblArea.setList(userGroupBo.getUserGroupAreas());
     }
 }

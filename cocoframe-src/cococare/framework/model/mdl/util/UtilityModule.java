@@ -31,12 +31,12 @@ public class UtilityModule extends CCHibernateModule {
         hibernate.addAnnotatedClass(UtilUserGroup.class);
         hibernate.addAnnotatedClass(UtilUserGroupPrivilege.class);
         hibernate.addAnnotatedClass(UtilUserGroupIp.class);
-        hibernate.addAnnotatedClass(UtilUserGroupArea.class);
+        hibernate.addAnnotatedClass(UtilUserGroupChild.class);
         //
         hibernate.addAnnotatedClass(UtilUser.class);
         hibernate.addAnnotatedClass(UtilUserPrivilege.class);
         hibernate.addAnnotatedClass(UtilUserIp.class);
-        hibernate.addAnnotatedClass(UtilUserArea.class);
+        hibernate.addAnnotatedClass(UtilUserChild.class);
         //
         hibernate.addAnnotatedClass(UtilPerson.class);
         //

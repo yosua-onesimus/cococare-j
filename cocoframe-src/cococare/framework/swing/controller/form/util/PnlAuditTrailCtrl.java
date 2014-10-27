@@ -40,6 +40,17 @@ public class PnlAuditTrailCtrl extends CFSwingCtrl {
     }
 
     @Override
+    protected void _initObject() {
+        super._initObject();
+        readonly = ((CCAuditData) objEntity).isApproved();
+    }
+
+    @Override
+    protected String _getSysRef(Object objEntity) {
+        return ((CCAuditData) objEntity).getSysRef();
+    }
+
+    @Override
     protected void _initComponent() {
         super._initComponent();
         tblAuditTrail = newCCTable(getContainer(), "tblAuditTrail", CCAuditData.class);
@@ -83,7 +94,19 @@ public class PnlAuditTrailCtrl extends CFSwingCtrl {
         });
         tblAuditTrail.setHqlOrderSyntax("id DESC");
         tblAuditTrail.search();
-        tblOldVsNew = new CCTable(getJTable(getContainer(), "tblOldVsNew"), "", "Old Value", "New Value");
+        tblOldVsNew = new CCTable(getJTable(getContainer(), "tblOldVsNew"), "Field Name", "Old Value", "New Value");
+    }
+
+    @Override
+    protected void _initAccessible() {
+        super._initAccessible();
+        addAccessibleListener(btnApprove, accessibleIfEditable);
+    }
+
+    @Override
+    protected void _doUpdateAccessible() {
+        super._doUpdateAccessible();
+        applyAccessible(btnApprove);
     }
 
     @Override
@@ -105,11 +128,11 @@ public class PnlAuditTrailCtrl extends CFSwingCtrl {
                 }
             }
         });
-        addActionListener(btnApprove, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                CCEntityModule.INSTANCE.getCCHibernate().approve((CCAuditData) objEntity);
-            }
-        });
+        addActionListener(btnApprove, alSave);
+    }
+
+    @Override
+    protected boolean _doSaveEntity() {
+        return CCEntityModule.INSTANCE.getCCHibernate().approve((CCAuditData) objEntity);
     }
 }

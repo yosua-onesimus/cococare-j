@@ -2,8 +2,8 @@ package cococare.framework.model.bo.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCLogic.*;
+import cococare.database.CCHibernate.Transaction;
 import cococare.database.CCHibernateBo;
-import cococare.database.CCHibernateDao.Transaction;
 import cococare.framework.model.dao.util.*;
 import cococare.framework.model.obj.util.*;
 import java.util.ArrayList;

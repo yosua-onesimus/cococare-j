@@ -1,11 +1,14 @@
 package cococare.framework.model.obj.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCClass.getAssociativeArray;
+import static cococare.common.CCClass.getListByAssociativeArray;
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.Type;
 import cococare.database.CCEntity;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 //</editor-fold>
 
@@ -151,6 +154,8 @@ public class UtilConfAppl implements CCEntity {
     private String ownerKtp;
     @CCFieldConfig(componentId = "txtOwnerNpwp")
     private String ownerNpwp;
+    //----------------------------------------------------------------------------------------------
+    private String utilAdditionalTabClass;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public Integer getApplLanguage() {
@@ -311,6 +316,14 @@ public class UtilConfAppl implements CCEntity {
 
     public void setOwnerNpwp(String ownerNpwp) {
         this.ownerNpwp = ownerNpwp;
+    }
+
+    public List<Class> getUtilAdditionalTabClass() {
+        return getListByAssociativeArray(utilAdditionalTabClass);
+    }
+
+    public void setUtilAdditionalTabClass(List<String> utilAdditionalTabClass) {
+        this.utilAdditionalTabClass = getAssociativeArray(utilAdditionalTabClass, (String) null);
     }
 //</editor-fold>
 }

@@ -31,5 +31,9 @@ public class UtilConfigDao extends CCHibernateHashDao {
     protected List<CCHibernateFilter> getFilters() {
         return UtilityModule.INSTANCE.getFilters();
     }
+
+    public UtilConfig getByKey(String key) {
+        return getByField("key", key);
+    }
 //</editor-fold>
 }

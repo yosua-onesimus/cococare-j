@@ -9,8 +9,8 @@ import static cococare.common.CCMessage.initDefaultHandler;
 import cococare.common.trial.CCLicense;
 import cococare.database.CCDatabaseConfig;
 import cococare.database.CCHibernate;
-import cococare.database.CCLoginInfo;
 import static cococare.database.CCLoginInfo.INSTANCE_hasLogged;
+import static cococare.database.CCLoginInfo.INSTANCE_logout;
 import cococare.database.model.bo.cc.CCCustomFieldConfigBo;
 import static cococare.datafile.CCFile.*;
 import static cococare.datafile.CCSetup.executeMandatoryFile;
@@ -63,7 +63,7 @@ public abstract class CFApplCtrl {
     //
     protected static boolean databaseConnected = true;
     //
-    protected static UtilConfAppl confAppl;
+    protected static UtilConfAppl confAppl = new UtilConfAppl();
     //
     protected static boolean LICENSE_ACTIVE = false;
     public static CCLicense LICENSE;
@@ -455,7 +455,7 @@ public abstract class CFApplCtrl {
      */
     public boolean logout() {
         if (INSTANCE_hasLogged()) {
-            CCLoginInfo.INSTANCE.logout();
+            INSTANCE_logout();
             showScreen();
             return true;
         } else {

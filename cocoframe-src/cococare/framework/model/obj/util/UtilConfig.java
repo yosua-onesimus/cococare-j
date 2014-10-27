@@ -132,6 +132,15 @@ public class UtilConfig implements CCEntityHash {
     @Column(length = 32)
     private String appl = CFApplCtrl.APPL_CODE;
 
+//<editor-fold defaultstate="collapsed" desc=" UtilConfig ">
+    public UtilConfig() {
+    }
+
+    public UtilConfig(String key) {
+        this.key = key;
+    }
+//</editor-fold>
+
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getAppl() {
         return appl;

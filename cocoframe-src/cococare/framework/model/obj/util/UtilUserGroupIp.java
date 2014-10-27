@@ -105,6 +105,16 @@ public class UtilUserGroupIp implements CCEntity {
     @CCFieldConfig(componentId = "txtIp", label = "IP", accessible = Accessible.MANDATORY, type = Type.IP, maxLength = 40)
     private String ip;
 
+//<editor-fold defaultstate="collapsed" desc=" UtilUserGroupIp ">
+    public UtilUserGroupIp() {
+    }
+
+    public UtilUserGroupIp(UtilUserGroup userGroup, String ip) {
+        this.userGroup = userGroup;
+        this.ip = ip;
+    }
+//</editor-fold>
+
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getAppl() {
         return appl;

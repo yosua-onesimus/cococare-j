@@ -1,15 +1,17 @@
 package cococare.framework.model.bo.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCClass.*;
 import static cococare.common.CCFormat.parseInt;
 import static cococare.common.CCLanguage.*;
-import static cococare.common.CCLogic.isNotNull;
-import static cococare.common.CCLogic.isNull;
+import static cococare.common.CCLogic.*;
 import static cococare.common.CCMessage.*;
 import cococare.common.trial.MD5;
 import cococare.database.CCDatabaseConfig;
+import cococare.database.CCEntityBo;
+import static cococare.database.CCEntityConfig.FIELD_ID;
+import cococare.database.CCHibernate.Transaction;
 import cococare.database.CCHibernateBo;
-import cococare.database.CCHibernateDao.Transaction;
 import static cococare.database.CCLoginInfo.*;
 import cococare.framework.model.dao.util.*;
 import cococare.framework.model.mdl.util.UtilityModule;
@@ -28,11 +30,15 @@ public class UtilUserBo extends CCHibernateBo {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     //
+    private List<Class> utilAdditionalTabClass;
+    //
     private UtilPrivilegeDao privilegeDao;
+    private UtilUserGroupIpDao userGroupIpDao;
+    private UtilUserGroupChildDao userGroupChildDao;
     private UtilUserDao userDao;
     private UtilUserPrivilegeDao userPrivilegeDao;
     private UtilUserIpDao userIpDao;
-    private UtilUserAreaDao userAreaDao;
+    private UtilUserChildDao userChildDao;
     //
     private UtilUser user;
     private List<UtilPrivilege> privileges;
@@ -40,12 +46,13 @@ public class UtilUserBo extends CCHibernateBo {
     private List<Boolean> privilegeSelecteds;
     private List<UtilUserIp> userIps;
     private List<UtilUserIp> removedUserIps;
-    private List<UtilUserArea> userAreas;
-    private List<UtilUserArea> removedUserAreas;
+    private HashMap<Class, List> clazz_child;
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" crud ">
     public synchronized void load(UtilUser user) {
+        //
+        utilAdditionalTabClass = new UtilConfigBo().loadConfAppl().getUtilAdditionalTabClass();
         //
         this.user = user;
         //
@@ -65,8 +72,10 @@ public class UtilUserBo extends CCHibernateBo {
         //
         userIps = isNull(user.getId()) ? new ArrayList() : userIpDao.getListUnlimitedBy(user);
         removedUserIps = new ArrayList();
-        userAreas = isNull(user.getId()) ? new ArrayList() : userAreaDao.getListUnlimitedBy(user);
-        removedUserAreas = new ArrayList();
+        clazz_child = new HashMap();
+        for (Class clazz : utilAdditionalTabClass) {
+            clazz_child.put(clazz, getListByAssociativeArray(clazz, userChildDao.getBy(user, clazz).getAssociativeArray()));
+        }
     }
 
     public synchronized List<UtilPrivilege> getPrivileges() {
@@ -81,6 +90,10 @@ public class UtilUserBo extends CCHibernateBo {
         return privileges;
     }
 
+    public synchronized List getSelectedItem(UtilUserGroup userGroup, Class clazz) {
+        return getListByAssociativeArray(clazz, userGroupChildDao.getBy(userGroup, clazz).getAssociativeArray());
+    }
+
     public synchronized int getPrivilegeIndex(UtilPrivilege privilege) {
         return parseInt(privilege_index.get(privilege));
     }
@@ -90,12 +103,8 @@ public class UtilUserBo extends CCHibernateBo {
     }
 
     public synchronized void addUserIp(String ip) {
-        UtilUserIp userIp = isNull(user.getId()) ? null : userIpDao.getBy(user, ip);
-        if (isNull(userIp)) {
-            userIp = new UtilUserIp();
-            userIp.setUser(user);
-            userIp.setIp(ip);
-        } else {
+        UtilUserIp userIp = coalesce(isNull(user.getId()) ? null : userIpDao.getBy(user, ip), new UtilUserIp(user, ip));
+        if (isNotNull(userIp.getId())) {
             for (UtilUserIp old : removedUserIps) {
                 if (old.getIp().equalsIgnoreCase(ip)) {
                     removedUserIps.remove(old);
@@ -122,41 +131,20 @@ public class UtilUserBo extends CCHibernateBo {
         }
     }
 
-    public synchronized List<UtilUserArea> getUserAreas() {
-        return userAreas;
+    public synchronized List<Class> getUtilAdditionalTabClass() {
+        return utilAdditionalTabClass;
     }
 
-    public synchronized void addUserArea(UtilArea area) {
-        UtilUserArea userArea = isNull(user.getId()) ? null : userAreaDao.getBy(user, area);
-        if (isNull(userArea)) {
-            userArea = new UtilUserArea();
-            userArea.setUser(user);
-            userArea.setArea(area);
-        } else {
-            for (UtilUserArea old : removedUserAreas) {
-                if (old.getArea().getId().equals(area.getId())) {
-                    removedUserAreas.remove(old);
-                    break;
-                }
-            }
-        }
-        boolean isNew = true;
-        for (UtilUserArea old : userAreas) {
-            if (old.getArea().getId().equals(area.getId())) {
-                isNew = false;
-                break;
-            }
-        }
-        if (isNew) {
-            userAreas.add(userArea);
-        }
+    public synchronized List getListBy(Class clazz) {
+        return CCEntityBo.INSTANCE.getListBy(clazz, null, null, null);
     }
 
-    public synchronized void removeUserArea(int index) {
-        UtilUserArea userArea = userAreas.remove(index);
-        if (isNotNull(userArea.getId())) {
-            removedUserAreas.add(userArea);
-        }
+    public synchronized List getSelectedItem(Class clazz) {
+        return clazz_child.get(clazz);
+    }
+
+    public synchronized void addChild(Class clazz, List selectedItems) {
+        clazz_child.put(clazz, selectedItems);
     }
 
     public synchronized boolean saveOrUpdate() {
@@ -166,19 +154,23 @@ public class UtilUserBo extends CCHibernateBo {
         //
         for (int i = 0; i < privileges.size(); i++) {
             UtilPrivilege privilege = privileges.get(i);
-            if (isNull(user.getId()) || (privilege.isSelected() != privilegeSelecteds.get(i))) {
+            if (isNull(privilegeSelecteds) || (privilegeSelecteds.get(i) != privilege.isSelected())) {
                 if (privilege.isSelected()) {
                     transaction.saveOrUpdate(new UtilUserPrivilege(user, privilege));
-                } else if (isNotNull(user.getId())) {
+                } else if (isNotNull(privilegeSelecteds)) {
                     transaction.delete(userPrivilegeDao.getBy(user, privilege));
                 }
             }
         }
         //
         transaction.saveOrUpdate(userIps).
-                delete(removedUserIps).
-                saveOrUpdate(userAreas).
-                delete(removedUserAreas);
+                delete(removedUserIps);
+        //
+        for (Class clazz : utilAdditionalTabClass) {
+            UtilUserChild userChild = userChildDao.getBy(user, clazz);
+            userChild.setAssociativeArray(getAssociativeArray(clazz_child.get(clazz)));
+            transaction.saveOrUpdate(userChild);
+        }
         //
         return transaction.execute();
     }
@@ -231,6 +223,10 @@ public class UtilUserBo extends CCHibernateBo {
         }
         INSTANCE_login(user, getUserPrivilege(user));
         return true;
+    }
+
+    public synchronized List getIdsUserLogin(Class clazz) {
+        return extract(getListByAssociativeArray(clazz, userChildDao.getBy((UtilUser) INSTANCE_getUserLogin(), clazz).getAssociativeArray()), FIELD_ID);
     }
 //</editor-fold>
 }
