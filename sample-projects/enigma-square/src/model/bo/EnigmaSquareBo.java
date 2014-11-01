@@ -157,7 +157,7 @@ public class EnigmaSquareBo {
      */
     public void initSpriteDice(CCImage imgDice) {
         if (CCLogic.isNull(sprDice)) {
-            BufferedImage bufferedImage = cococare.datafile.CCImage.getImage(getClass().getResource("/resource/dice.png"));
+            BufferedImage bufferedImage = cococare.datafile.CCImage.readImage(getClass().getResource("/resource/dice.png"));
             bufferedImage = cococare.datafile.CCImage.resizeImage(bufferedImage, 300, 200);
             BufferedImage[] bufferedImages = cococare.datafile.CCImage.splitImages(bufferedImage, 3, 2);
             sprDice = new CCSprite(bufferedImages, imgDice, 0, 0);

@@ -5,7 +5,7 @@ import cococare.common.CCLanguage;
 import cococare.common.CCMessage;
 import cococare.database.CCLoginInfo;
 import cococare.datafile.CCFile;
-import static cococare.datafile.CCImage.getImage;
+import static cococare.datafile.CCImage.readImage;
 import cococare.datafile.jxl.CCExcel;
 import cococare.framework.swing.CFSwingMap;
 import cococare.framework.swing.CFSwingUae;
@@ -129,7 +129,7 @@ public class EnigmaSquareMain {
         //show screen
         new PnlEnigmaSquareCtrl().init();
         CCSwing.centerScreen(CFSwingMap.getMainScreen());
-        CFSwingMap.getMainScreen().setIconImage(getImage("/cococare/resource/icon-cococare.jpg"));
+        CFSwingMap.getMainScreen().setIconImage(readImage("/cococare/resource/icon-cococare.jpg"));
         CFSwingMap.getMainScreen().setVisible(true);
     }
 }
