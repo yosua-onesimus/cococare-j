@@ -4,6 +4,7 @@ package controller.form.lib;
 import static cococare.common.CCFormat.formatNumber;
 import static cococare.common.CCFormat.formatNumeric;
 import cococare.framework.swing.CFSwingCtrl;
+import static cococare.swing.CCSwing.execute;
 import cococare.swing.component.CCBandBox;
 import cococare.swing.component.CCDatePicker;
 import java.awt.event.ActionEvent;
@@ -53,15 +54,15 @@ public class PnlReturningItemListCtrl extends CFSwingCtrl {
         tblEntity.addListenerOnChange(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                _doUpdateParentField();
+                _doUpdateParentField(actionEvent);
             }
         });
     }
 
-    private void _doUpdateParentField() {
-        ((ActionListener) parameter.get(callerCtrl.toString()
-                + (tblEntity.getRowCount() == 0 ? "returningInfo-MANDATORY" : "returningInfo-MANDATORY_READONLY"))).
-                actionPerformed(null);
+    private void _doUpdateParentField(ActionEvent actionEvent) {
+        execute(((ActionListener) parameter.get(callerCtrl.toString()
+                + (tblEntity.getRowCount() == 0 ? "returningInfo-MANDATORY" : "returningInfo-MANDATORY_READONLY"))),
+                actionEvent);
         txtTotalItem.setText(formatNumeric(tblEntity.getRowCount()));
         double totalFine = 0;
         for (Object object : tblEntity.getList()) {
