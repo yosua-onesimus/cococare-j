@@ -85,32 +85,32 @@ public class PnlSellingCtrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         //
-        addActionListener(btnCustomerAdd, new ActionListener() {
+        addListener(btnCustomerAdd, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doCustomerAdd();
             }
         });
-        bndCustomerPhone.addEventListenerOnSelect(new ActionListener() {
+        addListener(bndCustomerPhone, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doUpdateLblFormatVoucherSelling();
             }
         });
-        bndVoucherType.addEventListenerOnSelect(new ActionListener() {
+        addListener(bndVoucherType, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doUpdateLblFormatVoucherSelling();
                 _doUpdateTxtVoucherType();
             }
         });
-        addActionListener(btnVoucherTypeUpdate, new ActionListener() {
+        addListener(btnVoucherTypeUpdate, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doUpdateVoucherType();
             }
         });
-        addActionListener(btnEven, new ActionListener() {
+        addListener(btnEven, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doUpdateTxtAmountPaid();

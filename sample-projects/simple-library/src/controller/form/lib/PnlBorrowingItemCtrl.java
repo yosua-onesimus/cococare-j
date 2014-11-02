@@ -7,6 +7,7 @@ import static cococare.common.CCFormat.formatNumber;
 import static cococare.common.CCLogic.isNotNull;
 import cococare.database.CCHibernateFilter;
 import cococare.framework.swing.CFSwingCtrl;
+import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCBandBox;
 import cococare.swing.component.CCDateInput;
 import cococare.swing.component.CCDatePicker;
@@ -87,7 +88,7 @@ public class PnlBorrowingItemCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        bndBook.addEventListenerOnSelect(new ActionListener() {
+        addListener(bndBook, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doUpdateBookInfo();

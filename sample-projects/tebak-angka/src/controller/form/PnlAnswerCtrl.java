@@ -42,7 +42,7 @@ public class PnlAnswerCtrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         //
-        CCSwing.addActionListener(btnTryAgain, new ActionListener() {
+        CCSwing.addListener(btnTryAgain, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doShowIntro();

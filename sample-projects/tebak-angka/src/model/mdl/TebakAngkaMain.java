@@ -2,7 +2,7 @@ package model.mdl;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCMessage;
-import static cococare.datafile.CCImage.getImage;
+import static cococare.datafile.CCImage.readImage;
 import cococare.framework.swing.CFSwingMap;
 import cococare.swing.CCSwing;
 import controller.form.PnlIntroCtrl;
@@ -26,7 +26,7 @@ public class TebakAngkaMain {
         //put main screen to center
         CCSwing.centerScreen(CFSwingMap.getMainScreen());
         //set icon
-        CFSwingMap.getMainScreen().setIconImage(getImage("/cococare/resource/icon-cococare.jpg"));
+        CFSwingMap.getMainScreen().setIconImage(readImage("/cococare/resource/icon-cococare.jpg"));
         //show main screen
         CFSwingMap.getMainScreen().setVisible(true);
         //

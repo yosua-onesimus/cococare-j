@@ -30,64 +30,64 @@ public class DlgCalculator extends javax.swing.JDialog {
                 _typingCurr(((JButton) actionEvent.getSource()).getText());
             }
         };
-        CCSwing.addActionListener(btnPoint, alTypingCurr);
-        CCSwing.addActionListener(btn0, alTypingCurr);
-        CCSwing.addActionListener(btn1, alTypingCurr);
-        CCSwing.addActionListener(btn2, alTypingCurr);
-        CCSwing.addActionListener(btn3, alTypingCurr);
-        CCSwing.addActionListener(btn4, alTypingCurr);
-        CCSwing.addActionListener(btn5, alTypingCurr);
-        CCSwing.addActionListener(btn6, alTypingCurr);
-        CCSwing.addActionListener(btn7, alTypingCurr);
-        CCSwing.addActionListener(btn8, alTypingCurr);
-        CCSwing.addActionListener(btn9, alTypingCurr);
+        CCSwing.addListener(btnPoint, alTypingCurr);
+        CCSwing.addListener(btn0, alTypingCurr);
+        CCSwing.addListener(btn1, alTypingCurr);
+        CCSwing.addListener(btn2, alTypingCurr);
+        CCSwing.addListener(btn3, alTypingCurr);
+        CCSwing.addListener(btn4, alTypingCurr);
+        CCSwing.addListener(btn5, alTypingCurr);
+        CCSwing.addListener(btn6, alTypingCurr);
+        CCSwing.addListener(btn7, alTypingCurr);
+        CCSwing.addListener(btn8, alTypingCurr);
+        CCSwing.addListener(btn9, alTypingCurr);
         ActionListener alTypingSign = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _typingCurrSign();
             }
         };
-        CCSwing.addActionListener(btnSign, alTypingSign);
+        CCSwing.addListener(btnSign, alTypingSign);
         ActionListener alTypingBackspace = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _typingCurrBackspace();
             }
         };
-        CCSwing.addActionListener(btnBackspace, alTypingBackspace);
+        CCSwing.addListener(btnBackspace, alTypingBackspace);
         ActionListener alClearCurr = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _clearCurr();
             }
         };
-        CCSwing.addActionListener(btnCE, alClearCurr);
+        CCSwing.addListener(btnCE, alClearCurr);
         ActionListener alTypingOperator = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _typingOperator(((JButton) actionEvent.getSource()).getText());
             }
         };
-        CCSwing.addActionListener(btnSquareRoot, alTypingOperator);
-        CCSwing.addActionListener(btnPower, alTypingOperator);
-        CCSwing.addActionListener(btnMultiplication, alTypingOperator);
-        CCSwing.addActionListener(btnDivision, alTypingOperator);
-        CCSwing.addActionListener(btnAddition, alTypingOperator);
-        CCSwing.addActionListener(btnSubtraction, alTypingOperator);
+        CCSwing.addListener(btnSquareRoot, alTypingOperator);
+        CCSwing.addListener(btnPower, alTypingOperator);
+        CCSwing.addListener(btnMultiplication, alTypingOperator);
+        CCSwing.addListener(btnDivision, alTypingOperator);
+        CCSwing.addListener(btnAddition, alTypingOperator);
+        CCSwing.addListener(btnSubtraction, alTypingOperator);
         ActionListener alTypingEqual = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _typingEqual();
             }
         };
-        CCSwing.addActionListener(btnEqual, alTypingEqual);
+        CCSwing.addListener(btnEqual, alTypingEqual);
         ActionListener alClearAll = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _clearAll();
             }
         };
-        CCSwing.addActionListener(btnC, alClearAll);
+        CCSwing.addListener(btnC, alClearAll);
     }
 
     private void _typingCurr(String string) {

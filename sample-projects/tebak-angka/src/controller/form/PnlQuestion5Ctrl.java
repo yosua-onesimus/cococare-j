@@ -33,13 +33,13 @@ public class PnlQuestion5Ctrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         //
-        CCSwing.addActionListener(btnYes, new ActionListener() {
+        CCSwing.addListener(btnYes, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doShowNextQuestion(true);
             }
         });
-        CCSwing.addActionListener(btnNo, new ActionListener() {
+        CCSwing.addListener(btnNo, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doShowNextQuestion(false);

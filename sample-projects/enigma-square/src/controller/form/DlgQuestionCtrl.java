@@ -74,8 +74,8 @@ public class DlgQuestionCtrl extends CFSwingCtrl {
                 _doEnter();
             }
         };
-        CCSwing.addActionListener(txtAnswer, alEnter);
-        CCSwing.addActionListener(btnEnter, alEnter);
+        CCSwing.addListener(txtAnswer, alEnter);
+        CCSwing.addListener(btnEnter, alEnter);
     }
 
     protected void _doEnter() {

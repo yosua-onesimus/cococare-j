@@ -32,7 +32,7 @@ public class PnlIntroCtrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         //
-        CCSwing.addActionListener(btnStart, new ActionListener() {
+        CCSwing.addListener(btnStart, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doStart();

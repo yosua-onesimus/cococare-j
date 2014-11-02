@@ -5,7 +5,7 @@ import static cococare.common.CCFormat.formatNumber;
 import static cococare.common.CCFormat.unformatNumber;
 import static cococare.common.CCMath.round;
 import cococare.framework.swing.CFSwingCtrl;
-import static cococare.swing.CCSwing.addActionListener;
+import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,7 +46,7 @@ public class PnlVoucherTypeCtrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         //
-        addActionListener(btnCalc, new ActionListener() {
+        addListener(btnCalc, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doUpdateTxtSalePrice();

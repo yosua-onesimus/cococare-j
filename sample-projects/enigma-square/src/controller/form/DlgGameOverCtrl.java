@@ -55,7 +55,7 @@ public class DlgGameOverCtrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         //
-        CCSwing.addActionListener(btnOk, new ActionListener() {
+        CCSwing.addListener(btnOk, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doCloseScreen();

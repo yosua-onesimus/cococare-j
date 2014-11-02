@@ -7,6 +7,7 @@ import static cococare.common.CCFormat.getMinTime;
 import static cococare.common.CCLogic.isNotNull;
 import cococare.database.CCHibernateFilter;
 import cococare.framework.swing.CFSwingCtrl;
+import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCBandBox;
 import cococare.swing.component.CCDatePicker;
 import java.awt.event.ActionEvent;
@@ -97,7 +98,7 @@ public class PnlReturningItemCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        bndBorrowingItem.addEventListenerOnSelect(new ActionListener() {
+        addListener(bndBorrowingItem, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doUpdateBookInfo();

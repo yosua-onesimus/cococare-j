@@ -3,7 +3,7 @@ package controller.form.lib;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.framework.swing.CFSwingCtrl;
 import cococare.swing.CCEditor;
-import static cococare.swing.CCSwing.addActionListener;
+import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,7 +40,7 @@ public class PnlReportListCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        addActionListener(_btnView, new ActionListener() {
+        addListener(_btnView, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doView();

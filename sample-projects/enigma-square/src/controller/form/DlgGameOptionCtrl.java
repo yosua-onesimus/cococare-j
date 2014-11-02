@@ -54,26 +54,26 @@ public class DlgGameOptionCtrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         //
-        CCSwing.addActionListener(chkQuestionShow, new ActionListener() {
+        CCSwing.addListener(chkQuestionShow, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doUpdateAccessibleQuestion();
             }
         });
-        CCSwing.addFocusListener(txtQuestionNumber, new FocusAdapter() {
+        txtQuestionNumber.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
                 _doUpdateTxtQuestionNumber();
             }
         });
-        CCSwing.addFocusListener(txtQuestionTime, new FocusAdapter() {
+        txtQuestionTime.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
                 _doUpdateTxtQuestionTime();
             }
         });
         //
-        CCSwing.addFocusListener(txtPlayerNumber, new FocusAdapter() {
+        txtPlayerNumber.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
                 _doUpdateAccessiblePlayer();
@@ -96,7 +96,7 @@ public class DlgGameOptionCtrl extends CFSwingCtrl {
             CCSwing.getComponent(getContainer(), "imgIcon" + (i)).addMouseListener(mlIcon);
         }
         //
-        CCSwing.addActionListener(btnStart, alSave);
+        CCSwing.addListener(btnStart, alSave);
     }
 
     @Override

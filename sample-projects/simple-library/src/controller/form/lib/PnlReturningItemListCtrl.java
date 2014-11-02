@@ -50,7 +50,7 @@ public class PnlReturningItemListCtrl extends CFSwingCtrl {
     @Override
     protected void _initTable() {
         super._initTable();
-        tblEntity.addEventListenerOnChange(new ActionListener() {
+        tblEntity.addListenerOnChange(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _doUpdateParentField();

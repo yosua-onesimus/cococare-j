@@ -49,19 +49,19 @@ public class PnlEnigmaSquareCtrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         //
-        CCSwing.addActionListener(btnRollDice, new ActionListener() {
+        CCSwing.addListener(btnRollDice, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _rollDice();
             }
         });
-        CCSwing.addActionListener(btnNewGame, new ActionListener() {
+        CCSwing.addListener(btnNewGame, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _newGame();
             }
         });
-        CCSwing.addActionListener(btnEndGame, new ActionListener() {
+        CCSwing.addListener(btnEndGame, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _endGame();
