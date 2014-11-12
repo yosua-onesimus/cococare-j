@@ -20,8 +20,8 @@ public class PnlParameter extends javax.swing.JPanel {
         btnClose = new cococare.swing.component.CCButton();
         pnlGenerator = new javax.swing.JPanel();
 
-        setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(600, 400));
+        setMinimumSize(new java.awt.Dimension(600, 200));
+        setPreferredSize(new java.awt.Dimension(600, 200));
 
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
 

@@ -3,11 +3,9 @@ package cococare.framework.model.obj.note;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
-import cococare.common.CCFieldConfig.OnDelete;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.*;
 //</editor-fold>
 
@@ -17,9 +15,9 @@ import javax.persistence.*;
  * @version 13.03.17
  */
 @Entity
-@Table(name = "note_trackers")
-@CCTypeConfig(label = "Tracker", uniqueKey = "name", customizable = true, parameter = true)
-public class NoteTracker implements CCEntity {
+@Table(name = "note_tags")
+@CCTypeConfig(label = "Tag", uniqueKey = "name", parameter = true)
+public class NoteTag implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -102,25 +100,6 @@ public class NoteTracker implements CCEntity {
     @Column(length = 32)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
     private String name;
-    @Column(length = Short.MAX_VALUE)
-    @CCFieldConfig(componentId = "txtDescription", maxLength = Short.MAX_VALUE, visible = false)
-    private String description;
-    @ManyToOne
-    @CCFieldConfig(componentId = "bndObjective", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
-    private NoteObjective objective;
-    @CCFieldConfig(componentId = "cmbType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.note.NoteEnum$TrackerType", optionReflectKey = "type", visible = false)
-    private Integer typeIndex;
-    @Column(length = 16)
-    @CCFieldConfig(maxLength = 16, visible2 = false)
-    private String type;
-//<editor-fold defaultstate="collapsed" desc=" cascade ">
-    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "tracker")
-    @CCFieldConfig(onDelete = OnDelete.CASCADE, visible2 = false)
-    private List<NoteBookmark> bookmarks;
-    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "tracker")
-    @CCFieldConfig(onDelete = OnDelete.CASCADE, visible2 = false)
-    private List<NoteShortcut> shortcuts;
-//</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -137,38 +116,6 @@ public class NoteTracker implements CCEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public NoteObjective getObjective() {
-        return objective;
-    }
-
-    public void setObjective(NoteObjective objective) {
-        this.objective = objective;
-    }
-
-    public Integer getTypeIndex() {
-        return typeIndex;
-    }
-
-    public void setTypeIndex(Integer typeIndex) {
-        this.typeIndex = typeIndex;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 //</editor-fold>
 }

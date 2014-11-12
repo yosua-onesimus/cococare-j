@@ -11,7 +11,7 @@ import cococare.database.CCEntityModule;
 import static cococare.datafile.CCFile.*;
 import cococare.datafile.jxl.CCExcel;
 import cococare.framework.swing.CFSwingCtrl;
-import static cococare.swing.CCSwing.addActionListener;
+import static cococare.swing.CCSwing.addListener;
 import static cococare.swing.CCSwing.applyAccessible;
 import cococare.swing.component.CCButton;
 import cococare.swing.component.CCOptionBox;
@@ -74,19 +74,19 @@ public class PnlExportImportCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        addActionListener(swingView.getBtnExport(), new ActionListener() {
+        addListener(swingView.getBtnExport(), new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _doExport(true);
             }
         });
-        addActionListener(btnTemplate, new ActionListener() {
+        addListener(btnTemplate, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _doExport(false);
             }
         });
-        addActionListener(btnImport, new ActionListener() {
+        addListener(btnImport, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _doImport();

@@ -70,7 +70,7 @@ public class UtilUserGroupBo extends CCHibernateBo {
         removedUserGroupIps = new ArrayList();
         clazz_child = new HashMap();
         for (Class clazz : utilAdditionalTabClass) {
-            clazz_child.put(clazz, getListByAssociativeArray(clazz, userGroupChildDao.getBy(userGroup, clazz).getAssociativeArray()));
+            clazz_child.put(clazz, isNull(userGroup.getId()) ? new ArrayList() : getListByAssociativeArray(clazz, userGroupChildDao.getBy(userGroup, clazz).getAssociativeArray()));
         }
     }
 

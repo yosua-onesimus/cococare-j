@@ -11,7 +11,7 @@ import cococare.datafile.CCSetup;
 import static cococare.datafile.CCSystem.ENTER;
 import static cococare.datafile.CCSystem.JAVA_HOME;
 import cococare.framework.swing.CFSwingCtrl;
-import static cococare.swing.CCSwing.addActionListener;
+import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -64,67 +64,67 @@ public class PnlJavaxCommSetupCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        addActionListener(btnBrowseJavaHome, new ActionListener() {
+        addListener(btnBrowseJavaHome, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doBrowseJavaHome();
             }
         });
-        addActionListener(btnBrowseJavaHomeBin, new ActionListener() {
+        addListener(btnBrowseJavaHomeBin, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doBrowseJavaHomeBin();
             }
         });
-        addActionListener(btnBrowseJavaHomeLib, new ActionListener() {
+        addListener(btnBrowseJavaHomeLib, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doBrowseJavaHomeLib();
             }
         });
-        addActionListener(btnCopy, new ActionListener() {
+        addListener(btnCopy, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doCopy();
             }
         });
-        addActionListener(btnAscii2Port, new ActionListener() {
+        addListener(btnAscii2Port, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doAscii2Port();
             }
         });
-        addActionListener(btnText2Display, new ActionListener() {
+        addListener(btnText2Display, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doText2Display();
             }
         });
-        addActionListener(btnText2Port, new ActionListener() {
+        addListener(btnText2Port, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doText2Port();
             }
         });
-        addActionListener(btnOpenDrawer1, new ActionListener() {
+        addListener(btnOpenDrawer1, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doOpenDrawer1();
             }
         });
-        addActionListener(btnOpenDrawer2, new ActionListener() {
+        addListener(btnOpenDrawer2, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doOpenDrawer2();
             }
         });
-        addActionListener(btnOpenDrawer3, new ActionListener() {
+        addListener(btnOpenDrawer3, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doOpenDrawer3();
             }
         });
-        addActionListener(btnOpenDrawer4, new ActionListener() {
+        addListener(btnOpenDrawer4, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doOpenDrawer4();

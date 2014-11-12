@@ -7,7 +7,7 @@ import static cococare.common.CCFormat.getString;
 import cococare.database.CCHibernateFilter;
 import cococare.framework.model.obj.util.UtilLogger;
 import cococare.framework.swing.CFSwingCtrl;
-import static cococare.swing.CCSwing.addActionListener;
+import static cococare.swing.CCSwing.addListener;
 import static cococare.swing.CCSwing.fillUp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -103,8 +103,8 @@ public class PnlLoggerListCtrl extends CFSwingCtrl {
                 _doSearch();
             }
         };
-        addActionListener(cmbUsername, alSearch);
-        addActionListener(cmbScreen, alSearch);
-        addActionListener(cmbAction, alSearch);
+        addListener(cmbUsername, alSearch);
+        addListener(cmbScreen, alSearch);
+        addListener(cmbAction, alSearch);
     }
 }

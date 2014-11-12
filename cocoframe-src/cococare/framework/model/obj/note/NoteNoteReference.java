@@ -15,9 +15,9 @@ import javax.persistence.*;
  * @version 13.03.17
  */
 @Entity
-@Table(name = "note_bookmarks")
-@CCTypeConfig(label = "Bookmark", uniqueKey = "name", customizable = true, parameter = true)
-public class NoteBookmark implements CCEntity {
+@Table(name = "note_note_references")
+@CCTypeConfig(label = "Reference", uniqueKey = "reference.name")
+public class NoteNoteReference implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -94,50 +94,28 @@ public class NoteBookmark implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "B000", requestFocus = true, unique = true)
-    private String code;
-    @Column(length = 255)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY)
-    private String name;
-    @Column(length = 255)
-    @CCFieldConfig(componentId = "txtUrl", accessible = Accessible.MANDATORY)
-    private String url;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndTracker", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name", visible = false)
-    private NoteTracker tracker;
+    @CCFieldConfig(componentId = "bndNote", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "title", visible = false)
+    private NoteNote note;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndReference", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name", requestFocus = true)
+    private NoteReference reference;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public String getCode() {
-        return code;
+    public NoteNote getNote() {
+        return note;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setNote(NoteNote note) {
+        this.note = note;
     }
 
-    public String getName() {
-        return name;
+    public NoteReference getReference() {
+        return reference;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public NoteTracker getTracker() {
-        return tracker;
-    }
-
-    public void setTracker(NoteTracker tracker) {
-        this.tracker = tracker;
+    public void setReference(NoteReference reference) {
+        this.reference = reference;
     }
 //</editor-fold>
 }

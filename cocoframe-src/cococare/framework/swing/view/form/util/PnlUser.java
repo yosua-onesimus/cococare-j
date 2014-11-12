@@ -81,6 +81,8 @@ public class PnlUser extends javax.swing.JPanel {
         chkActive.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         chkActive.setText("Active");
 
+        tabEntity.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+
         tblPrivilege.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         scrollPane.setViewportView(tblPrivilege);
 
@@ -92,7 +94,7 @@ public class PnlUser extends javax.swing.JPanel {
         );
         pnlPrivilegeLayout.setVerticalGroup(
             pnlPrivilegeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
         );
 
         tabEntity.addTab(CCLanguage.turn(CCLanguage.Privilege), pnlPrivilege);
@@ -134,7 +136,7 @@ public class PnlUser extends javax.swing.JPanel {
                     .addComponent(btnIpAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIpRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addComponent(scrIp, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                .addComponent(scrIp, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
         );
 
         tabEntity.addTab(CCLanguage.turn(CCLanguage.IP), pnlIp);
@@ -202,7 +204,7 @@ public class PnlUser extends javax.swing.JPanel {
                 .addGap(1, 1, 1)
                 .addComponent(chkActive, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
-                .addComponent(tabEntity))
+                .addComponent(tabEntity, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

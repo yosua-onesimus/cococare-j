@@ -3,10 +3,7 @@ package cococare.framework.model.mdl.note;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.database.CCHibernate;
 import cococare.database.CCHibernateModule;
-import cococare.framework.model.obj.note.NoteBookmark;
-import cococare.framework.model.obj.note.NoteObjective;
-import cococare.framework.model.obj.note.NoteShortcut;
-import cococare.framework.model.obj.note.NoteTracker;
+import cococare.framework.model.obj.note.*;
 //</editor-fold>
 
 /**
@@ -23,11 +20,11 @@ public class NotesModule extends CCHibernateModule {
     public void init(CCHibernate hibernate) {
         super.init(hibernate);
         //
-        hibernate.addAnnotatedClass(NoteBookmark.class);
-        hibernate.addAnnotatedClass(NoteShortcut.class);
-        //
-        hibernate.addAnnotatedClass(NoteObjective.class);
-        hibernate.addAnnotatedClass(NoteTracker.class);
+        hibernate.addAnnotatedClass(NoteTag.class);
+        hibernate.addAnnotatedClass(NoteReference.class);
+        hibernate.addAnnotatedClass(NoteNote.class);
+        hibernate.addAnnotatedClass(NoteNoteTag.class);
+        hibernate.addAnnotatedClass(NoteNoteReference.class);
     }
 //</editor-fold>
 }

@@ -15,9 +15,9 @@ import javax.persistence.*;
  * @version 13.03.17
  */
 @Entity
-@Table(name = "note_shortcuts")
-@CCTypeConfig(label = "Shortcut", uniqueKey = "name", customizable = true, parameter = true)
-public class NoteShortcut implements CCEntity {
+@Table(name = "note_note_tags")
+@CCTypeConfig(label = "Tag", uniqueKey = "tag.name")
+public class NoteNoteTag implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -94,50 +94,38 @@ public class NoteShortcut implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "S000", requestFocus = true, unique = true)
-    private String code;
-    @Column(length = 255)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY)
-    private String name;
-    @Column(name = "path_", length = 255)
-    @CCFieldConfig(componentId = "txtPath", accessible = Accessible.MANDATORY)
-    private String path;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndTracker", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name", visible = false)
-    private NoteTracker tracker;
+    @CCFieldConfig(componentId = "bndNote", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "title", visible = false)
+    private NoteNote note;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndTag", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name", requestFocus = true)
+    private NoteTag tag;
+
+//<editor-fold defaultstate="collapsed" desc=" NoteNoteTag ">
+    public NoteNoteTag() {
+    }
+
+    public NoteNoteTag(NoteNote note, NoteTag tag) {
+        this.note = note;
+        this.tag = tag;
+    }
+//</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public String getCode() {
-        return code;
+    public NoteNote getNote() {
+        return note;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setNote(NoteNote note) {
+        this.note = note;
     }
 
-    public String getName() {
-        return name;
+    public NoteTag getTag() {
+        return tag;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public NoteTracker getTracker() {
-        return tracker;
-    }
-
-    public void setTracker(NoteTracker tracker) {
-        this.tracker = tracker;
+    public void setTag(NoteTag tag) {
+        this.tag = tag;
     }
 //</editor-fold>
 }

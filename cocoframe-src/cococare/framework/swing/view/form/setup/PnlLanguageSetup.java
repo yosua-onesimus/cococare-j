@@ -24,7 +24,8 @@ public class PnlLanguageSetup extends javax.swing.JPanel {
         scrLanguage = new javax.swing.JScrollPane();
         tblLanguage = new javax.swing.JTable();
 
-        setMinimumSize(new java.awt.Dimension(600, 400));
+        setMinimumSize(new java.awt.Dimension(600, 200));
+        setPreferredSize(new java.awt.Dimension(600, 200));
 
         pnlLanguage.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Language Setup", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         pnlLanguage.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N

@@ -112,7 +112,7 @@ public class PnlAuditTrailCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        tblAuditTrail.addEventListenerOnSelect(new ActionListener() {
+        tblAuditTrail.addListenerOnSelect(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 tblOldVsNew.removeRows();
@@ -128,7 +128,7 @@ public class PnlAuditTrailCtrl extends CFSwingCtrl {
                 }
             }
         });
-        addActionListener(btnApprove, alSave);
+        addListener(btnApprove, alSave);
     }
 
     @Override

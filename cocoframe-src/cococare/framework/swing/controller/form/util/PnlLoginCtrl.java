@@ -5,7 +5,7 @@ import static cococare.common.CCMessage.showError;
 import cococare.framework.common.CFApplCtrl;
 import cococare.framework.model.obj.util.UtilUser;
 import cococare.framework.swing.CFSwingCtrl;
-import static cococare.swing.CCSwing.addActionListener;
+import static cococare.swing.CCSwing.addListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -51,9 +51,9 @@ public class PnlLoginCtrl extends CFSwingCtrl {
                 _doLogin();
             }
         };
-        addActionListener(txtUsername, alLogin);
-        addActionListener(txtPassword, alLogin);
-        addActionListener(btnLogin, alLogin);
+        addListener(txtUsername, alLogin);
+        addListener(txtPassword, alLogin);
+        addListener(btnLogin, alLogin);
         btnExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

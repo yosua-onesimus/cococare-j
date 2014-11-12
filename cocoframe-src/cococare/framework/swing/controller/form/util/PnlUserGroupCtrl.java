@@ -14,7 +14,7 @@ import cococare.framework.model.obj.util.UtilPrivilege;
 import cococare.framework.model.obj.util.UtilUserGroup;
 import cococare.framework.model.obj.util.UtilUserGroupIp;
 import cococare.framework.swing.CFSwingCtrl;
-import static cococare.swing.CCSwing.addActionListener;
+import static cococare.swing.CCSwing.addListener;
 import static cococare.swing.CCSwing.newCCTable;
 import cococare.swing.CCTable;
 import cococare.swing.component.CCButton;
@@ -135,13 +135,13 @@ public class PnlUserGroupCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        addActionListener(btnIpAdd, new ActionListener() {
+        addListener(btnIpAdd, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _doIpAdd();
             }
         });
-        addActionListener(btnIpRemove, new ActionListener() {
+        addListener(btnIpRemove, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _doIpRemove();

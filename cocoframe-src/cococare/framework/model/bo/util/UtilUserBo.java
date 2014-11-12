@@ -33,7 +33,6 @@ public class UtilUserBo extends CCHibernateBo {
     private List<Class> utilAdditionalTabClass;
     //
     private UtilPrivilegeDao privilegeDao;
-    private UtilUserGroupIpDao userGroupIpDao;
     private UtilUserGroupChildDao userGroupChildDao;
     private UtilUserDao userDao;
     private UtilUserPrivilegeDao userPrivilegeDao;
@@ -74,7 +73,7 @@ public class UtilUserBo extends CCHibernateBo {
         removedUserIps = new ArrayList();
         clazz_child = new HashMap();
         for (Class clazz : utilAdditionalTabClass) {
-            clazz_child.put(clazz, getListByAssociativeArray(clazz, userChildDao.getBy(user, clazz).getAssociativeArray()));
+            clazz_child.put(clazz, isNull(user.getId()) ? new ArrayList() : getListByAssociativeArray(clazz, userChildDao.getBy(user, clazz).getAssociativeArray()));
         }
     }
 

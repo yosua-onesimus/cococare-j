@@ -5,7 +5,7 @@ import static cococare.common.CCConfig.EDT_COLOR_ON_FOCUS;
 import static cococare.common.CCFormat.*;
 import cococare.common.CCLanguage;
 import static cococare.common.CCLanguage.*;
-import static cococare.datafile.CCImage.getImage;
+import static cococare.datafile.CCImage.readImage;
 import cococare.framework.common.CFApplCtrl;
 import cococare.framework.common.CFApplUae;
 import cococare.framework.model.obj.util.UtilConfAppl;
@@ -48,7 +48,7 @@ public abstract class CFSwingMain extends CFApplCtrl {
         getApplLogo().setIcon(getClass().getResource(APPL_LOGO));
         getApplName().setText(APPL_NAME);
         getApplVer().setText(APPL_VER);
-        getMainScreen().setIconImage(getImage(APPL_LOGO));
+        getMainScreen().setIconImage(readImage(APPL_LOGO));
         getMainScreen().setTitle(APPL_NAME + " " + APPL_VER);
         centerScreen(getMainScreen(), true, true);
         _clearUserConfig();
@@ -101,7 +101,7 @@ public abstract class CFSwingMain extends CFApplCtrl {
             setLookAndFeel(LookAndFeel.values()[parseInt(confAppl.getApplLookAndFeel())].getName(), getMainScreen());
             getContentImage().setIcon(confAppl.getApplWallpaper());
             getCompLogo().setIcon(confAppl.getCompanyLogo());
-            getCompName().setText(wordWrap(new String[]{getStringOrBlank(confAppl.getCompanyName()), getStringOrBlank(confAppl.getCompanyAddress())}));
+            getCompName().setText(wordWrap(getStringOrBlank(confAppl.getCompanyName()), getStringOrBlank(confAppl.getCompanyAddress())));
         }
     }
 

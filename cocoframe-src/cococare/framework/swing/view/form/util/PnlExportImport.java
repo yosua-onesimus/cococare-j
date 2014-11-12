@@ -26,8 +26,8 @@ public class PnlExportImport extends javax.swing.JPanel {
         btnClose = new cococare.swing.component.CCButton();
         optParameter = new cococare.swing.component.CCOptionBox();
 
-        setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(600, 400));
+        setMinimumSize(new java.awt.Dimension(600, 200));
+        setPreferredSize(new java.awt.Dimension(600, 200));
 
         pnlEditor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, CCLanguage.turn(CCLanguage.Export_Import), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         pnlEditor.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N

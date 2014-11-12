@@ -3,11 +3,11 @@ package cococare.framework.model.obj.note;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
-import cococare.common.CCFieldConfig.OnDelete;
+import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
+import cococare.framework.model.obj.note.NoteEnum.ReferenceType;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.*;
 //</editor-fold>
 
@@ -17,9 +17,9 @@ import javax.persistence.*;
  * @version 13.03.17
  */
 @Entity
-@Table(name = "note_objectives")
-@CCTypeConfig(label = "Objective", uniqueKey = "name", customizable = true, parameter = true)
-public class NoteObjective implements CCEntity {
+@Table(name = "note_references")
+@CCTypeConfig(label = "Reference", uniqueKey = "name")
+public class NoteReference implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -97,24 +97,22 @@ public class NoteObjective implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "O000", requestFocus = true, unique = true)
+    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "R000", requestFocus = true, unique = true)
     private String code;
     @Column(length = 32)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
     private String name;
-    @Column(length = 255)
-    @CCFieldConfig(componentId = "txtDescription")
-    private String description;
-    @CCFieldConfig(componentId = "cmbStatus", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.note.NoteEnum$ObjectiveStatus", optionReflectKey = "status", visible = false)
-    private Integer statusIndex;
+    @CCFieldConfig(componentId = "cmbType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.note.NoteEnum$ReferenceType", optionReflectKey = "type", visible = false)
+    private Integer typeIndex = ReferenceType.ATTACHMENT.ordinal();
     @Column(length = 16)
-    @CCFieldConfig(maxLength = 16, visible2 = false)
-    private String status;
-//<editor-fold defaultstate="collapsed" desc=" cascade ">
-    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "objective")
-    @CCFieldConfig(onDelete = OnDelete.CASCADE, visible2 = false)
-    private List<NoteTracker> trackers;
-//</editor-fold>
+    @CCFieldConfig(maxLength = 16, visible = false, visible2 = false)
+    private String type = ReferenceType.ATTACHMENT.toString();
+    @Column(length = Integer.MAX_VALUE)
+    @CCFieldConfig(componentId = "attByteA", type = Type.COMMON_FILE, optionReflectKey = "value", visible = false)
+    transient private byte[] byteA;
+    @Column(name = "value_", length = 255)
+    @CCFieldConfig(componentId = "txtValue", visible = false)
+    private String value;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -133,28 +131,45 @@ public class NoteObjective implements CCEntity {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public Integer getTypeIndex() {
+        return typeIndex;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTypeIndex(Integer typeIndex) {
+        this.typeIndex = typeIndex;
     }
 
-    public Integer getStatusIndex() {
-        return statusIndex;
+    public String getType() {
+        return type;
     }
 
-    public void setStatusIndex(Integer statusIndex) {
-        this.statusIndex = statusIndex;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getStatus() {
-        return status;
+    public ReferenceType getReferenceType() {
+        return ReferenceType.values()[getTypeIndex()];
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setReferenceType(ReferenceType referenceType) {
+        setTypeIndex(referenceType.ordinal());
+        setType(referenceType.toString());
+    }
+
+    public byte[] getByteA() {
+        return byteA;
+    }
+
+    public void setByteA(byte[] byteA) {
+        this.byteA = byteA;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 //</editor-fold>
 }

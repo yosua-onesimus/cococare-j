@@ -63,7 +63,7 @@ public class PnlParameterListCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        addActionListener(cmbEntity, new ActionListener() {
+        addListener(cmbEntity, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 _doSearch();

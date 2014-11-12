@@ -7,7 +7,7 @@ import cococare.database.CCDatabaseConfig.SupportedDatabase;
 import cococare.framework.common.CFApplCtrl;
 import cococare.framework.model.mdl.util.UtilityModule;
 import cococare.framework.swing.CFSwingCtrl;
-import static cococare.swing.CCSwing.addActionListener;
+import static cococare.swing.CCSwing.addListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
@@ -45,7 +45,7 @@ public class PnlDatabaseSettingCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        addActionListener(cmbDriver, new ActionListener() {
+        addListener(cmbDriver, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _doCmbDriver();

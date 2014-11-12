@@ -14,8 +14,6 @@ public class NotesLanguage extends CCLanguage {
     public static String Note;
     //menu
     public static String Notes;
-    public static String Bookmark;
-    public static String Shortcut;
-    public static String Objective;
-    public static String Tracker;
+    public static String Tag;
+    public static String Reference;
 }

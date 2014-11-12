@@ -13,7 +13,7 @@ import static cococare.framework.common.CFApplCtrl.LICENSE;
 import cococare.framework.swing.CFSwingCtrl;
 import cococare.swing.CCEditor;
 import static cococare.swing.CCEditor.requestFocusInWindow;
-import static cococare.swing.CCSwing.addActionListener;
+import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -68,14 +68,14 @@ public class PnlRegistrationCtrl extends CFSwingCtrl {
     protected void _initListener() {
         super._initListener();
         if (hasRegister) {
-            addActionListener(btnRegister, new ActionListener() {
+            addListener(btnRegister, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     _doRegister();
                 }
             });
         } else {
-            addActionListener(btnRegister, new ActionListener() {
+            addListener(btnRegister, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     _doRegister();

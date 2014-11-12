@@ -1,7 +1,7 @@
 package cococare.framework.swing.controller.form.note;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.framework.model.obj.note.NoteTracker;
+import cococare.framework.model.obj.note.NoteNoteReference;
 import cococare.framework.swing.CFSwingCtrl;
 //</editor-fold>
 
@@ -10,15 +10,15 @@ import cococare.framework.swing.CFSwingCtrl;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlTrackerListCtrl extends CFSwingCtrl {
+public class PnlNoteReferenceCtrl extends CFSwingCtrl {
 
     @Override
     protected Class _getEntity() {
-        return NoteTracker.class;
+        return NoteNoteReference.class;
     }
 
     @Override
     protected BaseFunction _getBaseFunction() {
-        return BaseFunction.LIST_FUNCTION;
+        return BaseFunction.FORM_FUNCTION;
     }
 }

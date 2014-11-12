@@ -195,7 +195,7 @@ public class UtilPerson implements CCEntity {
     private String work;
     //----------------------------------------------------------------------------------------------
     @Column(length = 255)
-    @CCFieldConfig(componentId = "txtAddress", visible = false)
+    @CCFieldConfig(componentId = "txtAddress", maxLength = Short.MAX_VALUE, visible = false)
     private String address;
     @Column(length = 16)
     @CCFieldConfig(tooltiptext = "RT/RW", componentId = "txtNeighborhood", maxLength = 16, visible = false)
@@ -207,7 +207,7 @@ public class UtilPerson implements CCEntity {
     @CCFieldConfig(tooltiptext = "Kecamatan", componentId = "txtSubDistrict", maxLength = 48, visible = false)
     private String subDistrict;
     @Column(length = 48)
-    @CCFieldConfig(tooltiptext = "Kabupaten", componentId = "txtRegency", maxLength = 48, visible = false)
+    @CCFieldConfig(tooltiptext = "Kabupaten", componentId = "cmbRegency", maxLength = 48, optionSource = "IndonesiaCities.txt", optionReflectKey = "regency", visible = false)
     private String regency;
     @Column(length = 48)
     @CCFieldConfig(tooltiptext = "Propinsi", componentId = "cmbProvince", maxLength = 48, optionSource = "IndonesiaProvinces.txt", optionReflectKey = "province", visible = false)

@@ -9,9 +9,9 @@ import cococare.framework.model.mdl.note.NotesLanguage;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlShortcutList extends javax.swing.JPanel {
+public class PnlNoteList extends javax.swing.JPanel {
 
-    public PnlShortcutList() {
+    public PnlNoteList() {
         initComponents();
     }
 
@@ -33,8 +33,8 @@ public class PnlShortcutList extends javax.swing.JPanel {
         pgnEntity = new cococare.swing.component.CCPaging();
 
         setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(600, 400));
+        setMinimumSize(new java.awt.Dimension(600, 200));
+        setPreferredSize(new java.awt.Dimension(600, 200));
 
         tabEntity.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
@@ -78,7 +78,7 @@ public class PnlShortcutList extends javax.swing.JPanel {
         pnlList.add(scrEntity, java.awt.BorderLayout.CENTER);
         pnlList.add(pgnEntity, java.awt.BorderLayout.SOUTH);
 
-        tabEntity.addTab(NotesLanguage.turn(NotesLanguage.Shortcut), pnlList);
+        tabEntity.addTab(NotesLanguage.turn(NotesLanguage.Note), pnlList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -88,7 +88,7 @@ public class PnlShortcutList extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabEntity, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(tabEntity, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

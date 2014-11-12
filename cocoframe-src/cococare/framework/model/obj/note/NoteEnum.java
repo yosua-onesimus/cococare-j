@@ -7,27 +7,12 @@ package cococare.framework.model.obj.note;
  */
 public class NoteEnum {
 
-    public enum ObjectiveStatus {
+    public enum ReferenceType {
 
-        TO_DO("To Do"), DOING("Doing"), DONE("Done");
+        ATTACHMENT("Attachment"), LINK("Link"), SHORTCUT("Shortcut");
         private String string;
 
-        private ObjectiveStatus(String string) {
-            this.string = string;
-        }
-
-        @Override
-        public String toString() {
-            return string;
-        }
-    }
-
-    public enum TrackerType {
-
-        NOTES("Notes"), NEW_FEATURE("New Feature"), ENHANCING("Enhancing"), ERROR_REPORT("Error Report"), ERROR_FIXING("Error Fixing");
-        private String string;
-
-        private TrackerType(String string) {
+        private ReferenceType(String string) {
             this.string = string;
         }
 

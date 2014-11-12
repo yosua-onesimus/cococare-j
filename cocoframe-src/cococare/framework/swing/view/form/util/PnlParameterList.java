@@ -34,8 +34,8 @@ public class PnlParameterList extends javax.swing.JPanel {
         pgnEntity = new cococare.swing.component.CCPaging();
 
         setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(600, 400));
+        setMinimumSize(new java.awt.Dimension(600, 200));
+        setPreferredSize(new java.awt.Dimension(600, 200));
 
         tabEntity.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 

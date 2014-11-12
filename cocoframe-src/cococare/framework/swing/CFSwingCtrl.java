@@ -18,7 +18,9 @@ import static cococare.swing.CCSwing.*;
 import cococare.swing.CCTable;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +48,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected ActionListener alEdit;
     protected ActionListener alDelete;
     protected ActionListener alExport;
-    protected KeyListener klSearch;
+    protected ActionListener alSearch;
     protected HashMap<String, CFSwingCtrl> sysRef_swingCtrl;
     //
     protected CCEditor edtEntity;
@@ -230,9 +232,9 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
                     _doExport();
                 }
             };
-            klSearch = new KeyAdapter() {
+            alSearch = new ActionListener() {
                 @Override
-                public void keyReleased(KeyEvent e) {
+                public void actionPerformed(ActionEvent e) {
                     _doSearch();
                 }
             };
@@ -242,12 +244,12 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 //                    focusEvent.getComponent().transferFocus();
 //                }
 //            });
-            addActionListener(swingView.getBtnAdd(), alAdd);
-            addActionListener(swingView.getBtnView(), alView);
-            addActionListener(swingView.getBtnEdit(), alEdit);
-            addActionListener(swingView.getBtnDelete(), alDelete);
-            addActionListener(swingView.getBtnExport(), alExport);
-            addKeyListener(swingView.getTxtKeyword(), klSearch);
+            addListener(swingView.getBtnAdd(), alAdd);
+            addListener(swingView.getBtnView(), alView);
+            addListener(swingView.getBtnEdit(), alEdit);
+            addListener(swingView.getBtnDelete(), alDelete);
+            addListener(swingView.getBtnExport(), alExport);
+            addListener2(swingView.getTxtKeyword(), alSearch);
         } else if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction())) {
             alNew = new ActionListener() {
                 @Override
@@ -289,12 +291,12 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             if (ShowMode.DIALOG_MODE.equals(_getShowMode())) {
                 new CCHotkey(getContainer()).add(KeyEvent.VK_ESCAPE, alClose);
             }
-            addActionListener(swingView.getBtnNew(), alNew);
-            addActionListener(swingView.getBtnEdit(), alEdit);
-            addActionListener(swingView.getBtnSave(), alSave);
-            addActionListener(swingView.getBtnSaveAndNew(), alSaveAndNew);
-            addActionListener(swingView.getBtnCancel(), alCancel);
-            addActionListener(swingView.getBtnClose(), alClose);
+            addListener(swingView.getBtnNew(), alNew);
+            addListener(swingView.getBtnEdit(), alEdit);
+            addListener(swingView.getBtnSave(), alSave);
+            addListener(swingView.getBtnSaveAndNew(), alSaveAndNew);
+            addListener(swingView.getBtnCancel(), alCancel);
+            addListener(swingView.getBtnClose(), alClose);
         }
     }
 
