@@ -18,14 +18,14 @@ public class SVInitInitialDataBo extends CCHibernateBo {
         List list = new ArrayList();
         CCDom dom = new CCDom();
         dom.read(getClass().getResourceAsStream("/resource/Operator.xml"));
-        List<SVOperator> operators = dom.readList(SVOperator.class);
+        List<SVOperator> operators = dom.readEntity(SVOperator.class);
         for (SVOperator operator : operators) {
             if (isNull(SaleModule.INSTANCE.getCCHibernate().get(SVOperator.class, operator.getId()))) {
                 list.add(operator);
             }
         }
         dom.read(getClass().getResourceAsStream("/resource/VoucherType.xml"));
-        List<SVVoucherType> voucherTypes = dom.readList(SVVoucherType.class);
+        List<SVVoucherType> voucherTypes = dom.readEntity(SVVoucherType.class);
         for (SVVoucherType voucherType : voucherTypes) {
             if (isNull(SaleModule.INSTANCE.getCCHibernate().get(SVVoucherType.class, voucherType.getId()))) {
                 list.add(voucherType);
