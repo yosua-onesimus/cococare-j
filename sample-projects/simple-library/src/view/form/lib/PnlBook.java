@@ -22,8 +22,8 @@ public class PnlBook extends javax.swing.JPanel {
         txtCode = new javax.swing.JTextField();
         xTitle = new javax.swing.JLabel();
         txtTitle = new javax.swing.JTextField();
-        xDescription = new javax.swing.JLabel();
-        txtDescription = new javax.swing.JTextField();
+        xRemarks = new javax.swing.JLabel();
+        txtRemarks = new javax.swing.JTextField();
         xBookType = new javax.swing.JLabel();
         bndBookType = new cococare.swing.component.CCBandBox();
         xAuthor = new javax.swing.JLabel();
@@ -55,10 +55,10 @@ public class PnlBook extends javax.swing.JPanel {
 
         txtTitle.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
-        xDescription.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        xDescription.setText("Description");
+        xRemarks.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xRemarks.setText("Remarks");
 
-        txtDescription.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtRemarks.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
         xBookType.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xBookType.setText("Book Type");
@@ -106,9 +106,9 @@ public class PnlBook extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEditorLayout.createSequentialGroup()
-                .addComponent(xDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(xRemarks, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtRemarks, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addComponent(xBookType, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -152,8 +152,8 @@ public class PnlBook extends javax.swing.JPanel {
                     .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(xDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(xRemarks, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRemarks, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xBookType, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,7 +203,7 @@ public class PnlBook extends javax.swing.JPanel {
     private javax.swing.JTextField txtBorrowingFine;
     private javax.swing.JTextField txtBorrowingLimit;
     private javax.swing.JTextField txtCode;
-    private javax.swing.JTextField txtDescription;
+    private javax.swing.JTextField txtRemarks;
     private javax.swing.JTextField txtTitle;
     private javax.swing.JLabel xAuthor;
     private javax.swing.JLabel xBookType;
@@ -211,8 +211,8 @@ public class PnlBook extends javax.swing.JPanel {
     private javax.swing.JLabel xBorrowingFine;
     private javax.swing.JLabel xBorrowingLimit;
     private javax.swing.JLabel xCode;
-    private javax.swing.JLabel xDescription;
     private javax.swing.JLabel xPublisher;
+    private javax.swing.JLabel xRemarks;
     private javax.swing.JLabel xTitle;
     // End of variables declaration//GEN-END:variables
 }

@@ -57,9 +57,9 @@
                   <Component id="txtTitle" min="-2" pref="250" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
-                  <Component id="xDescription" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="xRemarks" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="txtDescription" min="-2" pref="250" max="-2" attributes="0"/>
+                  <Component id="txtRemarks" min="-2" pref="250" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <Component id="xBookType" min="-2" pref="100" max="-2" attributes="0"/>
@@ -114,8 +114,8 @@
                   </Group>
                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="xDescription" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="txtDescription" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="xRemarks" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="txtRemarks" min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -196,15 +196,15 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="xDescription">
+        <Component class="javax.swing.JLabel" name="xRemarks">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Description"/>
+            <Property name="text" type="java.lang.String" value="Remarks"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtDescription">
+        <Component class="javax.swing.JTextField" name="txtRemarks">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="0"/>

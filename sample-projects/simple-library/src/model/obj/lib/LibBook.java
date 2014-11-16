@@ -102,8 +102,8 @@ public class LibBook implements CCEntity {
     @CCFieldConfig(componentId = "txtTitle", accessible = Accessible.MANDATORY, maxLength = 32)
     private String title;
     @Column(length = 255)
-    @CCFieldConfig(componentId = "txtDescription", visible = false)
-    private String description;
+    @CCFieldConfig(componentId = "txtRemarks", visible = false)
+    private String remarks;
     @ManyToOne
     @CCFieldConfig(componentId = "bndBookType", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
     private LibBookType bookType;
@@ -141,12 +141,12 @@ public class LibBook implements CCEntity {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getRemarks() {
+        return remarks;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
     public LibBookType getBookType() {
