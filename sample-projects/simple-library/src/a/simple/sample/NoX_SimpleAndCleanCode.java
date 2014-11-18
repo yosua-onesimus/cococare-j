@@ -1,15 +1,25 @@
 package a.simple.sample;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import static a.simple.sample.No0_Static.newMember;
+import cococare.common.CCFinal;
 import cococare.common.CCFormat;
 import cococare.common.CCHighcharts;
 import cococare.common.CCHighcharts.Serial;
 import cococare.common.CCMath;
+import cococare.common.barbecue.CCBarcode;
+import cococare.common.comm.CCComm;
 import cococare.datafile.CCDom;
 import cococare.datafile.CCProperties;
 import cococare.datafile.jxl.CCExcel;
 import java.io.File;
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import model.obj.lib.LibMember;
+import net.sourceforge.barbecue.Barcode;
 import org.w3c.dom.Node;
 //</editor-fold>
 
@@ -38,6 +48,8 @@ public class NoX_SimpleAndCleanCode {
     private static String string1 = "yOSUA  oNESIMUS  sUHERU";
     private static Double double1 = 1234567.89D;
     private static Float float1 = 0.1234F;
+    private static Date date1 = CCFormat.getDate("17/03/2012", CCFinal.FORMAT_DATE);
+    private static Time time1 = CCFormat.getTime("12:34:56", CCFinal.FORMAT_TIME);
     private static BangunDatar bangunDatar = new BangunDatar();
 //</editor-fold>
 
@@ -62,6 +74,19 @@ public class NoX_SimpleAndCleanCode {
         System.out.println(CCFormat.formatPercent(float1));
         System.out.println(CCFormat.formatDecimal(double1));
         System.out.println(CCFormat.formatNumeric(double1));
+    }
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" sampleStringConversion ">
+    public static void sampleFormat_sampleStringConversion() {
+        System.out.println(CCFormat.getString(double1));
+        System.out.println(CCFormat.getString(float1));
+        System.out.println(CCFormat.getString(date1));
+        System.out.println(CCFormat.getString(time1));
+        System.out.println(CCFormat.getString4View(double1));
+        System.out.println(CCFormat.getString4View(float1));
+        System.out.println(CCFormat.getString4View(date1));
+        System.out.println(CCFormat.getString4View(time1));
     }
 //</editor-fold>
 
@@ -116,6 +141,26 @@ public class NoX_SimpleAndCleanCode {
     }
 //</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc=" sampleBarcode ">
+    public static void sampleBarcode() {
+        Barcode barcode = CCBarcode.newCode128("Yosua Onesimus");
+        CCBarcode.saveJPEG(barcode, new File("D:\\barcode.jpeg"));
+    }
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" sampleComm ">
+    public static void sampleComm() {
+        System.out.println("Paralel Ports: ");
+        for (String paralelPort : CCComm.getParalelPorts()) {
+            System.out.println(paralelPort);
+        }
+        System.out.println("\nSerial Ports: ");
+        for (String serialPort : CCComm.getSerialPorts()) {
+            System.out.println(serialPort);
+        }
+    }
+//</editor-fold>
+
 //<editor-fold defaultstate="collapsed" desc=" sampleXml ">
     public static void sampleXml() {
         CCDom dom = new CCDom();
@@ -129,11 +174,44 @@ public class NoX_SimpleAndCleanCode {
         Node elementBase = dom.appendChildNode(dom.getRoot(), "elementBase");
         employee = dom.appendChildNode(elementBase, "employee");
         Node firstName = dom.appendChildNode(employee, "firstName");
-        dom.appendChildTextNode(firstName, "Yosua");
+        dom.appendChildTextNode(firstName, "Sari");
         Node lastName = dom.appendChildNode(employee, "lastName");
-        dom.appendChildTextNode(lastName, "Onesimus");
+        dom.appendChildTextNode(lastName, "Heriati");
 
         dom.transform(new File("D:\\employee.xml"));
+
+        CCDom dom2 = new CCDom();
+        dom2.read(new File("D:\\employee.xml"));
+
+        attributeBase = dom2.getNodeByTagName(dom2.getRoot(), "attributeBase");
+        employee = dom2.getNodeByTagName(attributeBase, "employee");
+        System.out.println(dom2.getAttribute(employee, "firstName"));
+        System.out.println(dom2.getAttribute(employee, "lastName"));
+
+        elementBase = dom2.getNodeByTagName(dom2.getRoot(), "elementBase");
+        employee = dom2.getNodeByTagName(elementBase, "employee");
+        System.out.println(dom2.getNodeValue(employee, "firstName"));
+        System.out.println(dom2.getNodeValue(employee, "lastName"));
+    }
+
+    public static void sampleXml2() {
+        CCDom dom = new CCDom();
+
+        List<LibMember> members = new ArrayList();
+        members.add(newMember("M001", "Yosua Onesimus", "06/06/1984"));
+        members.add(newMember("M002", "Sari Heriati", "17/03/1984"));
+        members.add(newMember("M003", "Delvin Acelin", "02/09/2014"));
+        dom.writeEntity("root", members);
+
+        dom.transform(new File("D:\\members.xml"));
+
+        CCDom dom2 = new CCDom();
+        dom2.read(new File("D:\\members.xml"));
+
+        members = dom2.readEntity(LibMember.class);
+        for (LibMember member : members) {
+            System.out.println("Member: Code:" + member.getCode() + "; Full Name:" + member.getFullName() + "; Birth Date:" + CCFormat.getString(member.getBirthDate()) + "; ");
+        }
     }
 //</editor-fold>
 
@@ -170,6 +248,6 @@ public class NoX_SimpleAndCleanCode {
 //</editor-fold>
 
     public static void main(String[] args) {
-        sampleExcel();
+        sampleXml();
     }
 }
