@@ -9,6 +9,12 @@ import cococare.common.CCHighcharts.Serial;
 import cococare.common.CCMath;
 import cococare.common.barbecue.CCBarcode;
 import cococare.common.comm.CCComm;
+import cococare.common.quartz.CCJob;
+import cococare.common.quartz.CCQuartz;
+import cococare.common.quartz.CCScheduler;
+import cococare.database.*;
+import cococare.database.CCDatabaseConfig.SupportedDatabase;
+import cococare.datafile.CCDataFile;
 import cococare.datafile.CCDom;
 import cococare.datafile.CCProperties;
 import cococare.datafile.jxl.CCExcel;
@@ -17,9 +23,12 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import model.obj.lib.LibMember;
 import net.sourceforge.barbecue.Barcode;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 import org.w3c.dom.Node;
 //</editor-fold>
 
@@ -41,6 +50,21 @@ public class NoX_SimpleAndCleanCode {
         private double s1 = 4;
         private double s2 = 8;
         private double L;
+    }
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" SimpleJob ">
+    public static class SimpleJob extends CCJob {
+
+        @Override
+        public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+            System.out.println(
+                    CCFormat.getString(new Date(), CCFinal.FORMAT_DATE_TIME)
+                    + " "
+                    + getValue(jobExecutionContext, "employee.firstName")
+                    + " "
+                    + getValue(jobExecutionContext, "employee.lastName"));
+        }
     }
 //</editor-fold>
     //
@@ -161,6 +185,106 @@ public class NoX_SimpleAndCleanCode {
     }
 //</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc=" sampleQuartz ">
+    public static void sampleQuartz() {
+        HashMap<String, Object> parameter = new HashMap();
+        parameter.put("employee.firstName", "Yosua");
+        parameter.put("employee.lastName", "Onesimus");
+        CCScheduler scheduler = new CCScheduler(SimpleJob.class, parameter, "0/3 * * * * ?");
+        CCQuartz.start(scheduler);
+    }
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" sampleDatabase ">
+    public static void sampleDatabase() {
+        CCDatabaseConfig databaseConfig = new CCDatabaseConfig().
+                withSupportedDatabase(SupportedDatabase.MySQL).
+                withHost("localhost").
+                withPort("3306").
+                withUsername("root").
+                withPassword("1234").
+                withDatabase("coco_trial");
+
+        final CCDatabase database = new CCDatabase();
+        database.getConnection(databaseConfig, false);
+
+        CCDatabaseDao databaseDao = new CCDatabaseDao() {
+            @Override
+            protected CCDatabase getCCDatabase() {
+                return database;
+            }
+
+            @Override
+            protected Class<? extends CCEntity> getEntity() {
+                return LibMember.class;
+            }
+        };
+        databaseDao.saveOrUpdate(newMember("M001", "Yosua Onesimus", "06/06/1984"));
+        databaseDao.saveOrUpdate(newMember("M002", "Sari Heriati", "17/03/1984"));
+        databaseDao.saveOrUpdate(newMember("M003", "Delvin Acelin", "02/09/2014"));
+
+        List<LibMember> members = databaseDao.getListObject();
+        for (LibMember member : members) {
+            System.out.println("Member: Code:" + member.getCode() + "; Full Name:" + member.getFullName() + "; Birth Date:" + CCFormat.getString(member.getBirthDate()) + "; ");
+        }
+    }
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" sampleHibernate ">
+    public static void sampleHibernate() {
+        CCDatabaseConfig databaseConfig = new CCDatabaseConfig().
+                withSupportedDatabase(SupportedDatabase.MySQL).
+                withHost("localhost").
+                withPort("3306").
+                withUsername("root").
+                withPassword("1234").
+                withDatabase("coco_trial");
+
+        final CCHibernate hibernate = new CCHibernate();
+        hibernate.addAnnotatedClass(LibMember.class);
+        hibernate.addDatabaseConfig(databaseConfig);
+
+        CCHibernateDao hibernateDao = new CCHibernateDao() {
+            @Override
+            protected CCHibernate getCCHibernate() {
+                return hibernate;
+            }
+
+            @Override
+            protected List<CCHibernateFilter> getFilters() {
+                return new ArrayList();
+            }
+
+            @Override
+            protected Class getEntity() {
+                return LibMember.class;
+            }
+        };
+        hibernateDao.saveOrUpdate(newMember("M001", "Yosua Onesimus", "06/06/1984"));
+        hibernateDao.saveOrUpdate(newMember("M002", "Sari Heriati", "17/03/1984"));
+        hibernateDao.saveOrUpdate(newMember("M003", "Delvin Acelin", "02/09/2014"));
+
+        List<LibMember> members = hibernateDao.getList();
+        for (LibMember member : members) {
+            System.out.println("Member: Code:" + member.getCode() + "; Full Name:" + member.getFullName() + "; Birth Date:" + CCFormat.getString(member.getBirthDate()) + "; ");
+        }
+    }
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" sampleDataFile ">
+    public static void sampleDatafile() {
+        CCDataFile dataFile = new CCDataFile(LibMember.class);
+        dataFile.saveOrUpdate(newMember("M001", "Yosua Onesimus", "06/06/1984"));
+        dataFile.saveOrUpdate(newMember("M002", "Sari Heriati", "17/03/1984"));
+        dataFile.saveOrUpdate(newMember("M003", "Delvin Acelin", "02/09/2014"));
+
+        List<LibMember> members = dataFile.getList(null, null);
+        for (LibMember member : members) {
+            System.out.println("Member: Code:" + member.getCode() + "; Full Name:" + member.getFullName() + "; Birth Date:" + CCFormat.getString(member.getBirthDate()) + "; ");
+        }
+    }
+//</editor-fold>
+
 //<editor-fold defaultstate="collapsed" desc=" sampleXml ">
     public static void sampleXml() {
         CCDom dom = new CCDom();
@@ -248,6 +372,6 @@ public class NoX_SimpleAndCleanCode {
 //</editor-fold>
 
     public static void main(String[] args) {
-        sampleXml();
+        sampleDatafile();
     }
 }
