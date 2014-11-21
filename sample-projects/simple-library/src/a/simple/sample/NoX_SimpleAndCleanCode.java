@@ -5,26 +5,26 @@ import static a.simple.sample.No0_Static.newMember;
 import cococare.common.CCFinal;
 import cococare.common.CCFormat;
 import cococare.common.CCHighcharts;
+import cococare.common.CCHighcharts.ChartType;
 import cococare.common.CCHighcharts.Serial;
+import cococare.common.CCHighcharts.Step;
 import cococare.common.CCMath;
 import cococare.common.barbecue.CCBarcode;
 import cococare.common.comm.CCComm;
+import cococare.common.mail.CCMail;
+import cococare.common.mail.CCMail.MailServer;
 import cococare.common.quartz.CCJob;
 import cococare.common.quartz.CCQuartz;
 import cococare.common.quartz.CCScheduler;
-import cococare.database.*;
 import cococare.database.CCDatabaseConfig.SupportedDatabase;
+import cococare.database.*;
 import cococare.datafile.CCDataFile;
 import cococare.datafile.CCDom;
 import cococare.datafile.CCProperties;
 import cococare.datafile.jxl.CCExcel;
 import java.io.File;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import model.obj.lib.LibMember;
 import net.sourceforge.barbecue.Barcode;
 import org.quartz.JobExecutionContext;
@@ -151,6 +151,50 @@ public class NoX_SimpleAndCleanCode {
         highcharts.getSeries().add(serial);
         System.out.println(highcharts.compile());
     }
+
+    public static void sampleHighcharts2() {
+        CCHighcharts highcharts = new CCHighcharts();
+        highcharts.getChart().setRenderTo("container");
+        highcharts.getChart().setType(ChartType.funnel);
+        highcharts.getChart().setMarginRight(100);
+        highcharts.getPlotOptions().getSeries().setShowInLegend(false);
+        Serial serial = highcharts.newSerial();
+        serial.setName("Unique users");
+        serial.getDataLabels().setFormat("<b>{point.name}</b> ({point.y:,.0f})");
+        serial.getData().add(highcharts.newList("Website visits", 15654));
+        serial.getData().add(highcharts.newList("Downloads", 4064));
+        serial.getData().add(highcharts.newList("Requested price list", 1987));
+        serial.getData().add(highcharts.newList("Invoice sent", 976));
+        serial.getData().add(highcharts.newList("Finalized", 846));
+        highcharts.getSeries().add(serial);
+        System.out.println(highcharts.compile());
+    }
+
+    public static void sampleHighcharts3() {
+        CCHighcharts highcharts = new CCHighcharts();
+        highcharts.getChart().setRenderTo("container");
+        String[] categories = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        highcharts.getxAxis().getCategories().addAll(Arrays.asList(categories));
+        Serial serial = highcharts.newSerial();
+        serial.setName("Right");
+        serial.setStep(Step.right);
+        Double[] data = new Double[]{1d, 2d, 3d, 4d, null, 6d, 7d, null, 9d};
+        serial.getData().addAll(Arrays.asList(data));
+        Serial serial2 = highcharts.newSerial();
+        serial2.setName("Center");
+        serial2.setStep(Step.center);
+        Double[] data2 = new Double[]{5d, 6d, 7d, 8d, null, 10d, 11d, null, 13d};
+        serial2.getData().addAll(Arrays.asList(data2));
+        Serial serial3 = highcharts.newSerial();
+        serial3.setName("Left");
+        serial3.setStep(Step.left);
+        Double[] data3 = new Double[]{9d, 10d, 11d, 12d, null, 14d, 15d, null, 17d};
+        serial3.getData().addAll(Arrays.asList(data3));
+        highcharts.getSeries().add(serial);
+        highcharts.getSeries().add(serial2);
+        highcharts.getSeries().add(serial3);
+        System.out.println(highcharts.compile());
+    }
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" sampleMath ">
@@ -181,6 +225,28 @@ public class NoX_SimpleAndCleanCode {
         System.out.println("\nSerial Ports: ");
         for (String serialPort : CCComm.getSerialPorts()) {
             System.out.println(serialPort);
+        }
+    }
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" sampleMail ">
+    public static void sampleMail() {
+        CCMail mail = new CCMail();
+        mail.setPropertyMailSmtpHost(null);
+        mail.setPropertyTimeout(45000);
+        mail.initSession(true);
+        mail.setAddressFrom("your.mail@gmail.com");
+        MailServer.gmailCom.setUser("your.mail");
+        MailServer.gmailCom.setPassword("your.pass");
+        if (mail.connect4Send(MailServer.gmailCom)) {
+            mail.sendMessage(
+                    new String[]{"arrow_405@yahoo.com"}, //to
+                    null, //cc
+                    null, //bcc
+                    "This is a subject from a sample mail",
+                    "This is a text from a sample mail",
+                    false);
+            mail.close4Send();
         }
     }
 //</editor-fold>
@@ -369,9 +435,35 @@ public class NoX_SimpleAndCleanCode {
         excel.writeColumnEntity(bangunDatar);
         excel.saveAndCloseWorkbook(new File("D:\\bangunDatar.xls"));
     }
+
+    public static void sampleExcel2() {
+        CCExcel excel = new CCExcel();
+        excel.newWorkbook();
+
+        List<LibMember> members = new ArrayList();
+        members.add(newMember("M001", "Yosua Onesimus", "06/06/1984"));
+        members.add(newMember("M002", "Sari Heriati", "17/03/1984"));
+        members.add(newMember("M003", "Delvin Acelin", "02/09/2014"));
+        excel.newSheet(LibMember.class.getSimpleName());
+        excel.initEntity(LibMember.class, false);
+        excel.writeRowEntityHeader();
+        excel.writeRowEntity(members);
+
+        excel.saveAndCloseWorkbook(new File("D:\\members.xls"));
+
+        CCExcel excel2 = new CCExcel();
+        excel2.openWorkbook(new File("D:\\members.xls"));
+
+        excel2.getSheet(LibMember.class.getSimpleName());
+        excel2.initEntity(LibMember.class, false);
+        members = excel2.readRowEntity(1, excel2.getRowCount() - 1);
+        for (LibMember member : members) {
+            System.out.println("Member: Code:" + member.getCode() + "; Full Name:" + member.getFullName() + "; Birth Date:" + CCFormat.getString(member.getBirthDate()) + "; ");
+        }
+    }
 //</editor-fold>
 
     public static void main(String[] args) {
-        sampleDatafile();
+        sampleExcel2();
     }
 }
