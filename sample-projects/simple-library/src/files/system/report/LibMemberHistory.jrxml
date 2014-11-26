@@ -126,7 +126,7 @@ ORDER BY b.date_ ASC]]></queryString>
 						y="40"
 						width="60"
 						height="15"
-						key="bookCode"
+						key="memberCode"
 						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box leftPadding="2" rightPadding="2" bottomPadding="2"></box>
@@ -141,7 +141,7 @@ ORDER BY b.date_ ASC]]></queryString>
 						y="40"
 						width="500"
 						height="15"
-						key="bookCode"
+						key="memberCode"
 						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box leftPadding="2" rightPadding="2" bottomPadding="2"></box>
@@ -156,14 +156,14 @@ ORDER BY b.date_ ASC]]></queryString>
 						y="55"
 						width="60"
 						height="15"
-						key="bookTitle"
+						key="memberFullName"
 						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box leftPadding="2" rightPadding="2" bottomPadding="2"></box>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Title"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Full Name"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -171,7 +171,7 @@ ORDER BY b.date_ ASC]]></queryString>
 						y="55"
 						width="500"
 						height="15"
-						key="bookTitle"
+						key="memberFullName"
 						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box leftPadding="2" rightPadding="2" bottomPadding="2"></box>
@@ -186,14 +186,14 @@ ORDER BY b.date_ ASC]]></queryString>
 						y="70"
 						width="60"
 						height="15"
-						key="bookTypeName"
+						key="memberPhone"
 						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box leftPadding="2" rightPadding="2" bottomPadding="2"></box>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Type"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Phone"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -201,7 +201,7 @@ ORDER BY b.date_ ASC]]></queryString>
 						y="70"
 						width="500"
 						height="15"
-						key="bookTypeName"
+						key="memberPhone"
 						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box leftPadding="2" rightPadding="2" bottomPadding="2"></box>
@@ -216,14 +216,14 @@ ORDER BY b.date_ ASC]]></queryString>
 						y="85"
 						width="60"
 						height="15"
-						key="bookAuthorName"
+						key="memberKtp"
 						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box leftPadding="2" rightPadding="2" bottomPadding="2"></box>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Author"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["KTP"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -231,7 +231,7 @@ ORDER BY b.date_ ASC]]></queryString>
 						y="85"
 						width="500"
 						height="15"
-						key="bookAuthorName"
+						key="memberKtp"
 						positionType="Float"
 						isRemoveLineWhenBlank="true"/>
 					<box leftPadding="2" rightPadding="2" bottomPadding="2"></box>

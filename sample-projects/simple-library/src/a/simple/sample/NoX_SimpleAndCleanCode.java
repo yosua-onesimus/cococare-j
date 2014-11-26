@@ -173,6 +173,7 @@ public class NoX_SimpleAndCleanCode {
     public static void sampleHighcharts3() {
         CCHighcharts highcharts = new CCHighcharts();
         highcharts.getChart().setRenderTo("container");
+        highcharts.getChart().setType(ChartType.line);
         String[] categories = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
         highcharts.getxAxis().getCategories().addAll(Arrays.asList(categories));
         Serial serial = highcharts.newSerial();
@@ -464,6 +465,6 @@ public class NoX_SimpleAndCleanCode {
 //</editor-fold>
 
     public static void main(String[] args) {
-        sampleExcel2();
+        sampleHighcharts3();
     }
 }
