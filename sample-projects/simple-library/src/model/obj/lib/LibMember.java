@@ -112,6 +112,12 @@ public class LibMember implements CCEntity {
     @Column(length = 255)
     @CCFieldConfig(componentId = "txtAddress", visible = false)
     private String address;
+    @Column(length = 48)
+    @CCFieldConfig(tooltiptext = "Kabupaten", componentId = "cmbRegency", maxLength = 48, optionSource = "IndonesiaCities.txt", optionReflectKey = "regency", visible = false)
+    private String regency;
+    @Column(length = 48)
+    @CCFieldConfig(tooltiptext = "Propinsi", componentId = "cmbProvince", maxLength = 48, optionSource = "IndonesiaProvinces.txt", optionReflectKey = "province", visible = false)
+    private String province;
     @Column(length = 16)
     @CCFieldConfig(componentId = "txtPhone", type = Type.PHONE_NUMBER, maxLength = 16)
     private String phone;
@@ -168,6 +174,22 @@ public class LibMember implements CCEntity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getRegency() {
+        return regency;
+    }
+
+    public void setRegency(String regency) {
+        this.regency = regency;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     public String getPhone() {
