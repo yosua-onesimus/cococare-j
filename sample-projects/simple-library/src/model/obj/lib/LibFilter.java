@@ -17,6 +17,30 @@ public class LibFilter {
             return false;
         }
     };
+    public static CCHibernateFilter isBorrowedFalse = new CCHibernateFilter() {
+        @Override
+        public String getFieldName() {
+            return "borrowed";
+        }
+
+        @Override
+        public Object getFieldValue() {
+            return false;
+        }
+    };
+
+    public static abstract class isBorrowingMember extends CCHibernateFilter {
+
+        @Override
+        public String getFieldName() {
+            return "borrowing.member_";
+        }
+
+        @Override
+        public boolean isValid(Class entity) {
+            return true;
+        }
+    };
     public static CCHibernateFilter isReturnedFalse = new CCHibernateFilter() {
         @Override
         public String getFieldName() {

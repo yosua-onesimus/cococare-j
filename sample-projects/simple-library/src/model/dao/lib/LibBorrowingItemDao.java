@@ -3,7 +3,6 @@ package model.dao.lib;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import java.util.List;
 import model.mdl.lib.LibraryDao;
-import model.obj.lib.LibBook;
 import model.obj.lib.LibBorrowing;
 import model.obj.lib.LibBorrowingItem;
 import model.obj.lib.LibMember;
@@ -24,14 +23,6 @@ public class LibBorrowingItemDao extends LibraryDao {
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" crud ">
-    public List<LibBook> getUnlimitedBorrowedBooks() {
-        hql.start().
-                alias("borrowingItem").
-                select("borrowingItem.book").
-                where("borrowingItem.returned = FALSE");
-        return getListUnlimitedBy(hql.value(), parameters.value());
-    }
-
     public List<LibBorrowingItem> getUnlimitedBorrowingItems(LibBorrowing borrowing) {
         return getListUnlimitedByField("borrowing", borrowing, false);
     }

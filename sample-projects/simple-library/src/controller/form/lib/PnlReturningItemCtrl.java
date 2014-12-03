@@ -5,7 +5,7 @@ import static cococare.common.CCClass.extract;
 import static cococare.common.CCFormat.formatNumber;
 import static cococare.common.CCFormat.getMinTime;
 import static cococare.common.CCLogic.isNotNull;
-import cococare.database.CCHibernateFilter;
+import cococare.framework.model.obj.util.UtilFilter.isIdNotInIds;
 import cococare.framework.swing.CFSwingCtrl;
 import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCBandBox;
@@ -14,10 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JTextField;
-import model.bo.lib.LibReturningItemBo;
 import model.obj.lib.LibBorrowingItem;
+import model.obj.lib.LibFilter.isBorrowingMember;
 import static model.obj.lib.LibFilter.isReturnedFalse;
-import model.obj.lib.LibMember;
 import model.obj.lib.LibReturningItem;
 //</editor-fold>
 
@@ -29,7 +28,6 @@ import model.obj.lib.LibReturningItem;
 public class PnlReturningItemCtrl extends CFSwingCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
-    private LibReturningItemBo returningItemBo;
     private CCDatePicker dtpdate;
     private CCBandBox bndMember;
     private CCBandBox bndBorrowingItem;
@@ -58,39 +56,16 @@ public class PnlReturningItemCtrl extends CFSwingCtrl {
         super._initEditor();
         bndBorrowingItem.getTable().setHqlFilters(
                 isReturnedFalse,
-                new CCHibernateFilter() {
-            @Override
-            public String getFieldName() {
-                return "borrowing.member_";
-            }
-
+                new isBorrowingMember() {
             @Override
             public Object getFieldValue() {
                 return bndMember.getObject();
             }
-        }, new CCHibernateFilter() {
-            @Override
-            public String getFieldName() {
-                return "id";
-            }
-
-            @Override
-            public String getExpression() {
-                return "id NOT IN (:ids)";
-            }
-
-            @Override
-            public String getParameterName() {
-                return "ids";
-            }
-
+        }, new isIdNotInIds() {
             @Override
             public Object getFieldValue() {
-                //get borrowed items from database
-                List ids = extract(returningItemBo.getUnlimitedReturningItems((LibMember) bndMember.getObject()), "borrowingItem.id");
                 //get borrowed items from screen
-                ids.addAll(extract((List) parameter.get(callerCtrl.toString() + childsValue), "borrowingItem.id"));
-                return ids;
+                return extract((List) parameter.get(callerCtrl.toString() + childsValue), "borrowingItem.id");
             }
         });
     }

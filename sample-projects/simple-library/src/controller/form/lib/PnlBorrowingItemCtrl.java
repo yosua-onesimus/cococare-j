@@ -2,10 +2,9 @@ package controller.form.lib;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCClass.extract;
-import static cococare.common.CCClass.getIds;
 import static cococare.common.CCFormat.formatNumber;
 import static cococare.common.CCLogic.isNotNull;
-import cococare.database.CCHibernateFilter;
+import cococare.framework.model.obj.util.UtilFilter.isIdNotInIds;
 import cococare.framework.swing.CFSwingCtrl;
 import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCBandBox;
@@ -18,6 +17,7 @@ import javax.swing.JTextField;
 import model.bo.lib.LibBorrowingItemBo;
 import model.obj.lib.LibBook;
 import model.obj.lib.LibBorrowingItem;
+import static model.obj.lib.LibFilter.isBorrowedFalse;
 import static model.obj.lib.LibFilter.isSuspendFalse;
 //</editor-fold>
 
@@ -58,29 +58,12 @@ public class PnlBorrowingItemCtrl extends CFSwingCtrl {
         super._initEditor();
         bndBook.getTable().setHqlFilters(
                 isSuspendFalse,
-                new CCHibernateFilter() {
-            @Override
-            public String getFieldName() {
-                return "id";
-            }
-
-            @Override
-            public String getExpression() {
-                return "id NOT IN (:ids)";
-            }
-
-            @Override
-            public String getParameterName() {
-                return "ids";
-            }
-
+                isBorrowedFalse,
+                new isIdNotInIds() {
             @Override
             public Object getFieldValue() {
-                //get borrowed books from database
-                List<LibBook> borrowedBooks = borrowingItemBo.getUnlimitedBorrowedBooks();
                 //get borrowed books from screen
-                borrowedBooks.addAll(extract((List) parameter.get(callerCtrl.toString() + childsValue), "book"));
-                return getIds(borrowedBooks);
+                return extract((List) parameter.get(callerCtrl.toString() + childsValue), "book.id");
             }
         });
     }

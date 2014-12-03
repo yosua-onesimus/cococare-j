@@ -3,7 +3,7 @@ package controller.form.lib;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCClass.getIds;
 import cococare.common.CCFieldConfig.Accessible;
-import cococare.database.CCHibernateFilter;
+import cococare.framework.model.obj.util.UtilFilter.isIdInIds;
 import cococare.framework.swing.CFSwingCtrl;
 import cococare.swing.component.CCBandBox;
 import cococare.swing.component.CCDatePicker;
@@ -59,17 +59,7 @@ public class PnlReturningCtrl extends CFSwingCtrl {
     @Override
     protected void _initEditor() {
         super._initEditor();
-        bndMember.getTable().setHqlFilters(new CCHibernateFilter() {
-            @Override
-            public String getFieldName() {
-                return "id";
-            }
-
-            @Override
-            public String getParameterName() {
-                return "ids";
-            }
-
+        bndMember.getTable().setHqlFilters(new isIdInIds() {
             @Override
             public Object getFieldValue() {
                 return getIds(returningBo.getUnlimitedBorrowingMembers());
