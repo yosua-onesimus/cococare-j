@@ -31,13 +31,18 @@ public class PnlChangePasswordCtrl extends CFSwingCtrl {
 
     @Override
     protected void _initObjEntity() {
+        objEntity = INSTANCE_getUserLogin();
+    }
+
+    @Override
+    protected void _doUpdateEditor() {
         try {
-            objEntity = INSTANCE_getUserLogin();
             ((UtilUser) objEntity).setNewPassword(null);
             ((UtilUser) objEntity).setRetypePassword(null);
         } catch (Exception exception) {
             logp(exception);
         }
+        super._doUpdateEditor();
     }
 
     @Override

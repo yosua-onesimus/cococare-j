@@ -121,6 +121,10 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             swingView.getTblEntity().requestFocusInWindow();
             //parent-childs-screen
             if (isNotNull(parameter.get(toString() + parentValue))) {
+                if (getBoolean(parameter.get(toString() + parentNewEntity))) {
+                    swingView.getTxtKeyword().setVisible(false);
+                    swingView.getPgnEntity().setVisible(false);
+                }
                 final Object dummy = this;
                 tblEntity.setVisibleField(false, parameter.get(toString() + parentField).toString());
                 tblEntity.setHqlFilters(new CCHibernateFilter() {
@@ -249,7 +253,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             addListener(swingView.getBtnEdit(), alEdit);
             addListener(swingView.getBtnDelete(), alDelete);
             addListener(swingView.getBtnExport(), alExport);
-            addListener2(swingView.getTxtKeyword(), alSearch);
+//            addListener2(swingView.getTxtKeyword(), alSearch);
         } else if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction())) {
             alNew = new ActionListener() {
                 @Override
@@ -282,6 +286,12 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
                     setReadonly(true);
                 }
             };
+            alExport = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    _doExport();
+                }
+            };
             alClose = new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -296,6 +306,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             addListener(swingView.getBtnSave(), alSave);
             addListener(swingView.getBtnSaveAndNew(), alSaveAndNew);
             addListener(swingView.getBtnCancel(), alCancel);
+            addListener(swingView.getBtnExport(), alExport);
             addListener(swingView.getBtnClose(), alClose);
         }
     }

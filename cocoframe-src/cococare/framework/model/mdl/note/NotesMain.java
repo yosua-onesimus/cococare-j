@@ -49,6 +49,7 @@ public class NotesMain extends CFSwingMain {
     protected void _applyUserConfigUaeBody(CFApplUae uae) {
         uae.addMenuParent(Notes, null, null);
         uae.addMenuChild(Reference, null, PnlReferenceListCtrl.class);
+        uae.addMenuSeparator();
         uae.addMenuChild(Note, null, PnlNoteListCtrl.class);
         uae.addMenuParent("Setup", null, null);
         uae.addMenuChild("Javax.Comm Setup", null, PnlJavaxCommSetupCtrl.class);

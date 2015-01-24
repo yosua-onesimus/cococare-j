@@ -458,7 +458,8 @@ public abstract class CFViewCtrl implements CCTrackable {
      */
     protected void _doDelete() {
         if (_isSelected()) {
-            if (_isSureDelete()) {
+            //parent-childs-screen
+            if (getBoolean(parameter.get(toString() + parentNewEntity)) || _isSureDelete()) {
                 if (_doDeleteEntity()) {
                     _logger(_getSelectedItem());
                     doUpdateTable();
@@ -588,7 +589,9 @@ public abstract class CFViewCtrl implements CCTrackable {
      */
     protected void _doSave() {
         if (_hasEdtEntity()) {
-            if (_isValueValid() && _isValueCompare() && _isValueUnique() && _isSureSave()) {
+            //parent-childs-screen
+            if (_isValueValid() && _isValueCompare() && _isValueUnique()
+                    && (getBoolean(parameter.get(toString() + parentNewEntity)) || _isSureSave())) {
                 _getValueFromEditor();
                 if (updateCaller = _doSaveEntity()) {
                     _logger(objEntity);

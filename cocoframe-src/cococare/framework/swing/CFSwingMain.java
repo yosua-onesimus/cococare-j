@@ -31,6 +31,11 @@ public abstract class CFSwingMain extends CFApplCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" public method ">
     @Override
+    public void end() {
+        System.exit(0);
+    }
+
+    @Override
     protected void _loadInternalSetting() {
         setLookAndFeel(LookAndFeel.METAL.getName(), null);
         UIManager.put("PopupMenu.consumeEventOnClose", false);
@@ -53,11 +58,6 @@ public abstract class CFSwingMain extends CFApplCtrl {
         centerScreen(getMainScreen(), true, true);
         _clearUserConfig();
         getMainScreen().setVisible(true);
-    }
-
-    @Override
-    public void end() {
-        System.exit(0);
     }
 
     @Override

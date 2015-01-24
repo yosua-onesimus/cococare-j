@@ -92,6 +92,11 @@ public abstract class CFApplCtrl {
 //<editor-fold defaultstate="collapsed" desc=" public method ">
     /**
      * <b>Line Number: 94</b>
+     */
+    public abstract void end();
+
+    /**
+     * <b>Line Number: 99</b>
      * <ol>
      * <li>Add a default log Handler to receive logging messages.</li>
      * <li>Execute setup for mandatory file.</li>
@@ -103,7 +108,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 106</b>
+     * <b>Line Number: 111</b>
      * <ol>
      * <li>Load a language pack for some domains.</li>
      * <li>Get user configuration file.</li>
@@ -122,14 +127,9 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 125</b>
-     */
-    protected abstract void _initScreen();
-
-    /**
      * <b>Line Number: 130</b>
      */
-    public abstract void end();
+    protected abstract void _initScreen();
 
     /**
      * <b>Line Number: 135</b>

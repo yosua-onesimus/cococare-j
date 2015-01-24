@@ -1,6 +1,8 @@
 package cococare.framework.model.bo.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCFinal.ADMIN;
+import static cococare.common.CCFinal.ROOT;
 import static cococare.common.CCLogic.*;
 import cococare.database.CCHibernate.Transaction;
 import cococare.database.CCHibernateBo;
@@ -23,8 +25,6 @@ public class UtilInitInitialDataBo extends CCHibernateBo {
     private UtilUserGroupPrivilegeDao userGroupPrivilegeDao;
     private UtilUserDao userDao;
     private UtilUserPrivilegeDao userPrivilegeDao;
-    private final String ROOT = "root";
-    private final String ADMIN = "admin";
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" private method ">

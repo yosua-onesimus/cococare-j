@@ -73,7 +73,7 @@ public class UtilUserBo extends CCHibernateBo {
         removedUserIps = new ArrayList();
         clazz_child = new HashMap();
         for (Class clazz : utilAdditionalTabClass) {
-            clazz_child.put(clazz, isNull(user.getId()) ? new ArrayList() : getListByAssociativeArray(clazz, userChildDao.getBy(user, clazz).getAssociativeArray()));
+            clazz_child.put(clazz, isNull(user.getId()) ? new ArrayList() : getObjectsUser(clazz, user));
         }
     }
 
@@ -224,8 +224,16 @@ public class UtilUserBo extends CCHibernateBo {
         return true;
     }
 
+    public synchronized List getObjectsUser(Class clazz, UtilUser user) {
+        return getListByAssociativeArray(clazz, userChildDao.getBy(user, clazz).getAssociativeArray());
+    }
+
+    public synchronized List getObjectsUserLogin(Class clazz) {
+        return getObjectsUser(clazz, (UtilUser) INSTANCE_getUserLogin());
+    }
+
     public synchronized List getIdsUserLogin(Class clazz) {
-        return extract(getListByAssociativeArray(clazz, userChildDao.getBy((UtilUser) INSTANCE_getUserLogin(), clazz).getAssociativeArray()), FIELD_ID);
+        return extract(getObjectsUserLogin(clazz), FIELD_ID);
     }
 //</editor-fold>
 }

@@ -18,6 +18,7 @@ import cococare.swing.component.CCOptionBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.JFileChooser;
 //</editor-fold>
 
 /**
@@ -103,7 +104,7 @@ public class PnlExportImportCtrl extends CFSwingCtrl {
     private void _doExport(boolean withData) {
         if (isSureExport()) {
             File file;
-            if (isNotNull(file = showSaveDialog("xls"))) {
+            if (isNotNull(file = showSaveDialog(null, new File("Parameter.xls"), JFileChooser.FILES_ONLY, "xls"))) {
                 CCExcel excel = new CCExcel();
                 excel.newWorkbook();
                 for (int index : optParameter.getSelectedIndexes()) {

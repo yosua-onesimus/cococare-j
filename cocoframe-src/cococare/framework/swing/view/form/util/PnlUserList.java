@@ -25,6 +25,7 @@ public class PnlUserList extends javax.swing.JPanel {
         pnlNorthWest = new javax.swing.JPanel();
         btnAdd = new cococare.swing.component.CCButton();
         btnEdit = new cococare.swing.component.CCButton();
+        btnChangePassword = new cococare.swing.component.CCButton();
         btnDelete = new cococare.swing.component.CCButton();
         pnlNorthEast = new javax.swing.JPanel();
         txtKeyword = new javax.swing.JTextField();
@@ -55,9 +56,16 @@ public class PnlUserList extends javax.swing.JPanel {
         pnlNorthWest.add(btnEdit);
         btnEdit.setBounds(100, 10, 100, 29);
 
+        btnChangePassword.setMnemonic('P');
+        btnChangePassword.setText("Change Password");
+        btnChangePassword.setToolTipText("Edit Password");
+        btnChangePassword.setType(cococare.swing.component.CCButton.Type.EDIT);
+        pnlNorthWest.add(btnChangePassword);
+        btnChangePassword.setBounds(200, 10, 150, 29);
+
         btnDelete.setType(cococare.swing.component.CCButton.Type.DELETE);
         pnlNorthWest.add(btnDelete);
-        btnDelete.setBounds(200, 10, 100, 29);
+        btnDelete.setBounds(350, 10, 100, 29);
 
         pnlNorth.add(pnlNorthWest, java.awt.BorderLayout.WEST);
 
@@ -88,11 +96,12 @@ public class PnlUserList extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabEntity, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(tabEntity, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cococare.swing.component.CCButton btnAdd;
+    private cococare.swing.component.CCButton btnChangePassword;
     private cococare.swing.component.CCButton btnDelete;
     private cococare.swing.component.CCButton btnEdit;
     private cococare.swing.component.CCPaging pgnEntity;

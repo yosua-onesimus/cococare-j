@@ -1,6 +1,7 @@
 package cococare.framework.model.obj.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCFinal.ROOT;
 import cococare.database.CCHibernateFilter;
 //</editor-fold>
 
@@ -9,7 +10,7 @@ public class UtilFilter {
     public static CCHibernateFilter isUserGroupNotRoot = new CCHibernateFilter() {
         @Override
         public String getFieldName() {
-            return "root";
+            return ROOT;
         }
 
         @Override
