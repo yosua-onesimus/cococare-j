@@ -3,7 +3,6 @@ package model.mdl;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.framework.common.CFApplUae;
 import cococare.framework.swing.CFSwingMain;
-import model.obj.HabitatType;
 //</editor-fold>
 
 /**
@@ -29,7 +28,7 @@ public class DragonCityOrganizerMain extends CFSwingMain {
     @Override
     protected void _initDatabaseEntity() {
         super._initDatabaseEntity();
-        HIBERNATE.addAnnotatedClass(HabitatType.class);
+        DragonCityOrganizerModule.INSTANCE.init(HIBERNATE);
     }
 
     @Override

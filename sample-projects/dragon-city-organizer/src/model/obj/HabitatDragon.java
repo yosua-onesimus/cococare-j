@@ -3,7 +3,6 @@ package model.obj;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
-import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
@@ -11,9 +10,9 @@ import javax.persistence.*;
 //</editor-fold>
 
 @Entity
-@Table(name = "habitat_types")
-@CCTypeConfig(label = "Habitat Type", uniqueKey = "name", parameter = true)
-public class HabitatType implements CCEntity {
+@Table(name = "habitat_dragons")
+@CCTypeConfig(label = "Dragon@Habitat", uniqueKey = "dragon.customName", parameter = true)
+public class HabitatDragon implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -90,38 +89,28 @@ public class HabitatType implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @Column(length = 5)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 5, sequence = "HT00", unique = true, requestFocus = true)
-    private String code;
-    @Column(length = 16)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16)
-    private String name;
-    @CCFieldConfig(componentId = "txtMaxDragons", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 1)
-    private Integer maxDragons = 4;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndHabitat", accessible = Accessible.MANDATORY, maxLength = 20, uniqueKey = "@habitatType.name #@no")
+    private Habitat habitat;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndDragon", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "customName")
+    private Dragon dragon;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public String getCode() {
-        return code;
+    public Habitat getHabitat() {
+        return habitat;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setHabitat(Habitat habitat) {
+        this.habitat = habitat;
     }
 
-    public String getName() {
-        return name;
+    public Dragon getDragon() {
+        return dragon;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getMaxDragons() {
-        return maxDragons;
-    }
-
-    public void setMaxDragons(Integer maxDragons) {
-        this.maxDragons = maxDragons;
+    public void setDragon(Dragon dragon) {
+        this.dragon = dragon;
     }
 //</editor-fold>
 }

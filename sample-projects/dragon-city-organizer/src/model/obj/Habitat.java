@@ -11,9 +11,9 @@ import javax.persistence.*;
 //</editor-fold>
 
 @Entity
-@Table(name = "habitat_types")
-@CCTypeConfig(label = "Habitat Type", uniqueKey = "name", parameter = true)
-public class HabitatType implements CCEntity {
+@Table(name = "habitats")
+@CCTypeConfig(label = "Habitat", uniqueKey = "@habitatType.name #@no", parameter = true)
+public class Habitat implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -90,14 +90,17 @@ public class HabitatType implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @Column(length = 5)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 5, sequence = "HT00", unique = true, requestFocus = true)
+    @Column(length = 4)
+    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 4, sequence = "H000", unique = true, requestFocus = true)
     private String code;
-    @Column(length = 16)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16)
-    private String name;
-    @CCFieldConfig(componentId = "txtMaxDragons", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 1)
-    private Integer maxDragons = 4;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndHabitatType", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
+    private HabitatType habitatType;
+    @Column(name = "no_")
+    @CCFieldConfig(componentId = "txtNo", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    private Integer no;
+    @CCFieldConfig(componentId = "txtRevenuesTotal", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 3)
+    private Integer revenuesTotal;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -108,20 +111,28 @@ public class HabitatType implements CCEntity {
         this.code = code;
     }
 
-    public String getName() {
-        return name;
+    public HabitatType getHabitatType() {
+        return habitatType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setHabitatType(HabitatType habitatType) {
+        this.habitatType = habitatType;
     }
 
-    public Integer getMaxDragons() {
-        return maxDragons;
+    public Integer getNo() {
+        return no;
     }
 
-    public void setMaxDragons(Integer maxDragons) {
-        this.maxDragons = maxDragons;
+    public void setNo(Integer no) {
+        this.no = no;
+    }
+
+    public Integer getRevenuesTotal() {
+        return revenuesTotal;
+    }
+
+    public void setRevenuesTotal(Integer revenuesTotal) {
+        this.revenuesTotal = revenuesTotal;
     }
 //</editor-fold>
 }
