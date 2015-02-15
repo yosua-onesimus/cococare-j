@@ -81,7 +81,7 @@ public abstract class CFSwingMain extends CFApplCtrl {
         if (!HIBERNATE.getCustomizableClasses().isEmpty()) {
             uae.reg(Utility, Screen_Setting, PnlScreenSettingListCtrl.class);
         }
-        uae.reg(Utility, Application_Setting, PnlApplicationSettingCtrl.class);
+        uae.reg(Utility, Application_Setting, PnlApplicationSettingListCtrl.class);
         uae.reg(Utility, Database_Setting, PnlDatabaseSettingCtrl.class);
         if (LICENSE_ACTIVE) {
             uae.reg(Utility, Registration, PnlRegistrationCtrl.class);
@@ -116,30 +116,30 @@ public abstract class CFSwingMain extends CFApplCtrl {
     @Override
     protected void _applyUserConfigUaeEnd(CFApplUae uae) {
         uae.changeMenuSide();
-        uae.addMenuParent(Utility, null, null);
-        uae.addMenuChild(User_Group, null, PnlUserGroupListCtrl.class);
-        uae.addMenuChild(User, null, PnlUserListCtrl.class);
-        uae.addMenuChild(Change_Password, null, PnlChangePasswordCtrl.class);
+        uae.addMenuParent(Utility, "/cococare/resource/icon-menu-parent.png", null);
+        uae.addMenuChild(User_Group, "/cococare/resource/icon-menu-user-group.png", PnlUserGroupListCtrl.class);
+        uae.addMenuChild(User, "/cococare/resource/icon-menu-user.png", PnlUserListCtrl.class);
+        uae.addMenuChild(Change_Password, "/cococare/resource/icon-menu-change-password.png", PnlChangePasswordCtrl.class);
         uae.addMenuSeparator();
         if (!HIBERNATE.getParameterClasses().isEmpty()) {
-            uae.addMenuChild(Parameter, null, PnlParameterListCtrl.class);
-            uae.addMenuChild(Export_Import, null, PnlExportImportCtrl.class);
+            uae.addMenuChild(Parameter, "/cococare/resource/icon-menu-parameter.png", PnlParameterListCtrl.class);
+            uae.addMenuChild(Export_Import, "/cococare/resource/icon-menu-export-import.png", PnlExportImportCtrl.class);
         }
         if (!HIBERNATE.getAuditableClasses().isEmpty()) {
-            uae.addMenuChild(Audit_Trail, null, PnlAuditTrailListCtrl.class);
+            uae.addMenuChild(Audit_Trail, "/cococare/resource/icon-menu-audit-trail.png", PnlAuditTrailListCtrl.class);
         }
-        uae.addMenuChild(Logger_History, null, PnlLoggerListCtrl.class);
+        uae.addMenuChild(Logger_History, "/cococare/resource/icon-menu-logger-history.png", PnlLoggerListCtrl.class);
         uae.addMenuSeparator();
         if (!HIBERNATE.getCustomizableClasses().isEmpty()) {
-            uae.addMenuChild(Screen_Setting, null, PnlScreenSettingListCtrl.class);
+            uae.addMenuChild(Screen_Setting, "/cococare/resource/icon-menu-screen-setting.png", PnlScreenSettingListCtrl.class);
         }
-        uae.addMenuChild(Application_Setting, null, PnlApplicationSettingCtrl.class);
-        uae.addMenuChild(Database_Setting, null, PnlDatabaseSettingCtrl.class);
+        uae.addMenuChild(Application_Setting, "/cococare/resource/icon-menu-application-setting.png", PnlApplicationSettingListCtrl.class);
+        uae.addMenuChild(Database_Setting, "/cococare/resource/icon-menu-database-setting.png", PnlDatabaseSettingCtrl.class);
         if (LICENSE_ACTIVE) {
             uae.addMenuSeparator();
-            uae.addMenuChild(Registration, null, PnlRegistrationCtrl.class);
+            uae.addMenuChild(Registration, "/cococare/resource/icon-menu-registration.png", PnlRegistrationCtrl.class);
         }
-        uae.addMenuParent(Log_Out, null, PnlLoginCtrl.class);
+        uae.addMenuParent(Log_Out, "/cococare/resource/icon-menu-log-out.png", PnlLoginCtrl.class);
         uae.compileMenu();
         getMainScreen().validate();
     }

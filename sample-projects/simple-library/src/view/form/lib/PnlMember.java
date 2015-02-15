@@ -20,6 +20,7 @@ public class PnlMember extends javax.swing.JPanel {
         btnClose = new cococare.swing.component.CCButton();
         xCode = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
+        chkSuspend = new javax.swing.JCheckBox();
         xFullName = new javax.swing.JLabel();
         txtFullName = new javax.swing.JTextField();
         xBirthDate = new javax.swing.JLabel();
@@ -34,12 +35,15 @@ public class PnlMember extends javax.swing.JPanel {
         cmbProvince = new javax.swing.JComboBox();
         xPhone = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
+        xEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        xPhoto = new javax.swing.JLabel();
+        attPhoto = new cococare.swing.component.CCAttachment();
         xKtp = new javax.swing.JLabel();
         txtKtp = new javax.swing.JTextField();
-        chkSuspend = new javax.swing.JCheckBox();
 
-        setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(600, 400));
+        setMinimumSize(new java.awt.Dimension(600, 500));
+        setPreferredSize(new java.awt.Dimension(600, 500));
 
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
 
@@ -49,6 +53,9 @@ public class PnlMember extends javax.swing.JPanel {
         xCode.setText("Code");
 
         txtCode.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        chkSuspend.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        chkSuspend.setText("Suspend");
 
         xFullName.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xFullName.setText("Full Name");
@@ -83,13 +90,18 @@ public class PnlMember extends javax.swing.JPanel {
 
         txtPhone.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
+        xEmail.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xEmail.setText("Email");
+
+        txtEmail.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        xPhoto.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        xPhoto.setText("Photo");
+
         xKtp.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xKtp.setText("KTP");
 
         txtKtp.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-
-        chkSuspend.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        chkSuspend.setText("Suspend");
 
         javax.swing.GroupLayout pnlEditorLayout = new javax.swing.GroupLayout(pnlEditor);
         pnlEditor.setLayout(pnlEditorLayout);
@@ -133,6 +145,14 @@ public class PnlMember extends javax.swing.JPanel {
                 .addComponent(xPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlEditorLayout.createSequentialGroup()
+                .addComponent(xEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlEditorLayout.createSequentialGroup()
+                .addComponent(xPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(attPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addComponent(xKtp, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -180,6 +200,13 @@ public class PnlMember extends javax.swing.JPanel {
                     .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(attPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xKtp, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtKtp, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
@@ -196,6 +223,7 @@ public class PnlMember extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private cococare.swing.component.CCAttachment attPhoto;
     private cococare.swing.component.CCButton btnClose;
     private cococare.swing.component.CCButton btnSave;
     private javax.swing.JCheckBox chkSuspend;
@@ -206,16 +234,19 @@ public class PnlMember extends javax.swing.JPanel {
     private javax.swing.JPanel pnlEditor;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCode;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JTextField txtKtp;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JLabel xAddress;
     private javax.swing.JLabel xBirthDate;
     private javax.swing.JLabel xCode;
+    private javax.swing.JLabel xEmail;
     private javax.swing.JLabel xFullName;
     private javax.swing.JLabel xGender;
     private javax.swing.JLabel xKtp;
     private javax.swing.JLabel xPhone;
+    private javax.swing.JLabel xPhoto;
     private javax.swing.JLabel xProvince;
     private javax.swing.JLabel xRegency;
     // End of variables declaration//GEN-END:variables

@@ -17,7 +17,7 @@ import cococare.datafile.CCSetup;
 public class LibReport extends CCJasper {
 
 //<editor-fold defaultstate="collapsed" desc=" enum Report ">
-    private enum Report {
+    public enum Report {
 
         BOOK_LIST("Book List", "LibBook.jasper", "RptHeader.jasper"),
         MEMBER_LIST("Member List", "LibMember.jasper"),

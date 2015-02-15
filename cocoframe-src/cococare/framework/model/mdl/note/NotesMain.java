@@ -47,13 +47,13 @@ public class NotesMain extends CFSwingMain {
 
     @Override
     protected void _applyUserConfigUaeBody(CFApplUae uae) {
-        uae.addMenuParent(Notes, null, null);
-        uae.addMenuChild(Reference, null, PnlReferenceListCtrl.class);
+        uae.addMenuParent(Notes, "/cococare/resource/icon-menu-parent.png", null);
+        uae.addMenuChild(Reference, "/cococare/resource/icon-menu-child.png", PnlReferenceListCtrl.class);
         uae.addMenuSeparator();
-        uae.addMenuChild(Note, null, PnlNoteListCtrl.class);
-        uae.addMenuParent("Setup", null, null);
-        uae.addMenuChild("Javax.Comm Setup", null, PnlJavaxCommSetupCtrl.class);
-        uae.addMenuChild("Language Setup", null, PnlLanguageSetupCtrl.class);
+        uae.addMenuChild(Note, "/cococare/resource/icon-menu-child.png", PnlNoteListCtrl.class);
+        uae.addMenuParent("Setup", "/cococare/resource/icon-menu-parent.png", null);
+        uae.addMenuChild("Javax.Comm Setup", "/cococare/resource/icon-menu-child.png", PnlJavaxCommSetupCtrl.class);
+        uae.addMenuChild("Language Setup", "/cococare/resource/icon-menu-child.png", PnlLanguageSetupCtrl.class);
     }
 
     public static void main(String[] args) {

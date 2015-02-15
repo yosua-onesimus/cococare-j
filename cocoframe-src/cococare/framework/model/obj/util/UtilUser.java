@@ -106,9 +106,9 @@ public class UtilUser implements CCEntity {
     @Column(length = 32)
     @CCFieldConfig(componentId = "txtPassword", accessible = Accessible.MANDATORY, minLength = 4, maxLength = 32, compareRule = CompareRule.EQUAL, compareWith = "txtRetypePassword", visible = false)
     private String password;
-    @CCFieldConfig(componentId = "txtNewPassword", accessible = Accessible.MANDATORY, minLength = 4, maxLength = 32, requestFocus = true, compareRule = CompareRule.EQUAL, compareWith = "txtRetypePassword", visible = false)
+    @CCFieldConfig(componentId = "txtNewPassword", accessible = Accessible.MANDATORY, minLength = 4, maxLength = 32, requestFocus = true, compareRule = CompareRule.EQUAL, compareWith = "txtRetypePassword", visible = false, visible2 = false)
     transient private String newPassword;
-    @CCFieldConfig(componentId = "txtRetypePassword", accessible = Accessible.MANDATORY, minLength = 4, maxLength = 32, visible = false)
+    @CCFieldConfig(componentId = "txtRetypePassword", accessible = Accessible.MANDATORY, minLength = 4, maxLength = 32, visible = false, visible2 = false)
     transient private String retypePassword;
     @Column(length = 255)
     @CCFieldConfig(componentId = "txtFullname")

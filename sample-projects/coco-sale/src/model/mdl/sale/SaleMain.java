@@ -1,11 +1,15 @@
 package model.mdl.sale;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.common.CCLanguage;
 import cococare.framework.common.CFApplUae;
+import cococare.framework.model.bo.util.UtilConfigBo;
 import cococare.framework.swing.CFSwingMain;
 import controller.form.sale.*;
+import java.util.Arrays;
 import model.bo.sale.SVInitInitialDataBo;
 import static model.mdl.sale.SaleLanguage.*;
+import model.obj.sale.SVConfig;
 //</editor-fold>
 
 public class SaleMain extends CFSwingMain {
@@ -19,7 +23,7 @@ public class SaleMain extends CFSwingMain {
 
     @Override
     protected void _loadExternalSetting() {
-        init(false, SaleLanguage.class);
+        CCLanguage.init(false, SaleLanguage.class);
         super._loadExternalSetting();
     }
 
@@ -31,7 +35,13 @@ public class SaleMain extends CFSwingMain {
 
     @Override
     protected boolean _initInitialData() {
-        return super._initInitialData() && new SVInitInitialDataBo().initFirstData();
+        UtilConfigBo configBo = new UtilConfigBo();
+        confAppl = configBo.loadConfAppl();
+        confAppl.setUtilAdditionalSettingClass(Arrays.asList(
+                SVConfig.class.getName()));
+        return super._initInitialData()
+                && configBo.saveConf(confAppl)
+                && new SVInitInitialDataBo().initFirstData();
     }
 
     @Override
@@ -41,19 +51,18 @@ public class SaleMain extends CFSwingMain {
         uae.reg(Sale, Voucher_Type, PnlVoucherTypeListCtrl.class);
         uae.reg(Sale, Deposit, PnlDepositListCtrl.class);
         uae.reg(Sale, Selling, PnlSellingListCtrl.class);
-        uae.reg(Sale, Config, PnlConfigCtrl.class);
     }
 
     @Override
     protected void _applyUserConfigUaeBody(CFApplUae uae) {
-        uae.addMenuParent(Home, null, PnlHomeCtrl.class);
-        uae.addMenuParent(Customer, null, PnlCustomerListCtrl.class);
-        uae.addMenuParent(Voucher, null, null);
-        uae.addMenuChild(Operator, null, PnlOperatorListCtrl.class);
-        uae.addMenuChild(Voucher_Type, null, PnlVoucherTypeListCtrl.class);
-        uae.addMenuChild(Deposit, null, PnlDepositListCtrl.class);
-        uae.addMenuChild(Selling, null, PnlSellingListCtrl.class);
-        uae.addMenuChild(Config, null, PnlConfigCtrl.class);
+        uae.addMenuRoot(PnlHomeCtrl.class);
+        uae.addMenuParent(Home, "/cococare/resource/icon-menu-home.png", PnlHomeCtrl.class);
+        uae.addMenuParent(Customer, "/cococare/resource/icon-menu-child.png", PnlCustomerListCtrl.class);
+        uae.addMenuParent(Voucher, "/cococare/resource/icon-menu-parent.png", null);
+        uae.addMenuChild(Operator, "/cococare/resource/icon-menu-child.png", PnlOperatorListCtrl.class);
+        uae.addMenuChild(Voucher_Type, "/cococare/resource/icon-menu-child.png", PnlVoucherTypeListCtrl.class);
+        uae.addMenuChild(Deposit, "/cococare/resource/icon-menu-child.png", PnlDepositListCtrl.class);
+        uae.addMenuChild(Selling, "/cococare/resource/icon-menu-child.png", PnlSellingListCtrl.class);
     }
 
     @Override

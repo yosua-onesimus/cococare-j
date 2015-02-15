@@ -62,3 +62,6 @@
 /sample-projects/dragon-city-organizer/build/
 /sample-projects/dragon-city-organizer/dist/
 /comparison-projects/simple-employee-wo-cccr-use-hbn-ant/build
+derby
+
+/sample-projects/dragon-city-organizer/derby.log

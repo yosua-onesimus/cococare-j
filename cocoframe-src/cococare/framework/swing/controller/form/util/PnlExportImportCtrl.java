@@ -139,6 +139,7 @@ public class PnlExportImportCtrl extends CFSwingCtrl {
                         }
                     }
                 }
+                excel.closeWorkbook();
                 showImport(updateCaller);
             }
         }

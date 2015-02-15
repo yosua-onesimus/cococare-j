@@ -13,7 +13,6 @@ public class LibraryLanguage extends CCLanguage {
 
     public static String Lib;
     //menu
-    public static String Config;
     public static String Book_Type;
     public static String Author;
     public static String Publisher;

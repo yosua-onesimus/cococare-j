@@ -163,7 +163,7 @@ public class CFSwingUae extends CFApplUae {
                     isNull(menuCandidate.getControllerClass()) ? null
                     : new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     newObject(menuCandidate.getControllerClass()).init();
                 }
             });

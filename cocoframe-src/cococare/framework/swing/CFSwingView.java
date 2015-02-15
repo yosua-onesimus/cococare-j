@@ -66,6 +66,10 @@ public class CFSwingView {
         return getCCButton(getContainer(), btnExport);
     }
 
+    public CCButton getBtnFilter() {
+        return getCCButton(getContainer(), "_" + btnFilter);
+    }
+
     public CCButton getBtnNew() {
         return getCCButton(getContainer(), btnNew);
     }

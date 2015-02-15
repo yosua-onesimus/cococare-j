@@ -4,6 +4,7 @@ package model.obj.lib;
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.Type;
+import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import javax.persistence.*;
  * @since 13.03.17
  * @version 13.03.17
  */
+@CCTypeConfig(label = "Library Module", tooltiptext = "Borrowing Cost, Borrowing Limit, Borrowing Fine, etc")
 public class LibConfig implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
@@ -91,11 +93,11 @@ public class LibConfig implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @CCFieldConfig(label = "Cost", tooltiptext = "Borrowing Cost", componentId = "txtBorrowingCost", accessible = Accessible.MANDATORY, type = Type.NUMBER_FORMAT, maxLength = 24, visible = false)
+    @CCFieldConfig(group = "Default Value of Borrowing", label = "Cost (Rp)", tooltiptext = "Borrowing Cost", componentId = "txtBorrowingCost", accessible = Accessible.MANDATORY, type = Type.NUMBER_FORMAT, maxLength = 24, visible = false)
     private Double borrowingCost;
-    @CCFieldConfig(label = "Limit", tooltiptext = "Borrowing Limit", componentId = "txtBorrowingLimit", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
+    @CCFieldConfig(group = "Default Value of Borrowing", label = "Limit (days)", tooltiptext = "Borrowing Limit", componentId = "txtBorrowingLimit", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
     private Integer borrowingLimit;
-    @CCFieldConfig(label = "Fine", tooltiptext = "Borrowing Fine", componentId = "txtBorrowingFine", accessible = Accessible.MANDATORY, type = Type.NUMBER_FORMAT, maxLength = 24, visible = false)
+    @CCFieldConfig(group = "Default Value of Borrowing", label = "Fine (Rp)", tooltiptext = "Borrowing Fine", componentId = "txtBorrowingFine", accessible = Accessible.MANDATORY, type = Type.NUMBER_FORMAT, maxLength = 24, visible = false)
     private Double borrowingFine;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

@@ -6,6 +6,7 @@ import static cococare.common.CCClass.getListByAssociativeArray;
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.Type;
+import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.persistence.*;
  * @since 13.03.17
  * @version 13.03.17
  */
+@CCTypeConfig(label = "Common / Utility Module", tooltiptext = "Application UI, Company, Company Owner, etc")
 public class UtilConfAppl implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
@@ -112,50 +114,51 @@ public class UtilConfAppl implements CCEntity {
     }
 //</editor-fold>
     //----------------------------------------------------------------------------------------------
-    @CCFieldConfig(componentId = "cmbApplLanguage", accessible = Accessible.MANDATORY, optionSource = "cococare.common.CCLanguage$LanguagePack", requestFocus = true)
+    @CCFieldConfig(group = "Application UI", label = "Language", componentId = "cmbApplLanguage", accessible = Accessible.MANDATORY, optionSource = "cococare.common.CCLanguage$LanguagePack", requestFocus = true)
     private Integer applLanguage = 0;
-    @CCFieldConfig(componentId = "cmbApplLookAndFeel", accessible = Accessible.MANDATORY, optionSource = "cococare.swing.CCSwing$LookAndFeel")
+    @CCFieldConfig(group = "Application UI", label = "Look And Feel", componentId = "cmbApplLookAndFeel", accessible = Accessible.MANDATORY, optionSource = "cococare.swing.CCSwing$LookAndFeel")
     private Integer applLookAndFeel = 0;
-    @CCFieldConfig(componentId = "cmbApplMenuPosition", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilConfAppl$MenuPosition")
+    @CCFieldConfig(group = "Application UI", label = "Menu Position", componentId = "cmbApplMenuPosition", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilConfAppl$MenuPosition")
     private Integer applMenuPosition = 0;
     @Column(length = Integer.MAX_VALUE)
-    @CCFieldConfig(componentId = "attApplWallpaper", type = Type.IMAGE_FILE, optionReflectKey = "applWallpaperName")
+    @CCFieldConfig(group = "Application UI", label = "Wallpaper", componentId = "attApplWallpaper", type = Type.IMAGE_FILE, optionReflectKey = "applWallpaperName")
     private byte[] applWallpaper;
     private String applWallpaperName;
     //----------------------------------------------------------------------------------------------
     @Column(length = Integer.MAX_VALUE)
-    @CCFieldConfig(componentId = "attCompanyLogo", type = Type.THUMB_FILE, optionReflectKey = "companyLogoName")
+    @CCFieldConfig(group = "Company", label = "Logo", componentId = "attCompanyLogo", type = Type.THUMB_FILE, optionReflectKey = "companyLogoName")
     private byte[] companyLogo;
     private String companyLogoName;
-    @CCFieldConfig(componentId = "txtCompanyName", accessible = Accessible.MANDATORY)
+    @CCFieldConfig(group = "Company", label = "Name", componentId = "txtCompanyName", accessible = Accessible.MANDATORY)
     private String companyName;
-    @CCFieldConfig(componentId = "txtCompanyAddress", accessible = Accessible.MANDATORY)
+    @CCFieldConfig(group = "Company", label = "Address", componentId = "txtCompanyAddress", accessible = Accessible.MANDATORY)
     private String companyAddress;
-    @CCFieldConfig(componentId = "cmbCompanyCity", accessible = Accessible.MANDATORY, optionSource = "IndonesiaCities.txt")
+    @CCFieldConfig(group = "Company", label = "City", componentId = "cmbCompanyCity", accessible = Accessible.MANDATORY, optionSource = "IndonesiaCities.txt")
     private Integer companyCity = 147;
-    @CCFieldConfig(componentId = "cmbCompanyProvince", accessible = Accessible.MANDATORY, optionSource = "IndonesiaProvinces.txt")
+    @CCFieldConfig(group = "Company", label = "Province", componentId = "cmbCompanyProvince", accessible = Accessible.MANDATORY, optionSource = "IndonesiaProvinces.txt")
     private Integer companyProvince = 10;
-    @CCFieldConfig(componentId = "txtCompanyState", accessible = Accessible.MANDATORY_READONLY)
+    @CCFieldConfig(group = "Company", label = "State", componentId = "txtCompanyState", accessible = Accessible.MANDATORY_READONLY)
     private String companyState = "Indonesia";
-    @CCFieldConfig(componentId = "txtCompanyPhone", type = Type.PHONE_NUMBER)
+    @CCFieldConfig(group = "Company", label = "Phone", componentId = "txtCompanyPhone", type = Type.PHONE_NUMBER)
     private String companyPhone;
-    @CCFieldConfig(componentId = "txtCompanyFax")
+    @CCFieldConfig(group = "Company", label = "Fax", componentId = "txtCompanyFax")
     private String companyFax;
-    @CCFieldConfig(componentId = "txtCompanyEmail", type = Type.EMAIL)
+    @CCFieldConfig(group = "Company", label = "Email", componentId = "txtCompanyEmail", type = Type.EMAIL)
     private String companyEmail;
-    @CCFieldConfig(componentId = "txtCompanyWeb")
+    @CCFieldConfig(group = "Company", label = "Web", componentId = "txtCompanyWeb")
     private String companyWeb;
     //----------------------------------------------------------------------------------------------
-    @CCFieldConfig(componentId = "txtOwnerName", accessible = Accessible.MANDATORY)
+    @CCFieldConfig(group = "Company Owner", label = "Name", componentId = "txtOwnerName", accessible = Accessible.MANDATORY)
     private String ownerName;
-    @CCFieldConfig(componentId = "txtOwnerPosition")
+    @CCFieldConfig(group = "Company Owner", label = "Position", componentId = "txtOwnerPosition")
     private String ownerPosition;
-    @CCFieldConfig(componentId = "txtOwnerKtp")
+    @CCFieldConfig(group = "Company Owner", label = "KTP", componentId = "txtOwnerKtp")
     private String ownerKtp;
-    @CCFieldConfig(componentId = "txtOwnerNpwp")
+    @CCFieldConfig(group = "Company Owner", label = "NPWP", componentId = "txtOwnerNpwp")
     private String ownerNpwp;
     //----------------------------------------------------------------------------------------------
     private String utilAdditionalTabClass;
+    private String utilAdditionalSettingClass;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public Integer getApplLanguage() {
@@ -324,6 +327,14 @@ public class UtilConfAppl implements CCEntity {
 
     public void setUtilAdditionalTabClass(List<String> utilAdditionalTabClass) {
         this.utilAdditionalTabClass = getAssociativeArray(utilAdditionalTabClass, (String) null);
+    }
+
+    public List<Class> getUtilAdditionalSettingClass() {
+        return getListByAssociativeArray(utilAdditionalSettingClass);
+    }
+
+    public void setUtilAdditionalSettingClass(List<String> utilAdditionalSettingClass) {
+        this.utilAdditionalSettingClass = getAssociativeArray(utilAdditionalSettingClass, (String) null);
     }
 //</editor-fold>
 }

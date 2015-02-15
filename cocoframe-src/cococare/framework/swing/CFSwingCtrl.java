@@ -6,6 +6,7 @@ import static cococare.common.CCClass.newObject;
 import static cococare.common.CCClass.setValue;
 import static cococare.common.CCFinal.btnEdit;
 import static cococare.common.CCFormat.getBoolean;
+import static cococare.common.CCLanguage.turn;
 import static cococare.common.CCLogic.*;
 import static cococare.common.CCMessage.*;
 import cococare.database.CCHibernateFilter;
@@ -70,10 +71,12 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 
     @Override
     public void doShowTab(String sysRef, String title, CFViewCtrl viewCtrl) {
-        swingView.getTabEntity().addTab(title, ((CFSwingCtrl) viewCtrl).getContainer());
-        sysRef_swingCtrl.put(sysRef, ((CFSwingCtrl) viewCtrl));
+        if (isNull(sysRef_swingCtrl.get(sysRef))) {
+            swingView.getTabEntity().addTab(turn(title), ((CFSwingCtrl) viewCtrl).getContainer());
+            sysRef_swingCtrl.put(sysRef, ((CFSwingCtrl) viewCtrl));
+        }
         swingView.getTabEntity().setSelectedComponent(sysRef_swingCtrl.get(sysRef).getContainer());
-        swingView.getTabEntity().requestFocusInWindow();
+        //swingView.getTabEntity().requestFocusInWindow();
     }
 
     @Override
@@ -98,10 +101,10 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     @Override
     protected void _initObject() {
         super._initObject();
-        if (_hasEntity()) {
-            if (BaseFunction.LIST_FUNCTION.equals(_getBaseFunction())) {
-                sysRef_swingCtrl = new HashMap();
-            } else if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction())) {
+        if (BaseFunction.LIST_FUNCTION.equals(_getBaseFunction())) {
+            sysRef_swingCtrl = new HashMap();
+        } else if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction())) {
+            if (_hasEntity()) {
                 sysRef = _getSysRef(objEntity);
             }
         }
@@ -122,8 +125,9 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             //parent-childs-screen
             if (isNotNull(parameter.get(toString() + parentValue))) {
                 if (getBoolean(parameter.get(toString() + parentNewEntity))) {
-                    swingView.getTxtKeyword().setVisible(false);
-                    swingView.getPgnEntity().setVisible(false);
+                    setVisible(swingView.getTxtKeyword(), false);
+                    setVisible(swingView.getBtnFilter(), false);
+                    setVisible(swingView.getPgnEntity(), false);
                 }
                 final Object dummy = this;
                 tblEntity.setVisibleField(false, parameter.get(toString() + parentField).toString());
@@ -147,6 +151,12 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
         if (_hasTblEntity()) {
             tblEntity.setNaviElements(swingView.getPgnEntity(), swingView.getTxtKeyword(),
                     swingView.getBtnView(), swingView.getBtnEdit(), swingView.getBtnDelete());
+        }
+    }
+
+    @Override
+    protected void _initFilterElements() {
+        if (_hasTblEntity() && isNotNull(swingView.getBtnFilter())) {
         }
     }
 //</editor-fold>
@@ -208,37 +218,37 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
         if (BaseFunction.LIST_FUNCTION.equals(_getBaseFunction())) {
             alAdd = new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     _doAdd();
                 }
             };
             alView = new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     _doView();
                 }
             };
             alEdit = new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     _doEdit();
                 }
             };
             alDelete = new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     _doDelete();
                 }
             };
             alExport = new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     _doExport();
                 }
             };
             alSearch = new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     _doSearch();
                 }
             };
@@ -257,44 +267,44 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
         } else if (BaseFunction.FORM_FUNCTION.equals(_getBaseFunction())) {
             alNew = new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     //new data
                 }
             };
             alEdit = new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     setReadonly(false);
                 }
             };
             alSave = new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     _doSave();
                 }
             };
             alSaveAndNew = new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     _doSave();
                     //new data
                 }
             };
             alCancel = new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     setReadonly(true);
                 }
             };
             alExport = new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     _doExport();
                 }
             };
             alClose = new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent actionEvent) {
                     _doClose();
                 }
             };
@@ -453,9 +463,8 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected boolean _doShowEditor(boolean readonly, Object objEntity) {
         sysRef = _getSysRef(objEntity);
         if (isNotNull(sysRef_swingCtrl.get(sysRef))) {
-            CFSwingCtrl swingCtrl = sysRef_swingCtrl.get(sysRef);
-            swingCtrl.setReadonly(readonly);
-            swingView.getTabEntity().setSelectedComponent(swingCtrl.getContainer());
+            sysRef_swingCtrl.get(sysRef).setReadonly(readonly);
+            doShowTab(sysRef, null, null);
             return false;
         } else {
             return newObject(getControllerForm(getClass())).with(parameter).with(this).with(readonly).init(objEntity);

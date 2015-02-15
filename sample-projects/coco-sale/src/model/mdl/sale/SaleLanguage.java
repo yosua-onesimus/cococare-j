@@ -16,7 +16,6 @@ public class SaleLanguage extends CCLanguage {
     public static String Voucher_Type;
     public static String Deposit;
     public static String Selling;
-    public static String Config;
     //
     public static String Apparel;
 }
