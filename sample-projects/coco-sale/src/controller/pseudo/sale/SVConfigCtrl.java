@@ -1,4 +1,4 @@
-package model.mdl.sale;
+package controller.pseudo.sale;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.framework.swing.controller.form.util.PnlApplicationSettingCtrl;

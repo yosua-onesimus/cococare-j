@@ -10,7 +10,7 @@ import java.util.Date;
 import javax.persistence.*;
 //</editor-fold>
 
-@CCTypeConfig(label = "Voucher Module", tooltiptext = "Minimal Profit, Sale Price Round, Agent Service, etc", controllerClass = "model.mdl.sale.SVConfigCtrl")
+@CCTypeConfig(label = "Voucher Module", tooltiptext = "Minimal Profit, Sale Price Round, Agent Service, etc", controllerClass = "controller.pseudo.sale.SVConfigCtrl")
 public class SVConfig implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
