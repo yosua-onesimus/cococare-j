@@ -51,16 +51,16 @@ public class PnlApplicationSettingCtrl extends CFSwingCtrl {
     }
 
     @Override
-    protected String _getTabTitle() {
-        return getLabel(_getEntity());
-    }
-
-    @Override
     protected boolean _doSaveEntity() {
         if ((updateCaller = configBo.saveConf(objEntity)) && (objEntity instanceof UtilConfAppl)) {
             updateCaller = writeObject((CCEntity) objEntity, CFApplCtrl.FILE_APPL_CONF);
             CFApplCtrl.INSTANCE.updateNonContent(objEntity);
         }
         return updateCaller;
+    }
+
+    @Override
+    protected String _getTabTitle() {
+        return getLabel(_getEntity());
     }
 }

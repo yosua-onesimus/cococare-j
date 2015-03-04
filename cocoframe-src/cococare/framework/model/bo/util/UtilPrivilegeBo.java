@@ -17,7 +17,7 @@ import java.util.List;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class UtilInitInitialDataBo extends CCHibernateBo {
+public class UtilPrivilegeBo extends CCHibernateBo {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private UtilPrivilegeDao privilegeDao;

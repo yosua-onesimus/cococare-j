@@ -97,6 +97,7 @@ public abstract class CFSwingMain extends CFApplCtrl {
     @Override
     public void updateNonContent(Object object) {
         if (object instanceof UtilConfAppl) {
+            confAppl = (UtilConfAppl) object;
             load(CCLanguage.LanguagePack.values()[parseInt(confAppl.getApplLanguage())]);
             setLookAndFeel(LookAndFeel.values()[parseInt(confAppl.getApplLookAndFeel())].getName(), getMainScreen());
             getContentImage().setIcon(confAppl.getApplWallpaper());

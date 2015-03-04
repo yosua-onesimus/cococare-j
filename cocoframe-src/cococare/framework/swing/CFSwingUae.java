@@ -13,7 +13,7 @@ import cococare.common.CCTrackable;
 import static cococare.database.CCLoginInfo.INSTANCE_isCompAccessible;
 import cococare.framework.common.CFApplUae;
 import cococare.framework.common.CFViewCtrl;
-import cococare.framework.model.bo.util.UtilInitInitialDataBo;
+import cococare.framework.model.bo.util.UtilPrivilegeBo;
 import cococare.framework.model.obj.util.UtilPrivilege;
 import static cococare.framework.swing.CFSwingMap.getViewForm;
 import cococare.swing.component.CCButton;
@@ -196,7 +196,7 @@ public class CFSwingUae extends CFApplUae {
 
     @Override
     public boolean compile() {
-        return new UtilInitInitialDataBo().initFirstData(privileges);
+        return new UtilPrivilegeBo().initFirstData(privileges);
     }
 //</editor-fold>
 

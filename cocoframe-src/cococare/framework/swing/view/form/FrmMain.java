@@ -70,7 +70,7 @@ public class FrmMain extends javax.swing.JFrame {
             .addGroup(northWestLayout.createSequentialGroup()
                 .addComponent(aApplLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(aApplName, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(aApplName, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
         );
         northWestLayout.setVerticalGroup(
             northWestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

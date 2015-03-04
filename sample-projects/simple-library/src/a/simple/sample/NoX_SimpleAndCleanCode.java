@@ -15,7 +15,6 @@ import cococare.common.mail.CCMail;
 import cococare.common.mail.CCMail.MailServer;
 import cococare.common.quartz.CCJob;
 import cococare.common.quartz.CCQuartz;
-import cococare.common.quartz.CCScheduler;
 import cococare.database.CCDatabaseConfig.SupportedDatabase;
 import cococare.database.*;
 import cococare.datafile.CCDataFile;
@@ -257,8 +256,7 @@ public class NoX_SimpleAndCleanCode {
         HashMap<String, Object> parameter = new HashMap();
         parameter.put("employee.firstName", "Yosua");
         parameter.put("employee.lastName", "Onesimus");
-        CCScheduler scheduler = new CCScheduler(SimpleJob.class, parameter, "0/3 * * * * ?");
-        CCQuartz.start(scheduler);
+        CCQuartz.start(SimpleJob.class, parameter, "0/3 * * * * ?");
     }
 //</editor-fold>
 
@@ -290,7 +288,7 @@ public class NoX_SimpleAndCleanCode {
         databaseDao.saveOrUpdate(newMember("M002", "Sari Heriati", "17/03/1984"));
         databaseDao.saveOrUpdate(newMember("M003", "Delvin Acelin", "02/09/2014"));
 
-        List<LibMember> members = databaseDao.getListObject();
+        List<LibMember> members = databaseDao.getList();
         for (LibMember member : members) {
             System.out.println("Member: Code:" + member.getCode() + "; Full Name:" + member.getFullName() + "; Birth Date:" + CCFormat.getString(member.getBirthDate()) + "; ");
         }
@@ -465,6 +463,6 @@ public class NoX_SimpleAndCleanCode {
 //</editor-fold>
 
     public static void main(String[] args) {
-        sampleHighcharts3();
+        sampleDatabase();
     }
 }

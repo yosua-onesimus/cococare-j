@@ -53,7 +53,7 @@ public class Main {
                 + CCFormat.pack("Code|", " ", 20)
                 + CCFormat.pack("Name|", " ", 20));
         CCMessage.println(CCFormat.pack("", "-", 45));
-        List<Employee> employees = employeeDao.getListObject();
+        List<Employee> employees = employeeDao.getList();
         for (Employee employee : employees) {
             CCMessage.println(
                     CCFormat.pack(employee.getId() + ".|", " ", 5)
@@ -82,7 +82,7 @@ public class Main {
         while (employee == null) {
             CCMessage.println(CCFormat.pack("", "-", 45));
             CCMessage.println("Enter Employee Id: ");
-            employee = (Employee) employeeDao.getObjectById(CCFormat.getLong(CCMessage.readln()));
+            employee = (Employee) employeeDao.getById(CCFormat.getLong(CCMessage.readln()));
         }
         CCMessage.println("Code: " + employee.getCode());
         CCMessage.println("Name: ");
@@ -100,7 +100,7 @@ public class Main {
         while (employee == null) {
             CCMessage.println(CCFormat.pack("", "-", 45));
             CCMessage.println("Enter Employee Id: ");
-            employee = (Employee) employeeDao.getObjectById(CCFormat.getLong(CCMessage.readln()));
+            employee = (Employee) employeeDao.getById(CCFormat.getLong(CCMessage.readln()));
         }
         if (employeeDao.delete(employee)) {
             CCMessage.println("employee has been deleted successfully");

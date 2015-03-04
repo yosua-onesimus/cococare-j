@@ -5,6 +5,9 @@ import static cococare.common.CCClass.getLabel;
 import static cococare.common.CCLogic.isNotNull;
 import cococare.framework.model.obj.util.UtilConfig;
 import cococare.framework.swing.CFSwingCtrl;
+import static cococare.framework.swing.CFSwingMap.newContainer;
+import cococare.framework.swing.CFSwingView;
+import static cococare.swing.CCSwing.initComponent;
 import javax.swing.JPanel;
 //</editor-fold>
 
@@ -30,9 +33,15 @@ public class PnlParameterCtrl extends CFSwingCtrl {
     }
 
     @Override
+    protected void _initContainer() {
+        swingView = new CFSwingView(newContainer(PnlParameterCtrl.class));
+    }
+
+    @Override
     protected void _initEditor() {
         super._initEditor();
         edtEntity.generateDefaultEditor(pnlGenerator);
+        initComponent(getContainer(), this, reinitComponents);
     }
 
     @Override

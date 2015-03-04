@@ -5,7 +5,7 @@ import static cococare.common.CCConfig.HBN_MULTI_DOMAIN;
 import cococare.common.CCLanguage;
 import static cococare.common.CCLanguage.load;
 import static cococare.common.CCLogic.isNull;
-import static cococare.common.CCMessage.initDefaultHandler;
+import static cococare.common.CCMessage.initLogHandler;
 import cococare.common.trial.CCLicense;
 import cococare.database.CCDatabaseConfig;
 import cococare.database.CCHibernate;
@@ -103,7 +103,7 @@ public abstract class CFApplCtrl {
      * </ol>
      */
     protected void _loadInternalSetting() {
-        initDefaultHandler();
+        initLogHandler();
         executeMandatoryFile();
     }
 

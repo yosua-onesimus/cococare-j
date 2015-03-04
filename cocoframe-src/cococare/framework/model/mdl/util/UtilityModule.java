@@ -24,6 +24,7 @@ public class UtilityModule extends CCHibernateModule {
         super.init(hibernate);
         //
         hibernate.addAnnotatedClass(UtilConfig.class);
+        hibernate.addAnnotatedClass(UtilScheduler.class);
         hibernate.addAnnotatedClass(UtilLogger.class);
         hibernate.addAnnotatedClass(UtilPrivilege.class);
         hibernate.addAnnotatedClass(UtilArea.class);

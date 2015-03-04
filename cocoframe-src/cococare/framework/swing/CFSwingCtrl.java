@@ -15,6 +15,7 @@ import cococare.framework.common.CFViewCtrl;
 import static cococare.framework.swing.CFSwingMap.*;
 import cococare.swing.CCEditor;
 import cococare.swing.CCHotkey;
+import static cococare.swing.CCHotkey.simpleNavigate;
 import static cococare.swing.CCSwing.*;
 import cococare.swing.CCTable;
 import java.awt.Component;
@@ -76,7 +77,6 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             sysRef_swingCtrl.put(sysRef, ((CFSwingCtrl) viewCtrl));
         }
         swingView.getTabEntity().setSelectedComponent(sysRef_swingCtrl.get(sysRef).getContainer());
-        //swingView.getTabEntity().requestFocusInWindow();
     }
 
     @Override
@@ -252,12 +252,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
                     _doSearch();
                 }
             };
-//            addFocusListener(swingView.getTabEntity(), new FocusAdapter() {
-//                @Override
-//                public void focusGained(FocusEvent focusEvent) {
-//                    focusEvent.getComponent().transferFocus();
-//                }
-//            });
+            simpleNavigate(swingView.getTabEntity());
             addListener(swingView.getBtnAdd(), alAdd);
             addListener(swingView.getBtnView(), alView);
             addListener(swingView.getBtnEdit(), alEdit);
