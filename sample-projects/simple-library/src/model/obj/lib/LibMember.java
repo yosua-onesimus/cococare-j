@@ -124,6 +124,7 @@ public class LibMember implements CCEntity {
     @Column(length = 32)
     @CCFieldConfig(componentId = "txtEmail", type = Type.EMAIL, maxLength = 32, visible = false)
     private String email;
+    @Lob
     @Column(length = Integer.MAX_VALUE)
     @CCFieldConfig(componentId = "attPhoto", type = Type.THUMB_FILE, optionReflectKey = "photoName", visible = false)
     private byte[] photo;

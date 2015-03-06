@@ -116,6 +116,7 @@ public class Employee implements CCEntity {
     @Column(length = 32)
     @CCFieldConfig(componentId = "txtEmail", maxLength = 32, type = Type.EMAIL)
     private String email;
+    @Lob
     @Column(length = Integer.MAX_VALUE)
     @CCFieldConfig(componentId = "attPhoto", type = Type.THUMB_FILE, optionReflectKey = "photoName", visible = false)
     private byte[] photo;
