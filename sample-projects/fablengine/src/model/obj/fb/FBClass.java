@@ -9,14 +9,11 @@ import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
 import javax.persistence.*;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 //</editor-fold>
 
 @Entity
 @Table(name = "fb_classes")
-@CCTypeConfig(label = "Class", uniqueKey = "name")
+@CCTypeConfig(label = "Class", uniqueKey = "name", parameter = true, controllerClass = "controller.pseudo.fb.FBClassCtrl")
 public class FBClass implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
@@ -95,7 +92,7 @@ public class FBClass implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 4)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 4, requestFocus = true, unique = true, visible = false)
+    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 4, requestFocus = true, sequence = "C000", unique = true)
     private String code;
     @Column(length = 16)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16, unique = true)
@@ -112,14 +109,17 @@ public class FBClass implements CCEntity {
     private Integer essence = 1;
     @CCFieldConfig(label = "VEL", componentId = "txtVelense", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer velense = 1;
-    @CCFieldConfig(label = "Balance", componentId = "txtBalance", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
+    @CCFieldConfig(label = "Balance", componentId = "txtBalance", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 3)
     private Integer balance = 1;
     @CCFieldConfig(label = "Hit%", componentId = "txtHitRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
     private Float hitRate = 90f;
     @CCFieldConfig(label = "Eva%", componentId = "txtEvaRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
     private Float evaRate = 10f;
-    @CCFieldConfig(label = "Crt%", componentId = "txtCrtRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
+    @CCFieldConfig(label = "Crt%", componentId = "txtCrtRate", accessible = Accessible.MANDATORY_READONLY, type = Type.DECIMAL, maxLength = 6)
     private Float crtRate = 10f;
+    @Column(length = 16)
+    @CCFieldConfig(componentId = "txtCommand", accessible = Accessible.MANDATORY, maxLength = 16, unique = true)
+    private String command;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -218,8 +218,16 @@ public class FBClass implements CCEntity {
         this.crtRate = crtRate;
     }
 
+    public String getCommand() {
+        return command;
+    }
+
+    public void setCommand(String command) {
+        this.command = command;
+    }
+
     public void calculate() {
-        manipulate(this, "balance=hp+ap+offense+defense+essence+velense");
+        manipulate(this, "balance=hp/10+ap+offense+defense+essence+velense");
     }
 //</editor-fold>
 }

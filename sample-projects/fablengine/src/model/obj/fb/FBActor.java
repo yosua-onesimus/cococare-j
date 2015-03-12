@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "fb_actors")
-@CCTypeConfig(label = "Actor", uniqueKey = "name")
+@CCTypeConfig(label = "Actor", uniqueKey = "name", parameter = true, controllerClass = "controller.pseudo.fb.FBActorCtrl")
 public class FBActor implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
@@ -90,52 +90,86 @@ public class FBActor implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @Column(length = 16)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16, requestFocus = true, unique = true)
+    @Column(length = 4)
+    @CCFieldConfig(group = "General", componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 4, requestFocus = true, sequence = "A000", unique = true)
+    private String code;
+    @Column(length = 32)
+    @CCFieldConfig(group = "General", componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32, requestFocus = true)
     private String name;
-    @CCFieldConfig(componentId = "cmbGender", accessible = Accessible.MANDATORY, optionSource = "model.obj.fb.FBEnum$Gender", optionReflectKey = "gender", visible = false)
-    private Integer genderIndex;
     @Column(length = 16)
-    @CCFieldConfig(maxLength = 16)
+    @CCFieldConfig(group = "General", componentId = "txtCallName", maxLength = 16, visible = false)
+    private String nickName;
+    @CCFieldConfig(group = "General", label = "Gender", componentId = "cmbGender", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$Gender", optionReflectKey = "gender", visible = false)
+    private Integer genderIndex;
+    @Column(length = 8)
+    @CCFieldConfig(maxLength = 8, visible = false, visible2 = false)
     private String gender;
-    @ManyToOne
-    @CCFieldConfig(componentId = "bndClass", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
-    private FBClass class_;
-    @Column(name = "level_")
-    @CCFieldConfig(label = "LVL", componentId = "txtLevel", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
-    private Integer level = 1;
-    @CCFieldConfig(label = "EXP", componentId = "txtExpoint", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 6)
-    private Integer expoint = 0;
-    @CCFieldConfig(label = "HPM", componentId = "txtHpMax", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
-    private Integer hpMax = 1;
-    @CCFieldConfig(label = "HP", componentId = "txtHp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "General", label = "Blood Type", componentId = "cmbBloodType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$BloodType", optionReflectKey = "bloodType", visible = false)
+    private Integer bloodTypeIndex;
+    @Column(length = 4)
+    @CCFieldConfig(maxLength = 8, visible = false, visible2 = false)
+    private String bloodType;
+    @Lob
+    @Column(length = Integer.MAX_VALUE)
+    @CCFieldConfig(group = "General", componentId = "attPhoto", type = Type.THUMB_FILE, optionReflectKey = "photoName", visible = false)
+    private byte[] photo;
+    @Column(length = 255)
+    @CCFieldConfig(visible = false, visible2 = false)
+    private String photoName;
+    @CCFieldConfig(group = "Actor Parameter", label = "HP", componentId = "txtHp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer hp = 1;
-    @CCFieldConfig(label = "APM", componentId = "txtApMax", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
-    private Integer apMax = 1;
-    @CCFieldConfig(label = "AP", componentId = "txtAp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Actor Parameter", label = "AP", componentId = "txtAp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer ap = 1;
-    @CCFieldConfig(label = "OFF", componentId = "txtOffense", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Actor Parameter", label = "EXP", componentId = "txtExp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 6)
+    private Integer exp = 0;
+    @Column(name = "level_")
+    @CCFieldConfig(group = "Actor Parameter", label = "LVL", componentId = "txtLevel", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    private Integer level = 1;
+    @ManyToOne
+    @CCFieldConfig(group = "Class Parameter", componentId = "bndClass", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
+    private FBClass class_;
+    @CCFieldConfig(group = "Class Parameter", label = "HPM", componentId = "txtHpMax", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    private Integer hpMax = 1;
+    @CCFieldConfig(group = "Class Parameter", label = "APM", componentId = "txtApMax", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    private Integer apMax = 1;
+    @CCFieldConfig(group = "Class Parameter", label = "OFF", componentId = "txtOffense", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer offense = 1;
-    @CCFieldConfig(label = "DEF", componentId = "txtDefense", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Class Parameter", label = "DEF", componentId = "txtDefense", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer defense = 1;
-    @CCFieldConfig(label = "ESS", componentId = "txtEssence", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Class Parameter", label = "ESS", componentId = "txtEssence", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer essence = 1;
-    @CCFieldConfig(label = "VEL", componentId = "txtVelense", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Class Parameter", label = "VEL", componentId = "txtVelense", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer velense = 1;
-    @CCFieldConfig(label = "Hit%", componentId = "txtHitRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
+    @CCFieldConfig(group = "Class Parameter", label = "Hit%", componentId = "txtHitRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
     private Float hitRate = 90f;
-    @CCFieldConfig(label = "Eva%", componentId = "txtEvaRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
+    @CCFieldConfig(group = "Class Parameter", label = "Eva%", componentId = "txtEvaRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
     private Float evaRate = 10f;
-    @CCFieldConfig(label = "Crt%", componentId = "txtCrtRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
+    @CCFieldConfig(group = "Class Parameter", label = "Crt%", componentId = "txtCrtRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
     private Float crtRate = 10f;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public Integer getGenderIndex() {
@@ -154,36 +188,36 @@ public class FBActor implements CCEntity {
         this.gender = gender;
     }
 
-    public FBClass getClass_() {
-        return class_;
+    public Integer getBloodTypeIndex() {
+        return bloodTypeIndex;
     }
 
-    public void setClass_(FBClass class_) {
-        this.class_ = class_;
+    public void setBloodTypeIndex(Integer bloodTypeIndex) {
+        this.bloodTypeIndex = bloodTypeIndex;
     }
 
-    public Integer getLevel() {
-        return level;
+    public String getBloodType() {
+        return bloodType;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
     }
 
-    public Integer getExpoint() {
-        return expoint;
+    public byte[] getPhoto() {
+        return photo;
     }
 
-    public void setExpoint(Integer expoint) {
-        this.expoint = expoint;
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 
-    public Integer getHpMax() {
-        return hpMax;
+    public String getPhotoName() {
+        return photoName;
     }
 
-    public void setHpMax(Integer hpMax) {
-        this.hpMax = hpMax;
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
     }
 
     public Integer getHp() {
@@ -194,20 +228,52 @@ public class FBActor implements CCEntity {
         this.hp = hp;
     }
 
-    public Integer getApMax() {
-        return apMax;
-    }
-
-    public void setApMax(Integer apMax) {
-        this.apMax = apMax;
-    }
-
     public Integer getAp() {
         return ap;
     }
 
     public void setAp(Integer ap) {
         this.ap = ap;
+    }
+
+    public Integer getExp() {
+        return exp;
+    }
+
+    public void setExp(Integer exp) {
+        this.exp = exp;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public FBClass getClass_() {
+        return class_;
+    }
+
+    public void setClass_(FBClass class_) {
+        this.class_ = class_;
+    }
+
+    public Integer getHpMax() {
+        return hpMax;
+    }
+
+    public void setHpMax(Integer hpMax) {
+        this.hpMax = hpMax;
+    }
+
+    public Integer getApMax() {
+        return apMax;
+    }
+
+    public void setApMax(Integer apMax) {
+        this.apMax = apMax;
     }
 
     public Integer getOffense() {

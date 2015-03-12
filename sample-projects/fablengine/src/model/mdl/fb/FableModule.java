@@ -3,9 +3,7 @@ package model.mdl.fb;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.database.CCHibernate;
 import cococare.database.CCHibernateModule;
-import model.obj.fb.FBAction;
-import model.obj.fb.FBActor;
-import model.obj.fb.FBClass;
+import model.obj.fb.*;
 //</editor-fold>
 
 public class FableModule extends CCHibernateModule {
@@ -17,7 +15,10 @@ public class FableModule extends CCHibernateModule {
     public void init(CCHibernate hibernate) {
         super.init(hibernate);
         //
-        hibernate.addAnnotatedClass(FBAction.class);
+        hibernate.addAnnotatedClass(FBElement.class);
+        hibernate.addAnnotatedClass(FBActionType.class);
+        hibernate.addAnnotatedClass(FBWeaponType.class);
+        //
         hibernate.addAnnotatedClass(FBClass.class);
         hibernate.addAnnotatedClass(FBActor.class);
     }
