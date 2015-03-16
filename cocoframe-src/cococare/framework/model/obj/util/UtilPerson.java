@@ -161,8 +161,8 @@ public class UtilPerson implements CCEntity {
     @CCFieldConfig(componentId = "txtFullName", accessible = Accessible.MANDATORY, maxLength = 32, requestFocus = true)
     private String fullName;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtCallName", maxLength = 16, visible = false)
-    private String callName;
+    @CCFieldConfig(componentId = "txtNickName", maxLength = 16, visible = false)
+    private String nickName;
     //----------------------------------------------------------------------------------------------
     @Column(length = 48)
     @CCFieldConfig(componentId = "cmbBirthPlace", accessible = Accessible.MANDATORY, maxLength = 48, optionSource = "IndonesiaCities.txt", optionReflectKey = "birthPlace")
@@ -232,6 +232,7 @@ public class UtilPerson implements CCEntity {
     @CCFieldConfig(componentId = "txtWebsite", maxLength = 48, visible = false)
     private String website;
     //----------------------------------------------------------------------------------------------
+    @Lob
     @Column(length = Integer.MAX_VALUE)
     @CCFieldConfig(componentId = "attPhoto", type = Type.THUMB_FILE, optionReflectKey = "photoName", visible = false)
     private byte[] photo;
@@ -266,12 +267,12 @@ public class UtilPerson implements CCEntity {
         this.fullName = fullName;
     }
 
-    public String getCallName() {
-        return callName;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setCallName(String callName) {
-        this.callName = callName;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getBirthPlace() {

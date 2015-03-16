@@ -107,6 +107,7 @@ public class NoteReference implements CCEntity {
     @Column(length = 16)
     @CCFieldConfig(maxLength = 16, visible = false, visible2 = false)
     private String type = ReferenceType.ATTACHMENT.toString();
+    @Lob
     @Column(length = Integer.MAX_VALUE)
     @CCFieldConfig(componentId = "attByteA", type = Type.COMMON_FILE, optionReflectKey = "value", visible = false)
     transient private byte[] byteA;

@@ -120,11 +120,13 @@ public class UtilConfAppl implements CCEntity {
     private Integer applLookAndFeel = 0;
     @CCFieldConfig(group = "Application UI", label = "Menu Position", componentId = "cmbApplMenuPosition", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilConfAppl$MenuPosition")
     private Integer applMenuPosition = 0;
+    @Lob
     @Column(length = Integer.MAX_VALUE)
     @CCFieldConfig(group = "Application UI", label = "Wallpaper", componentId = "attApplWallpaper", type = Type.IMAGE_FILE, optionReflectKey = "applWallpaperName")
     private byte[] applWallpaper;
     private String applWallpaperName;
     //----------------------------------------------------------------------------------------------
+    @Lob
     @Column(length = Integer.MAX_VALUE)
     @CCFieldConfig(group = "Company", label = "Logo", componentId = "attCompanyLogo", type = Type.THUMB_FILE, optionReflectKey = "companyLogoName")
     private byte[] companyLogo;
