@@ -20,7 +20,7 @@ public class TebakAngkaMain {
 
     public static void main(String[] args) {
         //initial log default handler
-        CCMessage.initDefaultHandler();
+        CCMessage.initLogHandler();
         //initial main screen
         CFSwingMap.initMainScreen(FrmTebakAngka.class.getName());
         //put main screen to center
@@ -29,7 +29,7 @@ public class TebakAngkaMain {
         CFSwingMap.getMainScreen().setIconImage(readImage("/cococare/resource/icon-cococare.jpg"));
         //show main screen
         CFSwingMap.getMainScreen().setVisible(true);
-        //
+        //show screen
         new PnlIntroCtrl().init();
     }
 }

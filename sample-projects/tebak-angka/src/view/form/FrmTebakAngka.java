@@ -18,7 +18,7 @@ public class FrmTebakAngka extends javax.swing.JFrame {
         aContent = new cococare.swing.component.CCImage();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Tebak Angka ~ Yosua Onesimus");
+        setTitle("Tebak Angka ~ Yosua Onesimus 1.0.150317");
         setMinimumSize(new java.awt.Dimension(600, 400));
         setResizable(false);
 

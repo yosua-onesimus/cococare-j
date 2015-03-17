@@ -101,7 +101,7 @@ public class EnigmaSquareMain {
 
     public static void main(String[] args) {
         //initial log default handler
-        CCMessage.initDefaultHandler();
+        CCMessage.initLogHandler();
         //load language for auto-message purpose and auto-validation purpose
         CCLanguage.load(CCLanguage.LanguagePack.EN);
         //set login info for without-login purpose
@@ -126,10 +126,13 @@ public class EnigmaSquareMain {
         }
         swingUae.addMenuParent("Keluar", null, PnlExitCtrl.class);
         swingUae.compileMenu();
+        //put main screen to center
+        CCSwing.centerScreen(CFSwingMap.getMainScreen());
+        //set icon
+        CFSwingMap.getMainScreen().setIconImage(readImage("/cococare/resource/icon-cococare.jpg"));
+        //show main screen
+        CFSwingMap.getMainScreen().setVisible(true);
         //show screen
         new PnlEnigmaSquareCtrl().init();
-        CCSwing.centerScreen(CFSwingMap.getMainScreen());
-        CFSwingMap.getMainScreen().setIconImage(readImage("/cococare/resource/icon-cococare.jpg"));
-        CFSwingMap.getMainScreen().setVisible(true);
     }
 }
