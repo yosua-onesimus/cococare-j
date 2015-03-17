@@ -16,7 +16,7 @@ public class Ellusion1Bo {
         return CCFormat.pack(toBinaryString(i), "0", length);
     }
 
-    private static boolean isNewItem(int[] aryInt, int newInt) {
+    protected static boolean isNewItem(int[] aryInt, int newInt) {
         for (int i : aryInt) {
             if (i == newInt) {
                 return false;
@@ -78,14 +78,14 @@ public class Ellusion1Bo {
     }
 
     public static void main(String[] args) {
-        String[] strings = getBinaryGroup(10);
-        for (String string : strings) {
+        String[] ses = getBinaryGroup(10);
+        for (String string : ses) {
             System.out.println(string);
         }
         System.out.println("-");
-        Object[] objects = (Object[]) shuffle(strings);
-        for (Object object : objects) {
-            System.out.println(object);
+        Object[] os = shuffle(ses);
+        for (Object o : os) {
+            System.out.println(o);
         }
     }
 }
