@@ -11,12 +11,18 @@ import model.obj.fb.FBConfig;
 
 public class FableMain extends CFSwingMain {
 
+//<editor-fold defaultstate="collapsed" desc=" private object ">
+    private static final boolean withoutLogin = true;
+//</editor-fold>
+
     @Override
     protected void _loadInternalSetting() {
         APPL_CODE = "fablengine";
         APPL_NAME = "<html><b>F</b>a<b>B</b>l<b>E</b>ngine</html>";
         super._loadInternalSetting();
-        CCLoginInfo.INSTANCE = null;//without login
+        if (withoutLogin) {
+            CCLoginInfo.INSTANCE = null;
+        }
     }
 
     @Override
@@ -45,8 +51,11 @@ public class FableMain extends CFSwingMain {
 
     @Override
     public void showScreen() {
-        //super.showScreen();//with login
-        _applyUserConfig();//without login
+        if (withoutLogin) {
+            _applyUserConfig();
+        } else {
+            super.showScreen();
+        }
     }
 
     public static void main(String[] args) {

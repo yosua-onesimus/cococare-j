@@ -10,7 +10,7 @@ import javax.persistence.*;
 //</editor-fold>
 
 @Entity
-@Table(name = "habitat_dragons")
+@Table(name = "dco_habitat_dragons")
 @CCTypeConfig(label = "Dragon@Habitat", uniqueKey = "dragon.customName", parameter = true)
 public class HabitatDragon implements CCEntity {
 

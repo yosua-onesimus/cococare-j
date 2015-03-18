@@ -11,7 +11,7 @@ import javax.persistence.*;
 //</editor-fold>
 
 @Entity
-@Table(name = "dragons")
+@Table(name = "dco_dragons")
 @CCTypeConfig(label = "Dragon", uniqueKey = "customName", parameter = true)
 public class Dragon implements CCEntity {
 

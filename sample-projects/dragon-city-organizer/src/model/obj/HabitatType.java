@@ -11,7 +11,7 @@ import javax.persistence.*;
 //</editor-fold>
 
 @Entity
-@Table(name = "habitat_types")
+@Table(name = "dco_habitat_types")
 @CCTypeConfig(label = "Habitat Type", uniqueKey = "name", parameter = true)
 public class HabitatType implements CCEntity {
 
