@@ -31,10 +31,10 @@ public class No1_ConsoleSample {
         String menu;
         while (true) {
             println(pack("", "-", 45));
-            println("1. Show Employee List");
-            println("2. Add Employee");
-            println("3. Edit Employee");
-            println("4. Delete Employee");
+            println("1. Show Member List");
+            println("2. Add Member");
+            println("3. Edit Member");
+            println("4. Delete Member");
             println("X. Exit");
             println("Your choice: ");
             menu = readln().toUpperCase();
@@ -73,8 +73,8 @@ public class No1_ConsoleSample {
         println("Name: ");
         member.setFullName(readln());
         if (memberDao.saveOrUpdate(member)) {
-            println("member has been saved successfully");
-            println("member.getId(): " + member.getId());
+            println("Member has been saved successfully");
+            println("Member.getId(): " + member.getId());
         } else {
             println(getErrorMessage(), true);
         }
@@ -84,15 +84,15 @@ public class No1_ConsoleSample {
         LibMember member = null;
         while (isNull(member)) {
             println(pack("", "-", 45));
-            println("Enter Employee Id: ");
+            println("Enter Member Id: ");
             member = (LibMember) memberDao.getById(getLong(readln()));
         }
         println("Code: " + member.getCode());
         println("Name: ");
         member.setFullName(readln());
         if (memberDao.saveOrUpdate(member)) {
-            println("member has been saved successfully");
-            println("member.getId(): " + member.getId());
+            println("Member has been saved successfully");
+            println("Member.getId(): " + member.getId());
         } else {
             println(getErrorMessage(), true);
         }
@@ -102,11 +102,11 @@ public class No1_ConsoleSample {
         LibMember member = null;
         while (isNull(member)) {
             println(pack("", "-", 45));
-            println("Enter Employee Id: ");
+            println("Enter Member Id: ");
             member = (LibMember) memberDao.getById(getLong(readln()));
         }
         if (memberDao.delete(member)) {
-            println("member has been deleted successfully");
+            println("Member has been deleted successfully");
         } else {
             println(getErrorMessage(), true);
         }

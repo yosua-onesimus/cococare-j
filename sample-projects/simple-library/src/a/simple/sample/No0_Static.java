@@ -7,6 +7,7 @@ import static cococare.common.CCFormat.getDate;
 import cococare.database.CCDatabaseConfig;
 import cococare.database.CCHibernate;
 import model.mdl.lib.LibraryModule;
+import model.obj.lib.LibEnum.Gender;
 import model.obj.lib.LibMember;
 //</editor-fold>
 
@@ -24,6 +25,14 @@ public class No0_Static {
         HBN_SHOW_HQL = "false";
     }
 
+    public static void println(Object object) {
+        System.out.println(object);
+    }
+
+    public static void ______________________________________________________________________() {
+        println("");
+    }
+
     public static void initHibernate() {
         CCHibernate hibernate = new CCHibernate();
         LibraryModule.INSTANCE.init(hibernate);
@@ -35,11 +44,12 @@ public class No0_Static {
                 withDatabase("coco_trial"));
     }
 
-    public static LibMember newMember(String code, String fullName, String birthDate) {
+    public static LibMember newMember(String code, String fullName, String birthDate, Gender gender) {
         LibMember member = new LibMember();
         member.setCode(code);
         member.setFullName(fullName);
         member.setBirthDate(getDate(birthDate, FORMAT_DATE));
+        member.setGender(gender);
         return member;
     }
 }

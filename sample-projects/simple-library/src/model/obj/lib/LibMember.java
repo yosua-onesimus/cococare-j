@@ -8,6 +8,7 @@ import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
 import javax.persistence.*;
+import model.obj.lib.LibEnum.Gender;
 //</editor-fold>
 
 /**
@@ -176,6 +177,11 @@ public class LibMember implements CCEntity {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public void setGender(Gender gender) {
+        setGenderIndex(gender.ordinal());
+        setGender(gender.toString());
     }
 
     public String getAddress() {
