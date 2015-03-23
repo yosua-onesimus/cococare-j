@@ -97,8 +97,14 @@ public class FBActor implements CCEntity {
     @CCFieldConfig(group = "General", componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32, requestFocus = true)
     private String name;
     @Column(length = 16)
-    @CCFieldConfig(group = "General", componentId = "txtCallName", maxLength = 16, visible = false)
+    @CCFieldConfig(group = "General", componentId = "txtCallName", accessible = Accessible.MANDATORY, maxLength = 16, visible = false)
     private String nickName;
+    @Column(length = 32)
+    @CCFieldConfig(group = "General", componentId = "txtBirthPlace", maxLength = 32, visible = false)
+    private String birthPlace;
+    @Temporal(value = TemporalType.DATE)
+    @CCFieldConfig(group = "General", componentId = "dtpBirthDate", maxLength = 12, visible = false)
+    private Date birthDate;
     @CCFieldConfig(group = "General", label = "Gender", componentId = "cmbGender", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$Gender", optionReflectKey = "gender", visible = false)
     private Integer genderIndex;
     @Column(length = 8)
@@ -116,14 +122,23 @@ public class FBActor implements CCEntity {
     @Column(length = 255)
     @CCFieldConfig(visible = false, visible2 = false)
     private String photoName;
-    @CCFieldConfig(group = "Actor Parameter", label = "HP", componentId = "txtHp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @Column(length = 32)
+    @CCFieldConfig(group = "Actor Parameter", componentId = "txtTitle", accessible = Accessible.MANDATORY, maxLength = 32, visible = false)
+    private String title;
+    @Column(length = 255)
+    @CCFieldConfig(group = "Actor Parameter", componentId = "txtDescription", maxLength = Short.MAX_VALUE, visible = false)
+    private String description;
+    @ManyToOne
+    @CCFieldConfig(group = "Actor Parameter", componentId = "bndElement", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
+    private FBElement element;
+    @CCFieldConfig(group = "Actor Parameter", label = "HP", componentId = "txtHp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
     private Integer hp = 1;
-    @CCFieldConfig(group = "Actor Parameter", label = "AP", componentId = "txtAp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Actor Parameter", label = "AP", componentId = "txtAp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
     private Integer ap = 1;
-    @CCFieldConfig(group = "Actor Parameter", label = "EXP", componentId = "txtExp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 6)
+    @CCFieldConfig(group = "Actor Parameter", label = "EXP", componentId = "txtExp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 6, visible = false)
     private Integer exp = 0;
     @Column(name = "level_")
-    @CCFieldConfig(group = "Actor Parameter", label = "LVL", componentId = "txtLevel", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Actor Parameter", label = "LVL", componentId = "txtLevel", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
     private Integer level = 1;
     @ManyToOne
     @CCFieldConfig(group = "Class Parameter", componentId = "bndClass", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
@@ -172,6 +187,22 @@ public class FBActor implements CCEntity {
         this.nickName = nickName;
     }
 
+    public String getBirthPlace() {
+        return birthPlace;
+    }
+
+    public void setBirthPlace(String birthPlace) {
+        this.birthPlace = birthPlace;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
     public Integer getGenderIndex() {
         return genderIndex;
     }
@@ -218,6 +249,30 @@ public class FBActor implements CCEntity {
 
     public void setPhotoName(String photoName) {
         this.photoName = photoName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public FBElement getElement() {
+        return element;
+    }
+
+    public void setElement(FBElement element) {
+        this.element = element;
     }
 
     public Integer getHp() {

@@ -95,6 +95,9 @@ public class FBActionType implements CCEntity {
     @Column(length = 16)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16, unique = true)
     private String name;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndParent", maxLength = 16, uniqueKey = "name")
+    private FBActionType parent;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -111,6 +114,14 @@ public class FBActionType implements CCEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public FBActionType getParent() {
+        return parent;
+    }
+
+    public void setParent(FBActionType parent) {
+        this.parent = parent;
     }
 //</editor-fold>
 }

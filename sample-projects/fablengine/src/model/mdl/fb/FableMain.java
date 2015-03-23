@@ -17,6 +17,7 @@ public class FableMain extends CFSwingMain {
 
     @Override
     protected void _loadInternalSetting() {
+        APPL_ID = "fablengine";
         APPL_CODE = "fablengine";
         APPL_NAME = "<html><b>F</b>a<b>B</b>l<b>E</b>ngine</html>";
         super._loadInternalSetting();

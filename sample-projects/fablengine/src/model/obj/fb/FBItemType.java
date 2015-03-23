@@ -10,9 +10,9 @@ import javax.persistence.*;
 //</editor-fold>
 
 @Entity
-@Table(name = "fb_weapon_types")
-@CCTypeConfig(label = "Weapon Type", uniqueKey = "name", parameter = true)
-public class FBWeaponType implements CCEntity {
+@Table(name = "fb_item_types")
+@CCTypeConfig(label = "Item Type", uniqueKey = "name", parameter = true)
+public class FBItemType implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -90,11 +90,14 @@ public class FBWeaponType implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 4)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 4, requestFocus = true, sequence = "WT00", unique = true)
+    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 4, requestFocus = true, sequence = "IT00", unique = true)
     private String code;
     @Column(length = 16)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16, unique = true)
     private String name;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndParent", maxLength = 16, uniqueKey = "name")
+    private FBItemType parent;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -111,6 +114,14 @@ public class FBWeaponType implements CCEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public FBItemType getParent() {
+        return parent;
+    }
+
+    public void setParent(FBItemType parent) {
+        this.parent = parent;
     }
 //</editor-fold>
 }

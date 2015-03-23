@@ -3,7 +3,10 @@ package model.obj.fb;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCFieldConfig.Type;
+import static cococare.common.CCLogic.isNotNullAndNotEmpty;
 import static cococare.common.CCMath.manipulate;
+import static cococare.common.CCMath.solved;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
@@ -12,7 +15,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "fb_actions")
-@CCTypeConfig(label = "Action", uniqueKey = "name")
+@CCTypeConfig(label = "Action", uniqueKey = "name", parameter = true)
 public class FBAction implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
@@ -90,47 +93,47 @@ public class FBAction implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @CCFieldConfig(componentId = "cmbActionType", accessible = Accessible.MANDATORY, optionSource = "model.obj.fb.FBEnum$ActionType", optionReflectKey = "actionType", requestFocus = true, visible = false)
-    private Integer actionTypeIndex;
-    @Column(length = 16)
-    @CCFieldConfig(label = "Type", maxLength = 16)
-    private String actionType;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndActionType", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name", requestFocus = true)
+    private FBActionType actionType;
+    @Column(length = 4)
+    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 4, sequence = "A000", unique = true)
+    private String code;
     @Column(length = 16)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16)
     private String name;
     @Column(length = 64)
     @CCFieldConfig(componentId = "txtDescription", maxLength = 64)
     private String description;
-    @Column(name = "condition_", length = 255)
-    @CCFieldConfig(componentId = "txtCondition")
-    private String condition;
+    @CCFieldConfig(label = "AP Cost", componentId = "txtApCost", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    private Integer apCost = 1;
     @Column(length = 255)
-    @CCFieldConfig(componentId = "txtFormulaPre")
+    @CCFieldConfig(componentId = "txtFormulaPre", maxLength = Short.MAX_VALUE, visible = false)
     private String formulaPre;
     @Column(length = 255)
-    @CCFieldConfig(componentId = "txtFormulaMain")
+    @CCFieldConfig(componentId = "txtFormulaMain", maxLength = Short.MAX_VALUE, visible = false)
     private String formulaMain;
     @Column(length = 255)
-    @CCFieldConfig(componentId = "txtFormulaPost")
+    @CCFieldConfig(componentId = "txtFormulaPost", maxLength = Short.MAX_VALUE, visible = false)
     private String formulaPost;
     transient private FBActor caster;
     transient private FBActor target;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public Integer getActionTypeIndex() {
-        return actionTypeIndex;
-    }
-
-    public void setActionTypeIndex(Integer actionTypeIndex) {
-        this.actionTypeIndex = actionTypeIndex;
-    }
-
-    public String getActionType() {
+    public FBActionType getActionType() {
         return actionType;
     }
 
-    public void setActionType(String actionType) {
+    public void setAction(FBActionType actionType) {
         this.actionType = actionType;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
@@ -149,12 +152,12 @@ public class FBAction implements CCEntity {
         this.description = description;
     }
 
-    public String getCondition() {
-        return condition;
+    public Integer getApCost() {
+        return apCost;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setApCost(Integer apCost) {
+        this.apCost = apCost;
     }
 
     public String getFormulaPre() {
@@ -181,18 +184,37 @@ public class FBAction implements CCEntity {
         this.formulaPost = formulaPost;
     }
 
-    private void setCaster(FBActor caster) {
+    public FBActor getCaster() {
+        return caster;
+    }
+
+    public void setCaster(FBActor caster) {
         this.caster = caster;
     }
 
-    private void setTarget(FBActor target) {
+    public FBActor getTarget() {
+        return target;
+    }
+
+    public void setTarget(FBActor target) {
         this.target = target;
     }
 
     public void execute(FBActor caster, FBActor target) {
         setCaster(caster);
         setTarget(target);
-        manipulate(this, formulaMain);
+        boolean conditionMeet = true;
+        if (isNotNullAndNotEmpty(getFormulaPre())) {
+            conditionMeet = solved(this, getFormulaPre());
+        }
+        if (conditionMeet) {
+            if (isNotNullAndNotEmpty(getFormulaMain())) {
+                manipulate(this, getFormulaMain());
+            }
+            if (isNotNullAndNotEmpty(getFormulaPost())) {
+                manipulate(this, getFormulaPost());
+            }
+        }
     }
 //</editor-fold>
 }
