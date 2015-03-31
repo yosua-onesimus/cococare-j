@@ -14,6 +14,7 @@ import cococare.common.quartz.CCJob;
 import cococare.common.quartz.CCQuartz;
 import cococare.database.CCDatabaseConfig.SupportedDatabase;
 import cococare.database.*;
+import cococare.datafile.CCCsv;
 import cococare.datafile.CCDataFile;
 import cococare.datafile.CCDom;
 import cococare.datafile.CCProperties;
@@ -402,6 +403,25 @@ public class NoX_SimpleAndCleanCode {
     }
 //</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc=" sampleCsv ">
+    public static void sampleCsv() {
+        CCCsv csv = new CCCsv();
+        csv.newList();
+        csv.addRowEntity(0, newMember("M001", "Yosua Onesimus", "06/06/1984", Gender.MALE));
+        csv.addRowEntity(1, newMember("M002", "Sari Heriati", "17/03/1984", Gender.FEMALE));
+        csv.addRowEntity(2, newMember("M003", "Delvin Acelin", "02/09/2014", Gender.MALE));
+
+        csv.write(new File("D:\\members.csv"));
+
+        CCCsv csv2 = new CCCsv();
+        csv2.read(new File("D:\\members.csv"));
+
+        for (String member : csv2.getRows()) {
+            println("Member: " + member);
+        }
+    }
+//</editor-fold>
+
 //<editor-fold defaultstate="collapsed" desc=" sampleDataFile ">
     public static void sampleDatafile() {
         CCDataFile dataFile = new CCDataFile(LibMember.class);
@@ -533,6 +553,6 @@ public class NoX_SimpleAndCleanCode {
 //</editor-fold>
 
     public static void main(String[] args) {
-        sampleExcel2();
+        sampleCsv();
     }
 }
