@@ -89,8 +89,8 @@ public class Movie implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @Column(length = 32)
-    @CCFieldConfig(componentId = "txtTitle", accessible = Accessible.MANDATORY, maxLength = 32)
+    @Column(length = 64)
+    @CCFieldConfig(componentId = "txtTitle", accessible = Accessible.MANDATORY, maxLength = 64)
     private String title;
     @Column(length = 255)
     @CCFieldConfig(componentId = "txtAlternateTitle", accessible = Accessible.MANDATORY, maxLength = Short.MAX_VALUE)
