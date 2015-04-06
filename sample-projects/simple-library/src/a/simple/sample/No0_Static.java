@@ -20,8 +20,9 @@ public class No0_Static {
 
     public static void initConfig() {
         MSG_SHOW_PRINTLN = true;
-        MSG_SHOW_LOG_INFO = false;
-        MSG_SHOW_LOG_SEVERE = true;
+        MSG_SHOW_LOG_INFO = true;
+        MSG_SHOW_LOG_DEBUG = false;
+        MSG_SHOW_LOG_ERROR = true;
         HBN_SHOW_HQL = "false";
     }
 
