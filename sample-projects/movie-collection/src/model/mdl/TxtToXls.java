@@ -12,25 +12,32 @@ import java.util.regex.Pattern;
 
 public class TxtToXls {
 
-    private static final String regex = "---([^\\[\\]]+)(\\[(.+)\\])*";
-    private static final String txtFileName = "MYVID4.TXT";
-    private static final String xlsFileName = "MYVID4.XLS";
+    private static final Pattern PATTERN = Pattern.compile("---([^\\[\\]]+)(\\[(.+)\\])*");
 
-    public static void main(String[] args) {
-        Pattern pattern = Pattern.compile(regex);
-        File input = CCFile.getFileSystArchFile(txtFileName);
-        File output = CCFile.getFileSystArchFile(xlsFileName);
-        CCExcel excel = new CCExcel();
-        excel.newWorkbook();
-        excel.newSheet("MYVID");
-        for (String string : CCFile.readList(input)) {
-            Matcher matcher = pattern.matcher(string);
-            if (matcher.find()) {
-                if (CCLogic.isNotNullAndNotEmpty(matcher.group(1))) {
-                    excel.writeRow(0, excel.getRowCount(), CCFormat.trimAll(matcher.group(1)), CCFormat.trimAll(matcher.group(3)));
+    private static void txtToXls(String fileName) {
+        File input = CCFile.getFileSystArchFile(fileName + ".TXT");
+        File output = CCFile.getFileSystArchFile(fileName + ".XLS");
+        if (input.exists()) {
+            if (output.exists()) {
+                CCFile.delete(output);
+            }
+            CCExcel excel = new CCExcel();
+            excel.newWorkbook();
+            excel.newSheet("MYVID");
+            for (String string : CCFile.readList(input)) {
+                Matcher matcher = PATTERN.matcher(string);
+                if (matcher.find()) {
+                    if (CCLogic.isNotNullAndNotEmpty(matcher.group(1))) {
+                        excel.writeRow(0, excel.getRowCount(), CCFormat.trimAll(matcher.group(1)), CCFormat.trimAll(matcher.group(3)));
+                    }
                 }
             }
+            excel.saveAndCloseWorkbook(output);
         }
-        excel.saveAndCloseWorkbook(output);
+    }
+
+    public static void main(String[] args) {
+        txtToXls("MYVID3");
+        txtToXls("MYVID4");
     }
 }
