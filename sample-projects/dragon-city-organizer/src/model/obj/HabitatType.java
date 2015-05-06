@@ -98,6 +98,8 @@ public class HabitatType implements CCEntity {
     private String name;
     @CCFieldConfig(componentId = "txtMaxDragons", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 1)
     private Integer maxDragons = 4;
+    @CCFieldConfig(componentId = "txtMaxGold", accessible = Accessible.MANDATORY, type = Type.NUMBER_FORMAT, maxLength = 10)
+    private Double maxGold = 0d;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -122,6 +124,14 @@ public class HabitatType implements CCEntity {
 
     public void setMaxDragons(Integer maxDragons) {
         this.maxDragons = maxDragons;
+    }
+
+    public Double getMaxGold() {
+        return maxGold;
+    }
+
+    public void setMaxGold(Double maxGold) {
+        this.maxGold = maxGold;
     }
 //</editor-fold>
 }

@@ -90,8 +90,8 @@ public class Dragon implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @Column(length = 5)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 5, sequence = "D000", unique = true, requestFocus = true)
+    @Column(length = 8)
+    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "D000000", unique = true, requestFocus = true)
     private String code;
     @Column(length = 16)
     @CCFieldConfig(componentId = "txtCustomName", accessible = Accessible.MANDATORY, maxLength = 16)
