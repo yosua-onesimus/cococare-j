@@ -1,6 +1,7 @@
 package model.mdl;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.common.CCLanguage;
 import static cococare.common.CCLanguage.*;
 import cococare.database.CCLoginInfo;
 import cococare.framework.common.CFApplUae;
@@ -24,6 +25,12 @@ public class DragonCityOrganizerMain extends CFSwingMain {
         if (withoutLogin) {
             CCLoginInfo.INSTANCE = null;
         }
+    }
+
+    @Override
+    protected void _loadExternalSetting() {
+        CCLanguage.init(false, DragonCityOrganizerLanguage.class);
+        super._loadExternalSetting();
     }
 
     @Override

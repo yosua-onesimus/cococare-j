@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "dco_dragons")
-@CCTypeConfig(label = "Dragon", uniqueKey = "customName", parameter = true)
+@CCTypeConfig(label = "Dragon", uniqueKey = "customName", parameter = true, controllerClass = "controller.pseudo.DragonCtrl")
 public class Dragon implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">

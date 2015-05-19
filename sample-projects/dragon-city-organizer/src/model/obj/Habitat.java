@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "dco_habitats")
-@CCTypeConfig(label = "Habitat", uniqueKey = "@habitatType.name #@no", parameter = true)
+@CCTypeConfig(label = "Habitat", uniqueKey = "@habitatType.name #@no", parameter = true, controllerClass = "controller.pseudo.HabitatCtrl")
 public class Habitat implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
