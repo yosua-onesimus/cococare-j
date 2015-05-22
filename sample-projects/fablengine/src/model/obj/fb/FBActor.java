@@ -131,14 +131,14 @@ public class FBActor implements CCEntity {
     @ManyToOne
     @CCFieldConfig(group = "Actor Parameter", componentId = "bndElement", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
     private FBElement element;
-    @CCFieldConfig(group = "Actor Parameter", label = "HP", componentId = "txtHp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
+    @CCFieldConfig(group = "Actor Parameter", label = "HP", tooltiptext = "Health Point", componentId = "txtHp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
     private Integer hp = 1;
-    @CCFieldConfig(group = "Actor Parameter", label = "AP", componentId = "txtAp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
+    @CCFieldConfig(group = "Actor Parameter", label = "AP", tooltiptext = "Health Point", componentId = "txtAp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
     private Integer ap = 1;
-    @CCFieldConfig(group = "Actor Parameter", label = "EXP", componentId = "txtExp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 6, visible = false)
+    @CCFieldConfig(group = "Actor Parameter", label = "ExP", tooltiptext = "Experience Point", componentId = "txtExp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 6, visible = false)
     private Integer exp = 0;
     @Column(name = "level_")
-    @CCFieldConfig(group = "Actor Parameter", label = "LVL", componentId = "txtLevel", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
+    @CCFieldConfig(group = "Actor Parameter", label = "LVL", tooltiptext = "Level", componentId = "txtLevel", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
     private Integer level = 1;
     @ManyToOne
     @CCFieldConfig(group = "Class Parameter", componentId = "bndClass", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")

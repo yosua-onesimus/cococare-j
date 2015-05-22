@@ -16,6 +16,7 @@ public class FableModule extends CCHibernateModule {
         super.init(hibernate);
         //
         hibernate.addAnnotatedClass(FBElement.class);
+        hibernate.addAnnotatedClass(FBAilment.class);
         hibernate.addAnnotatedClass(FBActionType.class);
         hibernate.addAnnotatedClass(FBAction.class);
         hibernate.addAnnotatedClass(FBItemType.class);

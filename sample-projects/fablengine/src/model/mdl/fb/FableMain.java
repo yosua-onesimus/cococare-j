@@ -22,7 +22,7 @@ public class FableMain extends CFSwingMain {
     protected void _loadInternalSetting() {
         APPL_ID = "fablengine";
         APPL_CODE = "fablengine";
-        APPL_NAME = "<html><b>F</b>a<b>B</b>l<b>E</b>ngine</html>";
+        APPL_NAME = "FaBlEngine";
         super._loadInternalSetting();
         if (withoutLogin) {
             CCLoginInfo.INSTANCE = null;

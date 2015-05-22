@@ -3,6 +3,7 @@ package model.obj.fb;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
@@ -95,6 +96,19 @@ public class FBElement implements CCEntity {
     @Column(length = 16)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16, unique = true)
     private String name;
+    //
+    @CCFieldConfig(group = "Damage Multiplier", componentId = "txtA", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    private Integer a = -50;
+    @CCFieldConfig(group = "Damage Multiplier", componentId = "txtB", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    private Integer b = 0;
+    @CCFieldConfig(group = "Damage Multiplier", componentId = "txtC", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    private Integer c = 50;
+    @CCFieldConfig(group = "Damage Multiplier", componentId = "txtD", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    private Integer d = 100;
+    @CCFieldConfig(group = "Damage Multiplier", componentId = "txtE", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    private Integer e = 200;
+    @CCFieldConfig(group = "Damage Multiplier", componentId = "txtF", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    private Integer f = 400;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -111,6 +125,54 @@ public class FBElement implements CCEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getA() {
+        return a;
+    }
+
+    public void setA(Integer a) {
+        this.a = a;
+    }
+
+    public Integer getB() {
+        return b;
+    }
+
+    public void setB(Integer b) {
+        this.b = b;
+    }
+
+    public Integer getC() {
+        return c;
+    }
+
+    public void setC(Integer c) {
+        this.c = c;
+    }
+
+    public Integer getD() {
+        return d;
+    }
+
+    public void setD(Integer d) {
+        this.d = d;
+    }
+
+    public Integer getE() {
+        return e;
+    }
+
+    public void setE(Integer e) {
+        this.e = e;
+    }
+
+    public Integer getF() {
+        return f;
+    }
+
+    public void setF(Integer f) {
+        this.f = f;
     }
 //</editor-fold>
 }

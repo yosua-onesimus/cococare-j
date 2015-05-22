@@ -117,9 +117,9 @@ public class FBClass implements CCEntity {
     private Float evaRate = 10f;
     @CCFieldConfig(label = "Crt%", componentId = "txtCrtRate", accessible = Accessible.MANDATORY_READONLY, type = Type.DECIMAL, maxLength = 6)
     private Float crtRate = 10f;
-    @Column(length = 16)
-    @CCFieldConfig(componentId = "txtCommand", accessible = Accessible.MANDATORY, maxLength = 16, unique = true)
-    private String command;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndCommand", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
+    private FBActionType command;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -218,16 +218,17 @@ public class FBClass implements CCEntity {
         this.crtRate = crtRate;
     }
 
-    public String getCommand() {
+    public FBActionType getCommand() {
         return command;
     }
 
-    public void setCommand(String command) {
+    public void setCommand(FBActionType command) {
         this.command = command;
     }
 
     public void calculate() {
         manipulate(this, "balance=hp/10+ap+offense+defense+essence+velense");
+        manipulate(this, "crtRate=(offense-2)*10");
     }
 //</editor-fold>
 }

@@ -4,9 +4,6 @@ package model.obj.fb;
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.Type;
-import static cococare.common.CCLogic.isNotNullAndNotEmpty;
-import static cococare.common.CCMath.manipulate;
-import static cococare.common.CCMath.solved;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
@@ -14,9 +11,9 @@ import javax.persistence.*;
 //</editor-fold>
 
 @Entity
-@Table(name = "fb_actions")
-@CCTypeConfig(label = "Action", uniqueKey = "name", parameter = true)
-public class FBAction implements CCEntity {
+@Table(name = "fb_ailments")
+@CCTypeConfig(label = "Ailment", uniqueKey = "name", parameter = true)
+public class FBAilment implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -93,25 +90,12 @@ public class FBAction implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @ManyToOne
-    @CCFieldConfig(componentId = "bndActionType", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name", requestFocus = true)
-    private FBActionType actionType;
-    @Column(length = 6)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 6, sequence = "A000", unique = true)
+    @Column(length = 4)
+    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 4, requestFocus = true, sequence = "E000", unique = true)
     private String code;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16)
+    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16, unique = true)
     private String name;
-    @Column(length = 255)
-    @CCFieldConfig(componentId = "txtDescription", maxLength = Short.MAX_VALUE)
-    private String description;
-    @CCFieldConfig(label = "AP Cost", componentId = "txtApCost", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
-    private Integer apCost = 1;
-    //
-    @CCFieldConfig(label = "Hit%", componentId = "txtHitRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6, visible = false)
-    private Float hitRate = 90f;
-    @CCFieldConfig(label = "Crt%", componentId = "txtCrtRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6, visible = false)
-    private Float crtRate = 10f;
     //
     @Column(length = 255)
     @CCFieldConfig(group = "Formula", label = "Pre", componentId = "txtFormulaPre", maxLength = Short.MAX_VALUE, visible = false)
@@ -123,20 +107,20 @@ public class FBAction implements CCEntity {
     @CCFieldConfig(group = "Formula", label = "Post", componentId = "txtFormulaPost", maxLength = Short.MAX_VALUE, visible = false)
     private String formulaPost;
     //
-    transient private FBActor caster;
-    transient private FBActor target;
-    transient private Float variance = 1F;
-    transient private Integer temp;
+    @CCFieldConfig(group = "Effect Chance", componentId = "txtA", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    private Integer a = 0;
+    @CCFieldConfig(group = "Effect Chance", componentId = "txtB", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    private Integer b = 20;
+    @CCFieldConfig(group = "Effect Chance", componentId = "txtC", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    private Integer c = 40;
+    @CCFieldConfig(group = "Effect Chance", componentId = "txtD", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    private Integer d = 60;
+    @CCFieldConfig(group = "Effect Chance", componentId = "txtE", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    private Integer e = 80;
+    @CCFieldConfig(group = "Effect Chance", componentId = "txtF", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    private Integer f = 100;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public FBActionType getActionType() {
-        return actionType;
-    }
-
-    public void setAction(FBActionType actionType) {
-        this.actionType = actionType;
-    }
-
     public String getCode() {
         return code;
     }
@@ -151,38 +135,6 @@ public class FBAction implements CCEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getApCost() {
-        return apCost;
-    }
-
-    public void setApCost(Integer apCost) {
-        this.apCost = apCost;
-    }
-
-    public Float getHitRate() {
-        return hitRate;
-    }
-
-    public void setHitRate(Float hitRate) {
-        this.hitRate = hitRate;
-    }
-
-    public Float getCrtRate() {
-        return crtRate;
-    }
-
-    public void setCrtRate(Float crtRate) {
-        this.crtRate = crtRate;
     }
 
     public String getFormulaPre() {
@@ -209,53 +161,52 @@ public class FBAction implements CCEntity {
         this.formulaPost = formulaPost;
     }
 
-    public FBActor getCaster() {
-        return caster;
+    public Integer getA() {
+        return a;
     }
 
-    public void setCaster(FBActor caster) {
-        this.caster = caster;
+    public void setA(Integer a) {
+        this.a = a;
     }
 
-    public FBActor getTarget() {
-        return target;
+    public Integer getB() {
+        return b;
     }
 
-    public void setTarget(FBActor target) {
-        this.target = target;
+    public void setB(Integer b) {
+        this.b = b;
     }
 
-    public Float getVariance() {
-        return variance;
+    public Integer getC() {
+        return c;
     }
 
-    public void setVariance(Float variance) {
-        this.variance = variance;
+    public void setC(Integer c) {
+        this.c = c;
     }
 
-    public Integer getTemp() {
-        return temp;
+    public Integer getD() {
+        return d;
     }
 
-    public void setTemp(Integer temp) {
-        this.temp = temp;
+    public void setD(Integer d) {
+        this.d = d;
     }
 
-    public void execute(FBActor caster, FBActor target) {
-        setCaster(caster);
-        setTarget(target);
-        boolean conditionMeet = true;
-        if (isNotNullAndNotEmpty(getFormulaPre())) {
-            conditionMeet = solved(this, getFormulaPre());
-        }
-        if (conditionMeet) {
-            if (isNotNullAndNotEmpty(getFormulaMain())) {
-                manipulate(this, getFormulaMain());
-            }
-            if (isNotNullAndNotEmpty(getFormulaPost())) {
-                manipulate(this, getFormulaPost());
-            }
-        }
+    public Integer getE() {
+        return e;
+    }
+
+    public void setE(Integer e) {
+        this.e = e;
+    }
+
+    public Integer getF() {
+        return f;
+    }
+
+    public void setF(Integer f) {
+        this.f = f;
     }
 //</editor-fold>
 }
