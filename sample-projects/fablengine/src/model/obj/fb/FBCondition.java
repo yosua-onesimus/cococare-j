@@ -102,11 +102,17 @@ public class FBCondition implements CCEntity {
     @CCFieldConfig(group = "Formula", label = "Pre", maxLength = Short.MAX_VALUE, visible = false)
     private String formulaPre;
     @Column(length = 255)
-    @CCFieldConfig(group = "Formula", label = "Main", maxLength = Short.MAX_VALUE, visible = false)
-    private String formulaMain;
+    @CCFieldConfig(group = "Formula", label = "First Time", maxLength = Short.MAX_VALUE, visible = false)
+    private String formulaFirstTime;
     @Column(length = 255)
-    @CCFieldConfig(group = "Formula", label = "Post", maxLength = Short.MAX_VALUE, visible = false)
-    private String formulaPost;
+    @CCFieldConfig(group = "Formula", label = "Each Turn", maxLength = Short.MAX_VALUE, visible = false)
+    private String formulaEachTurn;
+    @Column(length = 255)
+    @CCFieldConfig(group = "Formula", label = "Cancel By Action", maxLength = Short.MAX_VALUE, visible = false)
+    private String formulaCancelByAction;
+    @Column(length = 255)
+    @CCFieldConfig(group = "Formula", label = "Cancel By Turn", maxLength = Short.MAX_VALUE, visible = false)
+    private String formulaCancelByTurn;
     @CCFieldConfig(group = "Formula", visible = false)
     private Boolean canCauseDeath = false;
     //
@@ -142,14 +148,17 @@ public class FBCondition implements CCEntity {
     @CCFieldConfig(group = "Effect Chance", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
     private Integer f = 100;
     //
-    @CCFieldConfig(group = "Cancel Chance", label = "By Damage (%)", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
-    private Integer cancelByDamage = 0;
+    @CCFieldConfig(group = "Cancel Chance", label = "By Action (%)", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    private Integer cancelByAction = 0;
     @CCFieldConfig(group = "Cancel Chance", label = "After ? Turn", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
     private Integer cancelAfterTurn = 0;
     @CCFieldConfig(group = "Cancel Chance", label = "By Turn (%)", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
     private Integer cancelByTurn = 0;
     @CCFieldConfig(group = "Cancel Chance", label = "At Battle End", visible = false)
     private Boolean cancelAtBattleEnd = false;
+    //
+    transient private FBActor targetBeforeFirstTime;
+    transient private FBActor targetAfterFirstTime;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -176,20 +185,36 @@ public class FBCondition implements CCEntity {
         this.formulaPre = formulaPre;
     }
 
-    public String getFormulaMain() {
-        return formulaMain;
+    public String getFormulaFirstTime() {
+        return formulaFirstTime;
     }
 
-    public void setFormulaMain(String formulaMain) {
-        this.formulaMain = formulaMain;
+    public void setFormulaFirstTime(String formulaFirstTime) {
+        this.formulaFirstTime = formulaFirstTime;
     }
 
-    public String getFormulaPost() {
-        return formulaPost;
+    public String getFormulaEachTurn() {
+        return formulaEachTurn;
     }
 
-    public void setFormulaPost(String formulaPost) {
-        this.formulaPost = formulaPost;
+    public void setFormulaEachTurn(String formulaEachTurn) {
+        this.formulaEachTurn = formulaEachTurn;
+    }
+
+    public String getFormulaCancelByAction() {
+        return formulaCancelByAction;
+    }
+
+    public void setFormulaCancelByAction(String formulaCancelByAction) {
+        this.formulaCancelByAction = formulaCancelByAction;
+    }
+
+    public String getFormulaCancelByTurn() {
+        return formulaCancelByTurn;
+    }
+
+    public void setFormulaCancelByTurn(String formulaCancelByTurn) {
+        this.formulaCancelByTurn = formulaCancelByTurn;
     }
 
     public Boolean getCanCauseDeath() {
@@ -320,12 +345,12 @@ public class FBCondition implements CCEntity {
         this.f = f;
     }
 
-    public Integer getCancelByDamage() {
-        return cancelByDamage;
+    public Integer getCancelByAction() {
+        return cancelByAction;
     }
 
-    public void setCancelByDamage(Integer cancelByDamage) {
-        this.cancelByDamage = cancelByDamage;
+    public void setCancelByAction(Integer cancelByAction) {
+        this.cancelByAction = cancelByAction;
     }
 
     public Integer getCancelAfterTurn() {
@@ -350,6 +375,22 @@ public class FBCondition implements CCEntity {
 
     public void setCancelAtBattleEnd(Boolean cancelAtBattleEnd) {
         this.cancelAtBattleEnd = cancelAtBattleEnd;
+    }
+
+    public FBActor getTargetBeforeFirstTime() {
+        return targetBeforeFirstTime;
+    }
+
+    public void setTargetBeforeFirstTime(FBActor targetBeforeFirstTime) {
+        this.targetBeforeFirstTime = targetBeforeFirstTime;
+    }
+
+    public FBActor getTargetAfterFirstTime() {
+        return targetAfterFirstTime;
+    }
+
+    public void setTargetAfterFirstTime(FBActor targetAfterFirstTime) {
+        this.targetAfterFirstTime = targetAfterFirstTime;
     }
 //</editor-fold>
 }

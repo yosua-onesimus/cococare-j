@@ -99,7 +99,7 @@ public class FBClass implements CCEntity {
     @CCFieldConfig(group = "General", accessible = Accessible.MANDATORY, unique = true)
     private String name;
     //
-    @CCFieldConfig(group = "Attribute", label = "HP", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Attribute", label = "HP", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
     private Integer hp = 1;
     @CCFieldConfig(group = "Attribute", label = "AP", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer ap = 1;

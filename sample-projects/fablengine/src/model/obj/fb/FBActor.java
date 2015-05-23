@@ -133,10 +133,14 @@ public class FBActor implements CCEntity {
     @ManyToOne
     @CCFieldConfig(group = "Actor Attribute", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
     private FBAttribute attribute;
-    @CCFieldConfig(group = "Actor Attribute", label = "HP", tooltiptext = "Health Point", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
+    @CCFieldConfig(group = "Actor Attribute", label = "HP", tooltiptext = "Health Point", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3, visible = false)
     private Integer hp = 1;
-    @CCFieldConfig(group = "Actor Attribute", label = "AP", tooltiptext = "Health Point", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
+    @CCFieldConfig(group = "Actor Attribute", label = "AP", tooltiptext = "Action Point", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
     private Integer ap = 1;
+    @CCFieldConfig(group = "Actor Attribute", label = "LP", tooltiptext = "Lethal Point", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
+    private Integer lp = 10;
+    @CCFieldConfig(group = "Actor Attribute", label = "EP", tooltiptext = "Energy Point", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3, visible = false)
+    private Integer ep = 100;
     @CCFieldConfig(group = "Actor Attribute", label = "EXP", tooltiptext = "Experience Point", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 6, visible = false)
     private Integer exp = 0;
     @Column(name = "level_")
@@ -146,7 +150,7 @@ public class FBActor implements CCEntity {
     @ManyToOne
     @CCFieldConfig(group = "Class Attribute", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
     private FBClass class_;
-    @CCFieldConfig(group = "Class Attribute", label = "HPM", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Class Attribute", label = "HPM", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
     private Integer hpMax = 1;
     @CCFieldConfig(group = "Class Attribute", label = "APM", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer apMax = 1;
@@ -292,6 +296,22 @@ public class FBActor implements CCEntity {
 
     public void setAp(Integer ap) {
         this.ap = ap;
+    }
+
+    public Integer getLp() {
+        return lp;
+    }
+
+    public void setLp(Integer lp) {
+        this.lp = lp;
+    }
+
+    public Integer getEp() {
+        return ep;
+    }
+
+    public void setEp(Integer ep) {
+        this.ep = ep;
     }
 
     public Integer getExp() {

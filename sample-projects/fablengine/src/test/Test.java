@@ -80,6 +80,8 @@ Bolt Bonus	Aghast	terperanjat, hanya bisa physical, off berkurang, memperbesar d
 Land	Heavy	a character inflicted with heavy has it's movement speed reduced.
 Wind	Dizzy	Attacks both enemies and allies indiscriminately and uncontrollably.
 
-* 
-* 
+* formula first time: hanya pertama kali terkena
+* formula each turn
+* formula cancel by damage
+* formula cancel by turn
  */

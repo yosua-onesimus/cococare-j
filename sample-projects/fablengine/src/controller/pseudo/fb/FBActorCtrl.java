@@ -15,7 +15,7 @@ import model.obj.fb.FBClass;
 public class FBActorCtrl extends PnlParameterCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
-    private CCBandBox bndClass;
+    private CCBandBox txtClass;
     private JTextField txtHpMax;
     private JTextField txtApMax;
     private JTextField txtOffense;
@@ -30,7 +30,7 @@ public class FBActorCtrl extends PnlParameterCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        addListener(bndClass, new ActionListener() {
+        addListener(txtClass, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _doUpdateParameterField();
@@ -39,7 +39,7 @@ public class FBActorCtrl extends PnlParameterCtrl {
     }
 
     private void _doUpdateParameterField() {
-        FBClass class_ = bndClass.getObject();
+        FBClass class_ = txtClass.getObject();
         if (isNotNull(class_)) {
             txtHpMax.setText(formatNumeric(class_.getHp()));
             txtApMax.setText(formatNumeric(class_.getAp()));
