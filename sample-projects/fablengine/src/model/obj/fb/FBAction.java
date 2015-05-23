@@ -93,56 +93,73 @@ public class FBAction implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @ManyToOne
-    @CCFieldConfig(componentId = "bndActionType", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name", requestFocus = true)
-    private FBActionType actionType;
     @Column(length = 6)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 6, sequence = "A000", unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true, sequence = "A000", unique = true)
     private String code;
+    //
+    @ManyToOne
+    @CCFieldConfig(group = "General", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
+    private FBActionType actionType;
+    @ManyToOne
+    @CCFieldConfig(group = "General", maxLength = 16, uniqueKey = "name")
+    private FBAttribute attribute;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16)
+    @CCFieldConfig(group = "General", accessible = Accessible.MANDATORY)
     private String name;
     @Column(length = 255)
-    @CCFieldConfig(componentId = "txtDescription", maxLength = Short.MAX_VALUE)
+    @CCFieldConfig(group = "General", maxLength = Short.MAX_VALUE)
     private String description;
-    @CCFieldConfig(label = "AP Cost", componentId = "txtApCost", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "General", label = "AP Cost", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer apCost = 1;
     //
-    @CCFieldConfig(label = "Hit%", componentId = "txtHitRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6, visible = false)
+    @CCFieldConfig(group = "Attribute", label = "Hit%", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6, visible = false)
     private Float hitRate = 90f;
-    @CCFieldConfig(label = "Crt%", componentId = "txtCrtRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6, visible = false)
+    @CCFieldConfig(group = "Attribute", label = "Var%", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6, visible = false)
+    private Float variance = 10f;
+    @CCFieldConfig(group = "Attribute", label = "Crt%", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6, visible = false)
     private Float crtRate = 10f;
     //
     @Column(length = 255)
-    @CCFieldConfig(group = "Formula", label = "Pre", componentId = "txtFormulaPre", maxLength = Short.MAX_VALUE, visible = false)
+    @CCFieldConfig(group = "Formula", label = "Pre", maxLength = Short.MAX_VALUE, visible = false)
     private String formulaPre;
     @Column(length = 255)
-    @CCFieldConfig(group = "Formula", label = "Main", componentId = "txtFormulaMain", maxLength = Short.MAX_VALUE, visible = false)
+    @CCFieldConfig(group = "Formula", label = "Power", maxLength = Short.MAX_VALUE, visible = false)
+    private String formulaPower;
+    @Column(length = 255)
+    @CCFieldConfig(group = "Formula", label = "Main", maxLength = Short.MAX_VALUE, visible = false)
     private String formulaMain;
     @Column(length = 255)
-    @CCFieldConfig(group = "Formula", label = "Post", componentId = "txtFormulaPost", maxLength = Short.MAX_VALUE, visible = false)
+    @CCFieldConfig(group = "Formula", label = "Post", maxLength = Short.MAX_VALUE, visible = false)
     private String formulaPost;
     //
     transient private FBActor caster;
     transient private FBActor target;
-    transient private Float variance = 1F;
+    transient private Integer power;
     transient private Integer temp;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public FBActionType getActionType() {
-        return actionType;
-    }
-
-    public void setAction(FBActionType actionType) {
-        this.actionType = actionType;
-    }
-
     public String getCode() {
         return code;
     }
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public FBActionType getActionType() {
+        return actionType;
+    }
+
+    public void setActionType(FBActionType actionType) {
+        this.actionType = actionType;
+    }
+
+    public FBAttribute getAttribute() {
+        return attribute;
+    }
+
+    public void setAttribute(FBAttribute attribute) {
+        this.attribute = attribute;
     }
 
     public String getName() {
@@ -177,6 +194,14 @@ public class FBAction implements CCEntity {
         this.hitRate = hitRate;
     }
 
+    public Float getVariance() {
+        return variance;
+    }
+
+    public void setVariance(Float variance) {
+        this.variance = variance;
+    }
+
     public Float getCrtRate() {
         return crtRate;
     }
@@ -191,6 +216,14 @@ public class FBAction implements CCEntity {
 
     public void setFormulaPre(String formulaPre) {
         this.formulaPre = formulaPre;
+    }
+
+    public String getFormulaPower() {
+        return formulaPower;
+    }
+
+    public void setFormulaPower(String formulaPower) {
+        this.formulaPower = formulaPower;
     }
 
     public String getFormulaMain() {
@@ -225,12 +258,12 @@ public class FBAction implements CCEntity {
         this.target = target;
     }
 
-    public Float getVariance() {
-        return variance;
+    public Integer getPower() {
+        return power;
     }
 
-    public void setVariance(Float variance) {
-        this.variance = variance;
+    public void setPower(Integer power) {
+        this.power = power;
     }
 
     public Integer getTemp() {
@@ -249,6 +282,11 @@ public class FBAction implements CCEntity {
             conditionMeet = solved(this, getFormulaPre());
         }
         if (conditionMeet) {
+            setPower(0);
+            if (isNotNullAndNotEmpty(getFormulaPower())) {
+                manipulate(this, getFormulaPower());
+                //insert code here: variance, critical, and multiplier calculation
+            }
             if (isNotNullAndNotEmpty(getFormulaMain())) {
                 manipulate(this, getFormulaMain());
             }

@@ -90,13 +90,13 @@ public class FBActionType implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 4)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 4, requestFocus = true, sequence = "AT00", unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true, sequence = "AT00", unique = true)
     private String code;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16, unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, unique = true)
     private String name;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndParent", maxLength = 16, uniqueKey = "name")
+    @CCFieldConfig(maxLength = 16, uniqueKey = "name")
     private FBActionType parent;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

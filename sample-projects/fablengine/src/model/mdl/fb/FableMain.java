@@ -41,8 +41,7 @@ public class FableMain extends CFSwingMain {
         confAppl = configBo.loadConfAppl();
         confAppl.setUtilAdditionalSettingClass(Arrays.asList(
                 FBConfig.class.getName()));
-        return super._initInitialData()
-                && configBo.saveConf(confAppl);
+        return configBo.saveConf(confAppl);
     }
 
     @Override

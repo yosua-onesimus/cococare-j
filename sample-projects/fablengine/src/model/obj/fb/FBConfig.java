@@ -10,13 +10,13 @@ import cococare.common.CCTypeConfig;
 @CCTypeConfig(label = "FaBlEngine Module", tooltiptext = "Exp Curve, etc")
 public class FBConfig {
 
-    @CCFieldConfig(group = "Exp Curve", label = "Base Value", componentId = "txtExpCurveBaseValue", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Exp Curve", label = "Base Value", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer expCurveBaseValue = 10;
-    @CCFieldConfig(group = "Exp Curve", label = "Extra Value", componentId = "txtExpCurveExtraValue", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Exp Curve", label = "Extra Value", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer expCurveExtraValue = 10;
-    @CCFieldConfig(group = "Exp Curve", label = "Accel A", componentId = "txtExpCurveAccelA", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Exp Curve", label = "Accel A", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer expCurveAccelA = 10;
-    @CCFieldConfig(group = "Exp Curve", label = "Accel B", componentId = "txtExpCurveAccelB", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Exp Curve", label = "Accel B", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer expCurveAccelB = 10;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

@@ -91,75 +91,78 @@ public class FBActor implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 4)
-    @CCFieldConfig(group = "General", componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 4, requestFocus = true, sequence = "A000", unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true, sequence = "A000", unique = true)
     private String code;
+    //
     @Column(length = 32)
-    @CCFieldConfig(group = "General", componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32, requestFocus = true)
+    @CCFieldConfig(group = "General", accessible = Accessible.MANDATORY)
     private String name;
     @Column(length = 16)
-    @CCFieldConfig(group = "General", componentId = "txtCallName", accessible = Accessible.MANDATORY, maxLength = 16, visible = false)
+    @CCFieldConfig(group = "General", accessible = Accessible.MANDATORY, visible = false)
     private String nickName;
     @Column(length = 32)
-    @CCFieldConfig(group = "General", componentId = "txtBirthPlace", maxLength = 32, visible = false)
+    @CCFieldConfig(group = "General", visible = false)
     private String birthPlace;
     @Temporal(value = TemporalType.DATE)
-    @CCFieldConfig(group = "General", componentId = "dtpBirthDate", maxLength = 12, visible = false)
+    @CCFieldConfig(group = "General", type = Type.DATE_PAST, visible = false)
     private Date birthDate;
-    @CCFieldConfig(group = "General", label = "Gender", componentId = "cmbGender", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$Gender", optionReflectKey = "gender", visible = false)
+    @CCFieldConfig(group = "General", label = "Gender", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$Gender", optionReflectKey = "gender", visible = false)
     private Integer genderIndex;
     @Column(length = 8)
-    @CCFieldConfig(maxLength = 8, visible = false, visible2 = false)
+    @CCFieldConfig(visible = false, visible2 = false)
     private String gender;
-    @CCFieldConfig(group = "General", label = "Blood Type", componentId = "cmbBloodType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$BloodType", optionReflectKey = "bloodType", visible = false)
+    @CCFieldConfig(group = "General", label = "Blood Type", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$BloodType", optionReflectKey = "bloodType", visible = false)
     private Integer bloodTypeIndex;
     @Column(length = 4)
-    @CCFieldConfig(maxLength = 8, visible = false, visible2 = false)
+    @CCFieldConfig(visible = false, visible2 = false)
     private String bloodType;
     @Lob
     @Column(length = Integer.MAX_VALUE)
-    @CCFieldConfig(group = "General", componentId = "attPhoto", type = Type.THUMB_FILE, optionReflectKey = "photoName", visible = false)
+    @CCFieldConfig(group = "General", type = Type.THUMB_FILE, optionReflectKey = "photoName", visible = false)
     private byte[] photo;
     @Column(length = 255)
     @CCFieldConfig(visible = false, visible2 = false)
     private String photoName;
+    //
     @Column(length = 32)
-    @CCFieldConfig(group = "Actor Parameter", componentId = "txtTitle", accessible = Accessible.MANDATORY, maxLength = 32, visible = false)
+    @CCFieldConfig(group = "Actor Attribute", accessible = Accessible.MANDATORY, visible = false)
     private String title;
     @Column(length = 255)
-    @CCFieldConfig(group = "Actor Parameter", componentId = "txtDescription", maxLength = Short.MAX_VALUE, visible = false)
+    @CCFieldConfig(group = "Actor Attribute", maxLength = Short.MAX_VALUE, visible = false)
     private String description;
     @ManyToOne
-    @CCFieldConfig(group = "Actor Parameter", componentId = "bndElement", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
-    private FBElement element;
-    @CCFieldConfig(group = "Actor Parameter", label = "HP", tooltiptext = "Health Point", componentId = "txtHp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
+    @CCFieldConfig(group = "Actor Attribute", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
+    private FBAttribute attribute;
+    @CCFieldConfig(group = "Actor Attribute", label = "HP", tooltiptext = "Health Point", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
     private Integer hp = 1;
-    @CCFieldConfig(group = "Actor Parameter", label = "AP", tooltiptext = "Health Point", componentId = "txtAp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
+    @CCFieldConfig(group = "Actor Attribute", label = "AP", tooltiptext = "Health Point", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
     private Integer ap = 1;
-    @CCFieldConfig(group = "Actor Parameter", label = "ExP", tooltiptext = "Experience Point", componentId = "txtExp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 6, visible = false)
+    @CCFieldConfig(group = "Actor Attribute", label = "EXP", tooltiptext = "Experience Point", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 6, visible = false)
     private Integer exp = 0;
     @Column(name = "level_")
-    @CCFieldConfig(group = "Actor Parameter", label = "LVL", tooltiptext = "Level", componentId = "txtLevel", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
+    @CCFieldConfig(group = "Actor Attribute", label = "LVL", tooltiptext = "Level", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
     private Integer level = 1;
+    //
     @ManyToOne
-    @CCFieldConfig(group = "Class Parameter", componentId = "bndClass", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
+    @CCFieldConfig(group = "Class Attribute", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
     private FBClass class_;
-    @CCFieldConfig(group = "Class Parameter", label = "HPM", componentId = "txtHpMax", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Class Attribute", label = "HPM", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer hpMax = 1;
-    @CCFieldConfig(group = "Class Parameter", label = "APM", componentId = "txtApMax", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Class Attribute", label = "APM", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer apMax = 1;
-    @CCFieldConfig(group = "Class Parameter", label = "OFF", componentId = "txtOffense", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Class Attribute", label = "OFF", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer offense = 1;
-    @CCFieldConfig(group = "Class Parameter", label = "DEF", componentId = "txtDefense", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Class Attribute", label = "DEF", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer defense = 1;
-    @CCFieldConfig(group = "Class Parameter", label = "ESS", componentId = "txtEssence", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Class Attribute", label = "ESS", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer essence = 1;
-    @CCFieldConfig(group = "Class Parameter", label = "VEL", componentId = "txtVelense", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Class Attribute", label = "VEL", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer velense = 1;
-    @CCFieldConfig(group = "Class Parameter", label = "Hit%", componentId = "txtHitRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
+    @CCFieldConfig(group = "Class Attribute", label = "Hit%", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
     private Float hitRate = 90f;
-    @CCFieldConfig(group = "Class Parameter", label = "Eva%", componentId = "txtEvaRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
+    @CCFieldConfig(group = "Class Attribute", label = "Eva%", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
     private Float evaRate = 10f;
-    @CCFieldConfig(group = "Class Parameter", label = "Crt%", componentId = "txtCrtRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
+    @CCFieldConfig(group = "Class Attribute", label = "Crt%", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
     private Float crtRate = 10f;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
@@ -267,12 +270,12 @@ public class FBActor implements CCEntity {
         this.description = description;
     }
 
-    public FBElement getElement() {
-        return element;
+    public FBAttribute getAttribute() {
+        return attribute;
     }
 
-    public void setElement(FBElement element) {
-        this.element = element;
+    public void setAttribute(FBAttribute attribute) {
+        this.attribute = attribute;
     }
 
     public Integer getHp() {

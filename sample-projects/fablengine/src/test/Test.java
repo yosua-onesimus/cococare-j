@@ -72,6 +72,14 @@ SuperbOath
 SuperbWord
 SpeechLore
 RuneShield
+
+* Cold Bonus	Frozen	beku, hanya bisa psionic, ess berkurang, memperbesar damage bolt, dapat dihilangkan dengan fire
+Fire Bonus	Scorch	terbakar, hp berkurang, def berkurang, memperbesar damage aqua, dapat dihilangkan dengan cold
+Aqua Bonus	Puffed	sesak nafas, ap berkurang, def berkurang, memperbesar damage fire, dapat dihilangkan dengan bolt
+Bolt Bonus	Aghast	terperanjat, hanya bisa physical, off berkurang, memperbesar damage cold, hilang jika terkena aqua
+Land	Heavy	a character inflicted with heavy has it's movement speed reduced.
+Wind	Dizzy	Attacks both enemies and allies indiscriminately and uncontrollably.
+
 * 
 * 
  */

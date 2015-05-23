@@ -11,9 +11,9 @@ import javax.persistence.*;
 //</editor-fold>
 
 @Entity
-@Table(name = "fb_elements")
-@CCTypeConfig(label = "Element", uniqueKey = "name", parameter = true)
-public class FBElement implements CCEntity {
+@Table(name = "fb_attributes")
+@CCTypeConfig(label = "Attribute", uniqueKey = "name", parameter = true)
+public class FBAttribute implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -91,23 +91,24 @@ public class FBElement implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 4)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 4, requestFocus = true, sequence = "E000", unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true, sequence = "E000", unique = true)
     private String code;
+    //
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16, unique = true)
+    @CCFieldConfig(group = "General", accessible = Accessible.MANDATORY, unique = true)
     private String name;
     //
-    @CCFieldConfig(group = "Damage Multiplier", componentId = "txtA", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    @CCFieldConfig(group = "Power Multiplier", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
     private Integer a = -50;
-    @CCFieldConfig(group = "Damage Multiplier", componentId = "txtB", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    @CCFieldConfig(group = "Power Multiplier", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
     private Integer b = 0;
-    @CCFieldConfig(group = "Damage Multiplier", componentId = "txtC", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    @CCFieldConfig(group = "Power Multiplier", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
     private Integer c = 50;
-    @CCFieldConfig(group = "Damage Multiplier", componentId = "txtD", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    @CCFieldConfig(group = "Power Multiplier", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
     private Integer d = 100;
-    @CCFieldConfig(group = "Damage Multiplier", componentId = "txtE", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    @CCFieldConfig(group = "Power Multiplier", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
     private Integer e = 200;
-    @CCFieldConfig(group = "Damage Multiplier", componentId = "txtF", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
+    @CCFieldConfig(group = "Power Multiplier", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4, visible = false)
     private Integer f = 400;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

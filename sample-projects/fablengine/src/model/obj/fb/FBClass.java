@@ -92,33 +92,36 @@ public class FBClass implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 4)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 4, requestFocus = true, sequence = "C000", unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true, sequence = "C000", unique = true)
     private String code;
+    //
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16, unique = true)
+    @CCFieldConfig(group = "General", accessible = Accessible.MANDATORY, unique = true)
     private String name;
-    @CCFieldConfig(label = "HP", componentId = "txtHp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    //
+    @CCFieldConfig(group = "Attribute", label = "HP", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer hp = 1;
-    @CCFieldConfig(label = "AP", componentId = "txtAp", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Attribute", label = "AP", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer ap = 1;
-    @CCFieldConfig(label = "OFF", componentId = "txtOffense", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Attribute", label = "OFF", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer offense = 1;
-    @CCFieldConfig(label = "DEF", componentId = "txtDefense", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Attribute", label = "DEF", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer defense = 1;
-    @CCFieldConfig(label = "ESS", componentId = "txtEssence", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Attribute", label = "ESS", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer essence = 1;
-    @CCFieldConfig(label = "VEL", componentId = "txtVelense", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(group = "Attribute", label = "VEL", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer velense = 1;
-    @CCFieldConfig(label = "Balance", componentId = "txtBalance", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 3)
+    @CCFieldConfig(group = "Attribute", label = "Balance", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 3)
     private Integer balance = 1;
-    @CCFieldConfig(label = "Hit%", componentId = "txtHitRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
+    @CCFieldConfig(group = "Attribute", label = "Hit%", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
     private Float hitRate = 90f;
-    @CCFieldConfig(label = "Eva%", componentId = "txtEvaRate", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
+    @CCFieldConfig(group = "Attribute", label = "Eva%", accessible = Accessible.MANDATORY, type = Type.DECIMAL, maxLength = 6)
     private Float evaRate = 10f;
-    @CCFieldConfig(label = "Crt%", componentId = "txtCrtRate", accessible = Accessible.MANDATORY_READONLY, type = Type.DECIMAL, maxLength = 6)
+    @CCFieldConfig(group = "Attribute", label = "Crt%", accessible = Accessible.MANDATORY_READONLY, type = Type.DECIMAL, maxLength = 6)
     private Float crtRate = 10f;
+    //
     @ManyToOne
-    @CCFieldConfig(componentId = "bndCommand", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
+    @CCFieldConfig(group = "Special", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
     private FBActionType command;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
