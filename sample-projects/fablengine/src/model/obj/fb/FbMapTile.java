@@ -1,10 +1,6 @@
 package model.obj.fb;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.common.CCFieldConfig;
-import cococare.common.CCFieldConfig.Accessible;
-import cococare.common.CCFieldConfig.Type;
-import static cococare.common.CCFormat.getBoolean;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
@@ -12,9 +8,9 @@ import javax.persistence.*;
 //</editor-fold>
 
 @Entity
-@Table(name = "fb_tile_types")
-@CCTypeConfig(label = "Tile Type", uniqueKey = "name", parameter = true)
-public class FbTileType implements CCEntity {
+@Table(name = "fb_map_tiles")
+@CCTypeConfig(label = "Map Tile", uniqueKey = "@map(@x,@y)")
+public class FbMapTile implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -91,52 +87,72 @@ public class FbTileType implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @Column(length = 4)
-    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true, sequence = "TT00", unique = true)
-    private String code;
-    @Column(length = 16)
-    @CCFieldConfig(accessible = Accessible.MANDATORY, unique = true)
-    private String name;
-    @CCFieldConfig(maxLength = 4)
-    private Boolean walkable = true;
-    @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
-    private Integer movementCost = 1;
+    @ManyToOne
+    private FbMap map;
+    private Integer x = 0;
+    private Integer y = 0;
+    @ManyToOne
+    private FbTileType tileType;
+    //
+    transient private Object tileView;
+    transient private Integer cost = 0;
+    transient private Integer estimatedCost = 0;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public String getCode() {
-        return code;
+    public FbMap getMap() {
+        return map;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setMap(FbMap map) {
+        this.map = map;
     }
 
-    public String getName() {
-        return name;
+    public Integer getX() {
+        return x;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setX(Integer x) {
+        this.x = x;
     }
 
-    public Boolean getWalkable() {
-        return walkable;
+    public Integer getY() {
+        return y;
     }
 
-    public boolean isWalkable() {
-        return getBoolean(walkable);
+    public void setY(Integer y) {
+        this.y = y;
     }
 
-    public void setWalkable(Boolean walkable) {
-        this.walkable = walkable;
+    public FbTileType getTileType() {
+        return tileType;
     }
 
-    public Integer getMovementCost() {
-        return movementCost;
+    public void setTileType(FbTileType tileType) {
+        this.tileType = tileType;
     }
 
-    public void setMovementCost(Integer movementCost) {
-        this.movementCost = movementCost;
+    public <T> T getTileView() {
+        return (T) tileView;
+    }
+
+    public void setTileView(Object tileView) {
+        this.tileView = tileView;
+    }
+
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
+    }
+
+    public Integer getEstimatedCost() {
+        return estimatedCost;
+    }
+
+    public void setEstimatedCost(Integer estimatedCost) {
+        this.estimatedCost = estimatedCost;
     }
 //</editor-fold>
 }

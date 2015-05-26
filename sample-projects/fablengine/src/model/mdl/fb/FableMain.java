@@ -1,6 +1,7 @@
 package model.mdl.fb;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.common.CCLanguage;
 import static cococare.common.CCLanguage.*;
 import cococare.database.CCLoginInfo;
 import cococare.framework.common.CFApplUae;
@@ -27,6 +28,12 @@ public class FableMain extends CFSwingMain {
         if (withoutLogin) {
             CCLoginInfo.INSTANCE = null;
         }
+    }
+
+    @Override
+    protected void _loadExternalSetting() {
+        CCLanguage.init(false, FableLanguage.class);
+        super._loadExternalSetting();
     }
 
     @Override

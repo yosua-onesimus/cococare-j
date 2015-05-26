@@ -25,6 +25,8 @@ public class FableModule extends CCHibernateModule {
         hibernate.addAnnotatedClass(FbActor.class);
         //
         hibernate.addAnnotatedClass(FbTileType.class);
+        hibernate.addAnnotatedClass(FbMap.class);
+        hibernate.addAnnotatedClass(FbMapTile.class);
     }
 //</editor-fold>
 }

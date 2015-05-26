@@ -4,7 +4,6 @@ package model.obj.fb;
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.Type;
-import static cococare.common.CCFormat.getBoolean;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
@@ -12,9 +11,9 @@ import javax.persistence.*;
 //</editor-fold>
 
 @Entity
-@Table(name = "fb_tile_types")
-@CCTypeConfig(label = "Tile Type", uniqueKey = "name", parameter = true)
-public class FbTileType implements CCEntity {
+@Table(name = "fb_maps")
+@CCTypeConfig(label = "Map", uniqueKey = "name", parameter = true, controllerClass = "controller.form.fb.PnlMapCtrl")
+public class FbMap implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -92,15 +91,15 @@ public class FbTileType implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 4)
-    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true, sequence = "TT00", unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true, sequence = "M00", unique = true)
     private String code;
     @Column(length = 16)
     @CCFieldConfig(accessible = Accessible.MANDATORY, unique = true)
     private String name;
-    @CCFieldConfig(maxLength = 4)
-    private Boolean walkable = true;
     @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
-    private Integer movementCost = 1;
+    private Integer sizeX = 1;
+    @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    private Integer sizeY = 1;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -119,24 +118,20 @@ public class FbTileType implements CCEntity {
         this.name = name;
     }
 
-    public Boolean getWalkable() {
-        return walkable;
+    public Integer getSizeX() {
+        return sizeX;
     }
 
-    public boolean isWalkable() {
-        return getBoolean(walkable);
+    public void setSizeX(Integer sizeX) {
+        this.sizeX = sizeX;
     }
 
-    public void setWalkable(Boolean walkable) {
-        this.walkable = walkable;
+    public Integer getSizeY() {
+        return sizeY;
     }
 
-    public Integer getMovementCost() {
-        return movementCost;
-    }
-
-    public void setMovementCost(Integer movementCost) {
-        this.movementCost = movementCost;
+    public void setSizeY(Integer sizeY) {
+        this.sizeY = sizeY;
     }
 //</editor-fold>
 }
