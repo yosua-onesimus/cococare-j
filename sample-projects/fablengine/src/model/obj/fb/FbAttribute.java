@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "fb_attributes")
 @CCTypeConfig(label = "Attribute", uniqueKey = "name", parameter = true)
-public class FBAttribute implements CCEntity {
+public class FbAttribute implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id

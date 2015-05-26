@@ -9,10 +9,10 @@ import cococare.swing.component.CCBandBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextField;
-import model.obj.fb.FBClass;
+import model.obj.fb.FbClass;
 //</editor-fold>
 
-public class FBActorCtrl extends PnlParameterCtrl {
+public class FbActorCtrl extends PnlParameterCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private CCBandBox txtClass;
@@ -39,7 +39,7 @@ public class FBActorCtrl extends PnlParameterCtrl {
     }
 
     private void _doUpdateParameterField() {
-        FBClass class_ = txtClass.getObject();
+        FbClass class_ = txtClass.getObject();
         if (isNotNull(class_)) {
             txtHpMax.setText(formatNumeric(class_.getHp()));
             txtApMax.setText(formatNumeric(class_.getAp()));

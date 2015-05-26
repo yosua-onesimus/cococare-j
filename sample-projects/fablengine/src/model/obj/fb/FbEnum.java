@@ -1,6 +1,6 @@
 package model.obj.fb;
 
-public class FBEnum {
+public class FbEnum {
 
     public enum ActionType {
 

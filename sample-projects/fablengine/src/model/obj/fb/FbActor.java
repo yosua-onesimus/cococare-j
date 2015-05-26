@@ -12,8 +12,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "fb_actors")
-@CCTypeConfig(label = "Actor", uniqueKey = "name", parameter = true, controllerClass = "controller.pseudo.fb.FBActorCtrl")
-public class FBActor implements CCEntity {
+@CCTypeConfig(label = "Actor", uniqueKey = "name", parameter = true, controllerClass = "controller.pseudo.fb.FbActorCtrl")
+public class FbActor implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -132,7 +132,7 @@ public class FBActor implements CCEntity {
     private String description;
     @ManyToOne
     @CCFieldConfig(group = "Actor Attribute", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
-    private FBAttribute attribute;
+    private FbAttribute attribute;
     @CCFieldConfig(group = "Actor Attribute", label = "HP", tooltiptext = "Health Point", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3, visible = false)
     private Integer hp = 1;
     @CCFieldConfig(group = "Actor Attribute", label = "AP", tooltiptext = "Action Point", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2, visible = false)
@@ -149,7 +149,7 @@ public class FBActor implements CCEntity {
     //
     @ManyToOne
     @CCFieldConfig(group = "Class Attribute", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
-    private FBClass class_;
+    private FbClass class_;
     @CCFieldConfig(group = "Class Attribute", label = "HPM", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
     private Integer hpMax = 1;
     @CCFieldConfig(group = "Class Attribute", label = "APM", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
@@ -274,11 +274,11 @@ public class FBActor implements CCEntity {
         this.description = description;
     }
 
-    public FBAttribute getAttribute() {
+    public FbAttribute getAttribute() {
         return attribute;
     }
 
-    public void setAttribute(FBAttribute attribute) {
+    public void setAttribute(FbAttribute attribute) {
         this.attribute = attribute;
     }
 
@@ -330,11 +330,11 @@ public class FBActor implements CCEntity {
         this.level = level;
     }
 
-    public FBClass getClass_() {
+    public FbClass getClass_() {
         return class_;
     }
 
-    public void setClass_(FBClass class_) {
+    public void setClass_(FbClass class_) {
         this.class_ = class_;
     }
 

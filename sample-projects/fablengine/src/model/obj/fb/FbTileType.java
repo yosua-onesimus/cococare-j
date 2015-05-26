@@ -3,6 +3,7 @@ package model.obj.fb;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
@@ -10,9 +11,9 @@ import javax.persistence.*;
 //</editor-fold>
 
 @Entity
-@Table(name = "fb_action_types")
-@CCTypeConfig(label = "Action Type", uniqueKey = "name", parameter = true)
-public class FBActionType implements CCEntity {
+@Table(name = "fb_tile_types")
+@CCTypeConfig(label = "Tile Type", uniqueKey = "name", parameter = true)
+public class FbTileType implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -90,14 +91,15 @@ public class FBActionType implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 4)
-    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true, sequence = "AT00", unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true, sequence = "TT00", unique = true)
     private String code;
     @Column(length = 16)
     @CCFieldConfig(accessible = Accessible.MANDATORY, unique = true)
     private String name;
-    @ManyToOne
-    @CCFieldConfig(maxLength = 16, uniqueKey = "name")
-    private FBActionType parent;
+    @CCFieldConfig(maxLength = 4)
+    private Boolean walkable = true;
+    @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    private Integer movementCost = 1;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -116,12 +118,20 @@ public class FBActionType implements CCEntity {
         this.name = name;
     }
 
-    public FBActionType getParent() {
-        return parent;
+    public Boolean getWalkable() {
+        return walkable;
     }
 
-    public void setParent(FBActionType parent) {
-        this.parent = parent;
+    public void setWalkable(Boolean walkable) {
+        this.walkable = walkable;
+    }
+
+    public Integer getMovementCost() {
+        return movementCost;
+    }
+
+    public void setMovementCost(Integer movementCost) {
+        this.movementCost = movementCost;
     }
 //</editor-fold>
 }

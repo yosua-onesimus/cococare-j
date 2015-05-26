@@ -15,14 +15,16 @@ public class FableModule extends CCHibernateModule {
     public void init(CCHibernate hibernate) {
         super.init(hibernate);
         //
-        hibernate.addAnnotatedClass(FBAttribute.class);
-        hibernate.addAnnotatedClass(FBCondition.class);
-        hibernate.addAnnotatedClass(FBActionType.class);
-        hibernate.addAnnotatedClass(FBAction.class);
-        hibernate.addAnnotatedClass(FBItemType.class);
+        hibernate.addAnnotatedClass(FbAttribute.class);
+        hibernate.addAnnotatedClass(FbCondition.class);
+        hibernate.addAnnotatedClass(FbActionType.class);
+        hibernate.addAnnotatedClass(FbAction.class);
+        hibernate.addAnnotatedClass(FbItemType.class);
         //
-        hibernate.addAnnotatedClass(FBClass.class);
-        hibernate.addAnnotatedClass(FBActor.class);
+        hibernate.addAnnotatedClass(FbClass.class);
+        hibernate.addAnnotatedClass(FbActor.class);
+        //
+        hibernate.addAnnotatedClass(FbTileType.class);
     }
 //</editor-fold>
 }

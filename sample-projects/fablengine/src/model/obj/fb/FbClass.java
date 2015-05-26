@@ -13,8 +13,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "fb_classes")
-@CCTypeConfig(label = "Class", uniqueKey = "name", parameter = true, controllerClass = "controller.pseudo.fb.FBClassCtrl")
-public class FBClass implements CCEntity {
+@CCTypeConfig(label = "Class", uniqueKey = "name", parameter = true, controllerClass = "controller.pseudo.fb.FbClassCtrl")
+public class FbClass implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -122,7 +122,7 @@ public class FBClass implements CCEntity {
     //
     @ManyToOne
     @CCFieldConfig(group = "Special", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
-    private FBActionType command;
+    private FbActionType command;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -221,11 +221,11 @@ public class FBClass implements CCEntity {
         this.crtRate = crtRate;
     }
 
-    public FBActionType getCommand() {
+    public FbActionType getCommand() {
         return command;
     }
 
-    public void setCommand(FBActionType command) {
+    public void setCommand(FbActionType command) {
         this.command = command;
     }
 

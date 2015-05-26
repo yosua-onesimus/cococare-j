@@ -8,7 +8,7 @@ import cococare.common.CCTypeConfig;
 //</editor-fold>
 
 @CCTypeConfig(label = "FaBlEngine Module", tooltiptext = "Exp Curve, etc")
-public class FBConfig {
+public class FbConfig {
 
     @CCFieldConfig(group = "Exp Curve", label = "Base Value", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer expCurveBaseValue = 10;

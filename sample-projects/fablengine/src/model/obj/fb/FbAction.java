@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "fb_actions")
 @CCTypeConfig(label = "Action", uniqueKey = "name", parameter = true)
-public class FBAction implements CCEntity {
+public class FbAction implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -99,10 +99,10 @@ public class FBAction implements CCEntity {
     //
     @ManyToOne
     @CCFieldConfig(group = "General", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
-    private FBActionType actionType;
+    private FbActionType actionType;
     @ManyToOne
     @CCFieldConfig(group = "General", maxLength = 16, uniqueKey = "name")
-    private FBAttribute attribute;
+    private FbAttribute attribute;
     @Column(length = 16)
     @CCFieldConfig(group = "General", accessible = Accessible.MANDATORY)
     private String name;
@@ -132,8 +132,8 @@ public class FBAction implements CCEntity {
     @CCFieldConfig(group = "Formula", label = "Post", maxLength = Short.MAX_VALUE, visible = false)
     private String formulaPost;
     //
-    transient private FBActor caster;
-    transient private FBActor target;
+    transient private FbActor caster;
+    transient private FbActor target;
     transient private Integer power;
     transient private Integer temp;
 
@@ -146,19 +146,19 @@ public class FBAction implements CCEntity {
         this.code = code;
     }
 
-    public FBActionType getActionType() {
+    public FbActionType getActionType() {
         return actionType;
     }
 
-    public void setActionType(FBActionType actionType) {
+    public void setActionType(FbActionType actionType) {
         this.actionType = actionType;
     }
 
-    public FBAttribute getAttribute() {
+    public FbAttribute getAttribute() {
         return attribute;
     }
 
-    public void setAttribute(FBAttribute attribute) {
+    public void setAttribute(FbAttribute attribute) {
         this.attribute = attribute;
     }
 
@@ -242,19 +242,19 @@ public class FBAction implements CCEntity {
         this.formulaPost = formulaPost;
     }
 
-    public FBActor getCaster() {
+    public FbActor getCaster() {
         return caster;
     }
 
-    public void setCaster(FBActor caster) {
+    public void setCaster(FbActor caster) {
         this.caster = caster;
     }
 
-    public FBActor getTarget() {
+    public FbActor getTarget() {
         return target;
     }
 
-    public void setTarget(FBActor target) {
+    public void setTarget(FbActor target) {
         this.target = target;
     }
 
@@ -274,7 +274,7 @@ public class FBAction implements CCEntity {
         this.temp = temp;
     }
 
-    public void execute(FBActor caster, FBActor target) {
+    public void execute(FbActor caster, FbActor target) {
         setCaster(caster);
         setTarget(target);
         boolean conditionMeet = true;

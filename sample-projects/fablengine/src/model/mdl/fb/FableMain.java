@@ -9,7 +9,7 @@ import cococare.framework.swing.CFSwingMain;
 import static cococare.framework.swing.CFSwingMap.getMainScreen;
 import cococare.framework.swing.controller.form.util.*;
 import java.util.Arrays;
-import model.obj.fb.FBConfig;
+import model.obj.fb.FbConfig;
 //</editor-fold>
 
 public class FableMain extends CFSwingMain {
@@ -40,7 +40,7 @@ public class FableMain extends CFSwingMain {
         UtilConfigBo configBo = new UtilConfigBo();
         confAppl = configBo.loadConfAppl();
         confAppl.setUtilAdditionalSettingClass(Arrays.asList(
-                FBConfig.class.getName()));
+                FbConfig.class.getName()));
         return configBo.saveConf(confAppl);
     }
 

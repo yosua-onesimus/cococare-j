@@ -10,9 +10,9 @@ import javax.persistence.*;
 //</editor-fold>
 
 @Entity
-@Table(name = "fb_item_types")
-@CCTypeConfig(label = "Item Type", uniqueKey = "name", parameter = true)
-public class FBItemType implements CCEntity {
+@Table(name = "fb_action_types")
+@CCTypeConfig(label = "Action Type", uniqueKey = "name", parameter = true)
+public class FbActionType implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -90,14 +90,14 @@ public class FBItemType implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 4)
-    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true, sequence = "IT00", unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true, sequence = "AT00", unique = true)
     private String code;
     @Column(length = 16)
     @CCFieldConfig(accessible = Accessible.MANDATORY, unique = true)
     private String name;
     @ManyToOne
     @CCFieldConfig(maxLength = 16, uniqueKey = "name")
-    private FBItemType parent;
+    private FbActionType parent;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -116,11 +116,11 @@ public class FBItemType implements CCEntity {
         this.name = name;
     }
 
-    public FBItemType getParent() {
+    public FbActionType getParent() {
         return parent;
     }
 
-    public void setParent(FBItemType parent) {
+    public void setParent(FbActionType parent) {
         this.parent = parent;
     }
 //</editor-fold>

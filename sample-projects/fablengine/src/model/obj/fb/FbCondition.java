@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "fb_conditions")
 @CCTypeConfig(label = "Condition", uniqueKey = "name", parameter = true)
-public class FBCondition implements CCEntity {
+public class FbCondition implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -157,8 +157,8 @@ public class FBCondition implements CCEntity {
     @CCFieldConfig(group = "Cancel Chance", label = "At Battle End", visible = false)
     private Boolean cancelAtBattleEnd = false;
     //
-    transient private FBActor targetBeforeFirstTime;
-    transient private FBActor targetAfterFirstTime;
+    transient private FbActor targetBeforeFirstTime;
+    transient private FbActor targetAfterFirstTime;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -377,19 +377,19 @@ public class FBCondition implements CCEntity {
         this.cancelAtBattleEnd = cancelAtBattleEnd;
     }
 
-    public FBActor getTargetBeforeFirstTime() {
+    public FbActor getTargetBeforeFirstTime() {
         return targetBeforeFirstTime;
     }
 
-    public void setTargetBeforeFirstTime(FBActor targetBeforeFirstTime) {
+    public void setTargetBeforeFirstTime(FbActor targetBeforeFirstTime) {
         this.targetBeforeFirstTime = targetBeforeFirstTime;
     }
 
-    public FBActor getTargetAfterFirstTime() {
+    public FbActor getTargetAfterFirstTime() {
         return targetAfterFirstTime;
     }
 
-    public void setTargetAfterFirstTime(FBActor targetAfterFirstTime) {
+    public void setTargetAfterFirstTime(FbActor targetAfterFirstTime) {
         this.targetAfterFirstTime = targetAfterFirstTime;
     }
 //</editor-fold>

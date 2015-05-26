@@ -1,24 +1,24 @@
 package test;
 
-import model.obj.fb.FBAction;
-import model.obj.fb.FBActor;
+import model.obj.fb.FbAction;
+import model.obj.fb.FbActor;
 
 public class Test {
 
     public static void main(String[] args) {
-        FBActor caster = new FBActor();
+        FbActor caster = new FbActor();
         caster.setHp(100);
         caster.setAp(10);
         caster.setOffense(10);
         caster.setDefense(10);
 
-        FBActor target = new FBActor();
+        FbActor target = new FbActor();
         target.setHp(100);
         target.setAp(10);
         target.setOffense(10);
         target.setDefense(10);
 
-        FBAction action = new FBAction();
+        FbAction action = new FbAction();
         action.setFormulaPre("caster.hp>=100;caster.ap>=11;");
 //        action.setFormulaMain("target.hp-=caster.offense-target.defense/2;caster.ap-=1;");
         action.setFormulaMain("target.ap-=8;caster.ap+=8");

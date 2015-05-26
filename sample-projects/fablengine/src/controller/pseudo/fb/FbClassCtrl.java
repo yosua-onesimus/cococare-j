@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 //</editor-fold>
 
-public class FBClassCtrl extends PnlParameterCtrl {
+public class FbClassCtrl extends PnlParameterCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private JTextField txtHp;
