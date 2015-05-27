@@ -10,7 +10,10 @@ import cococare.framework.model.bo.util.UtilConfigBo;
 import cococare.framework.swing.CFSwingMain;
 import static cococare.framework.swing.CFSwingMap.getMainScreen;
 import cococare.framework.swing.controller.form.util.*;
+import controller.form.fb.PnlPathfindingCtrl;
 import java.util.Arrays;
+import static model.mdl.fb.FableLanguage.Pathfinding;
+import static model.mdl.fb.FableLanguage.Tester;
 import model.obj.fb.FbConfig;
 //</editor-fold>
 
@@ -71,6 +74,9 @@ public class FableMain extends CFSwingMain {
 
     @Override
     protected void _applyUserConfigUaeBody(CFApplUae uae) {
+        uae.addMenuRoot(PnlPathfindingCtrl.class);
+        uae.addMenuParent(Tester, "/cococare/resource/icon-menu-parent.png", null);
+        uae.addMenuChild(Pathfinding, "/cococare/resource/icon-menu-child.png", PnlPathfindingCtrl.class);
     }
 
     @Override

@@ -10,4 +10,7 @@ public class FableLanguage extends CCLanguage {
     //
     public static String Map;
     public static String Tile;
+    //
+    public static String Tester;
+    public static String Pathfinding;
 }

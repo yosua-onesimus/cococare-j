@@ -87,50 +87,17 @@ public class PnlTile extends javax.swing.JPanel {
         lblTile.setBounds(1, 1, 60, 10);
 
         imgCeil.setOpaque(false);
-
-        javax.swing.GroupLayout imgCeilLayout = new javax.swing.GroupLayout(imgCeil);
-        imgCeil.setLayout(imgCeilLayout);
-        imgCeilLayout.setHorizontalGroup(
-            imgCeilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
-        imgCeilLayout.setVerticalGroup(
-            imgCeilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
-
+        imgCeil.setLayout(null);
         imgTile.add(imgCeil);
         imgCeil.setBounds(10, 10, 40, 40);
 
         imgActor.setOpaque(false);
-
-        javax.swing.GroupLayout imgActorLayout = new javax.swing.GroupLayout(imgActor);
-        imgActor.setLayout(imgActorLayout);
-        imgActorLayout.setHorizontalGroup(
-            imgActorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
-        imgActorLayout.setVerticalGroup(
-            imgActorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
-
+        imgActor.setLayout(null);
         imgTile.add(imgActor);
         imgActor.setBounds(10, 10, 40, 40);
 
         imgFloor.setOpaque(false);
-
-        javax.swing.GroupLayout imgFloorLayout = new javax.swing.GroupLayout(imgFloor);
-        imgFloor.setLayout(imgFloorLayout);
-        imgFloorLayout.setHorizontalGroup(
-            imgFloorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
-        imgFloorLayout.setVerticalGroup(
-            imgFloorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
-
+        imgFloor.setLayout(null);
         imgTile.add(imgFloor);
         imgFloor.setBounds(10, 10, 40, 40);
 
