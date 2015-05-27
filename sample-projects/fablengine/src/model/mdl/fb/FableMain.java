@@ -1,6 +1,7 @@
 package model.mdl.fb;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.common.CCConfig;
 import cococare.common.CCLanguage;
 import static cococare.common.CCLanguage.*;
 import cococare.database.CCLoginInfo;
@@ -21,6 +22,8 @@ public class FableMain extends CFSwingMain {
 
     @Override
     protected void _loadInternalSetting() {
+        CCConfig.MSG_SHOW_LOG_DEBUG = true;
+        CCConfig.HBN_SHOW_HQL = "true";
         APPL_ID = "fablengine";
         APPL_CODE = "fablengine";
         APPL_NAME = "FaBlEngine";

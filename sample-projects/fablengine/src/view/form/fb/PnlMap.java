@@ -4,11 +4,6 @@ package view.form.fb;
 import model.mdl.fb.FableLanguage;
 //</editor-fold>
 
-/**
- * @author Yosua Onesimus
- * @since 13.03.17
- * @version 13.03.17
- */
 public class PnlMap extends javax.swing.JPanel {
 
     public PnlMap() {
@@ -24,7 +19,7 @@ public class PnlMap extends javax.swing.JPanel {
         btnClose = new cococare.swing.component.CCButton();
         tabMap = new javax.swing.JTabbedPane();
         pnlGenerator = new javax.swing.JPanel();
-        pnlTile = new javax.swing.JPanel();
+        pnlMapTile = new cococare.swing.component.CCImage();
 
         setMinimumSize(new java.awt.Dimension(600, 200));
         setPreferredSize(new java.awt.Dimension(600, 200));
@@ -48,18 +43,18 @@ public class PnlMap extends javax.swing.JPanel {
 
         tabMap.addTab(FableLanguage.turn(FableLanguage.Map), pnlGenerator);
 
-        javax.swing.GroupLayout pnlTileLayout = new javax.swing.GroupLayout(pnlTile);
-        pnlTile.setLayout(pnlTileLayout);
-        pnlTileLayout.setHorizontalGroup(
-            pnlTileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlMapTileLayout = new javax.swing.GroupLayout(pnlMapTile);
+        pnlMapTile.setLayout(pnlMapTileLayout);
+        pnlMapTileLayout.setHorizontalGroup(
+            pnlMapTileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 595, Short.MAX_VALUE)
         );
-        pnlTileLayout.setVerticalGroup(
-            pnlTileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlMapTileLayout.setVerticalGroup(
+            pnlMapTileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 120, Short.MAX_VALUE)
         );
 
-        tabMap.addTab(FableLanguage.turn(FableLanguage.Tile), pnlTile);
+        tabMap.addTab(FableLanguage.turn(FableLanguage.Tile), pnlMapTile);
 
         javax.swing.GroupLayout pnlEditorLayout = new javax.swing.GroupLayout(pnlEditor);
         pnlEditor.setLayout(pnlEditorLayout);
@@ -98,7 +93,7 @@ public class PnlMap extends javax.swing.JPanel {
     private cococare.swing.component.CCButton btnSave;
     private javax.swing.JPanel pnlEditor;
     private javax.swing.JPanel pnlGenerator;
-    private javax.swing.JPanel pnlTile;
+    private cococare.swing.component.CCImage pnlMapTile;
     private javax.swing.JTabbedPane tabMap;
     // End of variables declaration//GEN-END:variables
 }

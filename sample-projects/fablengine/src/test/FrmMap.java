@@ -33,6 +33,7 @@ public class FrmMap extends javax.swing.JFrame {
         ParallelGroup parallelGroup;
         SequentialGroup sequentialGroup;
 
+        imgMap.removeAll();
         imgMap.setLayout(groupLayout = new GroupLayout(imgMap));
         groupLayout.setHorizontalGroup(parallelGroup = groupLayout.createParallelGroup());
         groupLayout.setVerticalGroup(sequentialGroup = groupLayout.createSequentialGroup());
@@ -47,6 +48,8 @@ public class FrmMap extends javax.swing.JFrame {
         groupLayout.setHorizontalGroup(parallelGroup = groupLayout.createParallelGroup());
         groupLayout.setVerticalGroup(sequentialGroup = groupLayout.createSequentialGroup());
         scrollPane.setViewportView(container);
+        
+//        Math.ceil(WIDTH);
 
         for (int y = map.getSizeY() - 1; y >= 0; y--) {
             ParallelGroup pg = groupLayout.createParallelGroup();
@@ -54,8 +57,8 @@ public class FrmMap extends javax.swing.JFrame {
             for (int x = 0; x < map.getSizeX(); x++) {
                 PnlTile pnlTile = new PnlTile(tileses.get(x).get(y));
                 tileses.get(x).get(y).setTileView(pnlTile);
-                pg.addComponent(pnlTile, 110, 110, 110);
-                sg.addComponent(pnlTile, 110, 110, 110);
+                pg.addComponent(pnlTile, 60, 60, 60);
+                sg.addComponent(pnlTile, 60, 60, 60);
             }
             parallelGroup.addGroup(sg);
             sequentialGroup.addGroup(pg);

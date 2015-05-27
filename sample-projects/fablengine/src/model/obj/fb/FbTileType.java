@@ -101,6 +101,13 @@ public class FbTileType implements CCEntity {
     private Boolean walkable = true;
     @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer movementCost = 1;
+    @Lob
+    @Column(length = Integer.MAX_VALUE)
+    @CCFieldConfig(type = Type.IMAGE_FILE, optionReflectKey = "imageName", visible = false)
+    private byte[] image;
+    @Column(length = 255)
+    @CCFieldConfig(visible = false, visible2 = false)
+    private String imageName;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -137,6 +144,22 @@ public class FbTileType implements CCEntity {
 
     public void setMovementCost(Integer movementCost) {
         this.movementCost = movementCost;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 //</editor-fold>
 }
