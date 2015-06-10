@@ -1,9 +1,11 @@
 package model.dao;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCFormat.parseInt;
 import java.util.List;
 import model.mdl.DragonCityOrganizerDao;
 import model.obj.Dragon;
+import model.obj.Habitat;
 import model.obj.HabitatType;
 //</editor-fold>
 
@@ -23,6 +25,15 @@ public class DragonDao extends DragonCityOrganizerDao {
         parameters.start().
                 set("habitatType", habitatType);
         return getListUnlimitedBy(hql.value(), parameters.value());
+    }
+
+    public int sumRevenuesTotal(Habitat habitat) {
+        hql.start().
+                select("SUM(revenuesTotal)").
+                where("habitat = :habitat");
+        parameters.start().
+                set("habitat", habitat);
+        return parseInt(getBy(hql.value(), parameters.value()));
     }
 //</editor-fold>
 }

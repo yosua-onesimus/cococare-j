@@ -94,7 +94,18 @@
                     <Property name="useNullLayout" type="boolean" value="true"/>
                   </Layout>
                   <SubComponents>
-                    <Component class="cococare.swing.component.CCButton" name="btnAdd">
+                    <Component class="cococare.swing.component.CCBandBox" name="bndDragon">
+                      <Properties>
+                        <Property name="visibleClearButton" type="boolean" value="false"/>
+                        <Property name="visibleOpenButton" type="boolean" value="true"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="0" y="10" width="200" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="cococare.swing.component.CCButton" name="btnDragonAdd">
                       <Properties>
                         <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
                           <Value id="ADD"/>
@@ -102,23 +113,11 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="0" y="10" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="200" y="10" width="-1" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="cococare.swing.component.CCButton" name="btnEdit">
-                      <Properties>
-                        <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
-                          <Value id="EDIT"/>
-                        </Property>
-                      </Properties>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="100" y="10" width="-1" height="-1"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
-                    <Component class="cococare.swing.component.CCButton" name="btnDelete">
+                    <Component class="cococare.swing.component.CCButton" name="btnDragonDelete">
                       <Properties>
                         <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
                           <Value id="DELETE"/>
@@ -126,7 +125,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="200" y="10" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="300" y="10" width="-1" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>

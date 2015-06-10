@@ -91,14 +91,14 @@ public class HabitatType implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 5)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 5, sequence = "HT00", unique = true, requestFocus = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 5, sequence = "HT00", unique = true, requestFocus = true)
     private String code;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 16)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 16)
     private String name;
-    @CCFieldConfig(componentId = "txtMaxDragons", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 1)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 1)
     private Integer maxDragons = 4;
-    @CCFieldConfig(componentId = "txtMaxGold", accessible = Accessible.MANDATORY, type = Type.NUMBER_FORMAT, maxLength = 10)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMBER_FORMAT, maxLength = 10)
     private Double maxGold = 0d;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

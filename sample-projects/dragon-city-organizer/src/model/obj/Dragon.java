@@ -91,32 +91,36 @@ public class Dragon implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "D000000", unique = true, requestFocus = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 8, sequence = "D000000", unique = true, requestFocus = true)
     private String code;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtCustomName", accessible = Accessible.MANDATORY, maxLength = 16)
+    @CCFieldConfig(label = "Name", accessible = Accessible.MANDATORY, maxLength = 16)
     private String customName;
     @Column()
-    @CCFieldConfig(componentId = "txtSystemName", accessible = Accessible.MANDATORY)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, visible = false)
     private String systemName;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndHabitatType1", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
     private HabitatType habitatType1;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndHabitatType2", maxLength = 16, uniqueKey = "name")
+    @CCFieldConfig(maxLength = 16, uniqueKey = "name")
     private HabitatType habitatType2;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndHabitatType3", maxLength = 16, uniqueKey = "name")
+    @CCFieldConfig(maxLength = 16, uniqueKey = "name")
     private HabitatType habitatType3;
     @Column(name = "level_")
-    @CCFieldConfig(componentId = "txtLevel", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
     private Integer level = 10;
-    @CCFieldConfig(componentId = "txtRevenues", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
     private Integer revenues;
-    @CCFieldConfig(label = "+%", tooltiptext = "Revenues Percent", componentId = "txtRevenuesPercent", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
+    @CCFieldConfig(label = "+%", tooltiptext = "Revenues Percent", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
     private Integer revenuesPercent;
-    @CCFieldConfig(componentId = "txtRevenuesTotal", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 3)
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 3, visible = false)
     private Integer revenuesTotal;
+    //
+    @ManyToOne
+    @CCFieldConfig(maxLength = 20, uniqueKey = "@habitatType.name #@no", visible2 = false)
+    private Habitat habitat;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -197,6 +201,14 @@ public class Dragon implements CCEntity {
 
     public void setRevenuesTotal(Integer revenuesTotal) {
         this.revenuesTotal = revenuesTotal;
+    }
+
+    public Habitat getHabitat() {
+        return habitat;
+    }
+
+    public void setHabitat(Habitat habitat) {
+        this.habitat = habitat;
     }
 //</editor-fold>
 }

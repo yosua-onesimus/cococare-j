@@ -1,7 +1,7 @@
 package controller.pseudo;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import static cococare.common.CCFormat.formatNumber;
+import static cococare.common.CCFormat.formatNumeric;
 import static cococare.common.CCFormat.unformatNumber;
 import cococare.framework.swing.controller.form.util.PnlParameterCtrl;
 import static cococare.swing.CCSwing.addListener2;
@@ -35,7 +35,7 @@ public class DragonCtrl extends PnlParameterCtrl {
 
     private void _doUpdateTxtRevenuesTotal() {
         txtRevenuesTotal.setText(
-                formatNumber(dragonBo.countRevenuesTotal(
+                formatNumeric(dragonBo.countRevenuesTotal(
                 unformatNumber(txtRevenues.getText()),
                 unformatNumber(txtRevenuesPercent.getText()))));
     }

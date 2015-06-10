@@ -18,9 +18,9 @@ public class PnlHabitatDragonList extends javax.swing.JPanel {
         pnlList = new javax.swing.JPanel();
         pnlNorth = new javax.swing.JPanel();
         pnlNorthWest = new javax.swing.JPanel();
-        btnAdd = new cococare.swing.component.CCButton();
-        btnEdit = new cococare.swing.component.CCButton();
-        btnDelete = new cococare.swing.component.CCButton();
+        bndDragon = new cococare.swing.component.CCBandBox();
+        btnDragonAdd = new cococare.swing.component.CCButton();
+        btnDragonDelete = new cococare.swing.component.CCButton();
         pnlNorthEast = new javax.swing.JPanel();
         txtKeyword = new javax.swing.JTextField();
         scrEntity = new javax.swing.JScrollPane();
@@ -42,17 +42,18 @@ public class PnlHabitatDragonList extends javax.swing.JPanel {
         pnlNorthWest.setPreferredSize(new java.awt.Dimension(500, 50));
         pnlNorthWest.setLayout(null);
 
-        btnAdd.setType(cococare.swing.component.CCButton.Type.ADD);
-        pnlNorthWest.add(btnAdd);
-        btnAdd.setBounds(0, 10, 100, 29);
+        bndDragon.setVisibleClearButton(false);
+        bndDragon.setVisibleOpenButton(true);
+        pnlNorthWest.add(bndDragon);
+        bndDragon.setBounds(0, 10, 200, 29);
 
-        btnEdit.setType(cococare.swing.component.CCButton.Type.EDIT);
-        pnlNorthWest.add(btnEdit);
-        btnEdit.setBounds(100, 10, 100, 29);
+        btnDragonAdd.setType(cococare.swing.component.CCButton.Type.ADD);
+        pnlNorthWest.add(btnDragonAdd);
+        btnDragonAdd.setBounds(200, 10, 100, 29);
 
-        btnDelete.setType(cococare.swing.component.CCButton.Type.DELETE);
-        pnlNorthWest.add(btnDelete);
-        btnDelete.setBounds(200, 10, 100, 29);
+        btnDragonDelete.setType(cococare.swing.component.CCButton.Type.DELETE);
+        pnlNorthWest.add(btnDragonDelete);
+        btnDragonDelete.setBounds(300, 10, 100, 29);
 
         pnlNorth.add(pnlNorthWest, java.awt.BorderLayout.WEST);
 
@@ -87,9 +88,9 @@ public class PnlHabitatDragonList extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cococare.swing.component.CCButton btnAdd;
-    private cococare.swing.component.CCButton btnDelete;
-    private cococare.swing.component.CCButton btnEdit;
+    private cococare.swing.component.CCBandBox bndDragon;
+    private cococare.swing.component.CCButton btnDragonAdd;
+    private cococare.swing.component.CCButton btnDragonDelete;
     private cococare.swing.component.CCPaging pgnEntity;
     private javax.swing.JPanel pnlList;
     private javax.swing.JPanel pnlNorth;

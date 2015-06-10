@@ -91,15 +91,15 @@ public class Habitat implements CCEntity {
     }
 //</editor-fold>
     @Column(length = 4)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 4, sequence = "H000", unique = true, requestFocus = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 4, sequence = "H000", unique = true, requestFocus = true)
     private String code;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndHabitatType", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
     private HabitatType habitatType;
     @Column(name = "no_")
-    @CCFieldConfig(componentId = "txtNo", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer no;
-    @CCFieldConfig(componentId = "txtRevenuesTotal", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 3)
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 3)
     private Integer revenuesTotal;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

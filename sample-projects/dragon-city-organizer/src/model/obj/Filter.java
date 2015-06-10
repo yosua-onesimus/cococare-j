@@ -23,4 +23,25 @@ public class Filter {
             return "habitatType";
         }
     }
+    public static CCHibernateFilter isHabitatIsNull = new CCHibernateFilter() {
+        @Override
+        public String getFieldName() {
+            return "habitat";
+        }
+
+        @Override
+        public String getExpression() {
+            return "habitat IS NULL";
+        }
+
+        @Override
+        public String getParameterName() {
+            return "";
+        }
+
+        @Override
+        public Object getFieldValue() {
+            return "NULL";
+        }
+    };
 }
