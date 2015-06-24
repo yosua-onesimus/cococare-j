@@ -47,7 +47,7 @@ public class UtilSchedulerBo extends CCHibernateBo {
     }
 
     public synchronized boolean initInitialData() {
-        String code = schedulerDao.getLastValue("code", "Sch000");
+        String code = schedulerDao.getLastCode();
         for (UtilScheduler scheduler : schedulers) {
             UtilScheduler oldScheduler = schedulerDao.getByJobClassName(scheduler.getJobClassName());
             if (isNull(oldScheduler)) {

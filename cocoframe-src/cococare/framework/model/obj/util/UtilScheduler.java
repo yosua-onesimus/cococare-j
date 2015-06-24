@@ -169,7 +169,8 @@ public class UtilScheduler implements CCEntity {
     /**
      * Sets the cronSchedule.
      *
-     * @param cronSchedule the cronSchedule. <a
+     * @param cronSchedule the cronSchedule.
+     * @see <a
      * href="http://www.quartz-scheduler.org/documentation/quartz-1.x/tutorials/crontrigger">CronTrigger
      * Tutorial</a>
      */

@@ -6,6 +6,7 @@ import static cococare.common.CCClass.newObject;
 import static cococare.common.CCClass.setValue;
 import static cococare.common.CCFinal.btnEdit;
 import static cococare.common.CCFormat.getBoolean;
+import static cococare.common.CCFormat.getStringOrNull;
 import static cococare.common.CCLanguage.turn;
 import static cococare.common.CCLogic.*;
 import static cococare.common.CCMessage.*;
@@ -14,6 +15,7 @@ import static cococare.database.CCLoginInfo.INSTANCE_isCompAccessible;
 import cococare.framework.common.CFViewCtrl;
 import static cococare.framework.swing.CFSwingMap.*;
 import cococare.swing.CCEditor;
+import static cococare.swing.CCEditor.requestFocusInWindow;
 import cococare.swing.CCHotkey;
 import static cococare.swing.CCHotkey.simpleNavigate;
 import static cococare.swing.CCSwing.*;
@@ -63,7 +65,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 
     @Override
     protected void _initContainer() {
-        swingView = new CFSwingView(newContainer(getClass()));
+        swingView = new CFSwingView(newContainer(_getClass()));
     }
 
     public Container getContainer() {
@@ -95,7 +97,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 
     @Override
     protected void _initPrivilege() {
-        new CFSwingUae().isAccessible(getClass(), getContainer());
+        new CFSwingUae().isAccessible(_getClass(), getContainer());
     }
 
     @Override
@@ -121,7 +123,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected void _initTable() {
         if (_hasEntity() && isNotNull(swingView.getTblEntity())) {
             tblEntity = new CCTable(swingView.getTblEntity(), _getEntity());
-            swingView.getTblEntity().requestFocusInWindow();
+            requestFocusInWindow(swingView.getTblEntity());
             //parent-childs-screen
             if (isNotNull(parameter.get(toString() + parentValue))) {
                 if (getBoolean(parameter.get(toString() + parentNewEntity))) {
@@ -166,6 +168,10 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected void _initEditor() {
         if (_hasEntity()) {
             edtEntity = new CCEditor(getContainer(), _getEntity());
+            if (isNotNull(swingView.getPnlGenerator())) {
+                edtEntity.generateDefaultEditor(swingView.getPnlGenerator(), getStringOrNull(parameter.get(toString() + parentField)));
+                initComponent(getContainer(), this, reinitComponents);
+            }
             if (newEntity) {
                 _initObjEntity();
             }
@@ -189,7 +195,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             addAccessibleListener(swingView.getBtnEdit(), accessibleIfEditable);
             addAccessibleListener(swingView.getBtnDelete(), accessibleIfEditable);
         } else if (_hasEdtEntity()) {
-            if (isNotNull(getControllerForm(getClass())) && !INSTANCE_isCompAccessible(getControllerForm(getClass()).getName() + "." + btnEdit)) {
+            if (isNotNull(getControllerForm(_getClass())) && !INSTANCE_isCompAccessible(getControllerForm(_getClass()).getName() + "." + btnEdit)) {
                 addAccessibleListener(swingView.getBtnEdit(), CCAccessibleListener.nonAccessible);
             }
             addAccessibleListener(swingView.getBtnEdit(), accessibleIfReadonly);
@@ -448,6 +454,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             if (isNull(callerCtrl)) {
                 showPanel(_getContent(), swingView.getPanel());
             } else {
+                sysRef = _getSysRef(objEntity);
                 callerCtrl.doShowTab(sysRef, _getTabTitle(), this);
             }
         }
@@ -462,7 +469,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
             doShowTab(sysRef, null, null);
             return false;
         } else {
-            return newObject(getControllerForm(getClass())).with(parameter).with(this).with(readonly).init(objEntity);
+            return newObject(getControllerForm(_getClass())).with(parameter).with(this).with(readonly).init(objEntity);
         }
     }
 //</editor-fold>

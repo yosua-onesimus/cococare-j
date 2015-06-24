@@ -19,6 +19,11 @@ public class UtilSchedulerDao extends UtilityDao {
     }
 //</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc=" init ">
+    public String getLastCode() {
+        return getLastValue("code", "Sch000");
+    }
+
     public UtilScheduler getByJobClassName(String jobClassName) {
         hql.start().
                 where("jobClassName = :jobClassName");
@@ -26,4 +31,5 @@ public class UtilSchedulerDao extends UtilityDao {
                 set("jobClassName", jobClassName);
         return getBy(hql.value(), parameters.value());
     }
+//</editor-fold>
 }

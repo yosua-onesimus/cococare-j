@@ -21,7 +21,7 @@ public class PnlLogin extends javax.swing.JPanel {
         xPassword = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         xIcon = new javax.swing.JLabel();
-        btnLogin = new javax.swing.JButton();
+        btnLogIn = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
 
         setOpaque(false);
@@ -46,12 +46,12 @@ public class PnlLogin extends javax.swing.JPanel {
         xIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cococare/resource/icon-lock.png"))); // NOI18N
         xIcon.setAlignmentY(0.0F);
 
-        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cococare/resource/icon-key.png"))); // NOI18N
-        btnLogin.setToolTipText("Login");
-        btnLogin.setAlignmentY(0.0F);
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLogin.setFocusable(false);
-        btnLogin.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnLogIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cococare/resource/icon-key.png"))); // NOI18N
+        btnLogIn.setToolTipText("Login");
+        btnLogIn.setAlignmentY(0.0F);
+        btnLogIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogIn.setFocusable(false);
+        btnLogIn.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cococare/resource/icon-close.png"))); // NOI18N
         btnExit.setToolTipText("Exit");
@@ -78,7 +78,7 @@ public class PnlLogin extends javax.swing.JPanel {
                             .addComponent(xPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -97,7 +97,7 @@ public class PnlLogin extends javax.swing.JPanel {
                         .addComponent(xPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -105,7 +105,7 @@ public class PnlLogin extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnLogIn;
     private javax.swing.JPanel center;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;

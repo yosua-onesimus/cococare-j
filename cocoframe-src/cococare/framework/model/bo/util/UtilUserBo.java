@@ -210,7 +210,7 @@ public class UtilUserBo extends CCHibernateBo {
             setCauseMessage(turn(The_username_or_password_you_entered_is_incorrect));
             return false;
         }
-        if (!user.getActive()) {
+        if (!user.isActive()) {
             setErrorMessage(turn(Can_not_log_you_in));
             setCauseMessage(turn(Your_account_has_been_suspended_or_no_longer_active));
             return false;

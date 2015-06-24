@@ -48,19 +48,19 @@ public class PnlParameterList extends javax.swing.JPanel {
         pnlNorthWest.setPreferredSize(new java.awt.Dimension(500, 50));
         pnlNorthWest.setLayout(null);
         pnlNorthWest.add(cmbEntity);
-        cmbEntity.setBounds(0, 10, 150, 29);
+        cmbEntity.setBounds(0, 10, 200, 29);
 
         btnAdd.setType(cococare.swing.component.CCButton.Type.ADD);
         pnlNorthWest.add(btnAdd);
-        btnAdd.setBounds(150, 10, 100, 29);
+        btnAdd.setBounds(200, 10, 100, 29);
 
         btnEdit.setType(cococare.swing.component.CCButton.Type.EDIT);
         pnlNorthWest.add(btnEdit);
-        btnEdit.setBounds(250, 10, 100, 29);
+        btnEdit.setBounds(300, 10, 100, 29);
 
         btnDelete.setType(cococare.swing.component.CCButton.Type.DELETE);
         pnlNorthWest.add(btnDelete);
-        btnDelete.setBounds(350, 10, 100, 29);
+        btnDelete.setBounds(400, 10, 100, 29);
 
         pnlNorth.add(pnlNorthWest, java.awt.BorderLayout.WEST);
 
@@ -94,7 +94,7 @@ public class PnlParameterList extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tabEntity, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addComponent(tabEntity, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents

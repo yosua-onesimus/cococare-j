@@ -23,6 +23,10 @@ public class UtilityModule extends CCHibernateModule {
     public void init(CCHibernate hibernate) {
         super.init(hibernate);
         //
+        hibernate.addAnnotatedClass(UtilProvince.class);
+        hibernate.addAnnotatedClass(UtilRegency.class);
+        hibernate.addAnnotatedClass(UtilPerson.class);
+        //
         hibernate.addAnnotatedClass(UtilConfig.class);
         hibernate.addAnnotatedClass(UtilScheduler.class);
         hibernate.addAnnotatedClass(UtilLogger.class);
@@ -38,8 +42,6 @@ public class UtilityModule extends CCHibernateModule {
         hibernate.addAnnotatedClass(UtilUserPrivilege.class);
         hibernate.addAnnotatedClass(UtilUserIp.class);
         hibernate.addAnnotatedClass(UtilUserChild.class);
-        //
-        hibernate.addAnnotatedClass(UtilPerson.class);
         //
         addFilters(new CCHibernateFilter() {
             @Override

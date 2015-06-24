@@ -1,7 +1,7 @@
 package cococare.framework.model.job.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import static cococare.common.CCConfig.MSG_SHOW_LOG_INFO;
+import static cococare.common.CCMessage.info;
 import static cococare.common.CCMessage.logp;
 import cococare.common.CCTypeConfig;
 import cococare.common.quartz.CCJob;
@@ -22,15 +22,11 @@ public class UtilAutoBackup extends CCJob {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         INSTANCE_setDomain(getDomain(jobExecutionContext));
-        boolean showLogInfo = MSG_SHOW_LOG_INFO;
         try {
-            MSG_SHOW_LOG_INFO = true;
-            logp("[1/1] Prepares to backup files for the domain " + INSTANCE_getDomain());
-            logp("[1/1] Successfully backup files for the domain " + INSTANCE_getDomain());
+            info("[1/1] Prepares to backup files for the domain " + INSTANCE_getDomain());
+            info("[1/1] Successfully backup files for the domain " + INSTANCE_getDomain());
         } catch (Exception exception) {
             logp(exception);
-        } finally {
-            MSG_SHOW_LOG_INFO = showLogInfo;
         }
     }
 }

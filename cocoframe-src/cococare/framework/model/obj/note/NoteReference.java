@@ -112,7 +112,7 @@ public class NoteReference implements CCEntity {
     @CCFieldConfig(componentId = "attByteA", type = Type.COMMON_FILE, optionReflectKey = "value", visible = false)
     transient private byte[] byteA;
     @Column(name = "value_", length = 255)
-    @CCFieldConfig(componentId = "txtValue", visible = false)
+    @CCFieldConfig(componentId = "txtValue", visible = false, visible2 = false)
     private String value;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

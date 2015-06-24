@@ -21,7 +21,6 @@ public class PnlRegistration extends javax.swing.JPanel {
 
         pnlEditor = new javax.swing.JPanel();
         btnRegister = new cococare.swing.component.CCButton();
-        btnClose = new cococare.swing.component.CCButton();
         xLock = new javax.swing.JLabel();
         txtLock = new javax.swing.JTextField();
         xRegTo = new javax.swing.JLabel();
@@ -49,8 +48,6 @@ public class PnlRegistration extends javax.swing.JPanel {
         btnRegister.setText("Register");
         btnRegister.setToolTipText("Register");
         btnRegister.setType(cococare.swing.component.CCButton.Type.SAVE);
-
-        btnClose.setType(cococare.swing.component.CCButton.Type.CLOSE);
 
         xLock.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         xLock.setText("Lock");
@@ -153,10 +150,7 @@ public class PnlRegistration extends javax.swing.JPanel {
             .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlEditorLayout.createSequentialGroup()
-                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlEditorLayout.createSequentialGroup()
                         .addComponent(xLock, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -175,9 +169,7 @@ public class PnlRegistration extends javax.swing.JPanel {
             pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEditorLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
-                .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(xLock, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,7 +202,6 @@ public class PnlRegistration extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cococare.swing.component.CCButton btnClose;
     private cococare.swing.component.CCButton btnRegister;
     private javax.swing.JPanel pnlEditor;
     private javax.swing.JPanel pnlInfo;

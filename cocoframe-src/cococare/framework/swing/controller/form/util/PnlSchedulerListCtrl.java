@@ -5,8 +5,6 @@ import static cococare.common.CCClass.getLabel;
 import cococare.common.CCCustomField;
 import cococare.framework.model.obj.util.UtilScheduler;
 import cococare.framework.swing.CFSwingCtrl;
-import static cococare.framework.swing.CFSwingMap.newContainer;
-import cococare.framework.swing.CFSwingView;
 import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCLink;
 import java.awt.event.ActionEvent;
@@ -21,6 +19,11 @@ import java.awt.event.ActionListener;
 public class PnlSchedulerListCtrl extends CFSwingCtrl {
 
     @Override
+    protected Class _getClass() {
+        return PnlSchedulerListCtrl.class;
+    }
+
+    @Override
     protected Class _getEntity() {
         return UtilScheduler.class;
     }
@@ -33,11 +36,6 @@ public class PnlSchedulerListCtrl extends CFSwingCtrl {
     @Override
     protected ShowMode _getShowMode() {
         return ShowMode.TAB_MODE;
-    }
-
-    @Override
-    protected void _initContainer() {
-        swingView = new CFSwingView(newContainer(PnlSchedulerListCtrl.class));
     }
 
     @Override
@@ -58,7 +56,7 @@ public class PnlSchedulerListCtrl extends CFSwingCtrl {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
                         tblEntity.getStopCellEditingListener().actionPerformed(actionEvent);
-                        _doEdit(scheduler);
+                        _doShowEditor(readonly, scheduler);
                     }
                 });
                 return link;
@@ -70,10 +68,6 @@ public class PnlSchedulerListCtrl extends CFSwingCtrl {
             }
         });
         tblEntity.setEditableColumn(true, 0);
-    }
-
-    private void _doEdit(UtilScheduler scheduler) {
-        new PnlSchedulerCtrl().with(parameter).with(this).with(readonly).init(scheduler);
     }
 
     @Override

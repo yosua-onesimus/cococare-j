@@ -5,6 +5,11 @@ import static cococare.common.CCFinal.ROOT;
 import cococare.database.CCHibernateFilter;
 //</editor-fold>
 
+/**
+ * @author Yosua Onesimus
+ * @since 13.03.17
+ * @version 13.03.17
+ */
 public class UtilFilter {
 
     public static CCHibernateFilter isUserGroupNotRoot = new CCHibernateFilter() {
@@ -27,6 +32,14 @@ public class UtilFilter {
         @Override
         public Object getFieldValue() {
             return false;
+        }
+    };
+
+    public static abstract class isProvince extends CCHibernateFilter {
+
+        @Override
+        public String getFieldName() {
+            return "province";
         }
     };
 

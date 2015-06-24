@@ -110,6 +110,10 @@ public class CFSwingView {
         return getJPanel(getContainer(), pnlEntity);
     }
 
+    public JPanel getPnlGenerator() {
+        return getJPanel(getContainer(), pnlGenerator);
+    }
+
     public CCButton getBtnFirst() {
         return getCCButton(getContainer(), btnFirst);
     }

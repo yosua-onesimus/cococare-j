@@ -111,7 +111,7 @@ public class UtilLogger implements CCEntity {
     @Column(length = 32, name = "action_")
     @CCFieldConfig(maxLength = 32)
     private String action;
-    @Column(length = Short.MAX_VALUE)
+    @Column(length = 255)
     @CCFieldConfig(maxLength = Short.MAX_VALUE)
     private String note;
 

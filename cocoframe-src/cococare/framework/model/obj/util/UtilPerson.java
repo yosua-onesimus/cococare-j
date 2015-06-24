@@ -10,6 +10,11 @@ import java.util.Date;
 import javax.persistence.*;
 //</editor-fold>
 
+/**
+ * @author Yosua Onesimus
+ * @since 13.03.17
+ * @version 13.03.17
+ */
 @Entity
 @Table(name = "util_persons")
 @CCTypeConfig(label = "Person", uniqueKey = "fullName")

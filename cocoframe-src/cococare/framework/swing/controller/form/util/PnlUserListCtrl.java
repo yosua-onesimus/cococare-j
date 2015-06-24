@@ -55,6 +55,7 @@ public class PnlUserListCtrl extends CFSwingCtrl {
     }
 
     private void _doChangePassword() {
+        doCloseTab(_getSysRef(_getSelectedItem()));
         new PnlChangePasswordCtrl().with(this).init(tblEntity.getSelectedItem());
     }
 

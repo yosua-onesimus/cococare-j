@@ -22,7 +22,7 @@ public class PnlLoginCtrl extends CFSwingCtrl {
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private JTextField txtUsername;
     private JTextField txtPassword;
-    private JButton btnLogin;
+    private JButton btnLogIn;
     private JButton btnExit;
 //</editor-fold>
 
@@ -53,7 +53,7 @@ public class PnlLoginCtrl extends CFSwingCtrl {
         };
         addListener(txtUsername, alLogin);
         addListener(txtPassword, alLogin);
-        addListener(btnLogin, alLogin);
+        addListener(btnLogIn, alLogin);
         btnExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -1,9 +1,13 @@
 package cococare.framework.model.mdl.note;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCConfig.HBN_WORKFLOW_MODULE_INCLUDED;
 import cococare.common.CCLanguage;
 import cococare.framework.common.CFApplUae;
+import cococare.framework.model.bo.util.UtilSchedulerBo;
+import cococare.framework.model.dao.wf.WfProcessDao;
 import static cococare.framework.model.mdl.note.NotesLanguage.*;
+import cococare.framework.model.obj.wf.WfProcess;
 import cococare.framework.swing.CFSwingMain;
 import cococare.framework.swing.controller.form.note.PnlNoteListCtrl;
 import cococare.framework.swing.controller.form.note.PnlReferenceListCtrl;
@@ -22,6 +26,7 @@ public class NotesMain extends CFSwingMain {
     protected void _loadInternalSetting() {
         APPL_CODE = "cccr-nts";
         APPL_NAME = "Coco Notes";
+        HBN_WORKFLOW_MODULE_INCLUDED = true;
         super._loadInternalSetting();
     }
 
@@ -35,6 +40,27 @@ public class NotesMain extends CFSwingMain {
     protected void _initDatabaseEntity() {
         super._initDatabaseEntity();
         NotesModule.INSTANCE.init(HIBERNATE);
+    }
+
+    @Override
+    protected boolean _initInitialData() {
+        WfProcessDao processDao = new WfProcessDao();
+        WfProcess process = processDao.getByCode("TEST");
+        if (process == null) {
+            process = new WfProcess();
+            process.setCode("TEST");
+            process.setName("TEST");
+            processDao.saveOrUpdate(process);
+        }
+        process = processDao.getByCode("TEST2");
+        if (process == null) {
+            process = new WfProcess();
+            process.setCode("TEST2");
+            process.setName("TEST2");
+            processDao.saveOrUpdate(process);
+        }
+        new UtilSchedulerBo().initInitialData();
+        return super._initInitialData();
     }
 
     @Override

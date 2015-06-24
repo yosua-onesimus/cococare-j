@@ -5,6 +5,7 @@ import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.CompareRule;
 import cococare.common.CCFieldConfig.OnDelete;
+import static cococare.common.CCFormat.getBoolean;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import cococare.framework.common.CFApplCtrl;
@@ -198,6 +199,10 @@ public class UtilUser implements CCEntity {
 
     public Boolean getActive() {
         return active;
+    }
+
+    public boolean isActive() {
+        return getBoolean(active);
     }
 
     public void setActive(Boolean active) {

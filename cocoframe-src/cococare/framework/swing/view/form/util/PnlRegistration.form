@@ -58,11 +58,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="btnRegister" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="btnClose" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btnRegister" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="xLock" min="-2" pref="100" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -87,10 +83,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnRegister" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnClose" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btnRegister" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="xLock" min="-2" pref="29" max="-2" attributes="0"/>
@@ -120,13 +113,6 @@
             <Property name="toolTipText" type="java.lang.String" value="Register"/>
             <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
               <Value id="SAVE"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="cococare.swing.component.CCButton" name="btnClose">
-          <Properties>
-            <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
-              <Value id="CLOSE"/>
             </Property>
           </Properties>
         </Component>

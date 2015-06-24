@@ -18,6 +18,7 @@ import cococare.swing.component.CCOptionBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 //</editor-fold>
 
@@ -29,6 +30,7 @@ import javax.swing.JFileChooser;
 public class PnlExportImportCtrl extends CFSwingCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
+    private JCheckBox chkHumanize;
     private CCButton btnTemplate;
     private CCButton btnImport;
     private CCOptionBox optParameter;
@@ -110,7 +112,7 @@ public class PnlExportImportCtrl extends CFSwingCtrl {
                 for (int index : optParameter.getSelectedIndexes()) {
                     Class clazz = CCEntityModule.INSTANCE.getCCHibernate().getParameterClasses().get(index);
                     excel.newSheet(clazz.getSimpleName());
-                    excel.initEntity(clazz, false);
+                    excel.initEntity(clazz, chkHumanize.isSelected());
                     excel.writeRowEntityHeader();
                     if (withData) {
                         excel.writeRowEntity(CCEntityBo.INSTANCE.getListBy(clazz, null, null, null, 0, null));
@@ -133,7 +135,7 @@ public class PnlExportImportCtrl extends CFSwingCtrl {
                 for (int index : optParameter.getSelectedIndexes()) {
                     Class clazz = CCEntityModule.INSTANCE.getCCHibernate().getParameterClasses().get(index);
                     if (isNotNull(excel.getSheet(clazz.getSimpleName()))) {
-                        excel.initEntity(clazz, false);
+                        excel.initEntity(clazz, chkHumanize.isSelected());
                         if (!(updateCaller = CCEntityModule.INSTANCE.getCCHibernate().restore(excel.readRowEntity(1, excel.getRowCount() - 1)))) {
                             break;
                         }
