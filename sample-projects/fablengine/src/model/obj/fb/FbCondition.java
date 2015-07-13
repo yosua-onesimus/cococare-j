@@ -102,11 +102,8 @@ public class FbCondition implements CCEntity {
     @CCFieldConfig(group = "Formula", label = "Pre", maxLength = Short.MAX_VALUE, visible = false)
     private String formulaPre;
     @Column(length = 255)
-    @CCFieldConfig(group = "Formula", label = "First Time", maxLength = Short.MAX_VALUE, visible = false)
-    private String formulaFirstTime;
-    @Column(length = 255)
-    @CCFieldConfig(group = "Formula", label = "Each Turn", maxLength = Short.MAX_VALUE, visible = false)
-    private String formulaEachTurn;
+    @CCFieldConfig(group = "Formula", label = "Main", maxLength = Short.MAX_VALUE, visible = false)
+    private String formulaMain;
     @Column(length = 255)
     @CCFieldConfig(group = "Formula", label = "Cancel By Action", maxLength = Short.MAX_VALUE, visible = false)
     private String formulaCancelByAction;
@@ -185,20 +182,12 @@ public class FbCondition implements CCEntity {
         this.formulaPre = formulaPre;
     }
 
-    public String getFormulaFirstTime() {
-        return formulaFirstTime;
+    public String getFormulaMain() {
+        return formulaMain;
     }
 
-    public void setFormulaFirstTime(String formulaFirstTime) {
-        this.formulaFirstTime = formulaFirstTime;
-    }
-
-    public String getFormulaEachTurn() {
-        return formulaEachTurn;
-    }
-
-    public void setFormulaEachTurn(String formulaEachTurn) {
-        this.formulaEachTurn = formulaEachTurn;
+    public void setFormulaMain(String formulaMain) {
+        this.formulaMain = formulaMain;
     }
 
     public String getFormulaCancelByAction() {

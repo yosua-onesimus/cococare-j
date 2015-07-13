@@ -85,3 +85,16 @@ Wind	Dizzy	Attacks both enemies and allies indiscriminately and uncontrollably.
 * formula cancel by damage
 * formula cancel by turn
  */
+/**
+ * 1. copy actor to battle participant
+ * 2. each damage decrease actor parameter
+ * 3. each action will calculate parameter
+ * sample: actor.offense <-- setelah dikurangi dengan break skill 
+ * copy battle participant ke action participant
+ * get list condition, evaluate satu2
+ * 
+ * 
+ * setiap akhir action sync up hp dan ap
+ * 
+ * 
+ */

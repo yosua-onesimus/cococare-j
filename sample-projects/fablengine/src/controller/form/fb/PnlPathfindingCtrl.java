@@ -8,8 +8,6 @@ import cococare.swing.component.CCButton;
 import cococare.swing.component.CCImage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.ParallelGroup;
 import javax.swing.GroupLayout.SequentialGroup;
@@ -17,7 +15,6 @@ import javax.swing.JScrollPane;
 import model.bo.fb.FbMapBo;
 import model.mdl.fb.FableModule;
 import model.obj.fb.FbMap;
-import model.obj.fb.FbMapTile;
 import view.form.fb.PnlTile;
 //</editor-fold>
 
@@ -25,8 +22,6 @@ public class PnlPathfindingCtrl extends CFSwingCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private FbMapBo mapBo;
-    private FbMap map;
-    private List tileses;
     private CCButton btnStart;
     private CCImage pnlMapTile;
     private CCImage mouse;
@@ -50,11 +45,7 @@ public class PnlPathfindingCtrl extends CFSwingCtrl {
     }
 
     private void _initTile() {
-        map = FableModule.INSTANCE.getCCHibernate().get(FbMap.class, 1L);
-        tileses = new ArrayList();
-        for (int x = 0; x < map.getSizeX(); x++) {
-            tileses.add(mapBo.getTilesBy(map, x));
-        }
+        mapBo.initMap((FbMap) FableModule.INSTANCE.getCCHibernate().get(FbMap.class, 1L));
         //
         GroupLayout groupLayout;
         ParallelGroup parallelGroup;
@@ -76,11 +67,11 @@ public class PnlPathfindingCtrl extends CFSwingCtrl {
         groupLayout.setVerticalGroup(sequentialGroup = groupLayout.createSequentialGroup());
         scrollPane.setViewportView(container);
         //
-        for (int y = map.getSizeY() - 1; y >= 0; y--) {
+        for (int y = mapBo.getMap().getSizeY() - 1; y >= 0; y--) {
             ParallelGroup pg = groupLayout.createParallelGroup();
             SequentialGroup sg = groupLayout.createSequentialGroup();
-            for (int x = 0; x < map.getSizeX(); x++) {
-                PnlTile pnlTile = new PnlTile(((List<FbMapTile>) tileses.get(x)).get(y));
+            for (int x = 0; x < mapBo.getMap().getSizeX(); x++) {
+                PnlTile pnlTile = new PnlTile(mapBo.getMapTile(x, y));
                 pg.addComponent(pnlTile, 60, 60, 60);
                 sg.addComponent(pnlTile, 60, 60, 60);
             }
@@ -91,13 +82,13 @@ public class PnlPathfindingCtrl extends CFSwingCtrl {
         mouse = new CCImage();
         mouse.setBounds(0, 0, 40, 40);
         mouse.setIcon(CCFile.readByteA(CCFile.getFileSystArchFile("mouse.png")));
-        PnlTile pnlTile = ((List<FbMapTile>) tileses.get(1)).get(2).getTileView();
+        PnlTile pnlTile = mapBo.getMapTile(1, 2).getTileView();
         pnlTile.getImgActor().add(mouse);
         //
         cheese = new CCImage();
         cheese.setBounds(0, 0, 40, 40);
         cheese.setIcon(CCFile.readByteA(CCFile.getFileSystArchFile("cheese.png")));
-        pnlTile = ((List<FbMapTile>) tileses.get(5)).get(1).getTileView();
+        pnlTile = mapBo.getMapTile(5, 1).getTileView();
         pnlTile.getImgActor().add(cheese);
     }
 
