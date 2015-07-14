@@ -2,12 +2,12 @@ package model.obj.fb;
 
 public class FbEnum {
 
-    public enum ActionType {
+    public enum AddRemove {
 
-        COMMAND("Command"), CONDITION("Condition"), SKILL("Skill");
+        ADD("+"), REMOVE("-");
         private String string;
 
-        private ActionType(String string) {
+        private AddRemove(String string) {
             this.string = string;
         }
 

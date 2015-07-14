@@ -15,7 +15,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "fb_actions")
-@CCTypeConfig(label = "Action", uniqueKey = "name", parameter = true)
+@CCTypeConfig(label = "Action", uniqueKey = "name", parameter = true, controllerClass = "controller.pseudo.fb.FbActionCtrl")
 public class FbAction implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
@@ -100,9 +100,9 @@ public class FbAction implements CCEntity {
     @ManyToOne
     @CCFieldConfig(group = "General", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
     private FbActionType actionType;
-    @ManyToOne
-    @CCFieldConfig(group = "General", maxLength = 16, uniqueKey = "name")
-    private FbAttribute attribute;
+    @Column(length = 255)
+    @CCFieldConfig(group = "General", accessible = Accessible.READONLY)
+    private String attributes;
     @Column(length = 16)
     @CCFieldConfig(group = "General", accessible = Accessible.MANDATORY)
     private String name;
@@ -154,12 +154,12 @@ public class FbAction implements CCEntity {
         this.actionType = actionType;
     }
 
-    public FbAttribute getAttribute() {
-        return attribute;
+    public String getAttributes() {
+        return attributes;
     }
 
-    public void setAttribute(FbAttribute attribute) {
-        this.attribute = attribute;
+    public void setAttributes(String attributes) {
+        this.attributes = attributes;
     }
 
     public String getName() {

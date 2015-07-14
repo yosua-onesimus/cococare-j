@@ -8,6 +8,10 @@ public class FableLanguage extends CCLanguage {
 
     public static String Fb;
     //
+    public static String Action;
+    public static String Attribute;
+    public static String Condition;
+    //
     public static String Map;
     public static String Tile;
     //
