@@ -1,6 +1,6 @@
 Fire: Smash,Flame,Vigor
 Cold: Lance,Frost,Verve
-Aqua: Flail,Hydro,Shell
+Aqua: Chain,Hydro,Shell
 Bolt: Slash,Blitz,Quick
 Wind: Slice,Blast,Float
 Land: Crush,Terra,Heavy

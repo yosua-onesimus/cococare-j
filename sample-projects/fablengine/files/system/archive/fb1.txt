@@ -1,0 +1,22 @@
+AstralSphere
+
+ada 12 Astral Sphere
+Priest, Amazer, Knight, Oracle, Hunter, Ranger
+Cleric, Qigong, Escort, Lancer, Medico, Fencer
+
+MatterSphere
+Fire, Cold, Aqua, Bolt
+Wind, Land, Holy, Dark
+Void, Iron, Time, Rune
+
+SpiritSphere
+Fiama, Glace, Acqua, Tuono
+Luvia, Boden, Lueur, Enfer
+Leere
+
+Phoenix Fire Wing Armor 
+Cygnice Cold Wing Armor
+Griffin Wind Wing Armor
+Virtues Holy Wing Armor
+Cyclops Land Wing Armor
+Eclipse Void Wing Armor
