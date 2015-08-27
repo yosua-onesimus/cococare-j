@@ -99,8 +99,10 @@ public class Habitat implements CCEntity {
     @Column(name = "no_")
     @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer no;
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 1)
+    private Integer totalDragon = 0;
     @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 3)
-    private Integer revenuesTotal;
+    private Integer totalRevenues = 0;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -127,12 +129,20 @@ public class Habitat implements CCEntity {
         this.no = no;
     }
 
-    public Integer getRevenuesTotal() {
-        return revenuesTotal;
+    public Integer getTotalDragon() {
+        return totalDragon;
     }
 
-    public void setRevenuesTotal(Integer revenuesTotal) {
-        this.revenuesTotal = revenuesTotal;
+    public void setTotalDragon(Integer totalDragon) {
+        this.totalDragon = totalDragon;
+    }
+
+    public Integer getTotalRevenues() {
+        return totalRevenues;
+    }
+
+    public void setTotalRevenues(Integer totalRevenues) {
+        this.totalRevenues = totalRevenues;
     }
 //</editor-fold>
 }

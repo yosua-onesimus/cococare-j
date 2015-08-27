@@ -90,7 +90,7 @@ public class Dragon implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @Column(length = 8)
+    @Column(length = 9)
     @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 8, sequence = "D000000", unique = true, requestFocus = true)
     private String code;
     @Column(length = 16)
@@ -100,23 +100,26 @@ public class Dragon implements CCEntity {
     @CCFieldConfig(accessible = Accessible.MANDATORY, visible = false)
     private String systemName;
     @ManyToOne
-    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
+    @CCFieldConfig(label = "Element1", accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "name")
     private HabitatType habitatType1;
     @ManyToOne
-    @CCFieldConfig(maxLength = 16, uniqueKey = "name")
+    @CCFieldConfig(label = "Element2", maxLength = 16, uniqueKey = "name")
     private HabitatType habitatType2;
     @ManyToOne
-    @CCFieldConfig(maxLength = 16, uniqueKey = "name")
+    @CCFieldConfig(label = "Element3", maxLength = 16, uniqueKey = "name")
     private HabitatType habitatType3;
+    @ManyToOne
+    @CCFieldConfig(label = "Element4", maxLength = 16, uniqueKey = "name")
+    private HabitatType habitatType4;
     @Column(name = "level_")
     @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
     private Integer level = 10;
-    @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
-    private Integer revenues;
-    @CCFieldConfig(label = "+%", tooltiptext = "Revenues Percent", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
-    private Integer revenuesPercent;
+    @CCFieldConfig(label = "Rev", tooltiptext = "Revenues", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3)
+    private Integer revenues = 0;
+    @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 3, visible = false)
+    private Integer revenuesPercent = 0;
     @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 3, visible = false)
-    private Integer revenuesTotal;
+    private Integer revenuesTotal = 0;
     //
     @ManyToOne
     @CCFieldConfig(maxLength = 20, uniqueKey = "@habitatType.name #@no", visible2 = false)
@@ -169,6 +172,14 @@ public class Dragon implements CCEntity {
 
     public void setHabitatType3(HabitatType habitatType3) {
         this.habitatType3 = habitatType3;
+    }
+
+    public HabitatType getHabitatType4() {
+        return habitatType4;
+    }
+
+    public void setHabitatType4(HabitatType habitatType4) {
+        this.habitatType4 = habitatType4;
     }
 
     public Integer getLevel() {
