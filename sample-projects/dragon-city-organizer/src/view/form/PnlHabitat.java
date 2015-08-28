@@ -1,9 +1,5 @@
 package view.form;
 
-//<editor-fold defaultstate="collapsed" desc=" import ">
-import model.mdl.DragonCityOrganizerLanguage;
-//</editor-fold>
-
 public class PnlHabitat extends javax.swing.JPanel {
 
     public PnlHabitat() {
@@ -17,7 +13,6 @@ public class PnlHabitat extends javax.swing.JPanel {
         pnlEditor = new javax.swing.JPanel();
         btnSave = new cococare.swing.component.CCButton();
         btnClose = new cococare.swing.component.CCButton();
-        tabHabitat = new javax.swing.JTabbedPane();
         pnlGenerator = new javax.swing.JPanel();
         pnlDragon = new javax.swing.JPanel();
 
@@ -28,33 +23,27 @@ public class PnlHabitat extends javax.swing.JPanel {
 
         btnClose.setType(cococare.swing.component.CCButton.Type.CLOSE);
 
-        tabHabitat.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-
         javax.swing.GroupLayout pnlGeneratorLayout = new javax.swing.GroupLayout(pnlGenerator);
         pnlGenerator.setLayout(pnlGeneratorLayout);
         pnlGeneratorLayout.setHorizontalGroup(
             pnlGeneratorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         pnlGeneratorLayout.setVerticalGroup(
             pnlGeneratorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 120, Short.MAX_VALUE)
+            .addGap(0, 60, Short.MAX_VALUE)
         );
-
-        tabHabitat.addTab(DragonCityOrganizerLanguage.turn(DragonCityOrganizerLanguage.Habitat), pnlGenerator);
 
         javax.swing.GroupLayout pnlDragonLayout = new javax.swing.GroupLayout(pnlDragon);
         pnlDragon.setLayout(pnlDragonLayout);
         pnlDragonLayout.setHorizontalGroup(
             pnlDragonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         pnlDragonLayout.setVerticalGroup(
             pnlDragonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 120, Short.MAX_VALUE)
+            .addGap(0, 90, Short.MAX_VALUE)
         );
-
-        tabHabitat.addTab(DragonCityOrganizerLanguage.turn(DragonCityOrganizerLanguage.Dragon), pnlDragon);
 
         javax.swing.GroupLayout pnlEditorLayout = new javax.swing.GroupLayout(pnlEditor);
         pnlEditor.setLayout(pnlEditorLayout);
@@ -64,7 +53,8 @@ public class PnlHabitat extends javax.swing.JPanel {
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(tabHabitat)
+            .addComponent(pnlGenerator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlDragon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlEditorLayout.setVerticalGroup(
             pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,7 +64,9 @@ public class PnlHabitat extends javax.swing.JPanel {
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addComponent(tabHabitat))
+                .addComponent(pnlGenerator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlDragon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -94,6 +86,5 @@ public class PnlHabitat extends javax.swing.JPanel {
     private javax.swing.JPanel pnlDragon;
     private javax.swing.JPanel pnlEditor;
     private javax.swing.JPanel pnlGenerator;
-    private javax.swing.JTabbedPane tabHabitat;
     // End of variables declaration//GEN-END:variables
 }

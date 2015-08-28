@@ -18,9 +18,12 @@ public class HabitatDao extends DragonCityOrganizerDao {
 //<editor-fold defaultstate="collapsed" desc=" public method ">
     public Habitat getMinTotalRevenuesBy(HabitatType habitatType) {
         hql.start().
+                where("totalDragon < :totalDragon").
                 where("habitatType = :habitatType").
-                orderBy("totalRevenues ASC");
+                orderBy("totalRevenues ASC").
+                orderBy("code DESC");
         parameters.start().
+                set("totalDragon", habitatType.getMaxDragons()).
                 set("habitatType", habitatType);
         return getBy(hql.value(), parameters.value());
     }

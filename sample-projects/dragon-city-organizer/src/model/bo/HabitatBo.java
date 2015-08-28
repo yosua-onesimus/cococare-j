@@ -1,7 +1,7 @@
 package model.bo;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import static cococare.common.CCFormat.*;
+import static cococare.common.CCFormat.parseInt;
 import cococare.database.CCHibernateBo;
 import model.dao.DragonDao;
 import model.dao.HabitatDao;
