@@ -1,7 +1,6 @@
-package cococare.framework.swing.controller.form.wf;
+package cococare.framework.swing.controller.form;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.framework.model.obj.wf.WfTransitionDestination;
 import cococare.framework.swing.CFSwingCtrl;
 //</editor-fold>
 
@@ -10,11 +9,11 @@ import cococare.framework.swing.CFSwingCtrl;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlDestinationListCtrl extends CFSwingCtrl {
+public abstract class PnlDefaultListCtrl extends CFSwingCtrl {
 
     @Override
-    protected Class _getEntity() {
-        return WfTransitionDestination.class;
+    protected Class _getClass() {
+        return PnlDefaultListCtrl.class;
     }
 
     @Override

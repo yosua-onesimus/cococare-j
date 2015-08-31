@@ -54,7 +54,7 @@ public class WfScriptBo extends CCHibernateBo {
                             valid = (parameterTypes.size() == 2)
                                     && parameterTypes.contains(CFViewCtrl.class)
                                     && parameterTypes.contains(WfWorkflow.class);
-                        } else if (ScriptType.TRANSITION_VISIBILITY.equals(methodConfig.scriptType())) {
+                        } else if (ScriptType.ACTION_VISIBILITY.equals(methodConfig.scriptType())) {
                             valid = (parameterTypes.size() == 1)
                                     && parameterTypes.contains(WfWorkflow.class)
                                     && boolean.class.equals(method.getReturnType());

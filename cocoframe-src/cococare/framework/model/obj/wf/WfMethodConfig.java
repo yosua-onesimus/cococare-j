@@ -27,9 +27,9 @@ public @interface WfMethodConfig {
          */
         VIEW_CUSTOMIZATION,
         /**
-         * transitionVisibility
+         * actionVisibility
          */
-        TRANSITION_VISIBILITY,
+        ACTION_VISIBILITY,
         /**
          * routeValidation
          */

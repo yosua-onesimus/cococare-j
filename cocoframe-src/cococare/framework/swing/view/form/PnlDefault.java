@@ -1,13 +1,13 @@
-package cococare.framework.swing.view.form.wf;
+package cococare.framework.swing.view.form;
 
 /**
  * @author Yosua Onesimus
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlDestination extends javax.swing.JPanel {
+public class PnlDefault extends javax.swing.JPanel {
 
-    public PnlDestination() {
+    public PnlDefault() {
         initComponents();
     }
 

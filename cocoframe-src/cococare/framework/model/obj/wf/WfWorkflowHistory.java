@@ -3,6 +3,10 @@ package cococare.framework.model.obj.wf;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import static cococare.common.CCFormat.getNextDate;
+import static cococare.common.CCFormat.parseInt;
+import static cococare.common.CCLogic.coalesce;
+import static cococare.common.CCLogic.isNotNull;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import cococare.framework.model.obj.util.UtilUser;
@@ -120,8 +124,8 @@ public class WfWorkflowHistory implements CCEntity {
     @CCFieldConfig(componentId = "dtpDateProcessed", accessible = Accessible.READONLY, maxLength = 12)
     private Date dateProcessed;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndTransition", accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "name")
-    private WfTransition transition;
+    @CCFieldConfig(componentId = "bndAction", accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "name")
+    private WfAction action;
 
 //<editor-fold defaultstate="collapsed" desc=" WfWorkflowHistory ">
     public WfWorkflowHistory() {
@@ -138,11 +142,12 @@ public class WfWorkflowHistory implements CCEntity {
     }
 
     public final void setWorkflow(WfWorkflow workflow) {
-        this.workflow = workflow;
+        this.workflow = coalesce(workflow.getMerge(), workflow);
         setProcess(workflow.getProcess());
         setActivity(workflow.getActivity());
-        setUser(workflow.getUser());
         setDateAssigned(new Date());
+        setUser(workflow.getUser());
+        setDateDue(getNextDate(getDateAssigned(), parseInt(workflow.getActivity().getDayLimit())));
     }
 
     public WfProcess getProcess() {
@@ -167,6 +172,9 @@ public class WfWorkflowHistory implements CCEntity {
 
     public void setUser(UtilUser user) {
         this.user = user;
+        if (isNotNull(user)) {
+            setDateClaimed(new Date());
+        }
     }
 
     public Date getDateAssigned() {
@@ -201,13 +209,15 @@ public class WfWorkflowHistory implements CCEntity {
         this.dateProcessed = dateProcessed;
     }
 
-    public WfTransition getTransition() {
-        return transition;
+    public WfAction getAction() {
+        return action;
     }
 
-    public void setTransition(WfTransition transition) {
-        this.transition = transition;
-        setDateProcessed(new Date());
+    public void setAction(WfAction action) {
+        this.action = action;
+        if (isNotNull(action)) {
+            setDateProcessed(new Date());
+        }
     }
 //</editor-fold>
 }

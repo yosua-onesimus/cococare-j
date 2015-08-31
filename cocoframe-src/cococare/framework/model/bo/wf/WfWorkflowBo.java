@@ -2,20 +2,26 @@ package cococare.framework.model.bo.wf;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCClass.copy;
+import static cococare.common.CCClass.extract;
 import static cococare.common.CCFormat.getBoolean;
-import static cococare.common.CCLogic.isNotNull;
+import static cococare.common.CCLanguage.*;
+import static cococare.common.CCLogic.*;
 import static cococare.common.CCMessage.getErrorMessage;
 import cococare.common.CCResponse;
-import cococare.database.CCEntity;
+import static cococare.common.CCResponse.newResponse;
+import static cococare.common.CCResponse.newResponseFalse;
 import cococare.database.CCHibernate.Transaction;
 import cococare.database.CCHibernateBo;
 import cococare.framework.common.CFViewCtrl;
+import cococare.framework.model.dao.util.UtilUserDao;
 import cococare.framework.model.dao.wf.*;
-import cococare.framework.model.obj.wf.WfMethodConfig.ScriptType;
+import cococare.framework.model.obj.util.UtilUser;
+import cococare.framework.model.obj.util.UtilUserGroup;
+import cococare.framework.model.obj.wf.WfEnum.ActivityPointType;
+import cococare.framework.model.obj.wf.WfEnum.TransitionRouteType;
+import cococare.framework.model.obj.wf.WfEnum.WorkflowStatus;
 import cococare.framework.model.obj.wf.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 //</editor-fold>
 
 /**
@@ -26,95 +32,223 @@ import java.util.List;
 public class WfWorkflowBo extends CCHibernateBo {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
+    private UtilUserDao userDao;
+    //
     private WfActivityDao activityDao;
+    private WfActionDao actionDao;
     private WfTransitionDao transitionDao;
-    private WfTransitionDestinationDao transitionDestinationDao;
+    private WfRoundRobinDao roundRobinDao;
     private WfWorkflowDao workflowDao;
     private WfWorkflowHistoryDao workflowHistoryDao;
 //</editor-fold>
 
-    public synchronized CCResponse createNewWorkflow(CCEntity entity, WfProcess process, WfScript postRouteProcessScript) {
+//<editor-fold defaultstate="collapsed" desc=" get user or get role ">
+    private synchronized List<UtilUser> getUsers4ManualRoute(WfActivity destination) {
+        return userDao.getListUnlimitedBy(destination.getUserRole());
+    }
+
+    private synchronized UtilUser getUser4RandomRoute(WfActivity destination) {
+        List<UtilUser> users = getUsers4ManualRoute(destination);
+        return isEmpty(users) ? null : users.get(new Random().nextInt(users.size()));
+    }
+
+    private synchronized UtilUser getUser4WeightageRoute(WfActivity destination) {
+        List<UtilUser> users = getUsers4ManualRoute(destination);
+        return workflowDao.getUserWhichHasSmallesWeightBy(users);
+    }
+
+    private synchronized WfRoundRobin getRoundRobin(WfActivity destination) {
+        //prepare round robin user
+        List<UtilUser> users = getUsers4ManualRoute(destination);
+        List<UtilUser> roundRobinUsers = roundRobinDao.getUsersBy(destination);
+        //update round robin table
+        if (users.size() != roundRobinUsers.size()) {
+            List<Long> ids = extract(users, "id");
+            ids.removeAll(extract(roundRobinUsers, "id"));
+            for (Long id : ids) {
+                WfRoundRobin roundRobin = new WfRoundRobin();
+                roundRobin.setActivity(destination);
+                UtilUser user = new UtilUser();
+                user.setId(id);
+                roundRobin.setUser(user);
+                roundRobinDao.saveOrUpdate(roundRobin);
+            }
+        }
+        //get round robin which has oldest last task
+        return roundRobinDao.getWhichHasOldestLastTaskBy(destination);
+    }
+
+    private synchronized UtilUser getUser4ToLastUserRoute(WfWorkflow workflow, WfActivity destination) {
+        WfWorkflowHistory workflowHistory = workflowHistoryDao.getLastBy(workflow, destination, true);
+        return workflowHistory.getUser();
+    }
+//</editor-fold>
+
+    public synchronized CCResponse createNewWorkflow(WfProcess process, WfDocument... documents) {
+        //prepare to create new workflow
+        WfActivity activity = activityDao.getStartPointBy(process);
+        if (isNull(activity)) {
+            return newResponseFalse(No_Activity_Available);
+        }
         Transaction transaction = workflowDao.newTransaction();
-        //create new workflow
-        WfWorkflow workflow = new WfWorkflow();
-        workflow.setEntityClassName(entity.getClass().getName());
-        workflow.setEntityId(entity.getId());
-        workflow.setProcess(process);
-        workflow.setActivity(activityDao.getStartPointBy(process));
-//        transaction.saveOrUpdate(workflow);
-        //create new workflow history
-        transaction.saveOrUpdate(new WfWorkflowHistory(workflow));
-        //post route process
-        if (isNotNull(postRouteProcessScript)
-                && ScriptType.POST_ROUTE_PROCESS.equals(postRouteProcessScript.getScriptType())) {
-            workflow.put(WfWorkflow.KEY_ENTITY, entity);
-            postRouteProcessScript.invoke(transaction, workflow);
+        //create new workflow for each document
+        WfWorkflow parent = null;
+        for (WfDocument document : documents) {
+            //save document
+            transaction.saveOrUpdate(document);
+            //create new workflow
+            WfWorkflow workflow = new WfWorkflow(document, process, activity);
+            if (isNull(parent)) {
+                parent = workflow;
+            } else {
+                workflow.setParent(parent);
+            }
+            transaction.saveOrUpdate(workflow);
+            //create new workflow history
+            transaction.saveOrUpdate(new WfWorkflowHistory(workflow));
+            //execute post route process
+            if (isNotNull(process.getPostRouteProcess())) {
+                process.getPostRouteProcess().invoke(transaction, workflow);
+            }
         }
         //
-//        return CCResponse.newResponse(transaction.execute(), workflow, getErrorMessage());
-        return CCResponse.newResponse(true, workflow, getErrorMessage());
+        return newResponse(transaction.execute(), documents, getErrorMessage());
     }
 
-    public synchronized void customizeView(WfActivity origin, CFViewCtrl viewCtrl, WfWorkflow workflow) {
-        if (isNotNull(origin.getViewCustomization())) {
-            origin.getViewCustomization().invoke(viewCtrl, workflow);
+    public synchronized List<WfActivity> getActivitiesBy(UtilUserGroup userRole) {
+        return workflowDao.getActivitiesBy(userRole);
+    }
+
+    public synchronized List<Long> getDocumentIdsBy(WfActivity activity, UtilUserGroup userRole, UtilUser user) {
+        return workflowDao.getDocumentIdsBy(activity, userRole, user);
+    }
+
+    public synchronized WfRouting prepareRouting(WfWorkflow workflow) {
+        //prepare to routing
+        WfRouting routing = new WfRouting();
+        for (WfAction action : actionDao.getListBy(workflow.getActivity())) {
+            if (isNotNull(action.getActionVisibility())
+                    && !getBoolean(action.getActionVisibility().invoke(workflow))) {
+                continue;
+            }
+            routing.getActions().add(action);
+            WfTransition transition = transitionDao.getFirstBy(action);
+            if (isNotNull(transition) && TransitionRouteType.MANUAL.equals(transition.getTransitionRouteType())) {
+                routing.getAction_users().put(action, getUsers4ManualRoute(transition.getDestination()));
+            }
+        }
+        //
+        return routing;
+    }
+
+    public synchronized void customizeView(CFViewCtrl viewCtrl, WfWorkflow workflow) {
+        if (isNotNull(workflow.getActivity().getViewCustomization())) {
+            workflow.getActivity().getViewCustomization().invoke(viewCtrl, workflow);
         }
     }
 
-    public synchronized List<WfTransition> getTransitions(WfActivity origin, WfWorkflow workflow) {
-        List<WfTransition> transitions = transitionDao.getListBy(origin);
-        List<WfTransition> transitionsVisible = new ArrayList();
-        for (WfTransition transition : transitions) {
-            if (isNotNull(transition.getTransitionVisibility())) {
-                if (getBoolean(transition.getTransitionVisibility().invoke(workflow))) {
-                    transitionsVisible.add(transition);
+    public synchronized CCResponse route(WfAction action, WfWorkflow workflow) {
+        //prepare workflow children
+        List<WfWorkflow> workflows = new ArrayList();
+        workflows.add(workflow);
+        workflows.addAll(workflowDao.getChildren(workflow));
+        //route validation
+        for (WfWorkflow w : workflows) {
+            if (isNotNull(action.getRouteValidation())) {
+                CCResponse response = (CCResponse) action.getRouteValidation().invoke(w);
+                if (!response.isTrue()) {
+                    return response;
                 }
             }
         }
-        return transitionsVisible;
-    }
-
-    public synchronized CCResponse route(WfTransition transition, WfWorkflow workflow) {
-        //route validation
-        if (isNotNull(transition.getRouteValidation())) {
-            CCResponse response = (CCResponse) transition.getRouteValidation().invoke(workflow);
-            if (!response.isTrue()) {
-                return response;
-            }
-        }
-        //
-        Transaction transaction = workflowDao.newTransaction();
-        //change old workflow history
-//        WfWorkflowHistory oldWorkflowHistory = workflowHistoryDao.getLastBy(workflow);
-//        oldWorkflowHistory.setTransition(transition);
-//        transaction.saveOrUpdate(oldWorkflowHistory);
-        //route process I
-        HashMap<WfWorkflow, WfScript> workflow_postRouteProcessScript = new HashMap();
-        workflow.setActivity(transition.getDestination());
-        workflow_postRouteProcessScript.put(workflow, transition.getPostRouteProcess());
-        for (WfTransitionDestination extraDestination : transitionDestinationDao.getListBy(transition)) {
-            if (isNotNull(extraDestination.getRouteAvailability())) {
-                if (!getBoolean(extraDestination.getRouteAvailability().invoke(workflow))) {
+        //prepare transitions
+        HashMap<WfWorkflow, WfTransition> workflow_transition = new LinkedHashMap();
+        HashMap<WfTransition, WfWorkflow> transition_parent = new LinkedHashMap();
+        List<WfTransition> transitions = transitionDao.getListBy(action);
+        for (WfWorkflow w : workflows) {
+            for (WfTransition transition : transitions) {
+                if (isNotNull(transition.getRouteAvailability())
+                        && !getBoolean(transition.getRouteAvailability().invoke(w))) {
                     continue;
                 }
+                if (!workflow_transition.containsKey(w)) {
+                    workflow_transition.put(w, transition);
+                } else {
+                    WfWorkflow parallelWorkflow = new WfWorkflow();
+                    copy(w, parallelWorkflow);
+                    if (action.isMergeable()) {
+                        parallelWorkflow.setMerge(w);
+                    }
+                    if (isNull(parallelWorkflow.getParent())) {
+                        transition_parent.put(transition, parallelWorkflow);
+                    } else {
+                        parallelWorkflow.setParent(transition_parent.get(transition));
+                    }
+                    workflow_transition.put(parallelWorkflow, transition);
+                }
             }
-            WfWorkflow parallelWorkflow = new WfWorkflow();
-            copy(workflow, parallelWorkflow);
-            parallelWorkflow.setActivity(extraDestination.getDestination());
-            workflow_postRouteProcessScript.put(parallelWorkflow, extraDestination.getPostRouteProcess());
         }
-        //route process II
-        for (WfWorkflow w : workflow_postRouteProcessScript.keySet()) {
-            transaction.saveOrUpdate(w);
-            //create new workflow history
-            transaction.saveOrUpdate(new WfWorkflowHistory(w));
-            //post route process
-            if (isNotNull(workflow_postRouteProcessScript.get(w))) {
-                workflow_postRouteProcessScript.get(w).invoke(transaction, workflow);
+        if (isEmpty(workflow_transition)) {
+            return newResponseFalse(No_Transition_Available);
+        }
+        Transaction transaction = workflowDao.newTransaction();
+        //change old workflow history
+        for (WfWorkflow w : workflows) {
+            WfWorkflowHistory oldWorkflowHistory = workflowHistoryDao.getLastBy(w, w.getActivity(), false);
+            if (isNotNull(oldWorkflowHistory)) {
+                oldWorkflowHistory.setAction(action);
+                transaction.saveOrUpdate(oldWorkflowHistory);
             }
         }
+        //update workflow information, create new workflow history, execute post route process
+        List<WfWorkflow> deletedWorkflow = new ArrayList();
+        for (WfWorkflow w : workflow_transition.keySet()) {
+            //update workflow information
+            w.setActivity(workflow_transition.get(w).getDestination());
+            //
+            if (ActivityPointType.MERGE_POINT.equals(w.getActivity().getActivityPointType())
+                    && workflowDao.isMergeable(w)) {
+                //merge workflow, delete unused parallel workflows
+                deletedWorkflow.addAll(0, workflowDao.getParallelWorkflowsBy(w));
+                //update workflow information
+                WfWorkflow mainWorkflow = coalesce(w.getMerge(), w);
+                mainWorkflow.setWorkflowStatus(WorkflowStatus.AVAILABLE);
+                transaction.saveOrUpdate(mainWorkflow);
+            } else {
+                //update workflow information
+                TransitionRouteType routeType = workflow_transition.get(w).getTransitionRouteType();
+                if (TransitionRouteType.POOLING.equals(routeType)) {
+                    w.setUser(null);
+                } else if (TransitionRouteType.RANDOM.equals(routeType)) {
+                    w.setUser(getUser4RandomRoute(w.getActivity()));
+                } else if (TransitionRouteType.WEIGHTAGE.equals(routeType)) {
+                    w.setUser(getUser4WeightageRoute(w.getActivity()));
+                } else if (TransitionRouteType.ROUND_ROBIN.equals(routeType)) {
+                    //get round robin data
+                    WfRoundRobin roundRobin = getRoundRobin(w.getActivity());
+                    w.setUser(roundRobin.getUser());
+                    //update round robin data
+                    roundRobin.setLastTask(new Date());
+                    transaction.saveOrUpdate(roundRobin);
+                } else if (TransitionRouteType.TO_LAST_USER.equals(routeType)) {
+                    w.setUser(getUser4ToLastUserRoute(w, w.getActivity()));
+                }
+                if (isNull(w.getUser()) && isNull(w.getUserRole())) {
+                    return newResponseFalse(No_User_Available);
+                }
+                transaction.saveOrUpdate(w);
+                //create new workflow history
+                if (isNull(workflowHistoryDao.getLastBy(w, w.getActivity(), false))) {
+                    transaction.saveOrUpdate(new WfWorkflowHistory(w));
+                }
+            }
+            //execute post route process
+            if (isNotNull(workflow_transition.get(w).getPostRouteProcess())) {
+                workflow_transition.get(w).getPostRouteProcess().invoke(transaction, w);
+            }
+        }
+        transaction.delete(deletedWorkflow);
         //
-//        return CCResponse.newResponse(transaction.execute(), workflow, getErrorMessage());
-        return CCResponse.newResponse(true, workflow, getErrorMessage());
+        return newResponse(transaction.execute(), workflow, getErrorMessage());
     }
 }

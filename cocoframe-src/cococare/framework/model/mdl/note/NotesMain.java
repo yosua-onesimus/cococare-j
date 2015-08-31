@@ -4,7 +4,6 @@ package cococare.framework.model.mdl.note;
 import static cococare.common.CCConfig.HBN_WORKFLOW_MODULE_INCLUDED;
 import cococare.common.CCLanguage;
 import cococare.framework.common.CFApplUae;
-import cococare.framework.model.bo.util.UtilSchedulerBo;
 import cococare.framework.model.dao.wf.WfProcessDao;
 import static cococare.framework.model.mdl.note.NotesLanguage.*;
 import cococare.framework.model.obj.wf.WfProcess;
@@ -13,6 +12,7 @@ import cococare.framework.swing.controller.form.note.PnlNoteListCtrl;
 import cococare.framework.swing.controller.form.note.PnlReferenceListCtrl;
 import cococare.framework.swing.controller.form.setup.PnlJavaxCommSetupCtrl;
 import cococare.framework.swing.controller.form.setup.PnlLanguageSetupCtrl;
+import cococare.framework.swing.controller.form.wf.PnlDocumentListCtrl;
 //</editor-fold>
 
 /**
@@ -59,7 +59,6 @@ public class NotesMain extends CFSwingMain {
             process.setName("TEST2");
             processDao.saveOrUpdate(process);
         }
-        new UtilSchedulerBo().initInitialData();
         return super._initInitialData();
     }
 
@@ -73,6 +72,9 @@ public class NotesMain extends CFSwingMain {
 
     @Override
     protected void _applyUserConfigUaeBody(CFApplUae uae) {
+        uae.addMenuRoot(PnlDocumentListCtrl.class);
+        uae.addMenuParent("Document", "/cococare/resource/icon-menu-child.png", PnlDocumentListCtrl.class);
+        //
         uae.addMenuParent(Notes, "/cococare/resource/icon-menu-parent.png", null);
         uae.addMenuChild(Reference, "/cococare/resource/icon-menu-child.png", PnlReferenceListCtrl.class);
         uae.addMenuSeparator();

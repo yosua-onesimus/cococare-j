@@ -5,6 +5,7 @@ import cococare.framework.model.mdl.wf.WorkflowDao;
 import cococare.framework.model.obj.wf.WfActivity;
 import cococare.framework.model.obj.wf.WfEnum.ActivityPointType;
 import cococare.framework.model.obj.wf.WfProcess;
+import java.util.List;
 //</editor-fold>
 
 /**
@@ -22,6 +23,10 @@ public class WfActivityDao extends WorkflowDao {
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" crud ">
+    public List<WfActivity> getListBy(WfProcess process) {
+        return getListByField("process", process, false);
+    }
+
     public WfActivity getStartPointBy(WfProcess process) {
         hql.start().
                 where("pointTypeIndex = :pointTypeIndex").

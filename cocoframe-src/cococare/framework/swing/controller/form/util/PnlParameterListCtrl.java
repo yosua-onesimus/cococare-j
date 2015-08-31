@@ -11,8 +11,6 @@ import cococare.framework.model.obj.util.UtilConfig;
 import cococare.framework.swing.CFSwingCtrl;
 import static cococare.swing.CCSwing.*;
 import cococare.swing.component.CCComboBox;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 //</editor-fold>
 
 /**
@@ -65,12 +63,7 @@ public class PnlParameterListCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        addListener(cmbEntity, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                _doSearch();
-            }
-        });
+        addListener(cmbEntity, alSearch);
     }
 
     @Override

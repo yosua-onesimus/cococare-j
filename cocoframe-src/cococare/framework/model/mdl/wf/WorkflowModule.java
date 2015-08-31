@@ -23,9 +23,13 @@ public class WorkflowModule extends CCHibernateModule {
         hibernate.addAnnotatedClass(WfScript.class);
         hibernate.addAnnotatedClass(WfProcess.class);
         hibernate.addAnnotatedClass(WfActivity.class);
+        hibernate.addAnnotatedClass(WfAction.class);
         hibernate.addAnnotatedClass(WfTransition.class);
-        hibernate.addAnnotatedClass(WfTransitionDestination.class);
         //
+        hibernate.addAnnotatedClass(WfRoundRobin.class);
+        //
+        hibernate.addAnnotatedClass(WfDocument.class);
+        hibernate.addAnnotatedClass(WfDocumentSample.class);
         hibernate.addAnnotatedClass(WfWorkflow.class);
         hibernate.addAnnotatedClass(WfWorkflowHistory.class);
     }

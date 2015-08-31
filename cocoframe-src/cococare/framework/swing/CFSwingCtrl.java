@@ -7,6 +7,7 @@ import static cococare.common.CCClass.setValue;
 import static cococare.common.CCFinal.btnEdit;
 import static cococare.common.CCFormat.getBoolean;
 import static cococare.common.CCFormat.getStringOrNull;
+import static cococare.common.CCLanguage.Filter;
 import static cococare.common.CCLanguage.turn;
 import static cococare.common.CCLogic.*;
 import static cococare.common.CCMessage.*;
@@ -20,6 +21,7 @@ import cococare.swing.CCHotkey;
 import static cococare.swing.CCHotkey.simpleNavigate;
 import static cococare.swing.CCSwing.*;
 import cococare.swing.CCTable;
+import cococare.swing.component.CCDialog;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
@@ -121,29 +123,34 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 //<editor-fold defaultstate="collapsed" desc=" LIST_FUNCTION ">
     @Override
     protected void _initTable() {
-        if (_hasEntity() && isNotNull(swingView.getTblEntity())) {
-            tblEntity = new CCTable(swingView.getTblEntity(), _getEntity());
-            requestFocusInWindow(swingView.getTblEntity());
-            //parent-childs-screen
-            if (isNotNull(parameter.get(toString() + parentValue))) {
-                if (getBoolean(parameter.get(toString() + parentNewEntity))) {
-                    setVisible(swingView.getTxtKeyword(), false);
-                    setVisible(swingView.getBtnFilter(), false);
-                    setVisible(swingView.getPgnEntity(), false);
-                }
-                final Object dummy = this;
-                tblEntity.setVisibleField(false, parameter.get(toString() + parentField).toString());
-                tblEntity.setHqlFilters(new CCHibernateFilter() {
-                    @Override
-                    public String getFieldName() {
-                        return parameter.get(dummy.toString() + parentField).toString();
+        if (_hasEntity()) {
+            if (isNotNull(swingView.getTabEntity()) && isNullOrEmpty(swingView.getTabEntity().getTitleAt(0))) {
+                swingView.getTabEntity().setTitleAt(0, _getEntityLabel());
+            }
+            if (isNotNull(swingView.getTblEntity())) {
+                tblEntity = new CCTable(swingView.getTblEntity(), _getEntity());
+                requestFocusInWindow(swingView.getTblEntity());
+                //parent-childs-screen
+                if (isNotNull(parameter.get(toString() + parentValue))) {
+                    if (getBoolean(parameter.get(toString() + parentNewEntity))) {
+                        setVisible(swingView.getTxtKeyword(), false);
+                        setVisible(swingView.getBtnFilter(), false);
+                        setVisible(swingView.getPgnEntity(), false);
                     }
+                    final Object dummy = this;
+                    tblEntity.setVisibleField(false, parameter.get(toString() + parentField).toString());
+                    tblEntity.setHqlFilters(new CCHibernateFilter() {
+                        @Override
+                        public String getFieldName() {
+                            return parameter.get(dummy.toString() + parentField).toString();
+                        }
 
-                    @Override
-                    public Object getFieldValue() {
-                        return parameter.get(dummy.toString() + parentValue);
-                    }
-                });
+                        @Override
+                        public Object getFieldValue() {
+                            return parameter.get(dummy.toString() + parentValue);
+                        }
+                    });
+                }
             }
         }
     }
@@ -159,6 +166,19 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     @Override
     protected void _initFilterElements() {
         if (_hasTblEntity() && isNotNull(swingView.getBtnFilter())) {
+            final CCDialog dialog = new CCDialog(getMainScreen(), turn(_getEntityLabel() + " " + Filter), tblEntity.getFilterContainer());
+            addListener(swingView.getBtnFilter(), new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    showDialog(getMainScreen(), dialog);
+                }
+            });
+            addListener(tblEntity.getFilterBtnFilter(), new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    dialog.dispose();
+                }
+            });
         }
     }
 //</editor-fold>

@@ -4,6 +4,7 @@ package cococare.framework.model.bo.util;
 import cococare.database.CCHibernateBo;
 import cococare.framework.model.dao.util.UtilConfigDao;
 import cococare.framework.model.obj.util.UtilConfAppl;
+import cococare.framework.model.obj.util.UtilConfig;
 //</editor-fold>
 
 /**
@@ -33,6 +34,10 @@ public class UtilConfigBo extends CCHibernateBo {
 
     public synchronized UtilConfAppl getConfAppl() {
         return confAppl;
+    }
+
+    public synchronized UtilConfig getByKey(String key) {
+        return configDao.getByKey(key);
     }
 //</editor-fold>
 }

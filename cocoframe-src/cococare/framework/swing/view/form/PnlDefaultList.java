@@ -1,17 +1,13 @@
-package cococare.framework.swing.view.form.wf;
-
-//<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.common.CCLanguage;
-//</editor-fold>
+package cococare.framework.swing.view.form;
 
 /**
  * @author Yosua Onesimus
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlDestinationList extends javax.swing.JPanel {
+public class PnlDefaultList extends javax.swing.JPanel {
 
-    public PnlDestinationList() {
+    public PnlDefaultList() {
         initComponents();
     }
 
@@ -78,7 +74,7 @@ public class PnlDestinationList extends javax.swing.JPanel {
         pnlList.add(scrEntity, java.awt.BorderLayout.CENTER);
         pnlList.add(pgnEntity, java.awt.BorderLayout.SOUTH);
 
-        tabEntity.addTab(CCLanguage.turn(CCLanguage.Extra_Destination), pnlList);
+        tabEntity.addTab("", pnlList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

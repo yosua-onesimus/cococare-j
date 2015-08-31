@@ -5,6 +5,7 @@ import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
+import cococare.framework.model.obj.util.UtilUser;
 import java.util.Date;
 import javax.persistence.*;
 //</editor-fold>
@@ -15,9 +16,9 @@ import javax.persistence.*;
  * @version 13.03.17
  */
 @Entity
-@Table(name = "wf_processes")
-@CCTypeConfig(label = "Workflow Process", uniqueKey = "name")
-public class WfProcess implements CCEntity {
+@Table(name = "wf_round_robins")
+@CCTypeConfig(label = "Round Robin", uniqueKey = "@activity.name-@user.username-@lastTask")
+public class WfRoundRobin implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -94,39 +95,39 @@ public class WfProcess implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
-    @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "P000", requestFocus = true, unique = true)
-    private String code;
-    @Column(length = 32)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
-    private String name;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndPostRouteProcess", maxLength = 32, uniqueKey = "name")
-    private WfScript postRouteProcess;
+    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
+    private WfActivity activity;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndUser", accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "username")
+    private UtilUser user;
+    @Temporal(value = TemporalType.TIMESTAMP)
+    @CCFieldConfig(componentId = "dtpLastTask", accessible = Accessible.READONLY, maxLength = 12)
+    private Date lastTask = new Date(0);
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public String getCode() {
-        return code;
+    public WfActivity getActivity() {
+        return activity;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setActivity(WfActivity activity) {
+        this.activity = activity;
     }
 
-    public String getName() {
-        return name;
+    public UtilUser getUser() {
+        return user;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUser(UtilUser user) {
+        this.user = user;
     }
 
-    public WfScript getPostRouteProcess() {
-        return postRouteProcess;
+    public Date getLastTask() {
+        return lastTask;
     }
 
-    public void setPostRouteProcess(WfScript postRouteProcess) {
-        this.postRouteProcess = postRouteProcess;
+    public void setLastTask(Date lastTask) {
+        this.lastTask = lastTask;
     }
 //</editor-fold>
 }

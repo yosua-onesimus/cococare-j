@@ -16,7 +16,7 @@ import cococare.framework.model.obj.util.UtilRegency;
 public class UtilProvinceRegencyBo extends CCHibernateBo {
 
 //<editor-fold defaultstate="collapsed" desc=" public method ">
-    public synchronized boolean initFirstData() {
+    public synchronized boolean initInitialData() {
         CCDom dom = new CCDom();
         dom.read(getClass().getResourceAsStream("/files/system/archive/ProvinceAndRegency.xml"));
         return UtilityModule.INSTANCE.getCCHibernate().restore(dom.readEntity(UtilProvince.class))

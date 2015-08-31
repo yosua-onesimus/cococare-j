@@ -11,9 +11,7 @@ public class WfEnum {
 
         START_POINT("Start Point"),
         PLAIN_POINT("Plain Point"),
-        ASIDE_POINT("Aside Point"),//mergeable
         MERGE_POINT("Merge Point"),
-        SPLIT_POINT("Split Point"),//unmergeable
         FINAL_POINT("Final Point");
         private String string;
 
@@ -30,11 +28,11 @@ public class WfEnum {
     public enum TransitionRouteType {
 
         MANUAL("Manual"),//
-        POOLING("Pooling"),//WfActivity.receiverRole
-        RANDOM("Random"),//WfActivity.receiverRole
-        WEIGHTAGE("Weightage"),//WfActivity.receiverRole and WfActivity.weight
-        ROUND_ROBIN("Round Robin"),//WfActivity.receiverRole
-        RETURN_TO_LAST_USER("Return to Last User");//WfWorkflowHistory.user
+        POOLING("Pooling"),//WfActivity.userRole
+        RANDOM("Random"),//WfActivity.userRole
+        WEIGHTAGE("Weightage"),//WfActivity.userRole and WfActivity.weight
+        ROUND_ROBIN("Round Robin"),//WfActivity.userRole
+        TO_LAST_USER("To Last User");//WfWorkflowHistory.user
         private String string;
 
         private TransitionRouteType(String string) {

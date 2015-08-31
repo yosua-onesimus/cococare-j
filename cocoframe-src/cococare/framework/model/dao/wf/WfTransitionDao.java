@@ -2,7 +2,7 @@ package cococare.framework.model.dao.wf;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.framework.model.mdl.wf.WorkflowDao;
-import cococare.framework.model.obj.wf.WfActivity;
+import cococare.framework.model.obj.wf.WfAction;
 import cococare.framework.model.obj.wf.WfTransition;
 import java.util.List;
 //</editor-fold>
@@ -22,8 +22,17 @@ public class WfTransitionDao extends WorkflowDao {
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" crud ">
-    public List<WfTransition> getListBy(WfActivity origin) {
-        return getListByField("origin", origin, false);
+    public WfTransition getFirstBy(WfAction action) {
+        hql.start().
+                where("action = :action").
+                orderBy("sequence ASC");
+        parameters.start().
+                set("action", action);
+        return getBy(hql.value(), parameters.value());
+    }
+
+    public List<WfTransition> getListBy(WfAction action) {
+        return getListByField("action", action, false);
     }
 //</editor-fold>
 }

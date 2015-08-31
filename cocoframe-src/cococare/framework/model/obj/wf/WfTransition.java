@@ -3,6 +3,7 @@ package cococare.framework.model.obj.wf;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import cococare.framework.model.obj.wf.WfEnum.TransitionRouteType;
@@ -96,8 +97,11 @@ public class WfTransition implements CCEntity {
     }
 //</editor-fold>
     @ManyToOne
-    @CCFieldConfig(componentId = "bndOrigin", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name", visible = false)
-    private WfActivity origin;
+    @CCFieldConfig(componentId = "bndAction", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name", visible = false, visible2 = false)
+    private WfAction action;
+    @Column(name = "sequence_")
+    @CCFieldConfig(label = "#", tooltiptext = "Sequence", componentId = "txtSequence", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 2)
+    private Integer sequence = 0;
     @Column(length = 8)
     @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "T000", requestFocus = true, unique = true)
     private String code;
@@ -105,11 +109,8 @@ public class WfTransition implements CCEntity {
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
     private String name;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndTransitionVisibility", maxLength = 32, uniqueKey = "name")
-    private WfScript transitionVisibility;
-    @ManyToOne
-    @CCFieldConfig(componentId = "bndRouteValidation", maxLength = 32, uniqueKey = "name")
-    private WfScript routeValidation;
+    @CCFieldConfig(componentId = "bndRouteAvailability", accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "name")
+    private WfScript routeAvailability;
     @CCFieldConfig(label = "Route Type", componentId = "cmbRouteType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.wf.WfEnum$TransitionRouteType", optionReflectKey = "routeType", visible = false)
     private Integer routeTypeIndex = TransitionRouteType.MANUAL.ordinal();
     @Column(length = 24)
@@ -123,12 +124,20 @@ public class WfTransition implements CCEntity {
     private WfScript postRouteProcess;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public WfActivity getOrigin() {
-        return origin;
+    public WfAction getAction() {
+        return action;
     }
 
-    public void setOrigin(WfActivity origin) {
-        this.origin = origin;
+    public void setAction(WfAction action) {
+        this.action = action;
+    }
+
+    public Integer getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(Integer sequence) {
+        this.sequence = sequence;
     }
 
     public String getCode() {
@@ -147,20 +156,12 @@ public class WfTransition implements CCEntity {
         this.name = name;
     }
 
-    public WfScript getTransitionVisibility() {
-        return transitionVisibility;
+    public WfScript getRouteAvailability() {
+        return routeAvailability;
     }
 
-    public void setTransitionVisibility(WfScript transitionVisibility) {
-        this.transitionVisibility = transitionVisibility;
-    }
-
-    public WfScript getRouteValidation() {
-        return routeValidation;
-    }
-
-    public void setRouteValidation(WfScript routeValidation) {
-        this.routeValidation = routeValidation;
+    public void setRouteAvailability(WfScript routeAvailability) {
+        this.routeAvailability = routeAvailability;
     }
 
     public Integer getRouteTypeIndex() {

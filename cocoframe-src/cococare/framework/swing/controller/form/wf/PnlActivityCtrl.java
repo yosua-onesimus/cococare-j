@@ -1,12 +1,19 @@
 package cococare.framework.swing.controller.form.wf;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.common.CCFieldConfig.Accessible;
+import static cococare.framework.model.obj.util.UtilFilter.isUserGroupNotRoot;
 import cococare.framework.model.obj.wf.WfActivity;
+import cococare.framework.model.obj.wf.WfEnum.ActivityPointType;
 import static cococare.framework.model.obj.wf.WfFilter.isTypeIsViewCustomization;
 import cococare.framework.model.obj.wf.WfProcess;
-import cococare.framework.swing.CFSwingCtrl;
+import cococare.framework.swing.controller.form.PnlDefaultCtrl;
+import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCBandBox;
-import cococare.swing.component.CCComboBox;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 //</editor-fold>
 
 /**
@@ -14,39 +21,51 @@ import cococare.swing.component.CCComboBox;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlActivityCtrl extends CFSwingCtrl {
+public class PnlActivityCtrl extends PnlDefaultCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
-    private CCComboBox cmbProcess;
     private CCBandBox bndViewCustomization;
+    private JTextField txtDayLimit;
+    private CCBandBox bndUserRole;
+    private JTextField txtWeight;
+    private JComboBox cmbPointType;
 //</editor-fold>
-
-    @Override
-    protected Class _getEntity() {
-        return WfActivity.class;
-    }
-
-    @Override
-    protected BaseFunction _getBaseFunction() {
-        return BaseFunction.FORM_FUNCTION;
-    }
-
-    @Override
-    protected void _initComponent() {
-        cmbProcess = (CCComboBox) parameter.get(callerCtrl.toString() + "cmbProcess");
-        super._initComponent();
-        _addChildScreen("origin", new PnlTransitionListCtrl(), "pnlTransition");
-    }
 
     @Override
     protected void _initEditor() {
         super._initEditor();
         bndViewCustomization.getTable().setHqlFilters(isTypeIsViewCustomization);
+        bndUserRole.getTable().setHqlFilters(isUserGroupNotRoot);
     }
 
     @Override
     protected void _initObjEntity() {
         super._initObjEntity();
-        ((WfActivity) objEntity).setProcess((WfProcess) cmbProcess.getSelectedObject());
+        ((WfActivity) objEntity).setProcess((WfProcess) parameter.get(callerCtrl.toString() + "selectedObject"));
+    }
+
+    @Override
+    protected void _initListener() {
+        super._initListener();
+        addListener(cmbPointType, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                _doPointType();
+            }
+        });
+    }
+
+    private void _doPointType() {
+        boolean isFinalPoint = ActivityPointType.FINAL_POINT.equals(ActivityPointType.values()[cmbPointType.getSelectedIndex()]);
+        edtEntity.setAccessible(bndViewCustomization, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.NORMAL);
+        edtEntity.setAccessible(txtDayLimit, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.MANDATORY);
+        edtEntity.setAccessible(bndUserRole, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.MANDATORY);
+        edtEntity.setAccessible(txtWeight, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.MANDATORY);
+    }
+
+    @Override
+    protected boolean _doSaveEntity() {
+        parameter.put(callerCtrl.toString() + "crudObject", objEntity);
+        return super._doSaveEntity();
     }
 }

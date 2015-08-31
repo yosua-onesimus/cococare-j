@@ -6,6 +6,7 @@ import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
+import cococare.framework.model.obj.util.UtilUserGroup;
 import cococare.framework.model.obj.wf.WfEnum.ActivityPointType;
 import java.util.Date;
 import javax.persistence.*;
@@ -110,6 +111,9 @@ public class WfActivity implements CCEntity {
     private WfScript viewCustomization;
     @CCFieldConfig(componentId = "txtDayLimit", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4)
     private Integer dayLimit = 5;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndUserRole", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
+    private UtilUserGroup userRole;
     @CCFieldConfig(componentId = "txtWeight", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4)
     private Integer weight = 1;
     @CCFieldConfig(label = "Point Type", componentId = "cmbPointType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.wf.WfEnum$ActivityPointType", optionReflectKey = "pointType", visible = false)
@@ -157,6 +161,14 @@ public class WfActivity implements CCEntity {
 
     public void setDayLimit(Integer dayLimit) {
         this.dayLimit = dayLimit;
+    }
+
+    public UtilUserGroup getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UtilUserGroup userRole) {
+        this.userRole = userRole;
     }
 
     public Integer getWeight() {

@@ -9,9 +9,9 @@ import cococare.common.CCLanguage;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlActivityList extends javax.swing.JPanel {
+public class PnlWorkflowConfigurator extends javax.swing.JPanel {
 
-    public PnlActivityList() {
+    public PnlWorkflowConfigurator() {
         initComponents();
     }
 
@@ -19,11 +19,13 @@ public class PnlActivityList extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlWorkflowConfigurator = new javax.swing.JPanel();
+        scrProcess = new javax.swing.JScrollPane();
+        treeProcess = new javax.swing.JTree();
         tabEntity = new javax.swing.JTabbedPane();
         pnlList = new javax.swing.JPanel();
         pnlNorth = new javax.swing.JPanel();
         pnlNorthWest = new javax.swing.JPanel();
-        cmbProcess = new cococare.swing.component.CCComboBox();
         btnAdd = new cococare.swing.component.CCButton();
         btnEdit = new cococare.swing.component.CCButton();
         btnDelete = new cococare.swing.component.CCButton();
@@ -34,8 +36,18 @@ public class PnlActivityList extends javax.swing.JPanel {
         pgnEntity = new cococare.swing.component.CCPaging();
 
         setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        setMinimumSize(new java.awt.Dimension(600, 200));
-        setPreferredSize(new java.awt.Dimension(600, 200));
+        setMinimumSize(new java.awt.Dimension(800, 200));
+        setPreferredSize(new java.awt.Dimension(800, 200));
+
+        pnlWorkflowConfigurator.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        pnlWorkflowConfigurator.setLayout(new java.awt.BorderLayout());
+
+        scrProcess.setPreferredSize(new java.awt.Dimension(200, 200));
+
+        treeProcess.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        scrProcess.setViewportView(treeProcess);
+
+        pnlWorkflowConfigurator.add(scrProcess, java.awt.BorderLayout.WEST);
 
         tabEntity.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
@@ -45,22 +57,20 @@ public class PnlActivityList extends javax.swing.JPanel {
         pnlNorth.setPreferredSize(new java.awt.Dimension(10, 50));
         pnlNorth.setLayout(new java.awt.BorderLayout());
 
-        pnlNorthWest.setPreferredSize(new java.awt.Dimension(500, 50));
+        pnlNorthWest.setPreferredSize(new java.awt.Dimension(300, 50));
         pnlNorthWest.setLayout(null);
-        pnlNorthWest.add(cmbProcess);
-        cmbProcess.setBounds(0, 10, 200, 29);
 
         btnAdd.setType(cococare.swing.component.CCButton.Type.ADD);
         pnlNorthWest.add(btnAdd);
-        btnAdd.setBounds(200, 10, 100, 29);
+        btnAdd.setBounds(0, 10, 100, 29);
 
         btnEdit.setType(cococare.swing.component.CCButton.Type.EDIT);
         pnlNorthWest.add(btnEdit);
-        btnEdit.setBounds(300, 10, 100, 29);
+        btnEdit.setBounds(100, 10, 100, 29);
 
         btnDelete.setType(cococare.swing.component.CCButton.Type.DELETE);
         pnlNorthWest.add(btnDelete);
-        btnDelete.setBounds(400, 10, 100, 29);
+        btnDelete.setBounds(200, 10, 100, 29);
 
         pnlNorth.add(pnlNorthWest, java.awt.BorderLayout.WEST);
 
@@ -81,36 +91,36 @@ public class PnlActivityList extends javax.swing.JPanel {
         pnlList.add(scrEntity, java.awt.BorderLayout.CENTER);
         pnlList.add(pgnEntity, java.awt.BorderLayout.SOUTH);
 
-        tabEntity.addTab(CCLanguage.turn(CCLanguage.Workflow_Activity), pnlList);
+        tabEntity.addTab(CCLanguage.turn(CCLanguage.Process), pnlList);
+
+        pnlWorkflowConfigurator.add(tabEntity, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tabEntity, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(pnlWorkflowConfigurator, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tabEntity, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(pnlWorkflowConfigurator, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cococare.swing.component.CCButton btnAdd;
     private cococare.swing.component.CCButton btnDelete;
     private cococare.swing.component.CCButton btnEdit;
-    private cococare.swing.component.CCComboBox cmbProcess;
     private cococare.swing.component.CCPaging pgnEntity;
     private javax.swing.JPanel pnlList;
     private javax.swing.JPanel pnlNorth;
     private javax.swing.JPanel pnlNorthEast;
     private javax.swing.JPanel pnlNorthWest;
+    private javax.swing.JPanel pnlWorkflowConfigurator;
     private javax.swing.JScrollPane scrEntity;
+    private javax.swing.JScrollPane scrProcess;
     private javax.swing.JTabbedPane tabEntity;
     private javax.swing.JTable tblEntity;
+    private javax.swing.JTree treeProcess;
     private javax.swing.JTextField txtKeyword;
     // End of variables declaration//GEN-END:variables
 }

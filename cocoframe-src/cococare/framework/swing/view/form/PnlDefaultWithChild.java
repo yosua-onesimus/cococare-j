@@ -1,13 +1,13 @@
-package cococare.framework.swing.view.form.util;
+package cococare.framework.swing.view.form;
 
 /**
  * @author Yosua Onesimus
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlApplicationSetting extends javax.swing.JPanel {
+public class PnlDefaultWithChild extends javax.swing.JPanel {
 
-    public PnlApplicationSetting() {
+    public PnlDefaultWithChild() {
         initComponents();
     }
 
@@ -18,7 +18,9 @@ public class PnlApplicationSetting extends javax.swing.JPanel {
         pnlEditor = new javax.swing.JPanel();
         btnSave = new cococare.swing.component.CCButton();
         btnClose = new cococare.swing.component.CCButton();
+        tabEntity = new javax.swing.JTabbedPane();
         pnlGenerator = new javax.swing.JPanel();
+        pnlChild = new javax.swing.JPanel();
 
         setMinimumSize(new java.awt.Dimension(600, 200));
         setPreferredSize(new java.awt.Dimension(600, 200));
@@ -27,16 +29,33 @@ public class PnlApplicationSetting extends javax.swing.JPanel {
 
         btnClose.setType(cococare.swing.component.CCButton.Type.CLOSE);
 
+        tabEntity.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+
         javax.swing.GroupLayout pnlGeneratorLayout = new javax.swing.GroupLayout(pnlGenerator);
         pnlGenerator.setLayout(pnlGeneratorLayout);
         pnlGeneratorLayout.setHorizontalGroup(
             pnlGeneratorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 595, Short.MAX_VALUE)
         );
         pnlGeneratorLayout.setVerticalGroup(
             pnlGeneratorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
+
+        tabEntity.addTab("", pnlGenerator);
+
+        javax.swing.GroupLayout pnlChildLayout = new javax.swing.GroupLayout(pnlChild);
+        pnlChild.setLayout(pnlChildLayout);
+        pnlChildLayout.setHorizontalGroup(
+            pnlChildLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+        pnlChildLayout.setVerticalGroup(
+            pnlChildLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
+        );
+
+        tabEntity.addTab("", pnlChild);
 
         javax.swing.GroupLayout pnlEditorLayout = new javax.swing.GroupLayout(pnlEditor);
         pnlEditor.setLayout(pnlEditorLayout);
@@ -46,7 +65,7 @@ public class PnlApplicationSetting extends javax.swing.JPanel {
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(pnlGenerator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabEntity)
         );
         pnlEditorLayout.setVerticalGroup(
             pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -56,7 +75,7 @@ public class PnlApplicationSetting extends javax.swing.JPanel {
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addComponent(pnlGenerator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tabEntity))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -73,7 +92,9 @@ public class PnlApplicationSetting extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cococare.swing.component.CCButton btnClose;
     private cococare.swing.component.CCButton btnSave;
+    private javax.swing.JPanel pnlChild;
     private javax.swing.JPanel pnlEditor;
     private javax.swing.JPanel pnlGenerator;
+    private javax.swing.JTabbedPane tabEntity;
     // End of variables declaration//GEN-END:variables
 }

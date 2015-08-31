@@ -2,8 +2,11 @@ package cococare.framework.swing;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCFinal.*;
+import static cococare.common.CCLogic.isNull;
+import static cococare.framework.swing.CFSwingMap.getMainScreen;
 import static cococare.swing.CCSwing.*;
 import cococare.swing.component.CCButton;
+import cococare.swing.component.CCDialog;
 import cococare.swing.component.CCPaging;
 import java.awt.Container;
 import javax.swing.*;
@@ -39,6 +42,9 @@ public class CFSwingView {
     }
 
     public JDialog getDialog() {
+        if (isNull(dialog)) {
+            dialog = new CCDialog(getMainScreen(), null, panel);
+        }
         return dialog;
     }
 

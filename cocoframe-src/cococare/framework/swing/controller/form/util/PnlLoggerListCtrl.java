@@ -9,8 +9,6 @@ import cococare.framework.model.obj.util.UtilLogger;
 import cococare.framework.swing.CFSwingCtrl;
 import static cococare.swing.CCSwing.addListener;
 import static cococare.swing.CCSwing.fillUp;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 //</editor-fold>
 
@@ -68,7 +66,7 @@ public class PnlLoggerListCtrl extends CFSwingCtrl {
 
             @Override
             public Object getFieldValue() {
-                return cmbUsername.getSelectedItem();
+                return cmbUsername.getSelectedIndex() < 1 ? null : cmbUsername.getSelectedItem();
             }
         }, new CCHibernateFilter() {
             @Override
@@ -78,7 +76,7 @@ public class PnlLoggerListCtrl extends CFSwingCtrl {
 
             @Override
             public Object getFieldValue() {
-                return cmbScreen.getSelectedItem();
+                return cmbScreen.getSelectedIndex() < 1 ? null : cmbScreen.getSelectedItem();
             }
         }, new CCHibernateFilter() {
             @Override
@@ -88,7 +86,7 @@ public class PnlLoggerListCtrl extends CFSwingCtrl {
 
             @Override
             public Object getFieldValue() {
-                return cmbAction.getSelectedItem();
+                return cmbAction.getSelectedIndex() < 1 ? null : cmbAction.getSelectedItem();
             }
         });
         tblEntity.setHqlOrderSyntax("id DESC");
@@ -97,12 +95,6 @@ public class PnlLoggerListCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        ActionListener alSearch = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                _doSearch();
-            }
-        };
         addListener(cmbUsername, alSearch);
         addListener(cmbScreen, alSearch);
         addListener(cmbAction, alSearch);

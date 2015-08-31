@@ -3,6 +3,7 @@ package cococare.framework.model.obj.wf;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import static cococare.common.CCFormat.getBoolean;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import java.util.Date;
@@ -15,9 +16,9 @@ import javax.persistence.*;
  * @version 13.03.17
  */
 @Entity
-@Table(name = "wf_processes")
-@CCTypeConfig(label = "Workflow Process", uniqueKey = "name")
-public class WfProcess implements CCEntity {
+@Table(name = "wf_actions")
+@CCTypeConfig(label = "Workflow Action", uniqueKey = "name")
+public class WfAction implements CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" entity base ">
     @Id
@@ -94,17 +95,33 @@ public class WfProcess implements CCEntity {
         this.logSaveTimes = logSaveTimes;
     }
 //</editor-fold>
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name", visible = false, visible2 = false)
+    private WfActivity activity;
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "P000", requestFocus = true, unique = true)
+    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "A000", requestFocus = true, unique = true)
     private String code;
     @Column(length = 32)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
     private String name;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndPostRouteProcess", maxLength = 32, uniqueKey = "name")
-    private WfScript postRouteProcess;
+    @CCFieldConfig(componentId = "bndActionVisibility", maxLength = 32, uniqueKey = "name")
+    private WfScript actionVisibility;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndRouteValidation", maxLength = 32, uniqueKey = "name")
+    private WfScript routeValidation;
+    @CCFieldConfig(componentId = "chkMergeable", maxLength = 4, visible = false)
+    private Boolean mergeable = false;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
+    public WfActivity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(WfActivity activity) {
+        this.activity = activity;
+    }
+
     public String getCode() {
         return code;
     }
@@ -121,12 +138,32 @@ public class WfProcess implements CCEntity {
         this.name = name;
     }
 
-    public WfScript getPostRouteProcess() {
-        return postRouteProcess;
+    public WfScript getActionVisibility() {
+        return actionVisibility;
     }
 
-    public void setPostRouteProcess(WfScript postRouteProcess) {
-        this.postRouteProcess = postRouteProcess;
+    public void setActionVisibility(WfScript actionVisibility) {
+        this.actionVisibility = actionVisibility;
+    }
+
+    public WfScript getRouteValidation() {
+        return routeValidation;
+    }
+
+    public void setRouteValidation(WfScript routeValidation) {
+        this.routeValidation = routeValidation;
+    }
+
+    public Boolean getMergeable() {
+        return mergeable;
+    }
+
+    public boolean isMergeable() {
+        return getBoolean(mergeable);
+    }
+
+    public void setMergeable(Boolean mergeable) {
+        this.mergeable = mergeable;
     }
 //</editor-fold>
 }

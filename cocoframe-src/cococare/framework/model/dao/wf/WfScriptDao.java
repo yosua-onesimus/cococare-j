@@ -25,11 +25,7 @@ public class WfScriptDao extends WorkflowDao {
     }
 
     public WfScript getByPath(String path) {
-        hql.start().
-                where("path = :path");
-        parameters.start().
-                set("path", path);
-        return getBy(hql.value(), parameters.value());
+        return getByField("path", path);
     }
 //</editor-fold>
 }

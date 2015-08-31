@@ -1,11 +1,11 @@
 package cococare.framework.model.dao.wf;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import static cococare.common.CCLogic.coalesce;
 import cococare.framework.model.mdl.wf.WorkflowDao;
+import cococare.framework.model.obj.util.UtilUser;
 import cococare.framework.model.obj.wf.WfActivity;
-import cococare.framework.model.obj.wf.WfWorkflow;
-import cococare.framework.model.obj.wf.WfWorkflowHistory;
+import cococare.framework.model.obj.wf.WfRoundRobin;
+import java.util.List;
 //</editor-fold>
 
 /**
@@ -13,24 +13,31 @@ import cococare.framework.model.obj.wf.WfWorkflowHistory;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class WfWorkflowHistoryDao extends WorkflowDao {
+public class WfRoundRobinDao extends WorkflowDao {
 
 //<editor-fold defaultstate="collapsed" desc=" private method ">
     @Override
     protected Class getEntity() {
-        return WfWorkflowHistory.class;
+        return WfRoundRobin.class;
     }
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" crud ">
-    public WfWorkflowHistory getLastBy(WfWorkflow workflow, WfActivity activity, boolean hasAction) {
+    public List<UtilUser> getUsersBy(WfActivity activity) {
         hql.start().
-                where("workflow = :workflow").
-                where("activity = :activity").
-                where(hasAction ? "action IS NOT NULL" : "action IS NULL").
-                orderBy("ID DESC");
+                alias("rr").
+                select("rr.user").
+                where("rr.activity = :activity");
         parameters.start().
-                set("workflow", coalesce(workflow.getMerge(), workflow)).
+                set("activity", activity);
+        return getListUnlimitedBy(hql.value(), parameters.value());
+    }
+
+    public WfRoundRobin getWhichHasOldestLastTaskBy(WfActivity activity) {
+        hql.start().
+                where("activity = :activity").
+                orderBy("lastTask ASC");
+        parameters.start().
                 set("activity", activity);
         return getBy(hql.value(), parameters.value());
     }

@@ -9,8 +9,6 @@ import cococare.database.model.obj.cc.CCAuditData;
 import cococare.framework.swing.CFSwingCtrl;
 import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCComboBox;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 //</editor-fold>
 
 /**
@@ -99,11 +97,6 @@ public class PnlAuditTrailListCtrl extends CFSwingCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        addListener(cmbEntity, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                _doSearch();
-            }
-        });
+        addListener(cmbEntity, alSearch);
     }
 }

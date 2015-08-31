@@ -1,7 +1,6 @@
 package cococare.framework.swing.controller.form.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import static cococare.common.CCClass.getLabel;
 import cococare.common.CCCustomField;
 import cococare.framework.model.obj.util.UtilScheduler;
 import cococare.framework.swing.CFSwingCtrl;
@@ -72,6 +71,6 @@ public class PnlSchedulerListCtrl extends CFSwingCtrl {
 
     @Override
     protected String _getTabTitle() {
-        return getLabel(_getEntity());
+        return _getEntityLabel();
     }
 }

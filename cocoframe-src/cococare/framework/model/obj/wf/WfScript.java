@@ -186,7 +186,7 @@ public class WfScript implements CCEntity {
         Method method = null;
         if (ScriptType.VIEW_CUSTOMIZATION.equals(scriptType)) {
             method = getMethod(clazz, methodName, CFViewCtrl.class, WfWorkflow.class);
-        } else if (ScriptType.TRANSITION_VISIBILITY.equals(scriptType)) {
+        } else if (ScriptType.ACTION_VISIBILITY.equals(scriptType)) {
             method = getMethod(clazz, methodName, WfWorkflow.class);
         } else if (ScriptType.ROUTE_VALIDATION.equals(scriptType)) {
             method = getMethod(clazz, methodName, WfWorkflow.class);

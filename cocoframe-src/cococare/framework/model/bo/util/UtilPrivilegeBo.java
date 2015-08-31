@@ -88,7 +88,7 @@ public class UtilPrivilegeBo extends CCHibernateBo {
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" public method ">
-    public synchronized boolean initFirstData(List<UtilPrivilege> privileges) {
+    public synchronized boolean initInitialData(List<UtilPrivilege> privileges) {
         //1. validasi privileges
         if (isNotNullAndNotEmpty(privileges)) {
             privileges = _validate(privileges);

@@ -4,7 +4,6 @@ package cococare.framework.model.obj.wf;
 import cococare.common.CCResponse;
 import cococare.database.CCHibernate.Transaction;
 import cococare.framework.common.CFViewCtrl;
-import cococare.framework.model.obj.note.NoteNote;
 import cococare.framework.model.obj.wf.WfMethodConfig.ScriptType;
 //</editor-fold>
 
@@ -23,27 +22,51 @@ public class WfScriptSample {
         System.out.println("viewCustomization FINISH");
     }
 
-    @WfMethodConfig(scriptName = "transitionVisibility", scriptType = ScriptType.TRANSITION_VISIBILITY)
-    public static boolean transitionVisibility(WfWorkflow workflow) {
-        System.out.println("transitionVisibility START");
+    @WfMethodConfig(scriptName = "transitionVisibilityIsTrue", scriptType = ScriptType.ACTION_VISIBILITY)
+    public static boolean transitionVisibilityIsTrue(WfWorkflow workflow) {
+        System.out.println("transitionVisibilityIsTrue START");
         System.out.println("workflow: " + workflow);
-        System.out.println("transitionVisibility FINISH");
+        System.out.println("transitionVisibilityIsTrue FINISH");
+        return true;
+    }
+
+    @WfMethodConfig(scriptName = "transitionVisibilityIsFalse", scriptType = ScriptType.ACTION_VISIBILITY)
+    public static boolean transitionVisibilityIsFalse(WfWorkflow workflow) {
+        System.out.println("transitionVisibilityIsFalse START");
+        System.out.println("workflow: " + workflow);
+        System.out.println("transitionVisibilityIsFalse FINISH");
         return false;
     }
 
-    @WfMethodConfig(scriptName = "routeValidation", scriptType = ScriptType.ROUTE_VALIDATION)
-    public static CCResponse routeValidation(WfWorkflow workflow) {
-        System.out.println("routeValidation START");
+    @WfMethodConfig(scriptName = "routeValidationIsTrue", scriptType = ScriptType.ROUTE_VALIDATION)
+    public static CCResponse routeValidationIsTrue(WfWorkflow workflow) {
+        System.out.println("routeValidationIsTrue START");
         System.out.println("workflow: " + workflow);
-        System.out.println("routeValidation FINISH");
+        System.out.println("routeValidationIsTrue FINISH");
         return CCResponse.newResponseTrue();
     }
 
-    @WfMethodConfig(scriptName = "routeAvailability", scriptType = ScriptType.ROUTE_AVAILABILITY)
-    public static boolean routeAvailability(WfWorkflow workflow) {
-        System.out.println("routeAvailability START");
+    @WfMethodConfig(scriptName = "routeValidationIsFalse", scriptType = ScriptType.ROUTE_VALIDATION)
+    public static CCResponse routeValidationIsFalse(WfWorkflow workflow) {
+        System.out.println("routeValidationIsFalse START");
         System.out.println("workflow: " + workflow);
-        System.out.println("routeAvailability FINISH");
+        System.out.println("routeValidationIsFalse FINISH");
+        return CCResponse.newResponseFalse("ROUTE NOT VALID");
+    }
+
+    @WfMethodConfig(scriptName = "routeAvailabilityIsTrue", scriptType = ScriptType.ROUTE_AVAILABILITY)
+    public static boolean routeAvailabilityIsTrue(WfWorkflow workflow) {
+        System.out.println("routeAvailabilityIsTrue START");
+        System.out.println("workflow: " + workflow);
+        System.out.println("routeAvailabilityIsTrue FINISH");
+        return true;
+    }
+
+    @WfMethodConfig(scriptName = "routeAvailabilityIsFalse", scriptType = ScriptType.ROUTE_AVAILABILITY)
+    public static boolean routeAvailabilityIsFalse(WfWorkflow workflow) {
+        System.out.println("routeAvailabilityIsFalse START");
+        System.out.println("workflow: " + workflow);
+        System.out.println("routeAvailabilityIsFalse FINISH");
         return false;
     }
 
@@ -52,8 +75,7 @@ public class WfScriptSample {
         System.out.println("postRouteProcess START");
         System.out.println("transaction: " + transaction);
         System.out.println("workflow: " + workflow);
-        NoteNote note = workflow.get(WfWorkflow.KEY_ENTITY);
-        note.setContent("onesimus");
+        workflow.setUser(null);
         System.out.println("postRouteProcess FINISH");
     }
 }

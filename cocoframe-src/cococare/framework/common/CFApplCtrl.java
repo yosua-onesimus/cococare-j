@@ -228,7 +228,7 @@ public abstract class CFApplCtrl {
      */
     protected boolean _initInitialData() {
         return new CCCustomFieldConfigBo().initCustomFieldConfig()
-                && new UtilProvinceRegencyBo().initFirstData();
+                && new UtilProvinceRegencyBo().initInitialData();
     }
 
     /**
