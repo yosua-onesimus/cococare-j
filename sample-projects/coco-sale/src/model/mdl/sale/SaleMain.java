@@ -16,6 +16,7 @@ public class SaleMain extends CFSwingMain {
 
     @Override
     protected void _loadInternalSetting() {
+        APPL_VER = "1.0.150901";
         APPL_CODE = "cccr-sl-vchr-pprl";
         APPL_NAME = "Coco Sale ~ Voucher and Apparel";
         super._loadInternalSetting();

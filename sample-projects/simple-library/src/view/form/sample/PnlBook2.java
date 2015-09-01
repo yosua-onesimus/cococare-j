@@ -5,10 +5,9 @@ package view.form.sample;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlBook2 extends javax.swing.JDialog {
+public class PnlBook2 extends javax.swing.JPanel {
 
-    public PnlBook2(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public PnlBook2() {
         initComponents();
     }
 
@@ -39,10 +38,8 @@ public class PnlBook2 extends javax.swing.JDialog {
         txtBorrowingFine = new javax.swing.JTextField();
         chkSuspend = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(600, 400));
-        setResizable(false);
-        setUndecorated(true);
 
         btnSave.setType(cococare.swing.component.CCButton.Type.SAVE);
 
@@ -183,8 +180,8 @@ public class PnlBook2 extends javax.swing.JDialog {
                     .addComponent(txtBorrowingFine, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -193,8 +190,6 @@ public class PnlBook2 extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cococare.swing.component.CCBandBox bndAuthor;
