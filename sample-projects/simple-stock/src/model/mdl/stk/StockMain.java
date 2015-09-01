@@ -20,7 +20,7 @@ public class StockMain extends CFSwingMain {
     @Override
     protected void _loadInternalSetting() {
         APPL_LOGO = "/cococare/resource/icon-cococare.jpg";
-        APPL_VER = "1.0.130317";
+        APPL_VER = "1.0.150901";
         APPL_CODE = "simple-stock";
         APPL_NAME = "Simple Stock";
         super._loadInternalSetting();
@@ -46,7 +46,7 @@ public class StockMain extends CFSwingMain {
 
     @Override
     protected void _applyUserConfigUaeBody(CFApplUae uae) {
-        uae.addMenuParent(Report, "/resource/Report.png", PnlReportListCtrl.class);
+        uae.addMenuParent(Report, "/cococare/resource/icon-menu-report.png", PnlReportListCtrl.class);
     }
 
     public static void main(String[] args) {
