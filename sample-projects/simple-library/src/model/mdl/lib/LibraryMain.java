@@ -27,10 +27,11 @@ public class LibraryMain extends CFSwingMain {
 
     @Override
     protected void _loadInternalSetting() {
-        APPL_LOGO = "/cococare/resource/icon-cococare.jpg";
-        APPL_VER = "1.0.150901";
+        APPL_ID = "simple-library";
         APPL_CODE = "simple-library";
+        APPL_LOGO = "/cococare/resource/icon-cococare.jpg";
         APPL_NAME = "Simple Library";
+        APPL_VER = "2.0.150913";
         super._loadInternalSetting();
         LibReport.setupReportFile();
     }

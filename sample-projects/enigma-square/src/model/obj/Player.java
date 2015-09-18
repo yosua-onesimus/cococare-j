@@ -6,79 +6,10 @@ import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCFormat;
 import cococare.database.CCEntity;
 import cococare.datafile.CCImage;
-import java.util.Date;
 //</editor-fold>
 
-public class Player implements CCEntity {
+public class Player extends CCEntity {
 
-//<editor-fold defaultstate="collapsed" desc=" entity base ">
-    private Long id;
-    private String logCreatedBy;
-    private Date logCreatedOn;
-    private String logChangedBy;
-    private Date logChangedOn;
-    private Integer logSaveTimes = 0;
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public String getLogCreatedBy() {
-        return logCreatedBy;
-    }
-
-    @Override
-    public void setLogCreatedBy(String logCreatedBy) {
-        this.logCreatedBy = logCreatedBy;
-    }
-
-    @Override
-    public Date getLogCreatedOn() {
-        return logCreatedOn;
-    }
-
-    @Override
-    public void setLogCreatedOn(Date logCreatedOn) {
-        this.logCreatedOn = logCreatedOn;
-    }
-
-    @Override
-    public String getLogChangedBy() {
-        return logChangedBy;
-    }
-
-    @Override
-    public void setLogChangedBy(String logChangedBy) {
-        this.logChangedBy = logChangedBy;
-    }
-
-    @Override
-    public Date getLogChangedOn() {
-        return logChangedOn;
-    }
-
-    @Override
-    public void setLogChangedOn(Date logChangedOn) {
-        this.logChangedOn = logChangedOn;
-    }
-
-    @Override
-    public Integer getLogSaveTimes() {
-        return logSaveTimes;
-    }
-
-    @Override
-    public void setLogSaveTimes(Integer logSaveTimes) {
-        this.logSaveTimes = logSaveTimes;
-    }
-//</editor-fold>
     @CCFieldConfig(type = Type.THUMB_FILE, visible = false)
     private byte[] icon = CCImage.getByteA(getClass().getResource("/resource/avatar.png"));
     @CCFieldConfig()

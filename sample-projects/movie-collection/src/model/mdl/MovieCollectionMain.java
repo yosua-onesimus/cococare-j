@@ -21,6 +21,7 @@ public class MovieCollectionMain extends CFSwingMain {
         APPL_ID = "movie-collection";
         APPL_CODE = "movie-collection";
         APPL_NAME = "Movie Collection";
+        APPL_VER = "2.0.150913";
         super._loadInternalSetting();
         if (withoutLogin) {
             CCLoginInfo.INSTANCE = null;

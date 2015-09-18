@@ -30,6 +30,7 @@ public class FableMain extends CFSwingMain {
         APPL_ID = "fablengine";
         APPL_CODE = "fablengine";
         APPL_NAME = "FaBlEngine";
+        APPL_VER = "2.0.150913";
         super._loadInternalSetting();
         if (withoutLogin) {
             CCLoginInfo.INSTANCE = null;

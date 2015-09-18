@@ -2,7 +2,6 @@ package model.dao;
 
 import cococare.database.CCDatabase;
 import cococare.database.CCDatabaseDao;
-import cococare.database.CCEntity;
 import console.Main;
 import model.obj.Employee;
 
@@ -14,7 +13,7 @@ public class EmployeeDao extends CCDatabaseDao {
     }
 
     @Override
-    protected Class<? extends CCEntity> getEntity() {
+    protected Class getEntity() {
         return Employee.class;
     }
 }

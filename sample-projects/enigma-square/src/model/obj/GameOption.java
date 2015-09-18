@@ -6,80 +6,11 @@ import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.Type;
 import cococare.database.CCEntity;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 //</editor-fold>
 
-public class GameOption implements CCEntity {
+public class GameOption extends CCEntity {
 
-//<editor-fold defaultstate="collapsed" desc=" entity base ">
-    private Long id;
-    private String logCreatedBy;
-    private Date logCreatedOn;
-    private String logChangedBy;
-    private Date logChangedOn;
-    private Integer logSaveTimes = 0;
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public String getLogCreatedBy() {
-        return logCreatedBy;
-    }
-
-    @Override
-    public void setLogCreatedBy(String logCreatedBy) {
-        this.logCreatedBy = logCreatedBy;
-    }
-
-    @Override
-    public Date getLogCreatedOn() {
-        return logCreatedOn;
-    }
-
-    @Override
-    public void setLogCreatedOn(Date logCreatedOn) {
-        this.logCreatedOn = logCreatedOn;
-    }
-
-    @Override
-    public String getLogChangedBy() {
-        return logChangedBy;
-    }
-
-    @Override
-    public void setLogChangedBy(String logChangedBy) {
-        this.logChangedBy = logChangedBy;
-    }
-
-    @Override
-    public Date getLogChangedOn() {
-        return logChangedOn;
-    }
-
-    @Override
-    public void setLogChangedOn(Date logChangedOn) {
-        this.logChangedOn = logChangedOn;
-    }
-
-    @Override
-    public Integer getLogSaveTimes() {
-        return logSaveTimes;
-    }
-
-    @Override
-    public void setLogSaveTimes(Integer logSaveTimes) {
-        this.logSaveTimes = logSaveTimes;
-    }
-//</editor-fold>
     @CCFieldConfig(componentId = "cmbGameMode", accessible = Accessible.MANDATORY, optionSource = "model.obj.Enum$GameMode", optionReflectKey = "gameMode", requestFocus = true)
     private Integer gameModeIndex = 0;
     @CCFieldConfig(maxLength = 16, visible = false)

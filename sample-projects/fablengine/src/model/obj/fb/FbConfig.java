@@ -5,10 +5,11 @@ import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCTypeConfig;
+import cococare.database.CCEntity;
 //</editor-fold>
 
 @CCTypeConfig(label = "FaBlEngine Module", tooltiptext = "Exp Curve, etc")
-public class FbConfig {
+public class FbConfig extends CCEntity {
 
     @CCFieldConfig(group = "Exp Curve", label = "Base Value", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 2)
     private Integer expCurveBaseValue = 10;

@@ -21,6 +21,7 @@ public class DragonCityOrganizerMain extends CFSwingMain {
         APPL_ID = "dragon-city-organizer";
         APPL_CODE = "dragon-city-organizer";
         APPL_NAME = "Dragon City Organizer";
+        APPL_VER = "2.0.150913";
         super._loadInternalSetting();
         if (withoutLogin) {
             CCLoginInfo.INSTANCE = null;

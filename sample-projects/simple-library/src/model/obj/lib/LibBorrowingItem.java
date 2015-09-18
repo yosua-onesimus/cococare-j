@@ -19,83 +19,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "lib_borrowing_items")
 @CCTypeConfig(label = "Borrowing Item", uniqueKey = "book.title")
-public class LibBorrowingItem implements CCEntity {
+public class LibBorrowingItem extends CCEntity {
 
-//<editor-fold defaultstate="collapsed" desc=" entity base ">
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Column(length = 32)
-    private String logCreatedBy;
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date logCreatedOn;
-    @Column(length = 32)
-    private String logChangedBy;
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date logChangedOn;
-    @Version
-    private Integer logSaveTimes = 0;
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public String getLogCreatedBy() {
-        return logCreatedBy;
-    }
-
-    @Override
-    public void setLogCreatedBy(String logCreatedBy) {
-        this.logCreatedBy = logCreatedBy;
-    }
-
-    @Override
-    public Date getLogCreatedOn() {
-        return logCreatedOn;
-    }
-
-    @Override
-    public void setLogCreatedOn(Date logCreatedOn) {
-        this.logCreatedOn = logCreatedOn;
-    }
-
-    @Override
-    public String getLogChangedBy() {
-        return logChangedBy;
-    }
-
-    @Override
-    public void setLogChangedBy(String logChangedBy) {
-        this.logChangedBy = logChangedBy;
-    }
-
-    @Override
-    public Date getLogChangedOn() {
-        return logChangedOn;
-    }
-
-    @Override
-    public void setLogChangedOn(Date logChangedOn) {
-        this.logChangedOn = logChangedOn;
-    }
-
-    @Override
-    public Integer getLogSaveTimes() {
-        return logSaveTimes;
-    }
-
-    @Override
-    public void setLogSaveTimes(Integer logSaveTimes) {
-        this.logSaveTimes = logSaveTimes;
-    }
-//</editor-fold>
     @ManyToOne
     @CCFieldConfig(componentId = "bndBorrowing", accessible = Accessible.MANDATORY, maxLength = 12, uniqueKey = "code")
     private LibBorrowing borrowing;
