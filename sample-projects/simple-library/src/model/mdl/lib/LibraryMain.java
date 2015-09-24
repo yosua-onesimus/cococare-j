@@ -33,7 +33,7 @@ public class LibraryMain extends CFSwingMain {
         APPL_NAME = "Simple Library";
         APPL_VER = "2.0.150913";
         super._loadInternalSetting();
-        LibReport.setupReportFile();
+        LibReport.setupReportFile(LibReport.Report.class);
     }
 
     @Override

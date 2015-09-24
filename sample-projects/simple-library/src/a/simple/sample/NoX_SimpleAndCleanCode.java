@@ -8,6 +8,7 @@ import cococare.common.CCHighcharts.Step;
 import cococare.common.*;
 import cococare.common.barbecue.CCBarcode;
 import cococare.common.comm.CCComm;
+import cococare.common.ftp.CCFtp;
 import cococare.common.mail.CCMail;
 import cococare.common.mail.CCMail.MailServer;
 import cococare.common.quartz.CCJob;
@@ -296,6 +297,32 @@ public class NoX_SimpleAndCleanCode {
     }
 //</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc=" sampleFtp ">
+    public static void sampleFtp() {
+        CCFtp ftp = new CCFtp();
+        ftp.connect("127.0.0.1", 21);
+        ftp.login("yosuaonesimus", "06061984");
+
+        String workingDirectory = "\\sampleFtp_workingDirectory";
+        ftp.changeWorkingDirectory(workingDirectory);
+
+        String directory = "sampleFtp_directory";
+        ftp.makeDirectory(directory);
+        ftp.changeWorkingDirectory(directory);
+
+        String fileName = "sampleFtp_file.txt";
+        ftp.storeFile("D:\\" + fileName);
+
+        ftp.deleteFile(fileName);
+
+        ftp.changeWorkingDirectory(workingDirectory);
+        ftp.removeDirectory(directory);
+
+        ftp.logout();
+        ftp.disconnect();
+    }
+//</editor-fold>
+
 //<editor-fold defaultstate="collapsed" desc=" sampleMail ">
     public static void sampleMail() {
         CCMail mail = new CCMail();
@@ -553,6 +580,6 @@ public class NoX_SimpleAndCleanCode {
 //</editor-fold>
 
     public static void main(String[] args) {
-        sampleCsv();
+        sampleFtp();
     }
 }

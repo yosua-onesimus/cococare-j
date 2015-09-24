@@ -2,14 +2,8 @@ package controller.form.lib;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
-import cococare.framework.swing.CFSwingCtrl;
-import cococare.swing.CCEditor;
-import static cococare.swing.CCSwing.addListener;
+import cococare.framework.swing.controller.form.PnlReportDefaultListCtrl;
 import cococare.swing.component.CCBandBox;
-import cococare.swing.component.CCButton;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import model.obj.lib.LibReport;
 import model.obj.lib.LibReport.Report;
@@ -20,11 +14,9 @@ import model.obj.lib.LibReport.Report;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlReportListCtrl extends CFSwingCtrl {
+public class PnlReportListCtrl extends PnlReportDefaultListCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
-    private JComboBox cmbReport;
-    private CCButton _btnView;
     private JLabel xBook;
     private CCBandBox bndBook;
     private JLabel xMember;
@@ -37,14 +29,8 @@ public class PnlReportListCtrl extends CFSwingCtrl {
     }
 
     @Override
-    protected BaseFunction _getBaseFunction() {
-        return BaseFunction.LIST_FUNCTION;
-    }
-
-    @Override
-    protected void _initComponent() {
-        edtEntity = new CCEditor(getContainer(), LibReport.class);
-        super._initComponent();
+    protected Class _getReportEnum() {
+        return Report.class;
     }
 
     @Override
@@ -56,31 +42,5 @@ public class PnlReportListCtrl extends CFSwingCtrl {
         bndBook.setVisible(selectedIndex == Report.BOOK_HISTORY.ordinal());
         xMember.setVisible(selectedIndex == Report.MEMBER_HISTORY.ordinal());
         bndMember.setVisible(selectedIndex == Report.MEMBER_HISTORY.ordinal());
-    }
-
-    @Override
-    protected void _initListener() {
-        super._initListener();
-        addListener(cmbReport, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                _doUpdateAccessible();
-            }
-        });
-        addListener(_btnView, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                _doView();
-            }
-        });
-    }
-
-    @Override
-    protected void _doView() {
-        if (edtEntity.isValueValid()) {
-            PnlReportCtrl reportCtrl = new PnlReportCtrl();
-            parameter.put(reportCtrl.toString(), swingView.getTabEntity().getTabCount());
-            reportCtrl.with(parameter).with(this).init(edtEntity.getValueFromEditor());
-        }
     }
 }

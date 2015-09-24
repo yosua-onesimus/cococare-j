@@ -22,33 +22,33 @@ import model.obj.lib.LibEnum.Gender;
 public class LibMember extends CCEntity {
 
     @Column(length = 12)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 12, sequence = "[yyMMdd]/000", unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, sequence = "[yyMMdd]/000", unique = true)
     private String code;
     @Column(length = 32)
-    @CCFieldConfig(componentId = "txtFullName", accessible = Accessible.MANDATORY, maxLength = 32, requestFocus = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true)
     private String fullName;
     @Temporal(value = TemporalType.DATE)
-    @CCFieldConfig(componentId = "dtpBirthDate", accessible = Accessible.MANDATORY, type = Type.DATE_PAST, maxLength = 12, visible = false)
+    @CCFieldConfig(componentId = "dtpBirthDate", accessible = Accessible.MANDATORY, type = Type.DATE_PAST, visible = false)
     private Date birthDate;
     @CCFieldConfig(componentId = "cmbGender", accessible = Accessible.MANDATORY, optionSource = "model.obj.lib.LibEnum$Gender", optionReflectKey = "gender", visible = false)
     private Integer genderIndex;
     @Column(length = 8)
-    @CCFieldConfig(maxLength = 8, visible = false, visible2 = false)
+    @CCFieldConfig(visible = false, visible2 = false)
     private String gender;
     @Column(length = 255)
-    @CCFieldConfig(componentId = "txtAddress", visible = false)
+    @CCFieldConfig(visible = false)
     private String address;
     @Column(length = 48)
-    @CCFieldConfig(tooltiptext = "Kabupaten", componentId = "cmbRegency", maxLength = 48, optionSource = "IndonesiaCities.txt", optionReflectKey = "regency", visible = false)
+    @CCFieldConfig(tooltiptext = "Kabupaten", componentId = "cmbRegency", optionSource = "IndonesiaCities.txt", optionReflectKey = "regency", visible = false)
     private String regency;
     @Column(length = 48)
-    @CCFieldConfig(tooltiptext = "Propinsi", componentId = "cmbProvince", maxLength = 48, optionSource = "IndonesiaProvinces.txt", optionReflectKey = "province", visible = false)
+    @CCFieldConfig(tooltiptext = "Propinsi", componentId = "cmbProvince", optionSource = "IndonesiaProvinces.txt", optionReflectKey = "province", visible = false)
     private String province;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtPhone", type = Type.PHONE_NUMBER, maxLength = 16)
+    @CCFieldConfig(type = Type.PHONE_NUMBER)
     private String phone;
     @Column(length = 32)
-    @CCFieldConfig(componentId = "txtEmail", type = Type.EMAIL, maxLength = 32, visible = false)
+    @CCFieldConfig(type = Type.EMAIL, visible = false)
     private String email;
     @Lob
     @Column(length = Integer.MAX_VALUE)
@@ -58,7 +58,7 @@ public class LibMember extends CCEntity {
     @CCFieldConfig(visible = false, visible2 = false)
     private String photoName;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtKtp", maxLength = 16)
+    @CCFieldConfig()
     private String ktp;
     @CCFieldConfig(label = "S", tooltiptext = "Suspend", componentId = "chkSuspend", maxLength = 4)
     private Boolean suspend = false;
