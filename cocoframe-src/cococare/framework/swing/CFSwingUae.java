@@ -15,7 +15,7 @@ import cococare.framework.common.CFApplUae;
 import cococare.framework.common.CFViewCtrl;
 import cococare.framework.model.bo.util.UtilPrivilegeBo;
 import cococare.framework.model.obj.util.UtilPrivilege;
-import static cococare.framework.swing.CFSwingMap.getViewForm;
+import static cococare.framework.swing.CFSwingMap.newContainer;
 import cococare.swing.component.CCButton;
 import cococare.swing.component.CCMenuBar;
 import java.awt.Container;
@@ -181,10 +181,14 @@ public class CFSwingUae extends CFApplUae {
     @Override
     public void reg(String moduleCode, String screenName, Class<? extends CFViewCtrl> controllerClass) {
         screenName = turn(screenName);
-        Class<? extends Container> containerClass = getViewForm(controllerClass);
-        if (instanceOf(Container.class, containerClass)) {
+        Container container = newContainer(controllerClass);
+        Class trackableClass = controllerClass;
+        while (isNull(container) && instanceOf(CCTrackable.class, trackableClass.getSuperclass())) {
+            container = newContainer(trackableClass = trackableClass.getSuperclass());
+        }
+        if (isNotNull(container)) {
             UtilPrivilege screen = new UtilPrivilege(_getScreenComp(controllerClass), _getScreenCode(moduleCode), screenName);
-            for (CCButton button : _getButton(newObject(containerClass))) {
+            for (CCButton button : _getButton(container)) {
                 if (_isValidAction(button)) {
                     UtilPrivilege action = new UtilPrivilege(_getActionComp(controllerClass, button), _getActionCode(moduleCode), _getActionName(button));
                     screen.addChilds(action);

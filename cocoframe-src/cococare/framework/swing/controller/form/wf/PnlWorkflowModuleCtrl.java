@@ -3,18 +3,16 @@ package cococare.framework.swing.controller.form.wf;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCAccessibleListener;
 import static cococare.common.CCClass.*;
-import static cococare.common.CCLanguage.*;
+import static cococare.common.CCLanguage.Process;
+import static cococare.common.CCLanguage.turn;
 import static cococare.common.CCLogic.isNotNull;
 import static cococare.common.CCLogic.isNull;
 import cococare.framework.model.bo.wf.WfWorkflowConfiguratorBo;
-import cococare.framework.model.obj.wf.WfAction;
-import cococare.framework.model.obj.wf.WfActivity;
 import cococare.framework.model.obj.wf.WfEnum.ActivityPointType;
 import cococare.framework.model.obj.wf.WfFilter.isAction;
 import cococare.framework.model.obj.wf.WfFilter.isActivity;
 import cococare.framework.model.obj.wf.WfFilter.isProcess;
-import cococare.framework.model.obj.wf.WfProcess;
-import cococare.framework.model.obj.wf.WfTransition;
+import cococare.framework.model.obj.wf.*;
 import cococare.framework.swing.CFSwingCtrl;
 import static cococare.swing.CCEditor.requestFocusInWindow;
 import static cococare.swing.CCSwing.addAccessibleListener;
@@ -32,7 +30,7 @@ import javax.swing.tree.DefaultTreeModel;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlWorkflowConfiguratorCtrl extends CFSwingCtrl {
+public class PnlWorkflowModuleCtrl extends CFSwingCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private WfWorkflowConfiguratorBo workflowConfiguratorBo;
@@ -57,7 +55,7 @@ public class PnlWorkflowConfiguratorCtrl extends CFSwingCtrl {
                 return PnlTransitionListCtrl.class;
             }
         }
-        return PnlWorkflowConfiguratorCtrl.class;
+        return PnlWorkflowModuleCtrl.class;
     }
 
     @Override
@@ -74,7 +72,7 @@ public class PnlWorkflowConfiguratorCtrl extends CFSwingCtrl {
                 return WfTransition.class;
             }
         }
-        return WfProcess.class;
+        return WfWorkflow.class;
     }
 
     @Override
@@ -121,7 +119,6 @@ public class PnlWorkflowConfiguratorCtrl extends CFSwingCtrl {
                 }
             }
         }
-        _doTreeProcess();
     }
 
     @Override
@@ -164,31 +161,24 @@ public class PnlWorkflowConfiguratorCtrl extends CFSwingCtrl {
             }
             applyAccessible(swingView.getBtnAdd());
             parameter.put(toString() + "selectedObject", selectedObject);
-            Class selectedClass = selectedObject.getClass();
-            if (String.class.equals(selectedClass)) {
-                swingView.getTabEntity().setTitleAt(0, turn(Process));
-                tblEntity.setEntity(WfProcess.class);
-            } else if (WfProcess.class.equals(selectedClass)) {
-                swingView.getTabEntity().setTitleAt(0, turn(Activity));
-                tblEntity.setEntity(WfActivity.class);
+            Class entity = _getEntity();
+            swingView.getTabEntity().setTitleAt(0, getLabel(entity));
+            tblEntity.setEntity(entity);
+            if (WfActivity.class.equals(entity)) {
                 tblEntity.setHqlFilters(new isProcess() {
                     @Override
                     public Object getFieldValue() {
                         return selectedObject;
                     }
                 });
-            } else if (WfActivity.class.equals(selectedClass)) {
-                swingView.getTabEntity().setTitleAt(0, turn(Action));
-                tblEntity.setEntity(WfAction.class);
+            } else if (WfAction.class.equals(entity)) {
                 tblEntity.setHqlFilters(new isActivity() {
                     @Override
                     public Object getFieldValue() {
                         return selectedObject;
                     }
                 });
-            } else if (WfAction.class.equals(selectedClass)) {
-                swingView.getTabEntity().setTitleAt(0, turn(Transition));
-                tblEntity.setEntity(WfTransition.class);
+            } else if (WfTransition.class.equals(entity)) {
                 tblEntity.setHqlFilters(new isAction() {
                     @Override
                     public Object getFieldValue() {
@@ -203,6 +193,12 @@ public class PnlWorkflowConfiguratorCtrl extends CFSwingCtrl {
     @Override
     protected String _getTabTitle() {
         return _getEntityLabel();
+    }
+
+    @Override
+    protected void _doUpdateComponent() {
+        _doTreeProcess();
+        super._doUpdateComponent();
     }
 
     @Override

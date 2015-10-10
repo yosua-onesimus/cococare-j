@@ -7,7 +7,7 @@ import cococare.framework.model.obj.wf.WfActivity;
 import cococare.framework.model.obj.wf.WfEnum.ActivityPointType;
 import static cococare.framework.model.obj.wf.WfFilter.isTypeIsViewCustomization;
 import cococare.framework.model.obj.wf.WfProcess;
-import cococare.framework.swing.controller.form.PnlDefaultCtrl;
+import cococare.framework.swing.controller.form.PnlDefaultWithChildCtrl;
 import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCBandBox;
 import java.awt.event.ActionEvent;
@@ -21,7 +21,7 @@ import javax.swing.JTextField;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlActivityCtrl extends PnlDefaultCtrl {
+public class PnlActivityCtrl extends PnlDefaultWithChildCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private CCBandBox bndViewCustomization;

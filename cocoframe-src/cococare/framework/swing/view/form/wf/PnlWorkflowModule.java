@@ -9,9 +9,9 @@ import cococare.common.CCLanguage;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlWorkflowConfigurator extends javax.swing.JPanel {
+public class PnlWorkflowModule extends javax.swing.JPanel {
 
-    public PnlWorkflowConfigurator() {
+    public PnlWorkflowModule() {
         initComponents();
     }
 

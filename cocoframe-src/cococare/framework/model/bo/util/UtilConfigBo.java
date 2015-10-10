@@ -4,6 +4,7 @@ package cococare.framework.model.bo.util;
 import cococare.database.CCHibernateBo;
 import cococare.framework.model.dao.util.UtilConfigDao;
 import cococare.framework.model.obj.util.UtilConfAppl;
+import cococare.framework.model.obj.util.UtilConfServ;
 import cococare.framework.model.obj.util.UtilConfig;
 //</editor-fold>
 
@@ -17,6 +18,7 @@ public class UtilConfigBo extends CCHibernateBo {
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private UtilConfigDao configDao;
     private UtilConfAppl confAppl = loadConfAppl();
+    private UtilConfServ confServ = loadConfServ();
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" public method ">
@@ -28,12 +30,20 @@ public class UtilConfigBo extends CCHibernateBo {
         return loadHash(UtilConfAppl.class);
     }
 
+    public synchronized UtilConfServ loadConfServ() {
+        return loadHash(UtilConfServ.class);
+    }
+
     public synchronized boolean saveConf(Object object) {
         return configDao.saveHash(object);
     }
 
     public synchronized UtilConfAppl getConfAppl() {
         return confAppl;
+    }
+
+    public synchronized UtilConfServ getConfServ() {
+        return confServ;
     }
 
     public synchronized UtilConfig getByKey(String key) {

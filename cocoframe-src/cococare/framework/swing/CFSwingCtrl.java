@@ -34,8 +34,8 @@ import javax.swing.JPanel;
 // </editor-fold>
 
 /**
- * CFSwingCtrl is an abstract class which functions as an view controller, in
- * charge of controlling the flow of applications in specific view.
+ * CFSwingCtrl is an abstract class which functions as an view controller, in charge of controlling
+ * the flow of applications in specific view.
  *
  * @author Yosua Onesimus
  * @since 13.03.17
@@ -99,7 +99,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 
     @Override
     protected void _initPrivilege() {
-        new CFSwingUae().isAccessible(_getClass(), getContainer());
+        new CFSwingUae().isAccessible(getClass(), getContainer());
     }
 
     @Override
@@ -120,13 +120,19 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
         super._initComponent();
     }
 
-//<editor-fold defaultstate="collapsed" desc=" LIST_FUNCTION ">
     @Override
-    protected void _initTable() {
+    protected void _initTab() {
         if (_hasEntity()) {
             if (isNotNull(swingView.getTabEntity()) && isNullOrEmpty(swingView.getTabEntity().getTitleAt(0))) {
                 swingView.getTabEntity().setTitleAt(0, _getEntityLabel());
             }
+        }
+    }
+
+//<editor-fold defaultstate="collapsed" desc=" LIST_FUNCTION ">
+    @Override
+    protected void _initTable() {
+        if (_hasEntity()) {
             if (isNotNull(swingView.getTblEntity())) {
                 tblEntity = new CCTable(swingView.getTblEntity(), _getEntity());
                 requestFocusInWindow(swingView.getTblEntity());
@@ -227,10 +233,8 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 
     @Override
     protected void _doUpdateAccessible() {
-        if (_hasTblEntity()) {
-            applyAccessible(swingView.getBtnAdd(), swingView.getBtnEdit(), swingView.getBtnDelete());
-        } else if (_hasEdtEntity()) {
-            applyAccessible(swingView.getBtnEdit(), swingView.getBtnSave(), swingView.getBtnSaveAndNew(), swingView.getBtnCancel());
+        applyAccessible(swingView.getBtnAdd(), swingView.getBtnEdit(), swingView.getBtnDelete(), swingView.getBtnSave(), swingView.getBtnSaveAndNew(), swingView.getBtnCancel());
+        if (_hasEdtEntity()) {
             if (readonly) {
                 edtEntity.setAccessible2Readonly();
             } else {
@@ -330,7 +334,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
                 }
             };
             if (ShowMode.DIALOG_MODE.equals(_getShowMode())) {
-                new CCHotkey(getContainer()).add(KeyEvent.VK_ESCAPE, alClose);
+                new CCHotkey(swingView.getDialog()).add(KeyEvent.VK_ESCAPE, alClose);
             }
             addListener(swingView.getBtnNew(), alNew);
             addListener(swingView.getBtnEdit(), alEdit);

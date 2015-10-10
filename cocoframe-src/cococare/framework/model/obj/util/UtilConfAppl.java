@@ -8,9 +8,9 @@ import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
-import java.util.Date;
 import java.util.List;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Lob;
 //</editor-fold>
 
 /**
@@ -18,84 +18,8 @@ import javax.persistence.*;
  * @since 13.03.17
  * @version 13.03.17
  */
-@CCTypeConfig(label = "Common / Utility Module", tooltiptext = "Application UI, Company, Company Owner, etc")
-public class UtilConfAppl implements CCEntity {
-
-//<editor-fold defaultstate="collapsed" desc=" entity base ">
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Column(length = 32)
-    private String logCreatedBy;
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date logCreatedOn;
-    @Column(length = 32)
-    private String logChangedBy;
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date logChangedOn;
-    @Version
-    private Integer logSaveTimes = 0;
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public String getLogCreatedBy() {
-        return logCreatedBy;
-    }
-
-    @Override
-    public void setLogCreatedBy(String logCreatedBy) {
-        this.logCreatedBy = logCreatedBy;
-    }
-
-    @Override
-    public Date getLogCreatedOn() {
-        return logCreatedOn;
-    }
-
-    @Override
-    public void setLogCreatedOn(Date logCreatedOn) {
-        this.logCreatedOn = logCreatedOn;
-    }
-
-    @Override
-    public String getLogChangedBy() {
-        return logChangedBy;
-    }
-
-    @Override
-    public void setLogChangedBy(String logChangedBy) {
-        this.logChangedBy = logChangedBy;
-    }
-
-    @Override
-    public Date getLogChangedOn() {
-        return logChangedOn;
-    }
-
-    @Override
-    public void setLogChangedOn(Date logChangedOn) {
-        this.logChangedOn = logChangedOn;
-    }
-
-    @Override
-    public Integer getLogSaveTimes() {
-        return logSaveTimes;
-    }
-
-    @Override
-    public void setLogSaveTimes(Integer logSaveTimes) {
-        this.logSaveTimes = logSaveTimes;
-    }
-//</editor-fold>
+@CCTypeConfig(label = "Common/Utility Module", tooltiptext = "Application UI, Company, Company Owner, etc")
+public class UtilConfAppl extends CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" public enum ">
     public enum MenuPosition {
@@ -114,49 +38,49 @@ public class UtilConfAppl implements CCEntity {
     }
 //</editor-fold>
     //----------------------------------------------------------------------------------------------
-    @CCFieldConfig(group = "Application Interface", label = "Language", componentId = "cmbApplLanguage", accessible = Accessible.MANDATORY, optionSource = "cococare.common.CCLanguage$LanguagePack", requestFocus = true)
+    @CCFieldConfig(group = "Application Interface", label = "Language", accessible = Accessible.MANDATORY, optionSource = "cococare.common.CCLanguage$LanguagePack", requestFocus = true)
     private Integer applLanguage = 0;
-    @CCFieldConfig(group = "Application Interface", label = "Look And Feel", componentId = "cmbApplLookAndFeel", accessible = Accessible.MANDATORY, optionSource = "cococare.swing.CCSwing$LookAndFeel")
+    @CCFieldConfig(group = "Application Interface", label = "Look And Feel", accessible = Accessible.MANDATORY, optionSource = "cococare.swing.CCSwing$LookAndFeel")
     private Integer applLookAndFeel = 0;
-    @CCFieldConfig(group = "Application Interface", label = "Menu Position", componentId = "cmbApplMenuPosition", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilConfAppl$MenuPosition")
+    @CCFieldConfig(group = "Application Interface", label = "Menu Position", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilConfAppl$MenuPosition")
     private Integer applMenuPosition = 0;
     @Lob
     @Column(length = Integer.MAX_VALUE)
-    @CCFieldConfig(group = "Application Interface", label = "Wallpaper", componentId = "attApplWallpaper", type = Type.IMAGE_FILE, optionReflectKey = "applWallpaperName")
+    @CCFieldConfig(group = "Application Interface", label = "Wallpaper", type = Type.IMAGE_FILE, optionReflectKey = "applWallpaperName")
     private byte[] applWallpaper;
     private String applWallpaperName;
     //----------------------------------------------------------------------------------------------
     @Lob
     @Column(length = Integer.MAX_VALUE)
-    @CCFieldConfig(group = "Company", label = "Logo", componentId = "attCompanyLogo", type = Type.THUMB_FILE, optionReflectKey = "companyLogoName")
+    @CCFieldConfig(group = "Company", label = "Logo", type = Type.THUMB_FILE, optionReflectKey = "companyLogoName")
     private byte[] companyLogo;
     private String companyLogoName;
-    @CCFieldConfig(group = "Company", label = "Name", componentId = "txtCompanyName", accessible = Accessible.MANDATORY)
+    @CCFieldConfig(group = "Company", label = "Name", accessible = Accessible.MANDATORY)
     private String companyName;
-    @CCFieldConfig(group = "Company", label = "Address", componentId = "txtCompanyAddress", accessible = Accessible.MANDATORY)
+    @CCFieldConfig(group = "Company", label = "Address", accessible = Accessible.MANDATORY)
     private String companyAddress;
-    @CCFieldConfig(group = "Company", label = "City", componentId = "cmbCompanyCity", accessible = Accessible.MANDATORY, optionSource = "IndonesiaCities.txt")
+    @CCFieldConfig(group = "Company", label = "City", accessible = Accessible.MANDATORY, optionSource = "IndonesiaCities.txt")
     private Integer companyCity = 147;
-    @CCFieldConfig(group = "Company", label = "Province", componentId = "cmbCompanyProvince", accessible = Accessible.MANDATORY, optionSource = "IndonesiaProvinces.txt")
+    @CCFieldConfig(group = "Company", label = "Province", accessible = Accessible.MANDATORY, optionSource = "IndonesiaProvinces.txt")
     private Integer companyProvince = 10;
-    @CCFieldConfig(group = "Company", label = "State", componentId = "txtCompanyState", accessible = Accessible.MANDATORY_READONLY)
+    @CCFieldConfig(group = "Company", label = "State", accessible = Accessible.MANDATORY_READONLY)
     private String companyState = "Indonesia";
-    @CCFieldConfig(group = "Company", label = "Phone", componentId = "txtCompanyPhone", type = Type.PHONE_NUMBER)
+    @CCFieldConfig(group = "Company", label = "Phone", type = Type.PHONE_NUMBER)
     private String companyPhone;
-    @CCFieldConfig(group = "Company", label = "Fax", componentId = "txtCompanyFax")
+    @CCFieldConfig(group = "Company", label = "Fax")
     private String companyFax;
-    @CCFieldConfig(group = "Company", label = "Email", componentId = "txtCompanyEmail", type = Type.EMAIL)
+    @CCFieldConfig(group = "Company", label = "Email", type = Type.EMAIL)
     private String companyEmail;
-    @CCFieldConfig(group = "Company", label = "Web", componentId = "txtCompanyWeb")
+    @CCFieldConfig(group = "Company", label = "Web")
     private String companyWeb;
     //----------------------------------------------------------------------------------------------
-    @CCFieldConfig(group = "Company Owner", label = "Name", componentId = "txtOwnerName", accessible = Accessible.MANDATORY)
+    @CCFieldConfig(group = "Company Owner", label = "Name", accessible = Accessible.MANDATORY)
     private String ownerName;
-    @CCFieldConfig(group = "Company Owner", label = "Position", componentId = "txtOwnerPosition")
+    @CCFieldConfig(group = "Company Owner", label = "Position")
     private String ownerPosition;
-    @CCFieldConfig(group = "Company Owner", label = "KTP", componentId = "txtOwnerKtp")
+    @CCFieldConfig(group = "Company Owner", label = "KTP")
     private String ownerKtp;
-    @CCFieldConfig(group = "Company Owner", label = "NPWP", componentId = "txtOwnerNpwp")
+    @CCFieldConfig(group = "Company Owner", label = "NPWP")
     private String ownerNpwp;
     //----------------------------------------------------------------------------------------------
     private String utilAdditionalTabClass;

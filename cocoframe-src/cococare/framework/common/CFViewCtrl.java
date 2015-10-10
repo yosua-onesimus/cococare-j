@@ -368,6 +368,7 @@ public abstract class CFViewCtrl implements CCTrackable {
      * <b>Line Number: 368</b>
      * <ol>
      * <li>Initial component.</li>
+     * <li>[listFunction]_initTab(): ...</li>
      * <li>[listFunction]_initTable(): ...</li>
      * <li>[listFunction]_initNaviElements(): ...</li>
      * <li>[listFunction]_initFilterElements(): ...</li>
@@ -377,6 +378,7 @@ public abstract class CFViewCtrl implements CCTrackable {
      * </ol>
      */
     protected void _initComponent() {
+        _initTab();
         if (BaseFunction.LIST_FUNCTION.equals(_getBaseFunction())) {
             _initTable();
             _initNaviElements();
@@ -388,53 +390,58 @@ public abstract class CFViewCtrl implements CCTrackable {
         _doUpdateAccessible();
     }
 
+    /**
+     * <b>Line Number: 394</b>
+     */
+    protected abstract void _initTab();
+
 //<editor-fold defaultstate="collapsed" desc=" LIST_FUNCTION ">
     /**
-     * <b>Line Number: 393 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 400 [LIST_FUNCTION ONLY]</b>
      */
     protected abstract void _initTable();
 
     /**
-     * <b>Line Number: 398 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 405 [LIST_FUNCTION ONLY]</b>
      */
     protected abstract void _initNaviElements();
 
     /**
-     * <b>Line Number: 403 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 410 [LIST_FUNCTION ONLY]</b>
      */
     protected abstract void _initFilterElements();
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" FORM_FUNCTION ">
     /**
-     * <b>Line Number: 410 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 417 [FORM_FUNCTION ONLY]</b>
      */
     protected abstract void _initEditor();
 
     /**
-     * <b>Line Number: 415 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 422 [FORM_FUNCTION ONLY]</b>
      */
     protected abstract void _initObjEntity();
 //</editor-fold>
 
     /**
-     * <b>Line Number: 421</b>
+     * <b>Line Number: 428</b>
      */
     protected abstract void _initAccessible();
 
     /**
-     * <b>Line Number: 426</b>
+     * <b>Line Number: 433</b>
      */
     protected abstract void _doUpdateAccessible();
 
     /**
-     * <b>Line Number: 431</b>
+     * <b>Line Number: 438</b>
      */
     protected abstract void _initListener();
 
 //<editor-fold defaultstate="collapsed" desc=" LIST_FUNCTION ">
     /**
-     * <b>Line Number: 437 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 444 [LIST_FUNCTION ONLY]</b>
      * <ol>
      * <li>_doShowEditor(false, _newObjEntity()): ...</li>
      * <li>doUpdateTable(): ...</li>
@@ -449,7 +456,7 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 452 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 459 [LIST_FUNCTION ONLY]</b>
      * <ol>
      * <li>Object selectedItem = _getSelectedItem()</li>
      * <li>_doShowEditor(true, selectedItem): ...</li>
@@ -466,7 +473,7 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 469 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 476 [LIST_FUNCTION ONLY]</b>
      * <ol>
      * <li>Object selectedItem = _getSelectedItem()</li>
      * <li>_doShowEditor(false, selectedItem): ...</li>
@@ -483,7 +490,7 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 486 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 493 [LIST_FUNCTION ONLY]</b>
      * <ol>
      * <li>_isSureDelete(): ...</li>
      * <li>_doDeleteEntity(): ...</li>
@@ -506,7 +513,7 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 509 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 516 [LIST_FUNCTION ONLY]</b>
      * <ol>
      * <li>[_hasTblEntity]_doExportMulti(): ...</li>
      * <li>[_hasEdtEntity]_doExportSingle(): ...</li>
@@ -525,7 +532,7 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 528 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 535 [LIST_FUNCTION ONLY]</b>
      * <ol>
      * <li>doUpdateTable(): ...</li>
      * </ol>
@@ -535,14 +542,14 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 538 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 545 [LIST_FUNCTION ONLY]</b>
      *
      * @return true if view has tblEntity.
      */
     protected abstract boolean _hasTblEntity();
 
     /**
-     * <b>Line Number: 545 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 552 [LIST_FUNCTION ONLY]</b>
      *
      * @return a newly allocated instance of the class represented by this
      * object.
@@ -552,56 +559,56 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 555 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 562 [LIST_FUNCTION ONLY]</b>
      *
      * @return true if any row is selected.
      */
     protected abstract boolean _isSelected();
 
     /**
-     * <b>Line Number: 562 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 569 [LIST_FUNCTION ONLY]</b>
      *
      * @return the item.
      */
     protected abstract <T> T _getSelectedItem();
 
     /**
-     * <b>Line Number: 569 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 576 [LIST_FUNCTION ONLY]</b>
      *
      * @return true if the object is sure to be deleted.
      */
     protected abstract boolean _isSureDelete();
 
     /**
-     * <b>Line Number: 576 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 583 [LIST_FUNCTION ONLY]</b>
      *
      * @return true if number of deleted object greater than zero.
      */
     protected abstract boolean _doDeleteEntity();
 
     /**
-     * <b>Line Number: 583 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 590 [LIST_FUNCTION ONLY]</b>
      *
      * @param success the success.
      */
     protected abstract void _showDeleted(boolean success);
 
     /**
-     * <b>Line Number: 590 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 597 [LIST_FUNCTION ONLY]</b>
      *
      * @return true if success; false if fail.
      */
     protected abstract boolean _doExportMulti();
 
     /**
-     * <b>Line Number: 597 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 604 [LIST_FUNCTION ONLY]</b>
      *
      * @return true if success; false if fail.
      */
     protected abstract boolean _doExportSingle();
 
     /**
-     * <b>Line Number: 604 [LIST_FUNCTION ONLY]</b>
+     * <b>Line Number: 611 [LIST_FUNCTION ONLY]</b>
      *
      * @param success the success.
      */
@@ -610,7 +617,7 @@ public abstract class CFViewCtrl implements CCTrackable {
 
 //<editor-fold defaultstate="collapsed" desc=" FORM_FUNCTION ">
     /**
-     * <b>Line Number: 613 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 620 [FORM_FUNCTION ONLY]</b>
      * <ol>
      * <li>_isValueValid(): ...</li>
      * <li>_isValueCompare(): ...</li>
@@ -639,7 +646,7 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 642 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 649 [FORM_FUNCTION ONLY]</b>
      * <ol>
      * <li>_isSavedToClose(): ...</li>
      * <li>_doCloseScreen(): ...</li>
@@ -652,21 +659,21 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 655 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 662 [FORM_FUNCTION ONLY]</b>
      *
      * @return true if view has edtEntity.
      */
     protected abstract boolean _hasEdtEntity();
 
     /**
-     * <b>Line Number: 662 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 669 [FORM_FUNCTION ONLY]</b>
      *
      * @return true if all value of all registered component is valid.
      */
     protected abstract boolean _isValueValid();
 
     /**
-     * <b>Line Number: 669 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 676 [FORM_FUNCTION ONLY]</b>
      *
      * @return true if all value of all registered component is already
      * compared.
@@ -674,26 +681,26 @@ public abstract class CFViewCtrl implements CCTrackable {
     protected abstract boolean _isValueCompare();
 
     /**
-     * <b>Line Number: 677 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 684 [FORM_FUNCTION ONLY]</b>
      *
      * @return true if all value of all registered component is unique.
      */
     protected abstract boolean _isValueUnique();
 
     /**
-     * <b>Line Number: 684 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 691 [FORM_FUNCTION ONLY]</b>
      *
      * @return true if the object is sure to be saved.
      */
     protected abstract boolean _isSureSave();
 
     /**
-     * <b>Line Number: 691 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 698 [FORM_FUNCTION ONLY]</b>
      */
     protected abstract void _getValueFromEditor();
 
     /**
-     * <b>Line Number: 696 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 703 [FORM_FUNCTION ONLY]</b>
      * <ol>
      * <li>list.addAll((List) parameter.get(childsValueKey))</li>
      * </ol>
@@ -709,21 +716,21 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 712 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 719 [FORM_FUNCTION ONLY]</b>
      *
      * @return true if success; false if fail.
      */
     protected abstract boolean _doSaveEntity();
 
     /**
-     * <b>Line Number: 719 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 726 [FORM_FUNCTION ONLY]</b>
      *
      * @param success the success.
      */
     protected abstract void _showSaved(boolean success);
 
     /**
-     * <b>Line Number: 726 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 733 [FORM_FUNCTION ONLY]</b>
      * <ol>
      * <li>(!_isValueChanges() || _isSureDataNotSaved())</li>
      * </ol>
@@ -739,14 +746,14 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 742 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 749 [FORM_FUNCTION ONLY]</b>
      *
      * @return true if any value of all registered component has changes.
      */
     protected abstract boolean _isValueChanges();
 
     /**
-     * <b>Line Number: 749 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 756 [FORM_FUNCTION ONLY]</b>
      *
      * @return true if the object is sure not to be saved.
      */
@@ -754,7 +761,7 @@ public abstract class CFViewCtrl implements CCTrackable {
 //</editor-fold>
 
     /**
-     * <b>Line Number: 757</b>
+     * <b>Line Number: 764</b>
      * <ol>
      * <li>newEntity ? turn(New) : coalesce(getUniqueKeyValue(objEntity),
      * readonly ? turn(View) : turn(Edit)).toString()</li>
@@ -767,13 +774,13 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 770</b>
+     * <b>Line Number: 777</b>
      */
     protected abstract void _doShowScreen();
 
 //<editor-fold defaultstate="collapsed" desc=" LIST_FUNCTION ">
     /**
-     * <b>Line Number: 776</b>
+     * <b>Line Number: 783</b>
      *
      * @param readonly the readonly.
      * @param objEntity the object entity.
@@ -784,13 +791,13 @@ public abstract class CFViewCtrl implements CCTrackable {
 
 //<editor-fold defaultstate="collapsed" desc=" FORM_FUNCTION ">
     /**
-     * <b>Line Number: 787</b>
+     * <b>Line Number: 794</b>
      */
     protected abstract void _doCloseScreen();
 //</editor-fold>
 
     /**
-     * <b>Line Number: 793</b>
+     * <b>Line Number: 800</b>
      * <ol>
      * <li>[listFunction]doUpdateTable(): ...</li>
      * <li>[formFunction]_doUpdateEditor(): ...</li>
@@ -806,12 +813,12 @@ public abstract class CFViewCtrl implements CCTrackable {
 
 //<editor-fold defaultstate="collapsed" desc=" LIST_FUNCTION ">
     /**
-     * <b>Line Number: 809</b>
+     * <b>Line Number: 816</b>
      */
     public abstract void doUpdateTable();
 
     /**
-     * <b>Line Number: 814</b>
+     * <b>Line Number: 821</b>
      *
      * @param objEntity the object entity.
      */
@@ -820,12 +827,12 @@ public abstract class CFViewCtrl implements CCTrackable {
 
 //<editor-fold defaultstate="collapsed" desc=" FORM_FUNCTION ">
     /**
-     * <b>Line Number: 823</b>
+     * <b>Line Number: 830</b>
      */
     protected abstract void _doUpdateEditor();
 
     /**
-     * <b>Line Number: 828</b>
+     * <b>Line Number: 835</b>
      *
      * @param parentField the parent field.
      * @param childCtrl the child controller.
@@ -843,7 +850,7 @@ public abstract class CFViewCtrl implements CCTrackable {
 //</editor-fold>
 
     /**
-     * <b>Line Number: 846</b>
+     * <b>Line Number: 853</b>
      *
      * @param note the note.
      */

@@ -10,18 +10,19 @@ import cococare.framework.common.CFApplCtrl;
 import cococare.framework.common.CFApplUae;
 import cococare.framework.model.obj.util.UtilConfAppl;
 import cococare.framework.model.obj.util.UtilConfAppl.MenuPosition;
+import cococare.framework.model.obj.util.UtilConfServ;
 import static cococare.framework.swing.CFSwingMap.*;
 import cococare.framework.swing.controller.form.util.*;
-import cococare.swing.CCSwing.LookAndFeel;
-import static cococare.swing.CCSwing.centerScreen;
-import static cococare.swing.CCSwing.setLookAndFeel;
+import static cococare.swing.CCSwing.*;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.UIManager;
 //</editor-fold>
 
 /**
- * CFSwingMain is an abstract class which functions as an application
- * controller, in charge of controlling the flow of applications in general.
+ * CFSwingMain is an abstract class which functions as an application controller, in charge of
+ * controlling the flow of applications in general.
  *
  * @author Yosua Onesimus
  * @since 13.03.17
@@ -55,9 +56,36 @@ public abstract class CFSwingMain extends CFApplCtrl {
         getApplVer().setText(APPL_VER);
         getMainScreen().setIconImage(readImage(APPL_LOGO));
         getMainScreen().setTitle(APPL_NAME + " " + APPL_VER);
-        centerScreen(getMainScreen(), true, true);
         _clearUserConfig();
+        centerScreen(getMainScreen(), true, true);
         getMainScreen().setVisible(true);
+        //add listener to service components
+        addListener(getFileTransfer(), new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new PnlFileTransferCtrl().init();
+            }
+        });
+        addListener(getSendMail(), new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                System.out.println("SEND-MAIL");
+            }
+        });
+        addListener(getBugReport(), new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                System.out.println("BUG-REPORT");
+            }
+        });
+    }
+
+    @Override
+    protected void _initDatabaseProfile() {
+        _initScreen();
+        getCCProgressbar().start();
+        super._initDatabaseProfile();
+        getCCProgressbar().complete();
     }
 
     @Override
@@ -70,6 +98,7 @@ public abstract class CFSwingMain extends CFApplCtrl {
         uae.reg(Utility, User_Group, PnlUserGroupListCtrl.class);
         uae.reg(Utility, User, PnlUserListCtrl.class);
         uae.reg(Utility, Change_Password, PnlChangePasswordCtrl.class);
+        uae.reg(Utility, Logger_History, PnlLoggerListCtrl.class);
         if (!HIBERNATE.getParameterClasses().isEmpty()) {
             uae.reg(Utility, Parameter, PnlParameterListCtrl.class);
             uae.reg(Utility, Export_Import, PnlExportImportCtrl.class);
@@ -77,7 +106,6 @@ public abstract class CFSwingMain extends CFApplCtrl {
         if (!HIBERNATE.getAuditableClasses().isEmpty()) {
             uae.reg(Utility, Audit_Trail, PnlAuditTrailListCtrl.class);
         }
-        uae.reg(Utility, Logger_History, PnlLoggerListCtrl.class);
         if (!HIBERNATE.getCustomizableClasses().isEmpty()) {
             uae.reg(Utility, Screen_Setting, PnlScreenSettingListCtrl.class);
         }
@@ -103,6 +131,11 @@ public abstract class CFSwingMain extends CFApplCtrl {
             getContentImage().setIcon(confAppl.getApplWallpaper());
             getCompLogo().setIcon(confAppl.getCompanyLogo());
             getCompName().setText(wordWrap(getStringOrBlank(confAppl.getCompanyName()), getStringOrBlank(confAppl.getCompanyAddress())));
+        } else if (object instanceof UtilConfServ) {
+            confServ = (UtilConfServ) object;
+            getFileTransfer().setVisible(confServ.getFileTransferEnable());
+            getSendMail().setVisible(confServ.getMailSendMailEnable());
+            getBugReport().setVisible(confServ.getMailBugReportEnable());
         }
     }
 
@@ -121,6 +154,7 @@ public abstract class CFSwingMain extends CFApplCtrl {
         uae.addMenuChild(User_Group, "/cococare/resource/icon-menu-user-group.png", PnlUserGroupListCtrl.class);
         uae.addMenuChild(User, "/cococare/resource/icon-menu-user.png", PnlUserListCtrl.class);
         uae.addMenuChild(Change_Password, "/cococare/resource/icon-menu-change-password.png", PnlChangePasswordCtrl.class);
+        uae.addMenuChild(Logger_History, "/cococare/resource/icon-menu-logger-history.png", PnlLoggerListCtrl.class);
         uae.addMenuSeparator();
         if (!HIBERNATE.getParameterClasses().isEmpty()) {
             uae.addMenuChild(Parameter, "/cococare/resource/icon-menu-parameter.png", PnlParameterListCtrl.class);
@@ -129,7 +163,6 @@ public abstract class CFSwingMain extends CFApplCtrl {
         if (!HIBERNATE.getAuditableClasses().isEmpty()) {
             uae.addMenuChild(Audit_Trail, "/cococare/resource/icon-menu-audit-trail.png", PnlAuditTrailListCtrl.class);
         }
-        uae.addMenuChild(Logger_History, "/cococare/resource/icon-menu-logger-history.png", PnlLoggerListCtrl.class);
         uae.addMenuSeparator();
         if (!HIBERNATE.getCustomizableClasses().isEmpty()) {
             uae.addMenuChild(Screen_Setting, "/cococare/resource/icon-menu-screen-setting.png", PnlScreenSettingListCtrl.class);
@@ -150,6 +183,10 @@ public abstract class CFSwingMain extends CFApplCtrl {
         getMenubarH().setVisible(false);
         getMenubarV().setVisible(false);
         getMainScreen().validate();
+        //
+        getFileTransfer().setVisible(false);
+        getSendMail().setVisible(false);
+        getBugReport().setVisible(false);
     }
 
     @Override

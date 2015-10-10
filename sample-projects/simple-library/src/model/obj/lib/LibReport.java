@@ -54,24 +54,6 @@ public class LibReport extends CCReport {
     @CCFieldConfig(componentId = "bndMember", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "fullName")
     private LibMember member;
 
-//<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public LibBook getBook() {
-        return book;
-    }
-
-    public void setBook(LibBook book) {
-        this.book = book;
-    }
-
-    public LibMember getMember() {
-        return member;
-    }
-
-    public void setMember(LibMember member) {
-        this.member = member;
-    }
-//</editor-fold>
-
 //<editor-fold defaultstate="collapsed" desc=" public method ">
     @Override
     public Class<? extends CCReportEnumInterface> getReportEnum() {
@@ -92,6 +74,24 @@ public class LibReport extends CCReport {
         map.put("memberPhone", isNull(member) ? "" : member.getPhone());
         map.put("memberKtp", isNull(member) ? "" : member.getKtp());
         map.put("member", isNull(member) ? null : member.getId());
+    }
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc=" getter-setter ">
+    public LibBook getBook() {
+        return book;
+    }
+
+    public void setBook(LibBook book) {
+        this.book = book;
+    }
+
+    public LibMember getMember() {
+        return member;
+    }
+
+    public void setMember(LibMember member) {
+        this.member = member;
     }
 //</editor-fold>
 }

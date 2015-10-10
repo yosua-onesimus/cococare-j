@@ -1,7 +1,7 @@
 package cococare.framework.model.mdl.wf;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.framework.swing.controller.form.wf.PnlWorkflowConfiguratorCtrl;
+import cococare.framework.swing.controller.form.wf.PnlWorkflowModuleCtrl;
 //</editor-fold>
 
 /**
@@ -9,5 +9,5 @@ import cococare.framework.swing.controller.form.wf.PnlWorkflowConfiguratorCtrl;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class WfWorkflowCtrl extends PnlWorkflowConfiguratorCtrl {
+public class WfWorkflowCtrl extends PnlWorkflowModuleCtrl {
 }

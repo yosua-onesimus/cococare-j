@@ -1,6 +1,8 @@
 package cococare.framework.swing.controller.form.wf;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import cococare.common.CCClass;
+import cococare.common.CCCustomField;
 import static cococare.database.CCLoginInfo.INSTANCE_getUserLogin;
 import cococare.framework.model.bo.wf.WfWorkflowBo;
 import cococare.framework.model.obj.util.UtilFilter.isIdInIds;
@@ -10,6 +12,9 @@ import cococare.framework.model.obj.wf.WfDocumentSample;
 import cococare.framework.swing.CFSwingCtrl;
 import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCComboBox;
+import cococare.swing.component.CCLink;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 //</editor-fold>
 
@@ -48,6 +53,31 @@ public class PnlDocumentListCtrl extends CFSwingCtrl {
     @Override
     protected void _initTable() {
         super._initTable();
+        tblEntity.addField(0, new CCCustomField() {
+            @Override
+            public String getLabel() {
+                return "Code";
+            }
+
+            @Override
+            public Object getCustomView(final Object object) {
+                CCLink link = new CCLink((String) CCClass.getValue(object, "code"));
+                addListener(link, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent actionEvent) {
+                        tblEntity.getStopCellEditingListener().actionPerformed(actionEvent);
+                        _doShowEditor(readonly, object);
+                    }
+                });
+                return link;
+            }
+
+            @Override
+            public Integer getColumnWidth() {
+                return 100;
+            }
+        });
+        tblEntity.setEditableColumn(true, 0);
         tblEntity.setHqlFilters(new isIdInIds() {
             @Override
             public Object getFieldValue() {

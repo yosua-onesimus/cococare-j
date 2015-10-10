@@ -30,6 +30,10 @@ public class FrmMain extends javax.swing.JFrame {
         southWest = new javax.swing.JPanel();
         aCopyright = new javax.swing.JLabel();
         aApplVer = new javax.swing.JLabel();
+        southEast = new javax.swing.JPanel();
+        aFileTransfer = new cococare.swing.component.CCLink();
+        aSendMail = new cococare.swing.component.CCLink();
+        aBugReport = new cococare.swing.component.CCLink();
         aProgressBar = new cococare.swing.component.CCProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -175,10 +179,50 @@ public class FrmMain extends javax.swing.JFrame {
 
         south.add(southWest, java.awt.BorderLayout.WEST);
 
+        southEast.setMinimumSize(new java.awt.Dimension(200, 30));
+
+        aFileTransfer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        aFileTransfer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cococare/resource/icon-menu-file-transfer.png"))); // NOI18N
+        aFileTransfer.setToolTipText("File Transfer");
+        aFileTransfer.setIconTextGap(0);
+
+        aSendMail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        aSendMail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cococare/resource/icon-menu-send-mail.png"))); // NOI18N
+        aSendMail.setToolTipText("Send Mail");
+        aSendMail.setIconTextGap(0);
+
+        aBugReport.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        aBugReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cococare/resource/icon-menu-bug-report.png"))); // NOI18N
+        aBugReport.setToolTipText("Bug Report");
+        aBugReport.setIconTextGap(0);
+
         aProgressBar.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         aProgressBar.setMinimumSize(new java.awt.Dimension(200, 30));
         aProgressBar.setPreferredSize(new java.awt.Dimension(200, 30));
-        south.add(aProgressBar, java.awt.BorderLayout.EAST);
+
+        javax.swing.GroupLayout southEastLayout = new javax.swing.GroupLayout(southEast);
+        southEast.setLayout(southEastLayout);
+        southEastLayout.setHorizontalGroup(
+            southEastLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, southEastLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(aFileTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(aSendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(aBugReport, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(aProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        southEastLayout.setVerticalGroup(
+            southEastLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(aFileTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(aSendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(aBugReport, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(aProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        south.add(southEast, java.awt.BorderLayout.EAST);
 
         getContentPane().add(south, java.awt.BorderLayout.SOUTH);
 
@@ -188,18 +232,22 @@ public class FrmMain extends javax.swing.JFrame {
     private cococare.swing.component.CCImage aApplLogo;
     private javax.swing.JLabel aApplName;
     private javax.swing.JLabel aApplVer;
+    private cococare.swing.component.CCLink aBugReport;
     private cococare.swing.component.CCImage aCompLogo;
     private javax.swing.JLabel aCompName;
     private cococare.swing.component.CCImage aContent;
     private javax.swing.JLabel aCopyright;
+    private cococare.swing.component.CCLink aFileTransfer;
     private cococare.swing.component.CCMenuBar aMenuBarH;
     private cococare.swing.component.CCMenuBar aMenuBarV;
     private cococare.swing.component.CCProgressBar aProgressBar;
+    private cococare.swing.component.CCLink aSendMail;
     private javax.swing.JPanel center;
     private javax.swing.JPanel north;
     private javax.swing.JPanel northEast;
     private javax.swing.JPanel northWest;
     private javax.swing.JPanel south;
+    private javax.swing.JPanel southEast;
     private javax.swing.JPanel southWest;
     // End of variables declaration//GEN-END:variables
 }

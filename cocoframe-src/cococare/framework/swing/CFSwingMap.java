@@ -8,6 +8,7 @@ import static cococare.common.CCFinal.*;
 import cococare.framework.swing.view.form.FrmMain;
 import static cococare.swing.CCSwing.*;
 import cococare.swing.component.CCImage;
+import cococare.swing.component.CCLink;
 import cococare.swing.component.CCMenuBar;
 import cococare.swing.component.CCProgressBar;
 import java.awt.Container;
@@ -19,8 +20,8 @@ import javax.swing.JPanel;
 // </editor-fold>
 
 /**
- * CFSwingMap is a class that contains a mapping for the swing so easy retrieval
- * of common components.
+ * CFSwingMap is a class that contains a mapping for the swing so easy retrieval of common
+ * components.
  *
  * @author Yosua Onesimus
  * @since 13.03.17
@@ -236,6 +237,33 @@ public class CFSwingMap {
      */
     public static JPanel getFooter() {
         return getJPanel(getMainScreen(), aFooter);
+    }
+
+    /**
+     * Returns a file transfer.
+     *
+     * @return the file transfer.
+     */
+    public static CCLink getFileTransfer() {
+        return getCCLink(getMainScreen(), aFileTransfer);
+    }
+
+    /**
+     * Returns a send mail.
+     *
+     * @return the send mail.
+     */
+    public static CCLink getSendMail() {
+        return getCCLink(getMainScreen(), aSendMail);
+    }
+
+    /**
+     * Returns a bug report.
+     *
+     * @return the bug report.
+     */
+    public static CCLink getBugReport() {
+        return getCCLink(getMainScreen(), aBugReport);
     }
 
     /**
