@@ -46,6 +46,7 @@ public class PnlDocumentListCtrl extends CFSwingCtrl {
     protected void _initComponent() {
         super._initComponent();
         swingView.getTabEntity().setTitleAt(0, _getEntityLabel());
+        parameter.put(toString() + "cmbActivity", cmbActivity);
         cmbActivity.initList(null, WfActivity.class, "name");
         cmbActivity.setList(workflowBo.getActivitiesBy(user.getUserGroup()));
     }
@@ -53,15 +54,16 @@ public class PnlDocumentListCtrl extends CFSwingCtrl {
     @Override
     protected void _initTable() {
         super._initTable();
+        tblEntity.setVisibleField(false, "number");
         tblEntity.addField(0, new CCCustomField() {
             @Override
             public String getLabel() {
-                return "Code";
+                return "Number";
             }
 
             @Override
             public Object getCustomView(final Object object) {
-                CCLink link = new CCLink((String) CCClass.getValue(object, "code"));
+                CCLink link = new CCLink((String) CCClass.getValue(object, "number"));
                 addListener(link, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {

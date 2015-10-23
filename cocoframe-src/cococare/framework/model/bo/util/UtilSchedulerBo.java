@@ -9,7 +9,6 @@ import static cococare.common.CCFormat.nextSequence;
 import static cococare.common.CCLogic.isNotNull;
 import static cococare.common.CCLogic.isNull;
 import static cococare.common.quartz.CCQuartz.*;
-import cococare.database.CCHibernate.Transaction;
 import cococare.database.CCHibernateBo;
 import static cococare.database.CCLoginInfo.INSTANCE_getDomain;
 import cococare.framework.model.dao.util.UtilSchedulerDao;
@@ -31,22 +30,21 @@ public class UtilSchedulerBo extends CCHibernateBo {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private UtilSchedulerDao schedulerDao;
-    private List<UtilScheduler> schedulers = new ArrayList(Arrays.asList(
-            new UtilScheduler(getLabel(UtilAutoBackup.class), UtilAutoBackup.class.getName()),
-            new UtilScheduler(getLabel(UtilAutoClean.class), UtilAutoClean.class.getName())));
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" init ">
-    public synchronized void setAdditionalJobClass(List<String> additionalJobClass) {
+    public synchronized boolean initInitialData(List<String> additionalJobClass) {
+        //
+        List<UtilScheduler> schedulers = new ArrayList(Arrays.asList(
+                new UtilScheduler(getLabel(UtilAutoBackup.class), UtilAutoBackup.class.getName()),
+                new UtilScheduler(getLabel(UtilAutoClean.class), UtilAutoClean.class.getName())));
         for (String jobClassName : additionalJobClass) {
             Class clazz = CCClass.getClass(jobClassName);
             if (isNotNull(clazz)) {
                 schedulers.add(new UtilScheduler(getLabel(clazz), clazz.getName()));
             }
         }
-    }
-
-    public synchronized boolean initInitialData() {
+        //
         String code = schedulerDao.getLastCode();
         for (UtilScheduler scheduler : schedulers) {
             UtilScheduler oldScheduler = schedulerDao.getByJobClassName(scheduler.getJobClassName());
@@ -58,8 +56,8 @@ public class UtilSchedulerBo extends CCHibernateBo {
                 copy(oldScheduler, scheduler);
             }
         }
-        Transaction transaction = schedulerDao.newTransaction();
-        return transaction.
+        //
+        return schedulerDao.newTransaction().
                 saveOrUpdate(schedulers).
                 execute();
     }

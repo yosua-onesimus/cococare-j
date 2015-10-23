@@ -21,6 +21,12 @@ public class WfTransitionDao extends WorkflowDao {
     }
 //</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc=" init ">
+    public WfTransition getByCode(String code) {
+        return getByField("code", code);
+    }
+//</editor-fold>
+
 //<editor-fold defaultstate="collapsed" desc=" crud ">
     public WfTransition getFirstBy(WfAction action) {
         hql.start().

@@ -30,6 +30,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 // </editor-fold>
 
@@ -553,6 +554,17 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
         if (_hasEdtEntity()) {
             edtEntity.setValueToEditor(objEntity);
         }
+    }
+
+    @Override
+    protected void _addChildScreen(String tabTitle, String parentField, CFViewCtrl childCtrl, String childContentId) {
+        if (isNull(getJPanel(getContainer(), childContentId))) {
+            JPanel panel = new JPanel();
+            panel.setName(childContentId);
+            panel.setLayout(new GroupLayout(panel));
+            swingView.getTabEntity().add(turn(tabTitle), panel);
+        }
+        _addChildScreen(parentField, childCtrl, childContentId);
     }
 //</editor-fold>
 }

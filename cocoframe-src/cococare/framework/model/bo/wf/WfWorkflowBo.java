@@ -1,8 +1,7 @@
 package cococare.framework.model.bo.wf;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import static cococare.common.CCClass.copy;
-import static cococare.common.CCClass.extract;
+import static cococare.common.CCClass.*;
 import static cococare.common.CCFormat.getBoolean;
 import static cococare.common.CCLanguage.*;
 import static cococare.common.CCLogic.*;
@@ -12,12 +11,14 @@ import static cococare.common.CCResponse.newResponse;
 import static cococare.common.CCResponse.newResponseFalse;
 import cococare.database.CCHibernate.Transaction;
 import cococare.database.CCHibernateBo;
+import static cococare.database.CCLoginInfo.INSTANCE_getUserLogin;
 import cococare.framework.common.CFViewCtrl;
 import cococare.framework.model.dao.util.UtilUserDao;
 import cococare.framework.model.dao.wf.*;
 import cococare.framework.model.obj.util.UtilUser;
 import cococare.framework.model.obj.util.UtilUserGroup;
 import cococare.framework.model.obj.wf.WfEnum.ActivityPointType;
+import cococare.framework.model.obj.wf.WfEnum.DocumentStatus;
 import cococare.framework.model.obj.wf.WfEnum.TransitionRouteType;
 import cococare.framework.model.obj.wf.WfEnum.WorkflowStatus;
 import cococare.framework.model.obj.wf.*;
@@ -35,6 +36,7 @@ public class WfWorkflowBo extends CCHibernateBo {
     private UtilUserDao userDao;
     //
     private WfActivityDao activityDao;
+    private WfActivityTabDao activityTabDao;
     private WfActionDao actionDao;
     private WfTransitionDao transitionDao;
     private WfRoundRobinDao roundRobinDao;
@@ -94,10 +96,18 @@ public class WfWorkflowBo extends CCHibernateBo {
         //create new workflow for each document
         WfWorkflow parent = null;
         for (WfDocument document : documents) {
+            //create new document active base on document portfolio
+            if (DocumentStatus.PORTFOLIO.equals(document.getDocumentStatus())) {
+                WfDocument documentActive = newObject(document.getClass());
+                copy(document, documentActive);
+                documentActive.setPortfolio(document);
+                document = documentActive;
+            }
             //save document
             transaction.saveOrUpdate(document);
             //create new workflow
             WfWorkflow workflow = new WfWorkflow(document, process, activity);
+            workflow.setUser((UtilUser) INSTANCE_getUserLogin());
             if (isNull(parent)) {
                 parent = workflow;
             } else {
@@ -121,6 +131,10 @@ public class WfWorkflowBo extends CCHibernateBo {
 
     public synchronized List<Long> getDocumentIdsBy(WfActivity activity, UtilUserGroup userRole, UtilUser user) {
         return workflowDao.getDocumentIdsBy(activity, userRole, user);
+    }
+
+    public synchronized List<WfActivityTab> getActivityTabsBy(WfActivity activity) {
+        return activityTabDao.getListBy(activity);
     }
 
     public synchronized WfRouting prepareRouting(WfWorkflow workflow) {

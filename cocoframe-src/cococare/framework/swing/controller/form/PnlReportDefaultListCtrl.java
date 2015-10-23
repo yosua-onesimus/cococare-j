@@ -46,8 +46,8 @@ public abstract class PnlReportDefaultListCtrl extends CFSwingCtrl {
     @Override
     protected void _initComponent() {
         _initEditor();
-        fillUp(cmbReport, _getReportEnum(), false);
         super._initComponent();
+        fillUp(cmbReport, _getReportEnum(), false);
     }
 
     @Override

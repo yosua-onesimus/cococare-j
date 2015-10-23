@@ -32,6 +32,12 @@ public class PnlActivityCtrl extends PnlDefaultWithChildCtrl {
 //</editor-fold>
 
     @Override
+    protected void _initComponent() {
+        super._initComponent();
+        _addChildScreen("Tab", "activity", new PnlActivityTabListCtrl(), "pnlActivityTab");
+    }
+
+    @Override
     protected void _initEditor() {
         super._initEditor();
         bndViewCustomization.getTable().setHqlFilters(isTypeIsViewCustomization);

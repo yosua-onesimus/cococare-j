@@ -8,11 +8,13 @@ import cococare.framework.common.CFApplCtrl;
 import cococare.framework.model.bo.util.UtilConfigBo;
 import cococare.framework.model.obj.util.UtilConfAppl;
 import cococare.framework.model.obj.util.UtilConfServ;
+import cococare.framework.model.obj.util.UtilConfServ.MailProtocol;
 import cococare.framework.swing.controller.form.PnlDefaultCtrl;
 import static cococare.swing.CCSwing.addListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 //</editor-fold>
 
@@ -34,6 +36,7 @@ public class PnlApplicationSettingCtrl extends PnlDefaultCtrl {
     //
     private JCheckBox txtMailSendMailEnable;
     private JCheckBox txtMailBugReportEnable;
+    private JComboBox txtMailProtocol;
     private JTextField txtMailMailSmtpHost;
     private JTextField txtMailGmailUsername;
     private JTextField txtMailGmailPassword;
@@ -52,6 +55,7 @@ public class PnlApplicationSettingCtrl extends PnlDefaultCtrl {
             addListener(txtFileTransferEnable, alUpdateAccessible);
             addListener(txtMailSendMailEnable, alUpdateAccessible);
             addListener(txtMailBugReportEnable, alUpdateAccessible);
+            addListener(txtMailProtocol, alUpdateAccessible);
         }
     }
 
@@ -62,11 +66,18 @@ public class PnlApplicationSettingCtrl extends PnlDefaultCtrl {
             edtEntity.setAccessible(txtFileTransferPort, accessible);
             edtEntity.setAccessible(txtFileTransferUsername, accessible);
             edtEntity.setAccessible(txtFileTransferPassword, accessible);
-        } else if (object.equals(txtMailSendMailEnable) || object.equals(txtMailBugReportEnable)) {
-            Accessible accessible = txtMailSendMailEnable.isSelected() || txtMailBugReportEnable.isSelected() ? Accessible.MANDATORY : Accessible.NORMAL;
-            edtEntity.setAccessible(txtMailMailSmtpHost, accessible);
-            edtEntity.setAccessible(txtMailGmailUsername, accessible);
-            edtEntity.setAccessible(txtMailGmailPassword, accessible);
+        } else if (object.equals(txtMailSendMailEnable)
+                || object.equals(txtMailBugReportEnable)
+                || object.equals(txtMailProtocol)) {
+            boolean mandatory = txtMailSendMailEnable.isSelected() || txtMailBugReportEnable.isSelected();
+            Accessible accessible = mandatory ? Accessible.MANDATORY : Accessible.NORMAL;
+            edtEntity.setAccessible(txtMailProtocol, accessible);
+            int selectedIndex = txtMailProtocol.getSelectedIndex();
+            Accessible accessibleHost = mandatory && selectedIndex == MailProtocol.SMTP_HOST.ordinal() ? Accessible.MANDATORY : Accessible.NORMAL;
+            Accessible accessibleGmail = mandatory && selectedIndex == MailProtocol.SMTP_GMAIL.ordinal() ? Accessible.MANDATORY : Accessible.NORMAL;
+            edtEntity.setAccessible(txtMailMailSmtpHost, accessibleHost);
+            edtEntity.setAccessible(txtMailGmailUsername, accessibleGmail);
+            edtEntity.setAccessible(txtMailGmailPassword, accessibleGmail);
         }
     }
 

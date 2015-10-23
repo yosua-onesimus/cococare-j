@@ -22,6 +22,12 @@ public class WfActivityDao extends WorkflowDao {
     }
 //</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc=" init ">
+    public WfActivity getByCode(String code) {
+        return getByField("code", code);
+    }
+//</editor-fold>
+
 //<editor-fold defaultstate="collapsed" desc=" crud ">
     public List<WfActivity> getListBy(WfProcess process) {
         return getListByField("process", process, false);

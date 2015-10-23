@@ -23,7 +23,7 @@ import javax.persistence.Table;
 public class WfAction extends CCEntity {
 
     @ManyToOne
-    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name", visible = false, visible2 = false)
+    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false, visible2 = false)
     private WfActivity activity;
     @Column(length = 8)
     @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "A000", requestFocus = true, unique = true)

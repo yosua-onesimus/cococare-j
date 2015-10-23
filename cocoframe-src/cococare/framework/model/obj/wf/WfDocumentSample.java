@@ -1,36 +1,39 @@
 package cococare.framework.model.obj.wf;
 
+//<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCTypeConfig;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+//</editor-fold>
 
-@Deprecated
 @Entity
-@CCTypeConfig(label = "Document", uniqueKey = "@code-@name")
+@CCTypeConfig(label = "Document", uniqueKey = "number")
 public class WfDocumentSample extends WfDocument {
 
-    @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "P000", requestFocus = true, unique = true)
-    private String code;
     @Column(length = 32)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
-    private String name;
+    @CCFieldConfig(componentId = "txtTitle", accessible = Accessible.MANDATORY)
+    private String title;
+    @Column(length = Short.MAX_VALUE)
+    @CCFieldConfig(componentId = "txtContent", visible = false)
+    private String content;
 
-    public String getCode() {
-        return code;
+//<editor-fold defaultstate="collapsed" desc=" getter-setter ">
+    public String getTitle() {
+        return title;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getName() {
-        return name;
+    public String getContent() {
+        return content;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setContent(String content) {
+        this.content = content;
     }
+//</editor-fold>
 }

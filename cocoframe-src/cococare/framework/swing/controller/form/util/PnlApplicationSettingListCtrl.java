@@ -3,6 +3,7 @@ package cococare.framework.swing.controller.form.util;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCClass.getCCTypeConfig;
 import static cococare.common.CCClass.newObject;
+import static cococare.common.CCConfig.COM_SHOW_JAVAX_COMM_MODULE;
 import static cococare.common.CCConfig.HBN_WORKFLOW_MODULE_INCLUDED;
 import cococare.common.CCCustomField;
 import static cococare.common.CCLogic.isNullOrEmpty;
@@ -11,6 +12,7 @@ import cococare.common.CCTypeConfig;
 import cococare.framework.model.bo.util.UtilConfigBo;
 import cococare.framework.model.obj.util.UtilConfAppl;
 import cococare.framework.model.obj.util.UtilConfServ;
+import cococare.framework.model.obj.util.UtilJavaxComm;
 import cococare.framework.model.obj.util.UtilScheduler;
 import cococare.framework.model.obj.wf.WfWorkflow;
 import cococare.framework.swing.CFSwingCtrl;
@@ -47,6 +49,9 @@ public class PnlApplicationSettingListCtrl extends CFSwingCtrl {
         super._initObject();
         settingClasses = new ArrayList();
         settingClasses.add(UtilConfAppl.class);
+        if (COM_SHOW_JAVAX_COMM_MODULE) {
+            settingClasses.add(UtilJavaxComm.class);
+        }
         settingClasses.add(UtilConfServ.class);
         settingClasses.addAll(configBo.getConfAppl().getUtilAdditionalSettingClass());
         settingClasses.add(UtilScheduler.class);

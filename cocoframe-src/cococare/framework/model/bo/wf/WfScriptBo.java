@@ -31,17 +31,18 @@ public class WfScriptBo extends CCHibernateBo {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private WfScriptDao scriptDao;
-    private List<WfScript> scripts = new ArrayList();
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" init ">
     /**
-     * Sets the scripts with the scriptClass.
+     * Create initial data.
      *
-     * @param scriptClass the scriptClass.
+     * @param scriptClass the script class.
+     * @return true if success; false if fail.
      */
-    public synchronized void setScriptClass(List<String> scriptClass) {
-        scripts.clear();
+    public synchronized boolean initInitialData(List<String> scriptClass) {
+        //
+        List<WfScript> scripts = new ArrayList();
         for (String scriptClassName : scriptClass) {
             Class clazz = CCClass.getClass(scriptClassName);
             if (isNotNull(clazz)) {
@@ -78,14 +79,7 @@ public class WfScriptBo extends CCHibernateBo {
                 }
             }
         }
-    }
-
-    /**
-     * Create initial data.
-     *
-     * @return true if success; false if fail.
-     */
-    public synchronized boolean initInitialData() {
+        //
         String code = scriptDao.getLastCode();
         for (WfScript script : scripts) {
             WfScript oldScript = scriptDao.getByPath(script.getPath());
@@ -97,6 +91,7 @@ public class WfScriptBo extends CCHibernateBo {
                 copy(oldScript, script);
             }
         }
+        //
         return scriptDao.newTransaction().
                 saveOrUpdate(scripts).
                 execute();

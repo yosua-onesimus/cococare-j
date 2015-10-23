@@ -62,4 +62,21 @@ public class WfEnum {
             return string;
         }
     }
+
+    public enum DocumentStatus {
+
+        PORTFOLIO("Portfolio"),
+        ACTIVE("Active"),
+        ARCHIVE("Archive");
+        private String string;
+
+        private DocumentStatus(String string) {
+            this.string = string;
+        }
+
+        @Override
+        public String toString() {
+            return string;
+        }
+    }
 }

@@ -3,10 +3,13 @@ package cococare.framework.swing.controller.form.wf;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCAccessibleListener;
 import static cococare.common.CCClass.*;
+import static cococare.common.CCFinal.ROOT;
 import static cococare.common.CCLanguage.Process;
 import static cococare.common.CCLanguage.turn;
 import static cococare.common.CCLogic.isNotNull;
 import static cococare.common.CCLogic.isNull;
+import cococare.database.CCEntity;
+import cococare.database.CCEntityBo;
 import cococare.framework.model.bo.wf.WfWorkflowConfiguratorBo;
 import cococare.framework.model.obj.wf.WfEnum.ActivityPointType;
 import cococare.framework.model.obj.wf.WfFilter.isAction;
@@ -105,7 +108,7 @@ public class PnlWorkflowModuleCtrl extends CFSwingCtrl {
     }
 
     private void _initTreeProcess() {
-        DefaultMutableTreeNode nodeRoot = _newNode(turn(Process), "root");
+        DefaultMutableTreeNode nodeRoot = _newNode(turn(Process), ROOT);
         treeProcess.setModel(defaultTreeModel = new DefaultTreeModel(nodeRoot));
         for (WfProcess process : workflowConfiguratorBo.getProcesses()) {
             DefaultMutableTreeNode nodeProcess = _newNode(process.getName(), process);
@@ -144,10 +147,17 @@ public class PnlWorkflowModuleCtrl extends CFSwingCtrl {
         });
     }
 
-    @Override
-    protected boolean _doDeleteEntity() {
-        parameter.put(toString() + "crudObject", _getSelectedItem());
-        return super._doDeleteEntity();
+    private String _newBreadcrumbsTitle(Object object) {
+        String title = "";
+        if (object instanceof WfActivity) {
+            title += _newBreadcrumbsTitle(((WfActivity) object).getProcess());
+        } else if (object instanceof WfAction) {
+            title += _newBreadcrumbsTitle(((WfAction) object).getActivity());
+        }
+        if (object instanceof CCEntity) {
+            title += getUniqueKeyValue(object) + "  >  ";
+        }
+        return title;
     }
 
     private void _doTreeProcess() {
@@ -162,7 +172,7 @@ public class PnlWorkflowModuleCtrl extends CFSwingCtrl {
             applyAccessible(swingView.getBtnAdd());
             parameter.put(toString() + "selectedObject", selectedObject);
             Class entity = _getEntity();
-            swingView.getTabEntity().setTitleAt(0, getLabel(entity));
+            swingView.getTabEntity().setTitleAt(0, _newBreadcrumbsTitle(selectedObject) + getLabel(entity));
             tblEntity.setEntity(entity);
             if (WfActivity.class.equals(entity)) {
                 tblEntity.setHqlFilters(new isProcess() {
@@ -188,6 +198,12 @@ public class PnlWorkflowModuleCtrl extends CFSwingCtrl {
             }
             tblEntity.search();
         }
+    }
+
+    @Override
+    protected boolean _doDeleteEntity() {
+        parameter.put(toString() + "crudObject", _getSelectedItem());
+        return super._doDeleteEntity();
     }
 
     @Override
@@ -221,8 +237,8 @@ public class PnlWorkflowModuleCtrl extends CFSwingCtrl {
                 || crudObject instanceof WfAction) {
             DefaultMutableTreeNode selectedNode = object_node.get(getSysRef(selectedObject));
             DefaultMutableTreeNode crudNode = object_node.get(getSysRef(crudObject));
-            if (isNotNull(getObjectById(crudObject.getClass(), (Long) getValue(crudObject, "id")))) {
-                String label = getValue(crudObject, "name").toString();
+            if (isNotNull(crudObject = CCEntityBo.INSTANCE.reLoad((CCEntity) crudObject))) {
+                String label = getUniqueKeyValue(crudObject).toString();
                 if (isNotNull(crudNode)) {
                     crudNode.setUserObject(label);
                 } else {

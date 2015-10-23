@@ -21,8 +21,11 @@ public class WorkflowModule extends CCHibernateModule {
         super.init(hibernate);
         //
         hibernate.addAnnotatedClass(WfScript.class);
+        hibernate.addAnnotatedClass(WfTab.class);
+        //
         hibernate.addAnnotatedClass(WfProcess.class);
         hibernate.addAnnotatedClass(WfActivity.class);
+        hibernate.addAnnotatedClass(WfActivityTab.class);
         hibernate.addAnnotatedClass(WfAction.class);
         hibernate.addAnnotatedClass(WfTransition.class);
         //
@@ -30,6 +33,7 @@ public class WorkflowModule extends CCHibernateModule {
         //
         hibernate.addAnnotatedClass(WfDocument.class);
         hibernate.addAnnotatedClass(WfDocumentSample.class);
+        hibernate.addAnnotatedClass(WfDocumentSampleAttachment.class);
         hibernate.addAnnotatedClass(WfWorkflow.class);
         hibernate.addAnnotatedClass(WfWorkflowHistory.class);
     }

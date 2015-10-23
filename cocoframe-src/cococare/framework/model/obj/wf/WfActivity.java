@@ -30,8 +30,8 @@ public class WfActivity extends CCEntity {
     @Column(length = 8)
     @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "A000", requestFocus = true, unique = true)
     private String code;
-    @Column(length = 32)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
+    @Column(length = 48)
+    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 48)
     private String name;
     @ManyToOne
     @CCFieldConfig(componentId = "bndViewCustomization", maxLength = 32, uniqueKey = "name")

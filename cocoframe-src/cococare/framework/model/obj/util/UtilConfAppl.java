@@ -7,7 +7,6 @@ import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCFieldConfig.Type;
 import cococare.common.CCTypeConfig;
-import cococare.database.CCEntity;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Lob;
@@ -19,7 +18,7 @@ import javax.persistence.Lob;
  * @version 13.03.17
  */
 @CCTypeConfig(label = "Common/Utility Module", tooltiptext = "Application UI, Company, Company Owner, etc")
-public class UtilConfAppl extends CCEntity {
+public class UtilConfAppl {
 
 //<editor-fold defaultstate="collapsed" desc=" public enum ">
     public enum MenuPosition {

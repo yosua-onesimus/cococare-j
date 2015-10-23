@@ -1,4 +1,4 @@
-package cococare.framework.swing.controller.form.setup;
+package cococare.framework.swing.controller.form.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCLogic.isNotNull;
@@ -10,6 +10,7 @@ import static cococare.datafile.CCFile.showOpenDialog;
 import cococare.datafile.CCSetup;
 import static cococare.datafile.CCSystem.ENTER;
 import static cococare.datafile.CCSystem.JAVA_HOME;
+import cococare.framework.model.obj.util.UtilJavaxComm;
 import cococare.framework.swing.CFSwingCtrl;
 import static cococare.swing.CCSwing.addListener;
 import cococare.swing.component.CCButton;
@@ -26,7 +27,7 @@ import javax.swing.JTextField;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlJavaxCommSetupCtrl extends CFSwingCtrl {
+public class PnlJavaxCommCtrl extends CFSwingCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     //
@@ -52,8 +53,13 @@ public class PnlJavaxCommSetupCtrl extends CFSwingCtrl {
 //</editor-fold>
 
     @Override
+    protected Class _getClass() {
+        return PnlJavaxCommCtrl.class;
+    }
+
+    @Override
     protected Class _getEntity() {
-        return null;
+        return UtilJavaxComm.class;
     }
 
     @Override
@@ -224,5 +230,10 @@ public class PnlJavaxCommSetupCtrl extends CFSwingCtrl {
         txtJavaHome.setText(javaHome);
         txtJavaHomeBin.setText(new File(javaHome, "bin").getPath());
         txtJavaHomeLib.setText(new File(javaHome, "lib").getPath());
+    }
+
+    @Override
+    protected String _getTabTitle() {
+        return _getEntityLabel();
     }
 }

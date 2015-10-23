@@ -1,13 +1,13 @@
-package cococare.framework.swing.view.form.setup;
+package cococare.framework.swing.view.form.util;
 
 /**
  * @author Yosua Onesimus
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlJavaxCommSetup extends javax.swing.JPanel {
+public class PnlJavaxComm extends javax.swing.JPanel {
 
-    public PnlJavaxCommSetup() {
+    public PnlJavaxComm() {
         initComponents();
     }
 
@@ -15,7 +15,6 @@ public class PnlJavaxCommSetup extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlJavaxComm = new javax.swing.JPanel();
         tabJavaxComm = new javax.swing.JTabbedPane();
         pnlSetup = new javax.swing.JPanel();
         xNote = new javax.swing.JLabel();
@@ -47,9 +46,6 @@ public class PnlJavaxCommSetup extends javax.swing.JPanel {
         btnOpenDrawer4 = new cococare.swing.component.CCButton();
 
         setMinimumSize(new java.awt.Dimension(600, 400));
-
-        pnlJavaxComm.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Javax.Comm Setup", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
-        pnlJavaxComm.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
         tabJavaxComm.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
@@ -248,31 +244,15 @@ public class PnlJavaxCommSetup extends javax.swing.JPanel {
 
         tabJavaxComm.addTab("Tester", pnlTester);
 
-        javax.swing.GroupLayout pnlJavaxCommLayout = new javax.swing.GroupLayout(pnlJavaxComm);
-        pnlJavaxComm.setLayout(pnlJavaxCommLayout);
-        pnlJavaxCommLayout.setHorizontalGroup(
-            pnlJavaxCommLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlJavaxCommLayout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(tabJavaxComm, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
-                .addGap(4, 4, 4))
-        );
-        pnlJavaxCommLayout.setVerticalGroup(
-            pnlJavaxCommLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlJavaxCommLayout.createSequentialGroup()
-                .addComponent(tabJavaxComm, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                .addGap(1, 1, 1))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlJavaxComm, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(tabJavaxComm, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlJavaxComm, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(tabJavaxComm, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -289,7 +269,6 @@ public class PnlJavaxCommSetup extends javax.swing.JPanel {
     private cococare.swing.component.CCButton btnText2Port;
     private javax.swing.JComboBox cmbAscii;
     private javax.swing.JComboBox cmbPort;
-    private javax.swing.JPanel pnlJavaxComm;
     private javax.swing.JPanel pnlSetup;
     private javax.swing.JPanel pnlTester;
     private javax.swing.JTabbedPane tabJavaxComm;
