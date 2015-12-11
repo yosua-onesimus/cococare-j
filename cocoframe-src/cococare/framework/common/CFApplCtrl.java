@@ -1,8 +1,7 @@
 package cococare.framework.common;
 
 // <editor-fold defaultstate="collapsed" desc=" import ">
-import static cococare.common.CCConfig.HBN_MULTI_DOMAIN;
-import static cococare.common.CCConfig.HBN_WORKFLOW_MODULE_INCLUDED;
+import static cococare.common.CCConfig.*;
 import cococare.common.CCLanguage;
 import static cococare.common.CCLanguage.load;
 import static cococare.common.CCLogic.isNull;
@@ -170,7 +169,7 @@ public abstract class CFApplCtrl {
      */
     protected void _initDatabaseEntity() {
         UtilityModule.INSTANCE.init(HIBERNATE);
-        if (HBN_WORKFLOW_MODULE_INCLUDED) {
+        if (APPL_UTIL_SHOW_WORKFLOW_MODULE) {
             WorkflowModule.INSTANCE.init(HIBERNATE);
         }
     }
@@ -220,7 +219,7 @@ public abstract class CFApplCtrl {
      */
     protected boolean _initInitialData() {
         return new CCCustomFieldConfigBo().initCustomFieldConfig()
-                && new UtilProvinceRegencyBo().initInitialData();
+                && (APPL_UTIL_INCLUDED_PERSON_ENTITIES ? new UtilProvinceRegencyBo().initInitialData() : true);
     }
 
     /**

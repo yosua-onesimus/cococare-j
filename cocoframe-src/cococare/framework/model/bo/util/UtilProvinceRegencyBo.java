@@ -6,6 +6,8 @@ import cococare.datafile.CCDom;
 import cococare.framework.model.mdl.util.UtilityModule;
 import cococare.framework.model.obj.util.UtilProvince;
 import cococare.framework.model.obj.util.UtilRegency;
+import java.util.ArrayList;
+import java.util.List;
 //</editor-fold>
 
 /**
@@ -19,8 +21,10 @@ public class UtilProvinceRegencyBo extends CCHibernateBo {
     public synchronized boolean initInitialData() {
         CCDom dom = new CCDom();
         dom.read(getClass().getResourceAsStream("/files/system/archive/ProvinceAndRegency.xml"));
-        return UtilityModule.INSTANCE.getCCHibernate().restore(dom.readEntity(UtilProvince.class))
-                && UtilityModule.INSTANCE.getCCHibernate().restore(dom.readEntity(UtilRegency.class));
+        List restorableDatas = new ArrayList();
+        restorableDatas.addAll(dom.readEntity(UtilProvince.class));
+        restorableDatas.addAll(dom.readEntity(UtilRegency.class));
+        return UtilityModule.INSTANCE.getCCHibernate().restore(restorableDatas);
     }
 //</editor-fold>
 }

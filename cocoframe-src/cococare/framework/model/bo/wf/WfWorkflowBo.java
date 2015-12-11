@@ -12,7 +12,6 @@ import static cococare.common.CCResponse.newResponseFalse;
 import cococare.database.CCHibernate.Transaction;
 import cococare.database.CCHibernateBo;
 import static cococare.database.CCLoginInfo.INSTANCE_getUserLogin;
-import cococare.framework.common.CFViewCtrl;
 import cococare.framework.model.dao.util.UtilUserDao;
 import cococare.framework.model.dao.wf.*;
 import cococare.framework.model.obj.util.UtilUser;
@@ -35,6 +34,7 @@ public class WfWorkflowBo extends CCHibernateBo {
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private UtilUserDao userDao;
     //
+    private WfProcessDao processDao;
     private WfActivityDao activityDao;
     private WfActivityTabDao activityTabDao;
     private WfActionDao actionDao;
@@ -45,23 +45,23 @@ public class WfWorkflowBo extends CCHibernateBo {
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" get user or get role ">
-    private synchronized List<UtilUser> getUsers4ManualRoute(WfActivity destination) {
+    private synchronized List<UtilUser> _getUsers4ManualRoute(WfActivity destination) {
         return userDao.getListUnlimitedBy(destination.getUserRole());
     }
 
-    private synchronized UtilUser getUser4RandomRoute(WfActivity destination) {
-        List<UtilUser> users = getUsers4ManualRoute(destination);
+    private synchronized UtilUser _getUser4RandomRoute(WfActivity destination) {
+        List<UtilUser> users = _getUsers4ManualRoute(destination);
         return isEmpty(users) ? null : users.get(new Random().nextInt(users.size()));
     }
 
-    private synchronized UtilUser getUser4WeightageRoute(WfActivity destination) {
-        List<UtilUser> users = getUsers4ManualRoute(destination);
+    private synchronized UtilUser _getUser4WeightageRoute(WfActivity destination) {
+        List<UtilUser> users = _getUsers4ManualRoute(destination);
         return workflowDao.getUserWhichHasSmallesWeightBy(users);
     }
 
-    private synchronized WfRoundRobin getRoundRobin(WfActivity destination) {
+    private synchronized WfRoundRobin _getRoundRobin(WfActivity destination) {
         //prepare round robin user
-        List<UtilUser> users = getUsers4ManualRoute(destination);
+        List<UtilUser> users = _getUsers4ManualRoute(destination);
         List<UtilUser> roundRobinUsers = roundRobinDao.getUsersBy(destination);
         //update round robin table
         if (users.size() != roundRobinUsers.size()) {
@@ -80,11 +80,37 @@ public class WfWorkflowBo extends CCHibernateBo {
         return roundRobinDao.getWhichHasOldestLastTaskBy(destination);
     }
 
-    private synchronized UtilUser getUser4ToLastUserRoute(WfWorkflow workflow, WfActivity destination) {
-        WfWorkflowHistory workflowHistory = workflowHistoryDao.getLastBy(workflow, destination, true);
+    private synchronized UtilUser _getUser4ToLastUserRoute(WfWorkflow workflow, WfActivity destination) {
+        WfWorkflowHistory workflowHistory = workflowHistoryDao.getLastBy(workflow, destination.getUserRole(), true);
         return workflowHistory.getUser();
     }
+
+    private synchronized UtilUser _getUser(Transaction transaction, TransitionRouteType routeType, WfWorkflow workflow) {
+        if (TransitionRouteType.MANUAL.equals(routeType)) {
+            return workflow.getRouting().getUser();
+        } else if (TransitionRouteType.POOLING.equals(routeType)) {
+            return null;
+        } else if (TransitionRouteType.RANDOM.equals(routeType)) {
+            return _getUser4RandomRoute(workflow.getActivity());
+        } else if (TransitionRouteType.WEIGHTAGE.equals(routeType)) {
+            return _getUser4WeightageRoute(workflow.getActivity());
+        } else if (TransitionRouteType.ROUND_ROBIN.equals(routeType)) {
+            //get round robin data and update the last task
+            WfRoundRobin roundRobin = _getRoundRobin(workflow.getActivity());
+            roundRobin.setLastTask(new Date());
+            transaction.saveOrUpdate(roundRobin);
+            return roundRobin.getUser();
+        } else if (TransitionRouteType.TO_LAST_USER.equals(routeType)) {
+            return _getUser4ToLastUserRoute(workflow, workflow.getActivity());
+        } else {
+            return null;
+        }
+    }
 //</editor-fold>
+
+    public synchronized List<WfProcess> getFirstProcesses() {
+        return processDao.getListIsFirstProcess();
+    }
 
     public synchronized CCResponse createNewWorkflow(WfProcess process, WfDocument... documents) {
         //prepare to create new workflow
@@ -125,21 +151,25 @@ public class WfWorkflowBo extends CCHibernateBo {
         return newResponse(transaction.execute(), documents, getErrorMessage());
     }
 
-    public synchronized List<WfActivity> getActivitiesBy(UtilUserGroup userRole) {
-        return workflowDao.getActivitiesBy(userRole);
+    public synchronized List<WfActivity> getActivitiesBy(UtilUserGroup userRole, UtilUser user) {
+        return workflowDao.getActivitiesBy(userRole, user);
     }
 
     public synchronized List<Long> getDocumentIdsBy(WfActivity activity, UtilUserGroup userRole, UtilUser user) {
         return workflowDao.getDocumentIdsBy(activity, userRole, user);
     }
 
+    public synchronized WfWorkflow getWorkflowBy(WfDocument document, WfActivity activity) {
+        return workflowDao.getBy(document, activity);
+    }
+
     public synchronized List<WfActivityTab> getActivityTabsBy(WfActivity activity) {
         return activityTabDao.getListBy(activity);
     }
 
-    public synchronized WfRouting prepareRouting(WfWorkflow workflow) {
+    public synchronized WfWorkflow prepareRouting(WfWorkflow workflow) {
         //prepare to routing
-        WfRouting routing = new WfRouting();
+        WfRouting routing = workflow.getRouting();
         for (WfAction action : actionDao.getListBy(workflow.getActivity())) {
             if (isNotNull(action.getActionVisibility())
                     && !getBoolean(action.getActionVisibility().invoke(workflow))) {
@@ -148,20 +178,15 @@ public class WfWorkflowBo extends CCHibernateBo {
             routing.getActions().add(action);
             WfTransition transition = transitionDao.getFirstBy(action);
             if (isNotNull(transition) && TransitionRouteType.MANUAL.equals(transition.getTransitionRouteType())) {
-                routing.getAction_users().put(action, getUsers4ManualRoute(transition.getDestination()));
+                routing.getAction_users().put(action, _getUsers4ManualRoute(transition.getDestination()));
             }
         }
         //
-        return routing;
+        return workflow;
     }
 
-    public synchronized void customizeView(CFViewCtrl viewCtrl, WfWorkflow workflow) {
-        if (isNotNull(workflow.getActivity().getViewCustomization())) {
-            workflow.getActivity().getViewCustomization().invoke(viewCtrl, workflow);
-        }
-    }
-
-    public synchronized CCResponse route(WfAction action, WfWorkflow workflow) {
+    public synchronized CCResponse route(WfWorkflow workflow) {
+        WfAction action = workflow.getRouting().getAction();
         //prepare workflow children
         List<WfWorkflow> workflows = new ArrayList();
         workflows.add(workflow);
@@ -226,27 +251,12 @@ public class WfWorkflowBo extends CCHibernateBo {
                 deletedWorkflow.addAll(0, workflowDao.getParallelWorkflowsBy(w));
                 //update workflow information
                 WfWorkflow mainWorkflow = coalesce(w.getMerge(), w);
+                mainWorkflow.setUser(_getUser(transaction, workflow_transition.get(w).getTransitionRouteType(), w));
                 mainWorkflow.setWorkflowStatus(WorkflowStatus.AVAILABLE);
                 transaction.saveOrUpdate(mainWorkflow);
             } else {
                 //update workflow information
-                TransitionRouteType routeType = workflow_transition.get(w).getTransitionRouteType();
-                if (TransitionRouteType.POOLING.equals(routeType)) {
-                    w.setUser(null);
-                } else if (TransitionRouteType.RANDOM.equals(routeType)) {
-                    w.setUser(getUser4RandomRoute(w.getActivity()));
-                } else if (TransitionRouteType.WEIGHTAGE.equals(routeType)) {
-                    w.setUser(getUser4WeightageRoute(w.getActivity()));
-                } else if (TransitionRouteType.ROUND_ROBIN.equals(routeType)) {
-                    //get round robin data
-                    WfRoundRobin roundRobin = getRoundRobin(w.getActivity());
-                    w.setUser(roundRobin.getUser());
-                    //update round robin data
-                    roundRobin.setLastTask(new Date());
-                    transaction.saveOrUpdate(roundRobin);
-                } else if (TransitionRouteType.TO_LAST_USER.equals(routeType)) {
-                    w.setUser(getUser4ToLastUserRoute(w, w.getActivity()));
-                }
+                w.setUser(_getUser(transaction, workflow_transition.get(w).getTransitionRouteType(), w));
                 if (isNull(w.getUser()) && isNull(w.getUserRole())) {
                     return newResponseFalse(No_User_Available);
                 }

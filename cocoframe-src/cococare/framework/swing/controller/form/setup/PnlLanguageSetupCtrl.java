@@ -3,8 +3,8 @@ package cococare.framework.swing.controller.form.setup;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCClass.getCCFields;
 import cococare.common.CCField;
+import cococare.common.CCLanguage;
 import static cococare.common.CCLanguage.*;
-import cococare.framework.model.mdl.note.NotesLanguage;
 import cococare.framework.swing.CFSwingCtrl;
 import static cococare.swing.CCSwing.*;
 import cococare.swing.CCTable;
@@ -66,7 +66,7 @@ public class PnlLanguageSetupCtrl extends CFSwingCtrl {
     private void _doLoad() {
         load(LanguagePack.values()[cmbLanguagePack.getSelectedIndex()]);
         tblLanguage.removeRows();
-        for (CCField field : getCCFields(NotesLanguage.class)) {
+        for (CCField field : getCCFields(CCLanguage.class)) {
             if (String.class.equals(field.getType())) {
                 tblLanguage.addRow(field.getFieldName(), turn(field.getFieldName()));
             }

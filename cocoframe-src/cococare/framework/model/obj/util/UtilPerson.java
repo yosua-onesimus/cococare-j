@@ -83,82 +83,82 @@ public class UtilPerson extends CCEntity {
 //</editor-fold>
     //----------------------------------------------------------------------------------------------
     @Column(length = 12)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 12, sequence = "[yyMMdd]/000", unique = true, visible = false)
-    private String code;
+    @CCFieldConfig(accessible = Accessible.MANDATORY, sequence = "[yyMMdd]/000", unique = true, visible = false)
+    private String number;
     //----------------------------------------------------------------------------------------------
     @Column(length = 32)
-    @CCFieldConfig(componentId = "txtFullName", accessible = Accessible.MANDATORY, maxLength = 32, requestFocus = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true)
     private String fullName;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtNickName", maxLength = 16, visible = false)
+    @CCFieldConfig(visible = false)
     private String nickName;
     //----------------------------------------------------------------------------------------------
     @Column(length = 48)
-    @CCFieldConfig(componentId = "cmbBirthPlace", accessible = Accessible.MANDATORY, maxLength = 48, optionSource = "IndonesiaCities.txt", optionReflectKey = "birthPlace")
+    @CCFieldConfig(componentId = "cmbBirthPlace", accessible = Accessible.MANDATORY, optionSource = "IndonesiaCities.txt", optionReflectKey = "birthPlace")
     private String birthPlace;
     @Temporal(value = TemporalType.DATE)
-    @CCFieldConfig(componentId = "dtpBirthDate", accessible = Accessible.MANDATORY, type = Type.DATE_PAST, maxLength = 12)
+    @CCFieldConfig(componentId = "dtpBirthDate", accessible = Accessible.MANDATORY, type = Type.DATE_PAST)
     private Date birthDate;
     @CCFieldConfig(componentId = "cmbGender", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$Gender", optionReflectKey = "gender", visible = false)
     private Integer genderIndex;
     @Column(length = 8)
-    @CCFieldConfig(maxLength = 8, visible2 = false)
+    @CCFieldConfig(visible2 = false)
     private String gender;
     @CCFieldConfig(componentId = "cmbBloodType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$BloodType", optionReflectKey = "bloodType", visible = false)
     private Integer bloodTypeIndex;
     @Column(length = 4)
-    @CCFieldConfig(maxLength = 8, visible2 = false)
+    @CCFieldConfig(visible2 = false)
     private String bloodType;
     @CCFieldConfig(componentId = "cmbNationality", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$Nationality", optionReflectKey = "nationality", visible = false)
     private Integer nationalityIndex;
     @Column(length = 4)
-    @CCFieldConfig(maxLength = 8, visible2 = false)
+    @CCFieldConfig(visible2 = false)
     private String nationality;
     @CCFieldConfig(componentId = "cmbReligion", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$Religion", optionReflectKey = "religion", visible = false)
     private Integer religionIndex;
     @Column(length = 16)
-    @CCFieldConfig(maxLength = 8, visible2 = false)
+    @CCFieldConfig(visible2 = false)
     private String religion;
     @Column(length = 16, name = "work_")
-    @CCFieldConfig(componentId = "txtWork", maxLength = 16, visible = false)
+    @CCFieldConfig(visible = false)
     private String work;
     //----------------------------------------------------------------------------------------------
     @Column(length = 255)
-    @CCFieldConfig(componentId = "txtAddress", maxLength = Short.MAX_VALUE, visible = false)
+    @CCFieldConfig(maxLength = Short.MAX_VALUE, visible = false)
     private String address;
     @Column(length = 16)
-    @CCFieldConfig(tooltiptext = "RT/RW", componentId = "txtNeighborhood", maxLength = 16, visible = false)
+    @CCFieldConfig(tooltiptext = "RT/RW", visible = false)
     private String neighborhood;
     @Column(length = 48)
-    @CCFieldConfig(tooltiptext = "Kelurahan", componentId = "txtVillage", maxLength = 48, visible = false)
+    @CCFieldConfig(tooltiptext = "Kelurahan", visible = false)
     private String village;
     @Column(length = 48)
-    @CCFieldConfig(tooltiptext = "Kecamatan", componentId = "txtSubDistrict", maxLength = 48, visible = false)
+    @CCFieldConfig(tooltiptext = "Kecamatan", visible = false)
     private String subDistrict;
     @Column(length = 48)
-    @CCFieldConfig(tooltiptext = "Kabupaten", componentId = "cmbRegency", maxLength = 48, optionSource = "IndonesiaCities.txt", optionReflectKey = "regency", visible = false)
+    @CCFieldConfig(tooltiptext = "Kabupaten", componentId = "cmbRegency", optionSource = "IndonesiaCities.txt", optionReflectKey = "regency", visible = false)
     private String regency;
     @Column(length = 48)
-    @CCFieldConfig(tooltiptext = "Propinsi", componentId = "cmbProvince", maxLength = 48, optionSource = "IndonesiaProvinces.txt", optionReflectKey = "province", visible = false)
+    @CCFieldConfig(tooltiptext = "Propinsi", componentId = "cmbProvince", optionSource = "IndonesiaProvinces.txt", optionReflectKey = "province", visible = false)
     private String province;
     @Column(length = 5)
-    @CCFieldConfig(componentId = "txtZipCode", minLength = 5, maxLength = 5, type = Type.NUMBER_ONLY, visible = false)
+    @CCFieldConfig(minLength = 5, type = Type.NUMBER_ONLY, visible = false)
     private String zipCode;
     //----------------------------------------------------------------------------------------------
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtPhone", type = Type.PHONE_NUMBER, maxLength = 16, visible = false)
+    @CCFieldConfig(type = Type.PHONE_NUMBER, visible = false)
     private String phone;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtFax", type = Type.PHONE_NUMBER, maxLength = 16, visible = false)
+    @CCFieldConfig(type = Type.PHONE_NUMBER, visible = false)
     private String fax;
     @Column(length = 16)
-    @CCFieldConfig(componentId = "txtHandPhone", type = Type.PHONE_NUMBER, maxLength = 16, visible = false)
+    @CCFieldConfig(type = Type.PHONE_NUMBER, visible = false)
     private String handPhone;
     @Column(length = 32)
-    @CCFieldConfig(componentId = "txtEmail", type = Type.EMAIL, maxLength = 32, visible = false)
+    @CCFieldConfig(type = Type.EMAIL, visible = false)
     private String email;
     @Column(length = 48)
-    @CCFieldConfig(componentId = "txtWebsite", maxLength = 48, visible = false)
+    @CCFieldConfig(visible = false)
     private String website;
     //----------------------------------------------------------------------------------------------
     @Lob
@@ -170,22 +170,22 @@ public class UtilPerson extends CCEntity {
     private String photoName;
     //selfEvident-----------------------------------------------------------------------------------
     @Column(length = 16)
-    @CCFieldConfig(label = "KTP", componentId = "txtKtp", maxLength = 16, visible = false)
+    @CCFieldConfig(label = "KTP", visible = false)
     private String ktp;
     @Column(length = 20)
-    @CCFieldConfig(label = "NPWP", componentId = "txtNpwp", maxLength = 20, visible = false)
+    @CCFieldConfig(label = "NPWP", visible = false)
     private String npwp;
     @Column(length = 12)
-    @CCFieldConfig(componentId = "txtPassport", maxLength = 12, visible = false)
+    @CCFieldConfig(visible = false)
     private String passport;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
-    public String getCode() {
-        return code;
+    public String getNumber() {
+        return number;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getFullName() {

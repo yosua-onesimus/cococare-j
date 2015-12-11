@@ -3,6 +3,7 @@ package cococare.framework.model.dao.wf;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.framework.model.mdl.wf.WorkflowDao;
 import cococare.framework.model.obj.wf.WfProcess;
+import java.util.List;
 //</editor-fold>
 
 /**
@@ -22,6 +23,10 @@ public class WfProcessDao extends WorkflowDao {
 //<editor-fold defaultstate="collapsed" desc=" init ">
     public WfProcess getByCode(String code) {
         return getByField("code", code);
+    }
+
+    public List<WfProcess> getListIsFirstProcess() {
+        return getListByField("firstProcess", true, false);
     }
 //</editor-fold>
 }

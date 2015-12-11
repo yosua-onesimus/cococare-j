@@ -25,17 +25,11 @@ import javax.persistence.*;
 public class WfWorkflowHistory extends CCEntity {
 
     @ManyToOne
-    @CCFieldConfig(componentId = "bndWorkflow", accessible = Accessible.MANDATORY_READONLY, uniqueKey = "id")
+    @CCFieldConfig(componentId = "bndWorkflow", accessible = Accessible.MANDATORY_READONLY, uniqueKey = "@document.number-@id")
     private WfWorkflow workflow;
     @ManyToOne
     @CCFieldConfig(componentId = "bndProcess", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "name")
     private WfProcess process;
-    @ManyToOne
-    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "name")
-    private WfActivity activity;
-    @ManyToOne
-    @CCFieldConfig(componentId = "bndUser", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "username")
-    private UtilUser user;
     @Temporal(value = TemporalType.TIMESTAMP)
     @CCFieldConfig(componentId = "dtpDateAssigned", accessible = Accessible.READONLY, maxLength = 12)
     private Date dateAssigned;
@@ -48,6 +42,12 @@ public class WfWorkflowHistory extends CCEntity {
     @Temporal(value = TemporalType.TIMESTAMP)
     @CCFieldConfig(componentId = "dtpDateProcessed", accessible = Accessible.READONLY, maxLength = 12)
     private Date dateProcessed;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "name")
+    private WfActivity activity;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndUser", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "username")
+    private UtilUser user;
     @ManyToOne
     @CCFieldConfig(componentId = "bndAction", accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "name")
     private WfAction action;
@@ -83,25 +83,6 @@ public class WfWorkflowHistory extends CCEntity {
         this.process = process;
     }
 
-    public WfActivity getActivity() {
-        return activity;
-    }
-
-    public void setActivity(WfActivity activity) {
-        this.activity = activity;
-    }
-
-    public UtilUser getUser() {
-        return user;
-    }
-
-    public void setUser(UtilUser user) {
-        this.user = user;
-        if (isNotNull(user)) {
-            setDateClaimed(new Date());
-        }
-    }
-
     public Date getDateAssigned() {
         return dateAssigned;
     }
@@ -132,6 +113,25 @@ public class WfWorkflowHistory extends CCEntity {
 
     public void setDateProcessed(Date dateProcessed) {
         this.dateProcessed = dateProcessed;
+    }
+
+    public WfActivity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(WfActivity activity) {
+        this.activity = activity;
+    }
+
+    public UtilUser getUser() {
+        return user;
+    }
+
+    public void setUser(UtilUser user) {
+        this.user = user;
+        if (isNotNull(user)) {
+            setDateClaimed(new Date());
+        }
     }
 
     public WfAction getAction() {

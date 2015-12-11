@@ -2,6 +2,7 @@ package cococare.framework.model.obj.wf;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.database.CCHibernateFilter;
+import cococare.framework.model.obj.wf.WfEnum.DocumentStatus;
 import cococare.framework.model.obj.wf.WfMethodConfig.ScriptType;
 //</editor-fold>
 
@@ -43,10 +44,10 @@ public class WfFilter {
             return "typeIndex";
         }
     }
-    public static CCHibernateFilter isTypeIsViewCustomization = new isTypeIndex() {
+    public static CCHibernateFilter isTypeIsAdditionalInput = new isTypeIndex() {
         @Override
         public Object getFieldValue() {
-            return ScriptType.VIEW_CUSTOMIZATION.ordinal();
+            return ScriptType.ADDITIONAL_INPUT.ordinal();
         }
     };
     public static CCHibernateFilter isTypeIsActionVisibility = new isTypeIndex() {
@@ -71,6 +72,20 @@ public class WfFilter {
         @Override
         public Object getFieldValue() {
             return ScriptType.POST_ROUTE_PROCESS.ordinal();
+        }
+    };
+
+    public static abstract class isDocumentStatus extends CCHibernateFilter {
+
+        @Override
+        public String getFieldName() {
+            return "statusIndex";
+        }
+    };
+    public static CCHibernateFilter isDocumentStatusIsPortfolio = new isDocumentStatus() {
+        @Override
+        public Object getFieldValue() {
+            return DocumentStatus.PORTFOLIO.ordinal();
         }
     };
 }

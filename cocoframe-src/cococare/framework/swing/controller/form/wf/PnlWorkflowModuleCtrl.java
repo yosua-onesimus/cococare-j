@@ -38,7 +38,7 @@ public class PnlWorkflowModuleCtrl extends CFSwingCtrl {
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private WfWorkflowConfiguratorBo workflowConfiguratorBo;
     private HashMap<DefaultMutableTreeNode, Object> node_object = new HashMap();
-    private HashMap< Object, DefaultMutableTreeNode> object_node = new HashMap();
+    private HashMap<Object, DefaultMutableTreeNode> object_node = new HashMap();
     private DefaultTreeModel defaultTreeModel;
     private JTree treeProcess;
     private Object selectedObject;
@@ -147,19 +147,6 @@ public class PnlWorkflowModuleCtrl extends CFSwingCtrl {
         });
     }
 
-    private String _newBreadcrumbsTitle(Object object) {
-        String title = "";
-        if (object instanceof WfActivity) {
-            title += _newBreadcrumbsTitle(((WfActivity) object).getProcess());
-        } else if (object instanceof WfAction) {
-            title += _newBreadcrumbsTitle(((WfAction) object).getActivity());
-        }
-        if (object instanceof CCEntity) {
-            title += getUniqueKeyValue(object) + "  >  ";
-        }
-        return title;
-    }
-
     private void _doTreeProcess() {
         selectedObject = node_object.get((DefaultMutableTreeNode) treeProcess.getLastSelectedPathComponent());
         if (isNull(selectedObject)) {
@@ -172,7 +159,7 @@ public class PnlWorkflowModuleCtrl extends CFSwingCtrl {
             applyAccessible(swingView.getBtnAdd());
             parameter.put(toString() + "selectedObject", selectedObject);
             Class entity = _getEntity();
-            swingView.getTabEntity().setTitleAt(0, _newBreadcrumbsTitle(selectedObject) + getLabel(entity));
+            swingView.getTabEntity().setTitleAt(0, workflowConfiguratorBo.newBreadcrumbsTitle(selectedObject) + getLabel(entity));
             tblEntity.setEntity(entity);
             if (WfActivity.class.equals(entity)) {
                 tblEntity.setHqlFilters(new isProcess() {

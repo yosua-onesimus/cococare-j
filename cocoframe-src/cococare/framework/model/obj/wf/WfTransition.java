@@ -36,7 +36,7 @@ public class WfTransition extends CCEntity {
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
     private String name;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndRouteAvailability", accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentId = "bndRouteAvailability", maxLength = 32, uniqueKey = "name")
     private WfScript routeAvailability;
     @CCFieldConfig(label = "Route Type", componentId = "cmbRouteType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.wf.WfEnum$TransitionRouteType", optionReflectKey = "routeType", visible = false)
     private Integer routeTypeIndex = TransitionRouteType.MANUAL.ordinal();

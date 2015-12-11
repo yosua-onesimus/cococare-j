@@ -28,22 +28,12 @@ public class UtilAutoClean extends CCJob {
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         INSTANCE_setDomain(getDomain(jobExecutionContext));
         try {
-            info("[1/3] Prepares to delete temporary files for the domain " + INSTANCE_getDomain());
-            File tempDirectory = new File(getFileSystTempPath());
-            if (tempDirectory.isDirectory()) {
-                for (File tempFile : tempDirectory.listFiles()) {
-                    delete(tempFile);
-                }
-            }
-            info("[1/3] Successfully deleted temporary files for the domain " + INSTANCE_getDomain());
-            info("[2/3] Prepares to delete temporary files for the domain " + INSTANCE_getDomain());
-            tempDirectory = new File(getFileUserTempPath());
-            if (tempDirectory.isDirectory()) {
-                for (File tempFile : tempDirectory.listFiles()) {
-                    delete(tempFile);
-                }
-            }
-            info("[2/3] Successfully deleted temporary files for the domain " + INSTANCE_getDomain());
+            info("[1/3] Prepares to delete system temporary files for the domain " + INSTANCE_getDomain());
+            delete(new File(getFileSystTempPath()));
+            info("[1/3] Successfully deleted system temporary files for the domain " + INSTANCE_getDomain());
+            info("[2/3] Prepares to delete user temporary files for the domain " + INSTANCE_getDomain());
+            delete(new File(getFileUserTempPath()));
+            info("[2/3] Successfully deleted user temporary files for the domain " + INSTANCE_getDomain());
             info("[3/3] Prepares to delete loggers for the domain " + INSTANCE_getDomain());
             CCDatabaseConfig databaseConfig = UtilityModule.INSTANCE.getCCHibernate().getDatabaseConfig(INSTANCE_getDomain());
             if (isNotNull(databaseConfig)) {

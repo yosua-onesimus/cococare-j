@@ -140,9 +140,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
                 //parent-childs-screen
                 if (isNotNull(parameter.get(toString() + parentValue))) {
                     if (getBoolean(parameter.get(toString() + parentNewEntity))) {
-                        setVisible(swingView.getTxtKeyword(), false);
-                        setVisible(swingView.getBtnFilter(), false);
-                        setVisible(swingView.getPgnEntity(), false);
+                        setVisible(false, swingView.getTxtKeyword(), swingView.getBtnFilter(), swingView.getPgnEntity());
                     }
                     final Object dummy = this;
                     tblEntity.setVisibleField(false, parameter.get(toString() + parentField).toString());

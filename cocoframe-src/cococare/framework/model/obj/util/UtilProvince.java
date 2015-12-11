@@ -17,14 +17,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "util_provinces")
-@CCTypeConfig(label = "Province", uniqueKey = "name", parameter = true)
+@CCTypeConfig(label = "Propinsi", uniqueKey = "name", parameter = true)
 public class UtilProvince extends CCEntity {
 
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "P000", unique = true, visible = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, sequence = "P000", unique = true, visible = false)
     private String code;
     @Column(length = 48)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 48, requestFocus = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true)
     private String name;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

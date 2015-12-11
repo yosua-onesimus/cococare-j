@@ -3,6 +3,7 @@ package cococare.framework.model.obj.wf;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import static cococare.common.CCLogic.isNull;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import cococare.framework.model.obj.util.UtilArea;
@@ -10,7 +11,6 @@ import cococare.framework.model.obj.util.UtilUser;
 import cococare.framework.model.obj.util.UtilUserGroup;
 import cococare.framework.model.obj.wf.WfEnum.ActivityPointType;
 import cococare.framework.model.obj.wf.WfEnum.WorkflowStatus;
-import java.util.HashMap;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -24,11 +24,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "wf_workflows")
-@CCTypeConfig(label = "Workflow Module", uniqueKey = "id", tooltiptext = "All about Workflow: Process, Activity, Action, Transition, etc", controllerClass = "cococare.framework.model.mdl.wf.WfWorkflowCtrl")
+@CCTypeConfig(label = "Workflow Module", uniqueKey = "@document.number-@id", tooltiptext = "All about Workflow: Process, Activity, Action, Transition, etc", controllerClass = "cococare.framework.model.mdl.wf.WfWorkflowCtrl")
 public class WfWorkflow extends CCEntity {
 
     @ManyToOne
-    @CCFieldConfig(componentId = "bndDocument", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "")
+    @CCFieldConfig(componentId = "bndDocument", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "number")
     private WfDocument document;
     @ManyToOne
     @CCFieldConfig(componentId = "bndProcess", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "name")
@@ -60,7 +60,7 @@ public class WfWorkflow extends CCEntity {
     @CCFieldConfig(maxLength = 12, visible2 = false)
     private String status = WorkflowStatus.AVAILABLE.toString();
     //
-    transient private HashMap<String, Object> parameter = new HashMap();
+    transient private WfRouting routing;
 
 //<editor-fold defaultstate="collapsed" desc=" WfWorkflow ">
     public WfWorkflow() {
@@ -99,7 +99,9 @@ public class WfWorkflow extends CCEntity {
         this.activity = activity;
         setUserRole(activity.getUserRole());
         if (ActivityPointType.MERGE_POINT.equals(activity.getActivityPointType())) {
-            setWorkflowStatus(WorkflowStatus.PROCESSING);
+            setWorkflowStatus(WorkflowStatus.WAITING);
+        } else if (ActivityPointType.FINAL_POINT.equals(activity.getActivityPointType())) {
+            setWorkflowStatus(WorkflowStatus.COMPLETED);
         }
     }
 
@@ -176,12 +178,15 @@ public class WfWorkflow extends CCEntity {
         setStatus(workflowStatus.toString());
     }
 
-    public <T> T get(String key) {
-        return (T) parameter.get(key);
+    public WfRouting getRouting() {
+        if (isNull(routing)) {
+            routing = new WfRouting();
+        }
+        return routing;
     }
 
-    public Object put(String key, Object value) {
-        return parameter.put(key, value);
+    public void setRouting(WfRouting routing) {
+        this.routing = routing;
     }
 //</editor-fold>
 }

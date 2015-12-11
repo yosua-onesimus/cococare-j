@@ -5,6 +5,7 @@ import static cococare.common.CCConfig.EDT_COLOR_ON_FOCUS;
 import static cococare.common.CCFormat.*;
 import cococare.common.CCLanguage;
 import static cococare.common.CCLanguage.*;
+import static cococare.database.CCLoginInfo.INSTANCE_getLogUser;
 import static cococare.datafile.CCImage.readImage;
 import cococare.framework.common.CFApplCtrl;
 import cococare.framework.common.CFApplUae;
@@ -98,11 +99,11 @@ public abstract class CFSwingMain extends CFApplCtrl {
         uae.reg(Utility, User_Group, PnlUserGroupListCtrl.class);
         uae.reg(Utility, User, PnlUserListCtrl.class);
         uae.reg(Utility, Change_Password, PnlChangePasswordCtrl.class);
-        uae.reg(Utility, Logger_History, PnlLoggerListCtrl.class);
         if (!HIBERNATE.getParameterClasses().isEmpty()) {
             uae.reg(Utility, Parameter, PnlParameterListCtrl.class);
             uae.reg(Utility, Export_Import, PnlExportImportCtrl.class);
         }
+        uae.reg(Utility, Logger_History, PnlLoggerListCtrl.class);
         if (!HIBERNATE.getAuditableClasses().isEmpty()) {
             uae.reg(Utility, Audit_Trail, PnlAuditTrailListCtrl.class);
         }
@@ -153,13 +154,13 @@ public abstract class CFSwingMain extends CFApplCtrl {
         uae.addMenuParent(Utility, "/cococare/resource/icon-menu-parent.png", null);
         uae.addMenuChild(User_Group, "/cococare/resource/icon-menu-user-group.png", PnlUserGroupListCtrl.class);
         uae.addMenuChild(User, "/cococare/resource/icon-menu-user.png", PnlUserListCtrl.class);
-        uae.addMenuChild(Change_Password, "/cococare/resource/icon-menu-change-password.png", PnlChangePasswordCtrl.class);
-        uae.addMenuChild(Logger_History, "/cococare/resource/icon-menu-logger-history.png", PnlLoggerListCtrl.class);
-        uae.addMenuSeparator();
         if (!HIBERNATE.getParameterClasses().isEmpty()) {
+            uae.addMenuSeparator();
             uae.addMenuChild(Parameter, "/cococare/resource/icon-menu-parameter.png", PnlParameterListCtrl.class);
             uae.addMenuChild(Export_Import, "/cococare/resource/icon-menu-export-import.png", PnlExportImportCtrl.class);
         }
+        uae.addMenuSeparator();
+        uae.addMenuChild(Logger_History, "/cococare/resource/icon-menu-logger-history.png", PnlLoggerListCtrl.class);
         if (!HIBERNATE.getAuditableClasses().isEmpty()) {
             uae.addMenuChild(Audit_Trail, "/cococare/resource/icon-menu-audit-trail.png", PnlAuditTrailListCtrl.class);
         }
@@ -173,20 +174,19 @@ public abstract class CFSwingMain extends CFApplCtrl {
             uae.addMenuSeparator();
             uae.addMenuChild(Registration, "/cococare/resource/icon-menu-registration.png", PnlRegistrationCtrl.class);
         }
-        uae.addMenuParent(Log_Out, "/cococare/resource/icon-menu-log-out.png", PnlLoginCtrl.class);
+        uae.addMenuParent(INSTANCE_getLogUser(), "/cococare/resource/icon-menu-user.png", null);
+        uae.addMenuChild(Change_Password, "/cococare/resource/icon-menu-change-password.png", PnlChangePasswordCtrl.class);
+        uae.addMenuChild(Log_Out, "/cococare/resource/icon-menu-log-out.png", PnlLoginCtrl.class);
         uae.compileMenu();
         getMainScreen().validate();
     }
 
     @Override
     protected void _clearUserConfig() {
-        getMenubarH().setVisible(false);
-        getMenubarV().setVisible(false);
+        setVisible(false, getMenubarH(), getMenubarV());
         getMainScreen().validate();
         //
-        getFileTransfer().setVisible(false);
-        getSendMail().setVisible(false);
-        getBugReport().setVisible(false);
+        setVisible(false, getFileTransfer(), getSendMail(), getBugReport());
     }
 
     @Override

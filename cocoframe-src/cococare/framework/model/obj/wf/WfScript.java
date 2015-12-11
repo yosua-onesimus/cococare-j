@@ -9,7 +9,6 @@ import cococare.common.CCFieldConfig.Accessible;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import cococare.database.CCHibernate.Transaction;
-import cococare.framework.common.CFViewCtrl;
 import cococare.framework.model.obj.wf.WfMethodConfig.ScriptType;
 import java.lang.reflect.Method;
 import javax.persistence.Column;
@@ -104,15 +103,21 @@ public class WfScript extends CCEntity {
         setType(scriptType.toString());
     }
 
+    public Class getAdditionalInputClass() {
+        if (ScriptType.ADDITIONAL_INPUT.equals(getScriptType())) {
+            return CCClass.getClass(getPath());
+        } else {
+            return null;
+        }
+    }
+
     public Object invoke(Object... objects) {
         ScriptType scriptType = getScriptType();
         String[] paths = getPath().split(":");
         Class clazz = CCClass.getClass(paths[0]);
         String methodName = paths[1];
         Method method = null;
-        if (ScriptType.VIEW_CUSTOMIZATION.equals(scriptType)) {
-            method = getMethod(clazz, methodName, CFViewCtrl.class, WfWorkflow.class);
-        } else if (ScriptType.ACTION_VISIBILITY.equals(scriptType)) {
+        if (ScriptType.ACTION_VISIBILITY.equals(scriptType)) {
             method = getMethod(clazz, methodName, WfWorkflow.class);
         } else if (ScriptType.ROUTE_VALIDATION.equals(scriptType)) {
             method = getMethod(clazz, methodName, WfWorkflow.class);

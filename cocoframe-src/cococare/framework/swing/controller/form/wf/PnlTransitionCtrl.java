@@ -1,7 +1,6 @@
 package cococare.framework.swing.controller.form.wf;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.common.CCFieldConfig.Accessible;
 import cococare.framework.model.obj.util.UtilFilter.isIdNotId;
 import cococare.framework.model.obj.wf.WfAction;
 import static cococare.framework.model.obj.wf.WfFilter.isTypeIsPostRouteProcess;
@@ -46,14 +45,14 @@ public class PnlTransitionCtrl extends PnlDefaultCtrl {
         transition.setSequence(((CCTable) parameter.get(callerCtrl.toString() + "tblEntity")).getRowCount());
         transition.setName(transition.getAction().getName());
     }
-
-    @Override
-    protected void _doUpdateAccessible() {
-        super._doUpdateAccessible();
-        if (((WfTransition) objEntity).getSequence() > 0) {
-            edtEntity.setAccessible(bndRouteAvailability, Accessible.NORMAL);
-        }
-    }
+//
+//    @Override
+//    protected void _doUpdateAccessible() {
+//        super._doUpdateAccessible();
+//        if (((WfTransition) objEntity).getSequence() > 0) {
+//            edtEntity.setAccessible(bndRouteAvailability, Accessible.NORMAL);
+//        }
+//    }
 
     @Override
     protected boolean _doSaveEntity() {

@@ -1,6 +1,7 @@
 package cococare.framework.swing.controller.form;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCLogic.isNotNull;
 import cococare.framework.swing.CFSwingCtrl;
 //</editor-fold>
 
@@ -18,7 +19,7 @@ public class PnlDefaultCtrl extends CFSwingCtrl {
 
     @Override
     protected Class _getEntity() {
-        return objEntity.getClass();
+        return isNotNull(objEntity) ? objEntity.getClass() : null;
     }
 
     @Override

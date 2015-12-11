@@ -1,6 +1,8 @@
 package cococare.framework.model.bo.wf;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCClass.getUniqueKeyValue;
+import cococare.database.CCEntity;
 import cococare.database.CCHibernateBo;
 import cococare.framework.model.dao.wf.WfActionDao;
 import cococare.framework.model.dao.wf.WfActivityDao;
@@ -35,6 +37,19 @@ public class WfWorkflowConfiguratorBo extends CCHibernateBo {
 
     public synchronized List<WfAction> getActionsBy(WfActivity activity) {
         return actionDao.getListBy(activity);
+    }
+
+    public synchronized String newBreadcrumbsTitle(Object object) {
+        String title = "";
+        if (object instanceof WfActivity) {
+            title += newBreadcrumbsTitle(((WfActivity) object).getProcess());
+        } else if (object instanceof WfAction) {
+            title += newBreadcrumbsTitle(((WfAction) object).getActivity());
+        }
+        if (object instanceof CCEntity) {
+            title += getUniqueKeyValue(object) + "  >  ";
+        }
+        return title;
     }
 //</editor-fold>
 }

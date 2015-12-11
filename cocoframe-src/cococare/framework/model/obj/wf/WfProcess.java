@@ -27,6 +27,8 @@ public class WfProcess extends CCEntity {
     @Column(length = 32)
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
     private String name;
+    @CCFieldConfig(label = "FP", tooltiptext = "First Process", componentId = "chkFirstProcess", maxLength = 4)
+    private Boolean firstProcess = true;
     @ManyToOne
     @CCFieldConfig(componentId = "bndPostRouteProcess", maxLength = 32, uniqueKey = "name")
     private WfScript postRouteProcess;
@@ -46,6 +48,14 @@ public class WfProcess extends CCEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getFirstProcess() {
+        return firstProcess;
+    }
+
+    public void setFirstProcess(Boolean firstProcess) {
+        this.firstProcess = firstProcess;
     }
 
     public WfScript getPostRouteProcess() {

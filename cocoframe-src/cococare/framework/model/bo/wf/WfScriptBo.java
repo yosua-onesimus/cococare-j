@@ -2,15 +2,13 @@ package cococare.framework.model.bo.wf;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCClass;
-import static cococare.common.CCClass.copy;
-import static cococare.common.CCClass.getMethods;
+import static cococare.common.CCClass.*;
 import static cococare.common.CCFormat.nextSequence;
 import static cococare.common.CCLogic.isNotNull;
 import static cococare.common.CCLogic.isNull;
 import cococare.common.CCResponse;
 import cococare.database.CCHibernate.Transaction;
 import cococare.database.CCHibernateBo;
-import cococare.framework.common.CFViewCtrl;
 import cococare.framework.model.dao.wf.WfScriptDao;
 import cococare.framework.model.obj.wf.WfMethodConfig;
 import cococare.framework.model.obj.wf.WfMethodConfig.ScriptType;
@@ -37,25 +35,24 @@ public class WfScriptBo extends CCHibernateBo {
     /**
      * Create initial data.
      *
-     * @param scriptClass the script class.
+     * @param scriptClassNames the script class name.
      * @return true if success; false if fail.
      */
-    public synchronized boolean initInitialData(List<String> scriptClass) {
+    public synchronized boolean initInitialData(List<String> scriptClassNames) {
         //
         List<WfScript> scripts = new ArrayList();
-        for (String scriptClassName : scriptClass) {
-            Class clazz = CCClass.getClass(scriptClassName);
-            if (isNotNull(clazz)) {
-                for (Method method : getMethods(clazz)) {
+        for (String scriptClassName : scriptClassNames) {
+            Class scriptClass = CCClass.getClass(scriptClassName);
+            if (isNotNull(scriptClass)) {
+                for (Class clazz : getClasses(scriptClass)) {
+                    scripts.add(new WfScript(getLabel(clazz), clazz.getName(), ScriptType.ADDITIONAL_INPUT));
+                }
+                for (Method method : getMethods(scriptClass)) {
                     WfMethodConfig methodConfig = method.getAnnotation(WfMethodConfig.class);
                     if (isNotNull(methodConfig)) {
                         List parameterTypes = Arrays.asList(method.getParameterTypes());
                         boolean valid = false;
-                        if (ScriptType.VIEW_CUSTOMIZATION.equals(methodConfig.scriptType())) {
-                            valid = (parameterTypes.size() == 2)
-                                    && parameterTypes.contains(CFViewCtrl.class)
-                                    && parameterTypes.contains(WfWorkflow.class);
-                        } else if (ScriptType.ACTION_VISIBILITY.equals(methodConfig.scriptType())) {
+                        if (ScriptType.ACTION_VISIBILITY.equals(methodConfig.scriptType())) {
                             valid = (parameterTypes.size() == 1)
                                     && parameterTypes.contains(WfWorkflow.class)
                                     && boolean.class.equals(method.getReturnType());
@@ -73,7 +70,7 @@ public class WfScriptBo extends CCHibernateBo {
                                     && parameterTypes.contains(WfWorkflow.class);
                         }
                         if (valid) {
-                            scripts.add(new WfScript(methodConfig.scriptName(), clazz.getName() + ":" + method.getName(), methodConfig.scriptType()));
+                            scripts.add(new WfScript(methodConfig.scriptName(), scriptClass.getName() + ":" + method.getName(), methodConfig.scriptType()));
                         }
                     }
                 }

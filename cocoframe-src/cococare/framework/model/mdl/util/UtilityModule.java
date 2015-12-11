@@ -1,11 +1,12 @@
 package cococare.framework.model.mdl.util;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCConfig.*;
 import static cococare.database.CCEntityConfig.FIELD_APPL;
 import cococare.database.CCHibernate;
 import cococare.database.CCHibernateFilter;
 import cococare.database.CCHibernateModule;
-import cococare.framework.common.CFApplCtrl;
+import static cococare.framework.common.CFApplCtrl.APPL_CODE;
 import cococare.framework.model.obj.util.*;
 //</editor-fold>
 
@@ -23,15 +24,23 @@ public class UtilityModule extends CCHibernateModule {
     public void init(CCHibernate hibernate) {
         super.init(hibernate);
         //
-        hibernate.addAnnotatedClass(UtilProvince.class);
-        hibernate.addAnnotatedClass(UtilRegency.class);
-        hibernate.addAnnotatedClass(UtilPerson.class);
+        if (APPL_UTIL_INCLUDED_PERSON_ENTITIES) {
+            hibernate.addAnnotatedClass(UtilProvince.class);
+            hibernate.addAnnotatedClass(UtilRegency.class);
+            hibernate.addAnnotatedClass(UtilSubDistrict.class);
+            hibernate.addAnnotatedClass(UtilVillage.class);
+            hibernate.addAnnotatedClass(UtilPerson.class);
+        }
+        if (APPL_UTIL_INCLUDED_PERSON_ENTITIES || APPL_UTIL_SHOW_WORKFLOW_MODULE) {
+            hibernate.addAnnotatedClass(UtilArea.class);
+        }
         //
         hibernate.addAnnotatedClass(UtilConfig.class);
-        hibernate.addAnnotatedClass(UtilScheduler.class);
+        if (APPL_UTIL_SHOW_SCHEDULER_MODULE) {
+            hibernate.addAnnotatedClass(UtilScheduler.class);
+        }
         hibernate.addAnnotatedClass(UtilLogger.class);
         hibernate.addAnnotatedClass(UtilPrivilege.class);
-        hibernate.addAnnotatedClass(UtilArea.class);
         //
         hibernate.addAnnotatedClass(UtilUserGroup.class);
         hibernate.addAnnotatedClass(UtilUserGroupPrivilege.class);
@@ -51,7 +60,7 @@ public class UtilityModule extends CCHibernateModule {
 
             @Override
             public Object getFieldValue() {
-                return CFApplCtrl.APPL_CODE;
+                return APPL_CODE;
             }
         });
     }

@@ -23,9 +23,9 @@ public @interface WfMethodConfig {
     public enum ScriptType {
 
         /**
-         * viewCustomization
+         * additionalInput
          */
-        VIEW_CUSTOMIZATION,
+        ADDITIONAL_INPUT,
         /**
          * actionVisibility
          */

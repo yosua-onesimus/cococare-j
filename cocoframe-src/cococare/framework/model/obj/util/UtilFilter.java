@@ -3,6 +3,7 @@ package cococare.framework.model.obj.util;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCFinal.ROOT;
 import cococare.database.CCHibernateFilter;
+import static cococare.database.CCLoginInfo.INSTANCE_getUserLogin;
 //</editor-fold>
 
 /**
@@ -32,6 +33,17 @@ public class UtilFilter {
         @Override
         public Object getFieldValue() {
             return false;
+        }
+    };
+    public static CCHibernateFilter isUserIsUserLogin = new CCHibernateFilter() {
+        @Override
+        public String getFieldName() {
+            return "user";
+        }
+
+        @Override
+        public Object getFieldValue() {
+            return INSTANCE_getUserLogin();
         }
     };
 

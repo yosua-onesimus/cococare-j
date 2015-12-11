@@ -24,8 +24,8 @@ public class WfDocument extends CCEntity {
     @ManyToOne
     @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "number", visible = false, visible2 = false)
     private WfDocument portfolio;
-    @Column(length = 16)
-    @CCFieldConfig(componentId = "txtNumber", accessible = Accessible.MANDATORY, maxLength = 16, sequence = "DOC/[yyMMdd]/000", unique = true, requestFocus = true)
+    @Column(length = 32)
+    @CCFieldConfig(componentId = "txtNumber", accessible = Accessible.MANDATORY, maxLength = 32, sequence = "DOC/[yyMMdd]/000", unique = true, requestFocus = true)
     private String number;
     @Temporal(value = TemporalType.DATE)
     @Column(name = "date_")
@@ -36,6 +36,8 @@ public class WfDocument extends CCEntity {
     @Column(length = 12)
     @CCFieldConfig(maxLength = 12, visible = false, visible2 = false)
     private String status = DocumentStatus.PORTFOLIO.toString();
+    //
+    transient private WfWorkflow workflow;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public WfDocument getPortfolio() {
@@ -90,6 +92,14 @@ public class WfDocument extends CCEntity {
     public void setDocumentStatus(DocumentStatus documentStatus) {
         setStatusIndex(documentStatus.ordinal());
         setStatus(documentStatus.toString());
+    }
+
+    public WfWorkflow getWorkflow() {
+        return workflow;
+    }
+
+    public void setWorkflow(WfWorkflow workflow) {
+        this.workflow = workflow;
     }
 //</editor-fold>
 }

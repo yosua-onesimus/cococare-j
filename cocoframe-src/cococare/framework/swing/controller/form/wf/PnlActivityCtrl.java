@@ -5,7 +5,7 @@ import cococare.common.CCFieldConfig.Accessible;
 import static cococare.framework.model.obj.util.UtilFilter.isUserGroupNotRoot;
 import cococare.framework.model.obj.wf.WfActivity;
 import cococare.framework.model.obj.wf.WfEnum.ActivityPointType;
-import static cococare.framework.model.obj.wf.WfFilter.isTypeIsViewCustomization;
+import static cococare.framework.model.obj.wf.WfFilter.isTypeIsAdditionalInput;
 import cococare.framework.model.obj.wf.WfProcess;
 import cococare.framework.swing.controller.form.PnlDefaultWithChildCtrl;
 import static cococare.swing.CCSwing.addListener;
@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 public class PnlActivityCtrl extends PnlDefaultWithChildCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
-    private CCBandBox bndViewCustomization;
+    private CCBandBox bndAdditionalInput;
     private JTextField txtDayLimit;
     private CCBandBox bndUserRole;
     private JTextField txtWeight;
@@ -40,7 +40,7 @@ public class PnlActivityCtrl extends PnlDefaultWithChildCtrl {
     @Override
     protected void _initEditor() {
         super._initEditor();
-        bndViewCustomization.getTable().setHqlFilters(isTypeIsViewCustomization);
+        bndAdditionalInput.getTable().setHqlFilters(isTypeIsAdditionalInput);
         bndUserRole.getTable().setHqlFilters(isUserGroupNotRoot);
     }
 
@@ -63,7 +63,7 @@ public class PnlActivityCtrl extends PnlDefaultWithChildCtrl {
 
     private void _doPointType() {
         boolean isFinalPoint = ActivityPointType.FINAL_POINT.equals(ActivityPointType.values()[cmbPointType.getSelectedIndex()]);
-        edtEntity.setAccessible(bndViewCustomization, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.NORMAL);
+        edtEntity.setAccessible(bndAdditionalInput, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.NORMAL);
         edtEntity.setAccessible(txtDayLimit, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.MANDATORY);
         edtEntity.setAccessible(bndUserRole, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.MANDATORY);
         edtEntity.setAccessible(txtWeight, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.MANDATORY);

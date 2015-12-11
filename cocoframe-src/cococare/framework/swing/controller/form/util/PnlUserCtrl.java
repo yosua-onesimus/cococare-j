@@ -110,7 +110,7 @@ public class PnlUserCtrl extends CFSwingCtrl {
             @Override
             public Object getCustomView(Object object) {
                 UtilPrivilege privilege = (UtilPrivilege) object;
-                return (isNull(privilege.getParent()) ? "" : "    ") + privilege.getCode() + "-" + privilege.getName();
+                return nvl2(privilege.getParent(), "    ", "") + privilege.getCode() + "-" + privilege.getName();
             }
         });
         tblPrivilege.setCheckboxColumn(true, 0);

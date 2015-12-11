@@ -17,19 +17,19 @@ import javax.persistence.Table;
  * @version 13.03.17
  */
 @Entity
-@Table(name = "util_regencies")
-@CCTypeConfig(label = "Kabupaten", uniqueKey = "name", parameter = true)
-public class UtilRegency extends CCEntity {
+@Table(name = "util_sub_districts")
+@CCTypeConfig(label = "Kecamatan", uniqueKey = "name", parameter = true)
+public class UtilSubDistrict extends CCEntity {
 
     @Column(length = 8)
-    @CCFieldConfig(accessible = Accessible.MANDATORY, sequence = "R000", unique = true, visible = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, sequence = "SD000", unique = true, visible = false)
     private String code;
     @Column(length = 48)
     @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true)
     private String name;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndProvince", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false)
-    private UtilProvince province;
+    @CCFieldConfig(componentId = "bndRegency", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false)
+    private UtilRegency regency;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -48,12 +48,12 @@ public class UtilRegency extends CCEntity {
         this.name = name;
     }
 
-    public UtilProvince getProvince() {
-        return province;
+    public UtilRegency getRegency() {
+        return regency;
     }
 
-    public void setProvince(UtilProvince province) {
-        this.province = province;
+    public void setRegency(UtilRegency regency) {
+        this.regency = regency;
     }
 //</editor-fold>
 }

@@ -34,9 +34,9 @@ public class WfActivity extends CCEntity {
     @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 48)
     private String name;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndViewCustomization", maxLength = 32, uniqueKey = "name")
-    private WfScript viewCustomization;
-    @CCFieldConfig(componentId = "txtDayLimit", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4)
+    @CCFieldConfig(componentId = "bndAdditionalInput", maxLength = 32, uniqueKey = "name")
+    private WfScript additionalInput;
+    @CCFieldConfig(label = "DL", tooltiptext = "Day Limit", componentId = "txtDayLimit", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4)
     private Integer dayLimit = 5;
     @ManyToOne
     @CCFieldConfig(componentId = "bndUserRole", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
@@ -74,12 +74,12 @@ public class WfActivity extends CCEntity {
         this.name = name;
     }
 
-    public WfScript getViewCustomization() {
-        return viewCustomization;
+    public WfScript getAdditionalInput() {
+        return additionalInput;
     }
 
-    public void setViewCustomization(WfScript viewCustomization) {
-        this.viewCustomization = viewCustomization;
+    public void setAdditionalInput(WfScript additionalInput) {
+        this.additionalInput = additionalInput;
     }
 
     public Integer getDayLimit() {

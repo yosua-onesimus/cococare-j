@@ -29,13 +29,13 @@ public class WfTabBo extends CCHibernateBo {
     /**
      * Create initial data.
      *
-     * @param tabClass the tab class.
+     * @param tabClassNames the tab class name.
      * @return true if success; false if fail.
      */
-    public synchronized boolean initInitialData(List<String> tabClass) {
+    public synchronized boolean initInitialData(List<String> tabClassNames) {
         //
         List<WfTab> tabs = new ArrayList();
-        for (String tabClassName : tabClass) {
+        for (String tabClassName : tabClassNames) {
             Class clazz = CCClass.getClass(tabClassName);
             if (isNotNull(clazz)) {
                 tabs.add(new WfTab(getLabel(clazz), tabClassName));
