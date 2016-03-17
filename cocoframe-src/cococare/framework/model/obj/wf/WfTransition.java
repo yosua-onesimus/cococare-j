@@ -24,30 +24,30 @@ import javax.persistence.Table;
 public class WfTransition extends CCEntity {
 
     @ManyToOne
-    @CCFieldConfig(componentId = "bndAction", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name", visible = false, visible2 = false)
+    @CCFieldConfig(componentId = "bndAction", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false, visible2 = false)
     private WfAction action;
     @Column(name = "sequence_")
-    @CCFieldConfig(label = "#", tooltiptext = "Sequence", componentId = "txtSequence", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 2)
+    @CCFieldConfig(label = "#", tooltiptext = "Sequence", accessible = Accessible.MANDATORY_READONLY, type = Type.NUMERIC, maxLength = 2)
     private Integer sequence = 0;
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "T000", requestFocus = true, unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, sequence = "T000", requestFocus = true, unique = true)
     private String code;
-    @Column(length = 32)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
+    @Column(length = 48)
+    @CCFieldConfig(accessible = Accessible.MANDATORY)
     private String name;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndRouteAvailability", maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentId = "bndRouteAvailability", maxLength = 64, uniqueKey = "name")
     private WfScript routeAvailability;
     @CCFieldConfig(label = "Route Type", componentId = "cmbRouteType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.wf.WfEnum$TransitionRouteType", optionReflectKey = "routeType", visible = false)
     private Integer routeTypeIndex = TransitionRouteType.MANUAL.ordinal();
     @Column(length = 24)
-    @CCFieldConfig(maxLength = 24, visible2 = false)
+    @CCFieldConfig(visible2 = false)
     private String routeType = TransitionRouteType.MANUAL.toString();
     @ManyToOne
-    @CCFieldConfig(componentId = "bndDestination", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentId = "bndDestination", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name")
     private WfActivity destination;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndPostRouteProcess", maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentId = "bndPostRouteProcess", maxLength = 64, uniqueKey = "name")
     private WfScript postRouteProcess;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

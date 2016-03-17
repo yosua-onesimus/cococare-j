@@ -25,28 +25,25 @@ import javax.persistence.Table;
 public class WfActivity extends CCEntity {
 
     @ManyToOne
-    @CCFieldConfig(componentId = "bndProcess", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name", visible = false, visible2 = false)
+    @CCFieldConfig(componentId = "bndProcess", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false, visible2 = false)
     private WfProcess process;
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "A000", requestFocus = true, unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, sequence = "A000", requestFocus = true, unique = true)
     private String code;
     @Column(length = 48)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 48)
+    @CCFieldConfig(accessible = Accessible.MANDATORY)
     private String name;
-    @ManyToOne
-    @CCFieldConfig(componentId = "bndAdditionalInput", maxLength = 32, uniqueKey = "name")
-    private WfScript additionalInput;
-    @CCFieldConfig(label = "DL", tooltiptext = "Day Limit", componentId = "txtDayLimit", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4)
+    @CCFieldConfig(label = "DL", tooltiptext = "Day Limit", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4)
     private Integer dayLimit = 5;
     @ManyToOne
     @CCFieldConfig(componentId = "bndUserRole", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
     private UtilUserGroup userRole;
-    @CCFieldConfig(componentId = "txtWeight", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4)
     private Integer weight = 1;
     @CCFieldConfig(label = "Point Type", componentId = "cmbPointType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.wf.WfEnum$ActivityPointType", optionReflectKey = "pointType", visible = false)
     private Integer pointTypeIndex = ActivityPointType.PLAIN_POINT.ordinal();
     @Column(length = 12)
-    @CCFieldConfig(maxLength = 12, visible2 = false)
+    @CCFieldConfig(visible2 = false)
     private String pointType = ActivityPointType.PLAIN_POINT.toString();
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
@@ -72,14 +69,6 @@ public class WfActivity extends CCEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public WfScript getAdditionalInput() {
-        return additionalInput;
-    }
-
-    public void setAdditionalInput(WfScript additionalInput) {
-        this.additionalInput = additionalInput;
     }
 
     public Integer getDayLimit() {

@@ -3,6 +3,7 @@ package cococare.framework.model.obj.wf;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCFieldConfig.Type;
 import static cococare.common.CCFormat.getNextDate;
 import static cococare.common.CCFormat.parseInt;
 import static cococare.common.CCLogic.coalesce;
@@ -28,28 +29,28 @@ public class WfWorkflowHistory extends CCEntity {
     @CCFieldConfig(componentId = "bndWorkflow", accessible = Accessible.MANDATORY_READONLY, uniqueKey = "@document.number-@id")
     private WfWorkflow workflow;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndProcess", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentId = "bndProcess", accessible = Accessible.MANDATORY_READONLY, maxLength = 48, uniqueKey = "name")
     private WfProcess process;
     @Temporal(value = TemporalType.TIMESTAMP)
-    @CCFieldConfig(componentId = "dtpDateAssigned", accessible = Accessible.READONLY, maxLength = 12)
+    @CCFieldConfig(componentId = "dtpDateAssigned", accessible = Accessible.READONLY, type = Type.DATE)
     private Date dateAssigned;
     @Temporal(value = TemporalType.TIMESTAMP)
-    @CCFieldConfig(componentId = "dtpDateClaimed", accessible = Accessible.READONLY, maxLength = 12)
+    @CCFieldConfig(componentId = "dtpDateClaimed", accessible = Accessible.READONLY, type = Type.DATE)
     private Date dateClaimed;
     @Temporal(value = TemporalType.TIMESTAMP)
-    @CCFieldConfig(componentId = "dtpDateDue", accessible = Accessible.READONLY, maxLength = 12)
+    @CCFieldConfig(componentId = "dtpDateDue", accessible = Accessible.READONLY, type = Type.DATE)
     private Date dateDue;
     @Temporal(value = TemporalType.TIMESTAMP)
-    @CCFieldConfig(componentId = "dtpDateProcessed", accessible = Accessible.READONLY, maxLength = 12)
+    @CCFieldConfig(componentId = "dtpDateProcessed", accessible = Accessible.READONLY, type = Type.DATE)
     private Date dateProcessed;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY_READONLY, maxLength = 48, uniqueKey = "name")
     private WfActivity activity;
     @ManyToOne
     @CCFieldConfig(componentId = "bndUser", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "username")
     private UtilUser user;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndAction", accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentId = "bndAction", accessible = Accessible.READONLY, maxLength = 48, uniqueKey = "name")
     private WfAction action;
 
 //<editor-fold defaultstate="collapsed" desc=" WfWorkflowHistory ">

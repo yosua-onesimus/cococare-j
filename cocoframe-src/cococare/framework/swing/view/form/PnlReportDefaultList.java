@@ -1,9 +1,5 @@
 package cococare.framework.swing.view.form;
 
-//<editor-fold defaultstate="collapsed" desc=" import ">
-import cococare.common.CCLanguage;
-//</editor-fold>
-
 /**
  * @author Yosua Onesimus
  * @since 13.03.17
@@ -67,7 +63,7 @@ public class PnlReportDefaultList extends javax.swing.JPanel {
 
         pnlList.add(pnlGenerator, java.awt.BorderLayout.CENTER);
 
-        tabEntity.addTab(CCLanguage.turn(CCLanguage.Report), pnlList);
+        tabEntity.addTab("", pnlList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

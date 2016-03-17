@@ -58,6 +58,20 @@ public class WfWorkflowDao extends WorkflowDao {
         return getListBy(hql.value(), parameters.value()).isEmpty();
     }
 
+    public boolean isArchivable(WfWorkflow workflow) {
+        hql.start().
+                alias("w").
+                where("(w = :allWorkflow OR w.merge = :allWorkflow OR w.document = :document)").
+                where("w != :theWorkflow").
+                where("w.statusIndex != :statusIndex");
+        parameters.start().
+                set("allWorkflow", coalesce(workflow.getMerge(), workflow)).
+                set("document", workflow.getDocument()).
+                set("theWorkflow", workflow).
+                set("statusIndex", WorkflowStatus.COMPLETED.ordinal());
+        return getListBy(hql.value(), parameters.value()).isEmpty();
+    }
+
     public List<WfWorkflow> getParallelWorkflowsBy(WfWorkflow workflow) {
         return getListByField("merge", coalesce(workflow.getMerge(), workflow), false);
     }

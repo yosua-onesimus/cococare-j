@@ -21,6 +21,7 @@ public class PnlPortfolioList extends javax.swing.JPanel {
         pnlNorthWest = new javax.swing.JPanel();
         btnAdd = new cococare.swing.component.CCButton();
         pnlNorthEast = new javax.swing.JPanel();
+        txtKeyword = new javax.swing.JTextField();
         _btnFilter = new cococare.swing.component.CCButton();
         scrEntity = new javax.swing.JScrollPane();
         tblEntity = new javax.swing.JTable();
@@ -47,12 +48,16 @@ public class PnlPortfolioList extends javax.swing.JPanel {
 
         pnlNorth.add(pnlNorthWest, java.awt.BorderLayout.WEST);
 
-        pnlNorthEast.setPreferredSize(new java.awt.Dimension(100, 50));
+        pnlNorthEast.setPreferredSize(new java.awt.Dimension(150, 50));
         pnlNorthEast.setLayout(null);
+
+        txtKeyword.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        pnlNorthEast.add(txtKeyword);
+        txtKeyword.setBounds(0, 10, 100, 29);
 
         _btnFilter.setType(cococare.swing.component.CCButton.Type.FILTER);
         pnlNorthEast.add(_btnFilter);
-        _btnFilter.setBounds(50, 10, 50, 29);
+        _btnFilter.setBounds(100, 10, 50, 29);
 
         pnlNorth.add(pnlNorthEast, java.awt.BorderLayout.EAST);
 
@@ -88,5 +93,6 @@ public class PnlPortfolioList extends javax.swing.JPanel {
     private javax.swing.JScrollPane scrEntity;
     private javax.swing.JTabbedPane tabEntity;
     private javax.swing.JTable tblEntity;
+    private javax.swing.JTextField txtKeyword;
     // End of variables declaration//GEN-END:variables
 }

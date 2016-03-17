@@ -9,6 +9,7 @@ import static cococare.common.CCMessage.getErrorMessage;
 import cococare.common.CCResponse;
 import static cococare.common.CCResponse.newResponse;
 import static cococare.common.CCResponse.newResponseFalse;
+import static cococare.database.CCEntityConfig.FIELD_ID;
 import cococare.database.CCHibernate.Transaction;
 import cococare.database.CCHibernateBo;
 import static cococare.database.CCLoginInfo.INSTANCE_getUserLogin;
@@ -65,8 +66,8 @@ public class WfWorkflowBo extends CCHibernateBo {
         List<UtilUser> roundRobinUsers = roundRobinDao.getUsersBy(destination);
         //update round robin table
         if (users.size() != roundRobinUsers.size()) {
-            List<Long> ids = extract(users, "id");
-            ids.removeAll(extract(roundRobinUsers, "id"));
+            List<Long> ids = extract(users, FIELD_ID);
+            ids.removeAll(extract(roundRobinUsers, FIELD_ID));
             for (Long id : ids) {
                 WfRoundRobin roundRobin = new WfRoundRobin();
                 roundRobin.setActivity(destination);
@@ -113,6 +114,15 @@ public class WfWorkflowBo extends CCHibernateBo {
     }
 
     public synchronized CCResponse createNewWorkflow(WfProcess process, WfDocument... documents) {
+        //process validation
+        for (WfDocument document : documents) {
+            if (isNotNull(process.getRouteValidation())) {
+                CCResponse response = (CCResponse) process.getRouteValidation().invoke(new WfWorkflow(document, process));
+                if (!response.isTrue()) {
+                    return response;
+                }
+            }
+        }
         //prepare to create new workflow
         WfActivity activity = activityDao.getStartPointBy(process);
         if (isNull(activity)) {
@@ -120,6 +130,7 @@ public class WfWorkflowBo extends CCHibernateBo {
         }
         Transaction transaction = workflowDao.newTransaction();
         //create new workflow for each document
+        List<WfWorkflow> workflows = new ArrayList();
         WfWorkflow parent = null;
         for (WfDocument document : documents) {
             //create new document active base on document portfolio
@@ -133,6 +144,7 @@ public class WfWorkflowBo extends CCHibernateBo {
             transaction.saveOrUpdate(document);
             //create new workflow
             WfWorkflow workflow = new WfWorkflow(document, process, activity);
+            workflow.setRouting(process.getRouting());
             workflow.setUser((UtilUser) INSTANCE_getUserLogin());
             if (isNull(parent)) {
                 parent = workflow;
@@ -146,9 +158,32 @@ public class WfWorkflowBo extends CCHibernateBo {
             if (isNotNull(process.getPostRouteProcess())) {
                 process.getPostRouteProcess().invoke(transaction, workflow);
             }
+            workflows.add(workflow);
         }
         //
-        return newResponse(transaction.execute(), documents, getErrorMessage());
+        CCResponse response = newResponse(transaction.execute(), documents, getErrorMessage());
+        //execute post commit process
+        if (response.isTrue() && isNotNull(process.getPostCommitProcess())) {
+            transaction = workflowDao.newTransaction();
+            for (WfWorkflow workflow : workflows) {
+                process.getPostCommitProcess().invoke(transaction, workflow);
+            }
+            transaction.execute();
+        }
+        return response;
+    }
+
+    public synchronized boolean claim(WfWorkflow workflow) {
+        //
+        workflow.setUser((UtilUser) INSTANCE_getUserLogin());
+        //
+        WfWorkflowHistory oldWorkflowHistory = workflowHistoryDao.getLastBy(workflow, workflow.getActivity(), false);
+        oldWorkflowHistory.setUser(workflow.getUser());
+        //
+        return workflowDao.newTransaction().
+                saveOrUpdate(workflow).
+                saveOrUpdate(oldWorkflowHistory).
+                execute();
     }
 
     public synchronized List<WfActivity> getActivitiesBy(UtilUserGroup userRole, UtilUser user) {
@@ -242,8 +277,9 @@ public class WfWorkflowBo extends CCHibernateBo {
         //update workflow information, create new workflow history, execute post route process
         List<WfWorkflow> deletedWorkflow = new ArrayList();
         for (WfWorkflow w : workflow_transition.keySet()) {
+            WfTransition transition = workflow_transition.get(w);
             //update workflow information
-            w.setActivity(workflow_transition.get(w).getDestination());
+            w.setActivity(transition.getDestination());
             //
             if (ActivityPointType.MERGE_POINT.equals(w.getActivity().getActivityPointType())
                     && workflowDao.isMergeable(w)) {
@@ -251,12 +287,21 @@ public class WfWorkflowBo extends CCHibernateBo {
                 deletedWorkflow.addAll(0, workflowDao.getParallelWorkflowsBy(w));
                 //update workflow information
                 WfWorkflow mainWorkflow = coalesce(w.getMerge(), w);
-                mainWorkflow.setUser(_getUser(transaction, workflow_transition.get(w).getTransitionRouteType(), w));
+                mainWorkflow.setUser(_getUser(transaction, transition.getTransitionRouteType(), w));
                 mainWorkflow.setWorkflowStatus(WorkflowStatus.AVAILABLE);
                 transaction.saveOrUpdate(mainWorkflow);
+            } else if (ActivityPointType.FINAL_POINT.equals(w.getActivity().getActivityPointType())) {
+                //update workflow information
+                w.setUser(null);
+                transaction.saveOrUpdate(w);
+                //update document status to archive when all workflow has completed
+                if (workflowDao.isArchivable(w)) {
+                    w.getDocument().setDocumentStatus(DocumentStatus.ARCHIVE);
+                    transaction.saveOrUpdate(w.getDocument());
+                }
             } else {
                 //update workflow information
-                w.setUser(_getUser(transaction, workflow_transition.get(w).getTransitionRouteType(), w));
+                w.setUser(_getUser(transaction, transition.getTransitionRouteType(), w));
                 if (isNull(w.getUser()) && isNull(w.getUserRole())) {
                     return newResponseFalse(No_User_Available);
                 }
@@ -267,8 +312,8 @@ public class WfWorkflowBo extends CCHibernateBo {
                 }
             }
             //execute post route process
-            if (isNotNull(workflow_transition.get(w).getPostRouteProcess())) {
-                workflow_transition.get(w).getPostRouteProcess().invoke(transaction, w);
+            if (isNotNull(transition.getPostRouteProcess())) {
+                transition.getPostRouteProcess().invoke(transaction, w);
             }
         }
         transaction.delete(deletedWorkflow);

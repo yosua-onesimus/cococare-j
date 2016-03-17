@@ -27,18 +27,18 @@ import javax.persistence.Table;
 public class WfScript extends CCEntity {
 
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY_READONLY, maxLength = 8, sequence = "S000", requestFocus = true, unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, sequence = "S000", requestFocus = true, unique = true)
     private String code;
-    @Column(length = 32)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY_READONLY, maxLength = 32)
+    @Column(length = 64)
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY)
     private String name;
     @Column(name = "path_", length = 255)
-    @CCFieldConfig(componentId = "txtPath", accessible = Accessible.MANDATORY_READONLY, visible = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, visible = false)
     private String path;
     @CCFieldConfig(label = "Type", componentId = "cmbType", accessible = Accessible.MANDATORY_READONLY, optionSource = "cococare.framework.model.obj.wf.WfMethodConfig$ScriptType", optionReflectKey = "type", visible = false)
     private Integer typeIndex;
     @Column(length = 24)
-    @CCFieldConfig(maxLength = 24, visible = false, visible2 = false)
+    @CCFieldConfig(visible = false, visible2 = false)
     private String type;
 
 //<editor-fold defaultstate="collapsed" desc=" WfScript ">

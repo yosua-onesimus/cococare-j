@@ -3,8 +3,7 @@ package cococare.framework.swing.controller.form.wf;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.framework.model.obj.wf.WfAction;
 import cococare.framework.model.obj.wf.WfActivity;
-import static cococare.framework.model.obj.wf.WfFilter.isTypeIsActionVisibility;
-import static cococare.framework.model.obj.wf.WfFilter.isTypeIsRouteValidation;
+import static cococare.framework.model.obj.wf.WfFilter.*;
 import cococare.framework.swing.controller.form.PnlDefaultCtrl;
 import cococare.swing.component.CCBandBox;
 //</editor-fold>
@@ -18,6 +17,7 @@ public class PnlActionCtrl extends PnlDefaultCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private CCBandBox bndActionVisibility;
+    private CCBandBox bndAdditionalInput;
     private CCBandBox bndRouteValidation;
 //</editor-fold>
 
@@ -25,6 +25,7 @@ public class PnlActionCtrl extends PnlDefaultCtrl {
     protected void _initEditor() {
         super._initEditor();
         bndActionVisibility.getTable().setHqlFilters(isTypeIsActionVisibility);
+        bndAdditionalInput.getTable().setHqlFilters(isTypeIsAdditionalInput);
         bndRouteValidation.getTable().setHqlFilters(isTypeIsRouteValidation);
     }
 

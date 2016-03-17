@@ -26,18 +26,21 @@ public class WfAction extends CCEntity {
     @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false, visible2 = false)
     private WfActivity activity;
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, sequence = "A000", requestFocus = true, unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, sequence = "A000", requestFocus = true, unique = true)
     private String code;
-    @Column(length = 32)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
+    @Column(length = 48)
+    @CCFieldConfig(accessible = Accessible.MANDATORY)
     private String name;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndActionVisibility", maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentId = "bndActionVisibility", maxLength = 64, uniqueKey = "name")
     private WfScript actionVisibility;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndRouteValidation", maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentId = "bndAdditionalInput", maxLength = 64, uniqueKey = "name")
+    private WfScript additionalInput;
+    @ManyToOne
+    @CCFieldConfig(componentId = "bndRouteValidation", maxLength = 64, uniqueKey = "name")
     private WfScript routeValidation;
-    @CCFieldConfig(componentId = "chkMergeable", maxLength = 4, visible = false)
+    @CCFieldConfig(componentId = "chkMergeable", visible = false)
     private Boolean mergeable = false;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
@@ -71,6 +74,14 @@ public class WfAction extends CCEntity {
 
     public void setActionVisibility(WfScript actionVisibility) {
         this.actionVisibility = actionVisibility;
+    }
+
+    public WfScript getAdditionalInput() {
+        return additionalInput;
+    }
+
+    public void setAdditionalInput(WfScript additionalInput) {
+        this.additionalInput = additionalInput;
     }
 
     public WfScript getRouteValidation() {

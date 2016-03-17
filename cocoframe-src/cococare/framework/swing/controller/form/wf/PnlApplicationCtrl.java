@@ -49,10 +49,10 @@ public class PnlApplicationCtrl extends CFSwingCtrl {
         List<WfActivityTab> activityTabs = workflowBo.getActivityTabsBy(document.getWorkflow().getActivity());
         for (WfActivityTab activityTab : activityTabs) {
             Class viewCtrlClass = CCClass.getClass(activityTab.getTab().getPath());
-            _addChildScreen(activityTab.getTabName(), "document", (CFViewCtrl) newObject(viewCtrlClass), viewCtrlClass.getSimpleName());
+            _addChildScreen2(activityTab.getTabName(), "document", (CFViewCtrl) newObject(viewCtrlClass));
         }
         if (!DocumentStatus.PORTFOLIO.equals(document.getDocumentStatus())) {
-            _addChildScreen("Workflow History", "workflow.document", new PnlWorkflowHistoryListCtrl(), PnlWorkflowHistoryListCtrl.class.getSimpleName());
+            _addChildScreen2("Workflow History", "workflow.document", new PnlWorkflowHistoryListCtrl());
         }
         if (DocumentStatus.ACTIVE.equals(document.getDocumentStatus())) {
             ActionListener alCloseOnSuccess = new ActionListener() {
@@ -65,7 +65,7 @@ public class PnlApplicationCtrl extends CFSwingCtrl {
             };
             parameter.put(toString() + "alCloseOnSuccess", alCloseOnSuccess);
             parameter.put(toString() + "workflow", workflowBo.prepareRouting(document.getWorkflow()));
-            _addChildScreen("Routing", "", new PnlRoutingCtrl(), PnlRoutingCtrl.class.getSimpleName());
+            _addChildScreen2("Routing", "", new PnlRoutingCtrl());
         }
     }
 

@@ -22,13 +22,13 @@ import javax.persistence.Table;
 public class WfActivityTab extends CCEntity {
 
     @ManyToOne
-    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name", visible = false, visible2 = false)
+    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false, visible2 = false)
     private WfActivity activity;
     @ManyToOne
     @CCFieldConfig(componentId = "bndTab", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name")
     private WfTab tab;
     @Column(length = 48)
-    @CCFieldConfig(componentId = "txtTabName", accessible = Accessible.MANDATORY, maxLength = 48)
+    @CCFieldConfig(accessible = Accessible.MANDATORY)
     private String tabName;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

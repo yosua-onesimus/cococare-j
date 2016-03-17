@@ -31,10 +31,10 @@ public class WfWorkflow extends CCEntity {
     @CCFieldConfig(componentId = "bndDocument", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "number")
     private WfDocument document;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndProcess", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentId = "bndProcess", accessible = Accessible.MANDATORY_READONLY, maxLength = 48, uniqueKey = "name")
     private WfProcess process;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY_READONLY, maxLength = 48, uniqueKey = "name")
     private WfActivity activity;
     @ManyToOne
     @CCFieldConfig(componentId = "bndArea", accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "name")
@@ -64,6 +64,12 @@ public class WfWorkflow extends CCEntity {
 
 //<editor-fold defaultstate="collapsed" desc=" WfWorkflow ">
     public WfWorkflow() {
+    }
+
+    public WfWorkflow(WfDocument document, WfProcess process) {
+        this.document = document;
+        this.process = process;
+        this.routing = process.getRouting();
     }
 
     public WfWorkflow(WfDocument document, WfProcess process, WfActivity activity) {

@@ -66,6 +66,13 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected ActionListener alClose;
 //</editor-fold>
 
+    /**
+     * @return nvl2(swingView, getClass(), _getSuperclass())
+     */
+    protected Class _getClassBySwingView() {
+        return nvl2(swingView, getClass(), _getSuperclass());
+    }
+
     @Override
     protected void _initContainer() {
         swingView = new CFSwingView(newContainer(_getClass()));
@@ -125,7 +132,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected void _initTab() {
         if (_hasEntity()) {
             if (isNotNull(swingView.getTabEntity()) && isNullOrEmpty(swingView.getTabEntity().getTitleAt(0))) {
-                swingView.getTabEntity().setTitleAt(0, _getEntityLabel());
+                swingView.getTabEntity().setTitleAt(0, turn(_getEntityLabel()));
             }
         }
     }
@@ -555,14 +562,15 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     }
 
     @Override
-    protected void _addChildScreen(String tabTitle, String parentField, CFViewCtrl childCtrl, String childContentId) {
-        if (isNull(getJPanel(getContainer(), childContentId))) {
+    protected void _addChildScreen2(String tabTitle, String parentField, CFViewCtrl childCtrl) {
+        String componentId = childCtrl.getClass().getSimpleName();
+        if (isNull(getJPanel(getContainer(), componentId))) {
             JPanel panel = new JPanel();
-            panel.setName(childContentId);
+            panel.setName(componentId);
             panel.setLayout(new GroupLayout(panel));
             swingView.getTabEntity().add(turn(tabTitle), panel);
         }
-        _addChildScreen(parentField, childCtrl, childContentId);
+        _addChildScreen(parentField, childCtrl, componentId);
     }
 //</editor-fold>
 }

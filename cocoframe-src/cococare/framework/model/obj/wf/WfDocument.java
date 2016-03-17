@@ -3,6 +3,7 @@ package cococare.framework.model.obj.wf;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import cococare.common.CCFieldConfig;
 import cococare.common.CCFieldConfig.Accessible;
+import cococare.common.CCFieldConfig.Type;
 import static cococare.common.CCLogic.isNull;
 import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
@@ -22,14 +23,14 @@ import javax.persistence.*;
 public class WfDocument extends CCEntity {
 
     @ManyToOne
-    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 16, uniqueKey = "number", visible = false, visible2 = false)
+    @CCFieldConfig(visible = false, visible2 = false)
     private WfDocument portfolio;
     @Column(length = 32)
-    @CCFieldConfig(componentId = "txtNumber", accessible = Accessible.MANDATORY, maxLength = 32, sequence = "DOC/[yyMMdd]/000", unique = true, requestFocus = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 32, sequence = "P/[yyMMdd]/000", unique = true, requestFocus = true)
     private String number;
     @Temporal(value = TemporalType.DATE)
     @Column(name = "date_")
-    @CCFieldConfig(componentId = "dtpDate", accessible = Accessible.MANDATORY)
+    @CCFieldConfig(componentId = "dtpDate", type = Type.DATE, accessible = Accessible.MANDATORY)
     private Date date = new Date();
     @CCFieldConfig(accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.wf.WfEnum$DocumentStatus", optionReflectKey = "status", visible = false, visible2 = false)
     private Integer statusIndex = DocumentStatus.PORTFOLIO.ordinal();

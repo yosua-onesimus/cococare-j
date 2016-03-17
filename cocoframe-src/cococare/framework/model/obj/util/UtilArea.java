@@ -21,10 +21,10 @@ import javax.persistence.Table;
 public class UtilArea extends CCEntity {
 
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, maxLength = 8, requestFocus = true, sequence = "A000", unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true, sequence = "A000", unique = true)
     private String code;
     @Column(length = 32)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, maxLength = 32)
+    @CCFieldConfig(accessible = Accessible.MANDATORY)
     private String name;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

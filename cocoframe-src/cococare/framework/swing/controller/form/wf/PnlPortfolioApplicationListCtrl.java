@@ -19,6 +19,12 @@ public class PnlPortfolioApplicationListCtrl extends PnlDefaultListCtrl {
     }
 
     @Override
+    protected void _initTable() {
+        super._initTable();
+        tblEntity.addField(tblEntity.getColumnCount(), "status");
+    }
+
+    @Override
     protected void _initNaviElements() {
         super._initNaviElements();
         setVisible(false, swingView.getBtnAdd(), swingView.getBtnEdit(), swingView.getBtnDelete());

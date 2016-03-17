@@ -22,8 +22,9 @@ public class PnlRouting extends javax.swing.JPanel {
         pnlEditor = new javax.swing.JPanel();
         btnProcess = new cococare.swing.component.CCButton();
         btnRoute = new cococare.swing.component.CCButton();
+        pnlMultiProcess = new cococare.swing.component.CCOptionBox();
         pnlGenerator = new javax.swing.JPanel();
-        pnladditionalInput = new javax.swing.JPanel();
+        pnlAdditionalInput = new javax.swing.JPanel();
 
         setMinimumSize(new java.awt.Dimension(600, 200));
         setPreferredSize(new java.awt.Dimension(600, 200));
@@ -38,29 +39,38 @@ public class PnlRouting extends javax.swing.JPanel {
         btnRoute.setToolTipText("Route");
         btnRoute.setType(cococare.swing.component.CCButton.Type.SAVE);
 
-        pnlGenerator.setBorder(javax.swing.BorderFactory.createTitledBorder(null, CCLanguage.turn(CCLanguage.Routing_Information), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        pnlMultiProcess.setBorder(javax.swing.BorderFactory.createTitledBorder(null, CCLanguage.turn(CCLanguage.Process), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+
+        javax.swing.GroupLayout pnlMultiProcessLayout = new javax.swing.GroupLayout(pnlMultiProcess);
+        pnlMultiProcess.setLayout(pnlMultiProcessLayout);
+        pnlMultiProcessLayout.setHorizontalGroup(
+            pnlMultiProcessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 188, Short.MAX_VALUE)
+        );
+        pnlMultiProcessLayout.setVerticalGroup(
+            pnlMultiProcessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 121, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout pnlGeneratorLayout = new javax.swing.GroupLayout(pnlGenerator);
         pnlGenerator.setLayout(pnlGeneratorLayout);
         pnlGeneratorLayout.setHorizontalGroup(
             pnlGeneratorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 285, Short.MAX_VALUE)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
         pnlGeneratorLayout.setVerticalGroup(
             pnlGeneratorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 121, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        pnladditionalInput.setBorder(javax.swing.BorderFactory.createTitledBorder(null, CCLanguage.turn(CCLanguage.Additional_Input), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
-
-        javax.swing.GroupLayout pnladditionalInputLayout = new javax.swing.GroupLayout(pnladditionalInput);
-        pnladditionalInput.setLayout(pnladditionalInputLayout);
-        pnladditionalInputLayout.setHorizontalGroup(
-            pnladditionalInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 285, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlAdditionalInputLayout = new javax.swing.GroupLayout(pnlAdditionalInput);
+        pnlAdditionalInput.setLayout(pnlAdditionalInputLayout);
+        pnlAdditionalInputLayout.setHorizontalGroup(
+            pnlAdditionalInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
-        pnladditionalInputLayout.setVerticalGroup(
-            pnladditionalInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlAdditionalInputLayout.setVerticalGroup(
+            pnlAdditionalInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -73,9 +83,11 @@ public class PnlRouting extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(btnRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEditorLayout.createSequentialGroup()
+                .addComponent(pnlMultiProcess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(pnlGenerator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(6, 6, 6)
-                .addComponent(pnladditionalInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(pnlAdditionalInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlEditorLayout.setVerticalGroup(
             pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,8 +98,9 @@ public class PnlRouting extends javax.swing.JPanel {
                     .addComponent(btnRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(pnlEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlMultiProcess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlGenerator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnladditionalInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(pnlAdditionalInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -104,8 +117,9 @@ public class PnlRouting extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cococare.swing.component.CCButton btnProcess;
     private cococare.swing.component.CCButton btnRoute;
+    private javax.swing.JPanel pnlAdditionalInput;
     private javax.swing.JPanel pnlEditor;
     private javax.swing.JPanel pnlGenerator;
-    private javax.swing.JPanel pnladditionalInput;
+    private cococare.swing.component.CCOptionBox pnlMultiProcess;
     // End of variables declaration//GEN-END:variables
 }

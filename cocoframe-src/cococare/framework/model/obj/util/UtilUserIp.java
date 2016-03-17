@@ -29,7 +29,7 @@ public class UtilUserIp extends CCEntity {
     @CCFieldConfig(visible = false)
     private UtilUser user;
     @Column(length = 40)
-    @CCFieldConfig(componentId = "txtIp", label = "IP", accessible = Accessible.MANDATORY, type = Type.IP, maxLength = 40)
+    @CCFieldConfig(label = "IP", accessible = Accessible.MANDATORY, type = Type.IP)
     private String ip;
 
 //<editor-fold defaultstate="collapsed" desc=" UtilUserIp ">

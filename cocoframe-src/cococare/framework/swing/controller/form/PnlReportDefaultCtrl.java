@@ -36,6 +36,10 @@ public class PnlReportDefaultCtrl extends CFSwingCtrl {
     @Override
     protected void _initComponent() {
         super._initComponent();
+        _initReport();
+    }
+
+    protected void _initReport() {
         showPanel(pnlReport, ((CCReport) objEntity).newReport().getViewer());
     }
 

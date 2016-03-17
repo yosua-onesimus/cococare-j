@@ -33,7 +33,7 @@ public class PnlPortfolioCtrl extends CFSwingCtrl {
         super._initComponent();
         WfDocument document = (WfDocument) objEntity;
         if (!newEntity && DocumentStatus.PORTFOLIO.equals(document.getDocumentStatus())) {
-            _addChildScreen("Application", "portfolio", new PnlPortfolioApplicationListCtrl(), PnlPortfolioApplicationListCtrl.class.getSimpleName());
+            _addChildScreen2("Application", "portfolio", new PnlPortfolioApplicationListCtrl());
             ActionListener alCloseOnSuccess = new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
@@ -43,7 +43,7 @@ public class PnlPortfolioCtrl extends CFSwingCtrl {
             };
             parameter.put(toString() + "alCloseOnSuccess", alCloseOnSuccess);
             parameter.put(toString() + "document", document);
-            _addChildScreen("Process", "", new PnlRoutingCtrl(), PnlRoutingCtrl.class.getSimpleName());
+            _addChildScreen2("Process", "", new PnlRoutingCtrl());
         }
     }
 

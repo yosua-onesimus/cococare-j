@@ -21,13 +21,13 @@ import javax.persistence.Table;
 public class WfTab extends CCEntity {
 
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY_READONLY, maxLength = 8, sequence = "T000", requestFocus = true, unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, sequence = "T000", requestFocus = true, unique = true)
     private String code;
     @Column(length = 48)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY_READONLY, maxLength = 48)
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY)
     private String name;
     @Column(name = "path_", length = 255)
-    @CCFieldConfig(componentId = "txtPath", accessible = Accessible.MANDATORY_READONLY, visible = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, visible = false)
     private String path;
 
 //<editor-fold defaultstate="collapsed" desc=" WfTab ">

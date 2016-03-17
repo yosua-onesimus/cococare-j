@@ -45,18 +45,14 @@ public class PnlApplicationListCtrl extends CFSwingCtrl {
     }
 
     @Override
-    protected void _initComponent() {
-        super._initComponent();
+    protected void _initTable() {
         parameter.put(toString() + "cmbActivity", cmbActivity);
         cmbActivity.initList(null, WfActivity.class, "name");
         cmbActivity.setList(workflowBo.getActivitiesBy(user.getUserGroup(), user));
-    }
-
-    @Override
-    protected void _initTable() {
+        //
         super._initTable();
         tblEntity.setVisibleField(false, "number");
-        tblEntity.addField(0, new NumberFieldShowEditor(this, tblEntity));
+        tblEntity.addField(0, new NumberFieldShowEditor(this, tblEntity, workflowBo, cmbActivity));
         tblEntity.setEditableColumn(true, 0);
         tblEntity.setHqlFilters(new isIdInIds() {
             @Override
@@ -66,7 +62,7 @@ public class PnlApplicationListCtrl extends CFSwingCtrl {
         });
         tblPool = newCCTable(getContainer(), "tblPool", _getEntity());
         tblPool.setVisibleField(false, "number");
-        tblPool.addField(0, new NumberFieldShowEditor(this, tblEntity));
+        tblPool.addField(0, new NumberFieldShowEditor(this, tblPool, workflowBo, cmbActivity));
         tblPool.setEditableColumn(true, 0);
         tblPool.setHqlFilters(new isIdInIds() {
             @Override

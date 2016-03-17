@@ -17,6 +17,11 @@ public abstract class PnlDefaultListCtrl extends CFSwingCtrl {
     }
 
     @Override
+    protected Class _getSuperclass() {
+        return PnlDefaultListCtrl.class;
+    }
+
+    @Override
     protected BaseFunction _getBaseFunction() {
         return BaseFunction.LIST_FUNCTION;
     }

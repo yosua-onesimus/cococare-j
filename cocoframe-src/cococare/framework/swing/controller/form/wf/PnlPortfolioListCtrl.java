@@ -28,7 +28,7 @@ public class PnlPortfolioListCtrl extends CFSwingCtrl {
     protected void _initTable() {
         super._initTable();
         tblEntity.setVisibleField(false, "number");
-        tblEntity.addField(0, new NumberFieldShowEditor(this, tblEntity));
+        tblEntity.addField(0, new NumberFieldShowEditor(this, tblEntity, null, null));
         tblEntity.setEditableColumn(true, 0);
         tblEntity.setHqlFilters(isDocumentStatusIsPortfolio);
     }

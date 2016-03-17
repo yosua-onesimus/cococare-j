@@ -2,6 +2,7 @@ package cococare.framework.swing.controller.form;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCClass.newObject;
+import static cococare.common.CCLanguage.Report;
 import static cococare.common.CCLogic.isNotNull;
 import cococare.common.jasperreports.CCReport;
 import static cococare.datafile.CCFile.open;
@@ -34,6 +35,11 @@ public abstract class PnlReportDefaultListCtrl extends CFSwingCtrl {
     @Override
     protected Class _getClass() {
         return PnlReportDefaultListCtrl.class;
+    }
+
+    @Override
+    protected String _getEntityLabel() {
+        return Report;
     }
 
     protected abstract Class _getReportEnum();

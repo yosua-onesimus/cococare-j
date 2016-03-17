@@ -26,17 +26,17 @@ public class UtilUser extends CCEntity {
     @Column(length = 32)
     private String appl = CFApplCtrl.APPL_CODE;
     @Column(length = 32)
-    @CCFieldConfig(componentId = "txtUsername", accessible = Accessible.MANDATORY, minLength = 4, maxLength = 32, requestFocus = true, unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, minLength = 4, requestFocus = true, unique = true)
     private String username;
     @Column(length = 32)
-    @CCFieldConfig(componentId = "txtPassword", accessible = Accessible.MANDATORY, minLength = 4, maxLength = 32, compareRule = CompareRule.EQUAL, compareWith = "txtRetypePassword", visible = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, minLength = 4, compareRule = CompareRule.EQUAL, compareWith = "txtRetypePassword", visible = false)
     private String password;
-    @CCFieldConfig(componentId = "txtNewPassword", accessible = Accessible.MANDATORY, minLength = 4, maxLength = 32, requestFocus = true, compareRule = CompareRule.EQUAL, compareWith = "txtRetypePassword", visible = false, visible2 = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, minLength = 4, requestFocus = true, compareRule = CompareRule.EQUAL, compareWith = "txtRetypePassword", visible = false, visible2 = false)
     transient private String newPassword;
-    @CCFieldConfig(componentId = "txtRetypePassword", accessible = Accessible.MANDATORY, minLength = 4, maxLength = 32, visible = false, visible2 = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, minLength = 4, visible = false, visible2 = false)
     transient private String retypePassword;
     @Column(length = 255)
-    @CCFieldConfig(componentId = "txtFullname")
+    @CCFieldConfig()
     private String fullname;
     @ManyToOne
     @CCFieldConfig(componentId = "bndUserGroup", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")

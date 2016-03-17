@@ -25,10 +25,10 @@ public class UtilUserGroup extends CCEntity {
     @Column(length = 32)
     private String appl = CFApplCtrl.APPL_CODE;
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.MANDATORY, minLength = 4, maxLength = 8, requestFocus = true, sequence = "UG000", unique = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, minLength = 4, requestFocus = true, sequence = "UG000", unique = true)
     private String code;
     @Column(length = 32)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.MANDATORY, minLength = 4, maxLength = 32)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, minLength = 4)
     private String name;
     @CCFieldConfig(visible = false)
     private Boolean root = false;
