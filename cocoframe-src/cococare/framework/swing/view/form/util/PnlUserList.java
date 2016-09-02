@@ -58,7 +58,7 @@ public class PnlUserList extends javax.swing.JPanel {
 
         btnChangePassword.setMnemonic('P');
         btnChangePassword.setText("Change Password");
-        btnChangePassword.setToolTipText("Edit Password");
+        btnChangePassword.setToolTipText("Change Password");
         btnChangePassword.setType(cococare.swing.component.CCButton.Type.EDIT);
         pnlNorthWest.add(btnChangePassword);
         btnChangePassword.setBounds(200, 10, 150, 29);

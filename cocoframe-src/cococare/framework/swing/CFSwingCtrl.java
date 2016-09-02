@@ -4,9 +4,9 @@ package cococare.framework.swing;
 import cococare.common.CCAccessibleListener;
 import static cococare.common.CCClass.newObject;
 import static cococare.common.CCClass.setValue;
+import static cococare.common.CCFinal.SHOW_MODE_TAB_MODE_NOT_APPLICABLE_FOR___AND_IT_CHILD;
 import static cococare.common.CCFinal.btnEdit;
-import static cococare.common.CCFormat.getBoolean;
-import static cococare.common.CCFormat.getStringOrNull;
+import static cococare.common.CCFormat.*;
 import static cococare.common.CCLanguage.Filter;
 import static cococare.common.CCLanguage.turn;
 import static cococare.common.CCLogic.*;
@@ -84,11 +84,15 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 
     @Override
     public void doShowTab(String sysRef, String title, CFViewCtrl viewCtrl) {
-        if (isNull(sysRef_swingCtrl.get(sysRef))) {
-            swingView.getTabEntity().addTab(turn(title), ((CFSwingCtrl) viewCtrl).getContainer());
-            sysRef_swingCtrl.put(sysRef, ((CFSwingCtrl) viewCtrl));
+        try {
+            if (isNull(sysRef_swingCtrl.get(sysRef))) {
+                swingView.getTabEntity().addTab(turn(title), ((CFSwingCtrl) viewCtrl).getContainer());
+                sysRef_swingCtrl.put(sysRef, ((CFSwingCtrl) viewCtrl));
+            }
+            swingView.getTabEntity().setSelectedComponent(sysRef_swingCtrl.get(sysRef).getContainer());
+        } catch (Exception exception) {
+            throw new RuntimeException(replaceFirst(SHOW_MODE_TAB_MODE_NOT_APPLICABLE_FOR___AND_IT_CHILD, getClass().getSimpleName()), exception);
         }
-        swingView.getTabEntity().setSelectedComponent(sysRef_swingCtrl.get(sysRef).getContainer());
     }
 
     @Override

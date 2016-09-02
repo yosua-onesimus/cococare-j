@@ -122,7 +122,7 @@
                       <Properties>
                         <Property name="mnemonic" type="int" value="80"/>
                         <Property name="text" type="java.lang.String" value="Change Password"/>
-                        <Property name="toolTipText" type="java.lang.String" value="Edit Password"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Change Password"/>
                         <Property name="type" type="cococare.swing.component.CCButton$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
                           <Value id="EDIT"/>
                         </Property>

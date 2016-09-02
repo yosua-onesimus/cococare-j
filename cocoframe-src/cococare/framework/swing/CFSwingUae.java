@@ -4,11 +4,12 @@ package cococare.framework.swing;
 import static cococare.common.CCAccessibleListener.nonAccessible;
 import static cococare.common.CCClass.*;
 import cococare.common.CCField;
+import static cococare.common.CCFinal.iconMenuParent;
+import static cococare.common.CCFinal.iconMenuChild;
 import static cococare.common.CCFormat.nextSequence;
 import static cococare.common.CCFormat.toHumanizeCase;
 import static cococare.common.CCLanguage.turn;
-import static cococare.common.CCLogic.isNotNull;
-import static cococare.common.CCLogic.isNull;
+import static cococare.common.CCLogic.*;
 import cococare.common.CCTrackable;
 import static cococare.database.CCLoginInfo.INSTANCE_isCompAccessible;
 import cococare.framework.common.CFApplUae;
@@ -252,12 +253,12 @@ public class CFSwingUae extends CFApplUae {
 
     @Override
     public void addMenuParent(String label, String icon, Class<? extends CFViewCtrl> controllerClass) {
-        addMenu(null, pc = cc++, label, icon, controllerClass);
+        addMenu(null, pc = cc++, label, coalesce(icon, iconMenuParent), controllerClass);
     }
 
     @Override
     public void addMenuChild(String label, String icon, Class<? extends CFViewCtrl> controllerClass) {
-        addMenu(pc, cc++, label, icon, controllerClass);
+        addMenu(pc, cc++, label, coalesce(icon, iconMenuChild), controllerClass);
     }
 
     public void addMenuSeparator(int code) {

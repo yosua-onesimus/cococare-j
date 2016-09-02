@@ -48,14 +48,17 @@ public class PnlLoggerList extends javax.swing.JPanel {
         pnlNorthWest.setLayout(null);
 
         cmbUsername.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        cmbUsername.setToolTipText("Username");
         pnlNorthWest.add(cmbUsername);
         cmbUsername.setBounds(0, 10, 100, 29);
 
         cmbScreen.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        cmbScreen.setToolTipText("Screen");
         pnlNorthWest.add(cmbScreen);
         cmbScreen.setBounds(100, 10, 150, 29);
 
         cmbAction.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        cmbAction.setToolTipText("Action");
         pnlNorthWest.add(cmbAction);
         cmbAction.setBounds(250, 10, 100, 29);
 

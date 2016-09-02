@@ -1,6 +1,7 @@
 package cococare.framework.common;
 
 // <editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCClass.getProjectVersion;
 import static cococare.common.CCConfig.*;
 import cococare.common.CCLanguage;
 import static cococare.common.CCLanguage.load;
@@ -51,7 +52,7 @@ public abstract class CFApplCtrl {
     public static String APPL_CODE = "appl.code";
     protected static String APPL_LOGO = "/cococare/resource/icon-cococare.jpg";
     protected static String APPL_NAME = "appl.name";
-    protected static String APPL_VER = "1.0.130317";
+    protected static String APPL_VER = getProjectVersion(CFApplCtrl.class);
     //
     protected static final String S_APPL_CONF = "appl.conf";
     protected static final String S_APPL_LCNS = "appl.lcns";
