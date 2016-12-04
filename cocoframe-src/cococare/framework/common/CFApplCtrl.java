@@ -89,20 +89,17 @@ public abstract class CFApplCtrl {
             _loadExternalSetting();
             _initDatabaseProfile();
         }
-        if (PlatformMode.WEB.equals(PLAT_MODE)) {
-            _initScreen();
-        }
     }
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" public method ">
     /**
-     * <b>Line Number: 100</b>
+     * <b>Line Number: 97</b>
      */
     public abstract void end();
 
     /**
-     * <b>Line Number: 105</b>
+     * <b>Line Number: 102</b>
      * <ol>
      * <li>Add a default log Handler to receive logging messages.</li>
      * <li>Execute setup for mandatory file.</li>
@@ -114,7 +111,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 117</b>
+     * <b>Line Number: 114</b>
      * <ol>
      * <li>Load a language pack for some domains.</li>
      * <li>Get user configuration file.</li>
@@ -133,12 +130,12 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 136</b>
+     * <b>Line Number: 133</b>
      */
     protected abstract void _initScreen();
 
     /**
-     * <b>Line Number: 141</b>
+     * <b>Line Number: 138</b>
      * <ol>
      * <li>Load a list databaseConfig from a file.</li>
      * <li>Automatic set C3P0 property.</li>
@@ -163,7 +160,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 166</b>
+     * <b>Line Number: 163</b>
      * <ol>
      * <li>Initialization module with the specified hibernate.</li>
      * </ol>
@@ -176,7 +173,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 179</b>
+     * <b>Line Number: 176</b>
      * <ol>
      * <li>Check whether the connection is valid or not.</li>
      * <li>Add a databaseConfig and instantiate a new SessionFactory.</li>
@@ -201,7 +198,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 204</b>
+     * <b>Line Number: 201</b>
      * <ol>
      * <li>Reload databaseConfig from the file.</li>
      * </ol>
@@ -211,7 +208,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 214</b>
+     * <b>Line Number: 211</b>
      * <ol>
      * <li>Initial default data (custom field configuration, province, regency, etc).</li>
      * </ol>
@@ -224,21 +221,21 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 227</b>
+     * <b>Line Number: 224</b>
      *
      * @return the CFApplUae.
      */
     protected abstract CFApplUae _initInitialUaeBegin();
 
     /**
-     * <b>Line Number: 234</b>
+     * <b>Line Number: 231</b>
      *
      * @param uae a CFApplUae.
      */
     protected abstract void _initInitialUaeBody(CFApplUae uae);
 
     /**
-     * <b>Line Number: 241</b>
+     * <b>Line Number: 238</b>
      *
      * @param uae a CFApplUae.
      * @return true if success; false if fail.
@@ -246,7 +243,7 @@ public abstract class CFApplCtrl {
     protected abstract boolean _initInitialUaeEnd(CFApplUae uae);
 
     /**
-     * <b>Line Number: 249</b>
+     * <b>Line Number: 246</b>
      * <ol>
      * <li>_initInitialUaeBegin(): ...</li>
      * <li>_initInitialUaeBody(uae): ...</li>
@@ -262,7 +259,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 265</b>
+     * <b>Line Number: 262</b>
      * <ol>
      * <li>_initInitialData() && _initInitialUae(): ...</li>
      * </ol>
@@ -274,14 +271,14 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 277</b>
+     * <b>Line Number: 274</b>
      *
      * @return true if success; false if fail.
      */
     public abstract boolean showDatabaseSettingScreen();
 
     /**
-     * <b>Line Number: 284</b>
+     * <b>Line Number: 281</b>
      *
      * @param username the username.
      * @param password the password.
@@ -292,14 +289,14 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 295</b>
+     * <b>Line Number: 292</b>
      *
      * @param object the object.
      */
     public abstract void updateNonContent(Object object);
 
     /**
-     * <b>Line Number: 302</b>
+     * <b>Line Number: 299</b>
      * <ol>
      * <li>Initial database filter. Default blank.</li>
      * </ol>
@@ -308,7 +305,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 311</b>
+     * <b>Line Number: 308</b>
      * <ol>
      * <li>Apply database filter. Default blank.</li>
      * </ol>
@@ -317,7 +314,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 320</b>
+     * <b>Line Number: 317</b>
      * <ol>
      * <li>Clear database filter. Default blank.</li>
      * </ol>
@@ -326,28 +323,28 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 329</b>
+     * <b>Line Number: 326</b>
      *
      * @return the CFApplUae.
      */
     protected abstract CFApplUae _applyUserConfigUaeBegin();
 
     /**
-     * <b>Line Number: 336</b>
+     * <b>Line Number: 333</b>
      *
      * @param uae a CFApplUae.
      */
     protected abstract void _applyUserConfigUaeBody(CFApplUae uae);
 
     /**
-     * <b>Line Number: 343</b>
+     * <b>Line Number: 340</b>
      *
      * @param uae a CFApplUae.
      */
     protected abstract void _applyUserConfigUaeEnd(CFApplUae uae);
 
     /**
-     * <b>Line Number: 350</b>
+     * <b>Line Number: 347</b>
      * <ol>
      * <li>_applyUserConfigUaeBegin(): ...</li>
      * <li>_applyUserConfigUaeBody(uae): ...</li>
@@ -361,19 +358,19 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 364</b>
+     * <b>Line Number: 361</b>
      */
     protected abstract void _clearUserConfig();
 
     /**
-     * <b>Line Number: 369</b>
+     * <b>Line Number: 366</b>
      *
      * @return true if success; false if fail.
      */
     protected abstract boolean _showLoginScreen();
 
     /**
-     * <b>Line Number: 376</b>
+     * <b>Line Number: 373</b>
      * <ol>
      * <li>Show home screen. Default blank.</li>
      * </ol>
@@ -385,7 +382,7 @@ public abstract class CFApplCtrl {
     }
 
     /**
-     * <b>Line Number: 388</b>
+     * <b>Line Number: 385</b>
      * <ol>
      * <li>[webPlatform]_initScreen(): ...</li>
      * <li>[databaseConnected]updateNonContent(new UtilConfigBo().loadConfAppl()): ...</li>
@@ -399,6 +396,9 @@ public abstract class CFApplCtrl {
      * </ol>
      */
     public void showScreen() {
+        if (PlatformMode.WEB.equals(PLAT_MODE)) {
+            _initScreen();
+        }
         if (databaseConnected) {
             UtilConfigBo configBo = new UtilConfigBo();
             updateNonContent(confAppl = configBo.loadConfAppl());

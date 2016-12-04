@@ -1,10 +1,11 @@
 package cococare.framework.swing;
 
 // <editor-fold defaultstate="collapsed" desc=" import ">
+import static cococare.common.CCClass.*;
 import cococare.common.CCClass;
-import static cococare.common.CCClass.instanceOf;
-import static cococare.common.CCClass.newObject;
 import static cococare.common.CCFinal.*;
+import static cococare.common.CCLogic.isNull;
+import cococare.common.CCTrackable;
 import cococare.framework.swing.view.form.FrmMain;
 import static cococare.swing.CCSwing.*;
 import cococare.swing.component.CCImage;
@@ -90,6 +91,9 @@ public class CFSwingMap {
      */
     public static Container newContainer(Class controllerClass) {
         Class<? extends Container> viewClass = getViewForm(controllerClass);
+        while (isNull(viewClass) && instanceOf(CCTrackable.class, controllerClass.getSuperclass())) {
+            viewClass = getViewForm(controllerClass = controllerClass.getSuperclass());
+        }
         if (instanceOf(JDialog.class, viewClass)) {
             return newObject(viewClass, new Class[]{Frame.class, boolean.class}, new Object[]{getMainScreen(), true});
         } else if (instanceOf(JPanel.class, viewClass)) {

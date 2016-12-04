@@ -183,10 +183,6 @@ public class CFSwingUae extends CFApplUae {
     public void reg(String moduleCode, String screenName, Class<? extends CFViewCtrl> controllerClass) {
         screenName = turn(screenName);
         Container container = newContainer(controllerClass);
-        Class trackableClass = controllerClass;
-        while (isNull(container) && instanceOf(CCTrackable.class, trackableClass.getSuperclass())) {
-            container = newContainer(trackableClass = trackableClass.getSuperclass());
-        }
         if (isNotNull(container)) {
             UtilPrivilege screen = new UtilPrivilege(_getScreenComp(controllerClass), _getScreenCode(moduleCode), screenName);
             for (CCButton button : _getButton(container)) {

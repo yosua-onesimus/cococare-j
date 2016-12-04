@@ -103,6 +103,7 @@ public abstract class CFSwingMain extends CFApplCtrl {
             uae.reg(Utility, Parameter, PnlParameterListCtrl.class);
             uae.reg(Utility, Export_Import, PnlExportImportCtrl.class);
         }
+        uae.reg(Utility, Query_Editor, PnlQueryEditorCtrl.class);
         uae.reg(Utility, Logger_History, PnlLoggerListCtrl.class);
         if (!HIBERNATE.getAuditableClasses().isEmpty()) {
             uae.reg(Utility, Audit_Trail, PnlAuditTrailListCtrl.class);
@@ -154,11 +155,12 @@ public abstract class CFSwingMain extends CFApplCtrl {
         uae.addMenuParent(Utility, "/cococare/resource/icon-menu-parent.png", null);
         uae.addMenuChild(User_Group, "/cococare/resource/icon-menu-user-group.png", PnlUserGroupListCtrl.class);
         uae.addMenuChild(User, "/cococare/resource/icon-menu-user.png", PnlUserListCtrl.class);
+        uae.addMenuSeparator();
         if (!HIBERNATE.getParameterClasses().isEmpty()) {
-            uae.addMenuSeparator();
             uae.addMenuChild(Parameter, "/cococare/resource/icon-menu-parameter.png", PnlParameterListCtrl.class);
             uae.addMenuChild(Export_Import, "/cococare/resource/icon-menu-export-import.png", PnlExportImportCtrl.class);
         }
+        uae.addMenuChild(Query_Editor, "/cococare/resource/icon-menu-query-editor.png", PnlQueryEditorCtrl.class);
         uae.addMenuSeparator();
         uae.addMenuChild(Logger_History, "/cococare/resource/icon-menu-logger-history.png", PnlLoggerListCtrl.class);
         if (!HIBERNATE.getAuditableClasses().isEmpty()) {

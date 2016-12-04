@@ -48,7 +48,7 @@ public class PnlExportImportCtrl extends CFSwingCtrl {
     @Override
     protected void _initComponent() {
         super._initComponent();
-        for (Class clazz : CCEntityModule.INSTANCE.getCCHibernate().getParameterClasses()) {
+        for (Class clazz : CCEntityModule.getParameterClasses()) {
             optParameter.addItem(getLabel(clazz));
         }
     }
@@ -109,7 +109,7 @@ public class PnlExportImportCtrl extends CFSwingCtrl {
                 CCExcel excel = new CCExcel();
                 excel.newWorkbook();
                 for (int index : optParameter.getSelectedIndexes()) {
-                    Class clazz = CCEntityModule.INSTANCE.getCCHibernate().getParameterClasses().get(index);
+                    Class clazz = CCEntityModule.getParameterClasses().get(index);
                     excel.newSheet(clazz.getSimpleName());
                     excel.initEntity(clazz, chkHumanize.isSelected());
                     excel.writeRowEntityHeader();
@@ -132,10 +132,10 @@ public class PnlExportImportCtrl extends CFSwingCtrl {
                 CCExcel excel = new CCExcel();
                 excel.openWorkbook(file);
                 for (int index : optParameter.getSelectedIndexes()) {
-                    Class clazz = CCEntityModule.INSTANCE.getCCHibernate().getParameterClasses().get(index);
+                    Class clazz = CCEntityModule.getParameterClasses().get(index);
                     if (isNotNull(excel.getSheet(clazz.getSimpleName()))) {
                         excel.initEntity(clazz, chkHumanize.isSelected());
-                        if (!(updateCaller = CCEntityModule.INSTANCE.getCCHibernate().restore(excel.readRowEntity(1, excel.getRowCount() - 1)))) {
+                        if (!(updateCaller = CCEntityBo.INSTANCE.getCCHibernate(clazz).restore(excel.readRowEntity(1, excel.getRowCount() - 1)))) {
                             break;
                         }
                     }

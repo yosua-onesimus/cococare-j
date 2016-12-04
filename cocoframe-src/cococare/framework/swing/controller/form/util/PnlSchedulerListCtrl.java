@@ -18,11 +18,6 @@ import java.awt.event.ActionListener;
 public class PnlSchedulerListCtrl extends CFSwingCtrl {
 
     @Override
-    protected Class _getClass() {
-        return PnlSchedulerListCtrl.class;
-    }
-
-    @Override
     protected Class _getEntity() {
         return UtilScheduler.class;
     }

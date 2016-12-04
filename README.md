@@ -41,14 +41,3 @@ The following are the steps to use Git for Windows:
 1.	[Download Git for Windows] (https://git-for-windows.github.io/)
 2.	[Download Windows Installer 4.5 Redistributable (Optional)] (http://www.microsoft.com/en-us/download/details.aspx?id=8483)
 3.	[Download TortoiseGit (Mandatory)] (https://tortoisegit.org/download/)
-
-## How to use Learning Center
-
-1. Contact me so I can add your GitHub account to the Collaborators list
-  * arrow_405@yahoo.com
-  * yosuaonesimus@gmail.com
-  * https://www.facebook.com/yosuaonesimussuheru
-2. Clone this repository
-3. Create folder under learning-center folder, please use your GitHub account as folder name
-4. Create your project under your folder
-5. If you have any question, please create faq.txt under your folder, commit and sync, I will response as soon as possible

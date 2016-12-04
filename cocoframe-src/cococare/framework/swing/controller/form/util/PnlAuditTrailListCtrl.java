@@ -41,7 +41,7 @@ public class PnlAuditTrailListCtrl extends CFSwingCtrl {
     protected void _initComponent() {
         super._initComponent();
         cmbEntity.addItem("");
-        for (Class clazz : CCEntityModule.INSTANCE.getCCHibernate().getAuditableClasses()) {
+        for (Class clazz : CCEntityModule.getAuditableClasses()) {
             cmbEntity.addItem(getLabel(clazz));
         }
     }
@@ -85,7 +85,7 @@ public class PnlAuditTrailListCtrl extends CFSwingCtrl {
             @Override
             public Object getFieldValue() {
                 if (cmbEntity.getSelectedIndex() > 0) {
-                    return CCEntityModule.INSTANCE.getCCHibernate().getAuditableClasses().get(cmbEntity.getSelectedIndex() - 1).getName();
+                    return CCEntityModule.getAuditableClasses().get(cmbEntity.getSelectedIndex() - 1).getName();
                 } else {
                     return null;
                 }

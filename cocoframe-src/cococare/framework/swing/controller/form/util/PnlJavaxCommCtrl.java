@@ -53,11 +53,6 @@ public class PnlJavaxCommCtrl extends CFSwingCtrl {
 //</editor-fold>
 
     @Override
-    protected Class _getClass() {
-        return PnlJavaxCommCtrl.class;
-    }
-
-    @Override
     protected Class _getEntity() {
         return UtilJavaxComm.class;
     }
