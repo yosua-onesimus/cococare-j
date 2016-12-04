@@ -67,9 +67,17 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 //</editor-fold>
 
     /**
+     * @return nvl2(swingView, _getSuperclass(), getClass())
+     */
+    @Override
+    protected Class _getCustomToDefaultClass() {
+        return nvl2(swingView, _getSuperclass(), getClass());
+    }
+
+    /**
      * @return nvl2(swingView, getClass(), _getSuperclass())
      */
-    protected Class _getClassBySwingView() {
+    protected Class _getDefaultToCustomClass() {
         return nvl2(swingView, getClass(), _getSuperclass());
     }
 

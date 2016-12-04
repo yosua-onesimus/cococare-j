@@ -3,11 +3,13 @@ package cococare.framework.model.mdl.util;
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCConfig.*;
 import static cococare.database.CCEntityConfig.FIELD_APPL;
-import cococare.database.CCHibernate;
 import cococare.database.CCHibernateFilter;
 import cococare.database.CCHibernateModule;
 import static cococare.framework.common.CFApplCtrl.APPL_CODE;
 import cococare.framework.model.obj.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 //</editor-fold>
 
 /**
@@ -21,38 +23,42 @@ public class UtilityModule extends CCHibernateModule {
 
 //<editor-fold defaultstate="collapsed" desc=" public method ">
     @Override
-    public void init(CCHibernate hibernate) {
-        super.init(hibernate);
-        //
+    protected List<Class> _getAnnotatedClasses() {
+        List<Class> annotatedClasses = new ArrayList();
         if (APPL_UTIL_INCLUDED_PERSON_ENTITIES) {
-            hibernate.addAnnotatedClass(UtilProvince.class);
-            hibernate.addAnnotatedClass(UtilRegency.class);
-            hibernate.addAnnotatedClass(UtilSubDistrict.class);
-            hibernate.addAnnotatedClass(UtilVillage.class);
-            hibernate.addAnnotatedClass(UtilPerson.class);
+            annotatedClasses.add(UtilProvince.class);
+            annotatedClasses.add(UtilRegency.class);
+            annotatedClasses.add(UtilSubDistrict.class);
+            annotatedClasses.add(UtilVillage.class);
+            annotatedClasses.add(UtilPerson.class);
         }
         if (APPL_UTIL_INCLUDED_PERSON_ENTITIES || APPL_UTIL_SHOW_WORKFLOW_MODULE) {
-            hibernate.addAnnotatedClass(UtilArea.class);
+            annotatedClasses.add(UtilArea.class);
         }
         //
-        hibernate.addAnnotatedClass(UtilConfig.class);
+        annotatedClasses.add(UtilConfig.class);
         if (APPL_UTIL_SHOW_SCHEDULER_MODULE) {
-            hibernate.addAnnotatedClass(UtilScheduler.class);
+            annotatedClasses.add(UtilScheduler.class);
         }
-        hibernate.addAnnotatedClass(UtilLogger.class);
-        hibernate.addAnnotatedClass(UtilPrivilege.class);
+        annotatedClasses.add(UtilLogger.class);
+        annotatedClasses.add(UtilPrivilege.class);
         //
-        hibernate.addAnnotatedClass(UtilUserGroup.class);
-        hibernate.addAnnotatedClass(UtilUserGroupPrivilege.class);
-        hibernate.addAnnotatedClass(UtilUserGroupIp.class);
-        hibernate.addAnnotatedClass(UtilUserGroupChild.class);
+        annotatedClasses.add(UtilUserGroup.class);
+        annotatedClasses.add(UtilUserGroupPrivilege.class);
+        annotatedClasses.add(UtilUserGroupIp.class);
+        annotatedClasses.add(UtilUserGroupChild.class);
         //
-        hibernate.addAnnotatedClass(UtilUser.class);
-        hibernate.addAnnotatedClass(UtilUserPrivilege.class);
-        hibernate.addAnnotatedClass(UtilUserIp.class);
-        hibernate.addAnnotatedClass(UtilUserChild.class);
-        //
-        addFilters(new CCHibernateFilter() {
+        annotatedClasses.add(UtilUser.class);
+        annotatedClasses.add(UtilUserPrivilege.class);
+        annotatedClasses.add(UtilUserIp.class);
+        annotatedClasses.add(UtilUserChild.class);
+        return annotatedClasses;
+    }
+
+    @Override
+    public List<CCHibernateFilter> getFilters() {
+        return (List) Arrays.asList(
+                new CCHibernateFilter() {
             @Override
             public String getFieldName() {
                 return FIELD_APPL;

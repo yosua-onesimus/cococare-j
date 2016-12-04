@@ -34,13 +34,18 @@ public class PnlReportDefaultCtrl extends CFSwingCtrl {
     }
 
     @Override
+    protected ShowMode _getShowMode() {
+        return (callerCtrl instanceof PnlReportDefaultListCtrl) ? ShowMode.TAB_MODE : ShowMode.DIALOG_MODE;
+    }
+
+    @Override
     protected void _initComponent() {
         super._initComponent();
         _initReport();
     }
 
     protected void _initReport() {
-        showPanel(pnlReport, ((CCReport) objEntity).newReport().getViewer());
+        showPanel(pnlReport, ((CCReport) objEntity).newReport().loadObject().fillReport().getViewer());
     }
 
     @Override
