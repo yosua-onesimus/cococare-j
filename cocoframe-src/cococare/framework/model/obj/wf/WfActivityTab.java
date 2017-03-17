@@ -22,10 +22,10 @@ import javax.persistence.Table;
 public class WfActivityTab extends CCEntity {
 
     @ManyToOne
-    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false, visible2 = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false, visible2 = false)
     private WfActivity activity;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndTab", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name")
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name")
     private WfTab tab;
     @Column(length = 48)
     @CCFieldConfig(accessible = Accessible.MANDATORY)

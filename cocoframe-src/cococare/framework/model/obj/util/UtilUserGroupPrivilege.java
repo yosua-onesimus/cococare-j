@@ -28,7 +28,7 @@ public class UtilUserGroupPrivilege extends CCEntity {
     @CCFieldConfig(visible = false)
     private UtilUserGroup userGroup;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndPrivilege", accessible = Accessible.MANDATORY, uniqueKey = "name")
+    @CCFieldConfig(accessible = Accessible.MANDATORY, uniqueKey = "name")
     private UtilPrivilege privilege;
 
 //<editor-fold defaultstate="collapsed" desc=" UtilUserGroupPrivilege ">

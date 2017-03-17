@@ -25,9 +25,9 @@ public class PnlActivityCtrl extends PnlDefaultWithChildCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
     private JTextField txtDayLimit;
-    private CCBandBox bndUserRole;
+    private CCBandBox txtUserRole;
     private JTextField txtWeight;
-    private JComboBox cmbPointType;
+    private JComboBox txtPointType;
 //</editor-fold>
 
     @Override
@@ -39,7 +39,7 @@ public class PnlActivityCtrl extends PnlDefaultWithChildCtrl {
     @Override
     protected void _initEditor() {
         super._initEditor();
-        bndUserRole.getTable().setHqlFilters(isUserGroupNotRoot);
+        txtUserRole.getTable().setHqlFilters(isUserGroupNotRoot);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class PnlActivityCtrl extends PnlDefaultWithChildCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        addListener(cmbPointType, new ActionListener() {
+        addListener(txtPointType, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _doPointType();
@@ -64,9 +64,9 @@ public class PnlActivityCtrl extends PnlDefaultWithChildCtrl {
     }
 
     private void _doPointType() {
-        boolean isFinalPoint = ActivityPointType.FINAL_POINT.equals(ActivityPointType.values()[cmbPointType.getSelectedIndex()]);
+        boolean isFinalPoint = ActivityPointType.FINAL_POINT.equals(ActivityPointType.values()[txtPointType.getSelectedIndex()]);
         edtEntity.setAccessible(txtDayLimit, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.MANDATORY);
-        edtEntity.setAccessible(bndUserRole, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.MANDATORY);
+        edtEntity.setAccessible(txtUserRole, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.MANDATORY);
         edtEntity.setAccessible(txtWeight, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.MANDATORY);
     }
 

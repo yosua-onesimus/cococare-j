@@ -35,7 +35,7 @@ public class WfScript extends CCEntity {
     @Column(name = "path_", length = 255)
     @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, visible = false)
     private String path;
-    @CCFieldConfig(label = "Type", componentId = "cmbType", accessible = Accessible.MANDATORY_READONLY, optionSource = "cococare.framework.model.obj.wf.WfMethodConfig$ScriptType", optionReflectKey = "type", visible = false)
+    @CCFieldConfig(label = "Type", accessible = Accessible.MANDATORY_READONLY, optionSource = "cococare.framework.model.obj.wf.WfMethodConfig$ScriptType", optionReflectKey = "type", visible = false)
     private Integer typeIndex;
     @Column(length = 24)
     @CCFieldConfig(visible = false, visible2 = false)

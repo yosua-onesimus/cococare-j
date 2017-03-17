@@ -28,23 +28,23 @@ import javax.swing.JComboBox;
 public class PnlTransitionCtrl extends PnlDefaultCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
-    private CCBandBox bndRouteAvailability;
-    private JComboBox cmbRouteType;
-    private CCBandBox bndDestination;
-    private CCBandBox bndPostRouteProcess;
+    private CCBandBox txtRouteAvailability;
+    private JComboBox txtRouteTypeIndex;
+    private CCBandBox txtDestination;
+    private CCBandBox txtPostRouteProcess;
 //</editor-fold>
 
     @Override
     protected void _initEditor() {
         super._initEditor();
-        bndRouteAvailability.getTable().setHqlFilters(isTypeIsRouteAvailability);
-        bndDestination.getTable().setHqlFilters(new isIdNotId() {
+        txtRouteAvailability.getTable().setHqlFilters(isTypeIsRouteAvailability);
+        txtDestination.getTable().setHqlFilters(new isIdNotId() {
             @Override
             public Object getFieldValue() {
                 return ((WfTransition) objEntity).getAction().getActivity().getId();
             }
         });
-        bndPostRouteProcess.getTable().setHqlFilters(isTypeIsPostRouteProcess);
+        txtPostRouteProcess.getTable().setHqlFilters(isTypeIsPostRouteProcess);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class PnlTransitionCtrl extends PnlDefaultCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        addListener(bndDestination, new ActionListener() {
+        addListener(txtDestination, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _doDestination();
@@ -68,11 +68,11 @@ public class PnlTransitionCtrl extends PnlDefaultCtrl {
     }
 
     private void _doDestination() {
-        WfActivity destination = bndDestination.getObject();
+        WfActivity destination = txtDestination.getObject();
         boolean isFinalPoint = isNotNull(destination) && ActivityPointType.FINAL_POINT.equals(destination.getActivityPointType());
-        edtEntity.setAccessible(cmbRouteType, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.MANDATORY);
+        edtEntity.setAccessible(txtRouteTypeIndex, isFinalPoint ? Accessible.READONLY_SET_NULL : Accessible.MANDATORY);
         if (isFinalPoint) {
-            cmbRouteType.setSelectedIndex(TransitionRouteType.POOLING.ordinal());
+            txtRouteTypeIndex.setSelectedIndex(TransitionRouteType.POOLING.ordinal());
         }
     }
 

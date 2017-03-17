@@ -16,17 +16,17 @@ import cococare.swing.component.CCBandBox;
 public class PnlActionCtrl extends PnlDefaultCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
-    private CCBandBox bndActionVisibility;
-    private CCBandBox bndAdditionalInput;
-    private CCBandBox bndRouteValidation;
+    private CCBandBox txtActionVisibility;
+    private CCBandBox txtAdditionalInput;
+    private CCBandBox txtRouteValidation;
 //</editor-fold>
 
     @Override
     protected void _initEditor() {
         super._initEditor();
-        bndActionVisibility.getTable().setHqlFilters(isTypeIsActionVisibility);
-        bndAdditionalInput.getTable().setHqlFilters(isTypeIsAdditionalInput);
-        bndRouteValidation.getTable().setHqlFilters(isTypeIsRouteValidation);
+        txtActionVisibility.getTable().setHqlFilters(isTypeIsActionVisibility);
+        txtAdditionalInput.getTable().setHqlFilters(isTypeIsAdditionalInput);
+        txtRouteValidation.getTable().setHqlFilters(isTypeIsRouteValidation);
     }
 
     @Override

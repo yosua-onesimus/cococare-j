@@ -39,11 +39,11 @@ public class PnlRoutingCtrl extends CFSwingCtrl {
     private CCButton btnRoute;
     private CCOptionBox pnlMultiProcess;
     private JLabel xProcess;
-    private CCComboBox cmbProcess;
+    private CCComboBox txtProcess;
     private JLabel xAction;
-    private CCComboBox cmbAction;
+    private CCComboBox txtAction;
     private JLabel xUser;
-    private CCComboBox cmbUser;
+    private CCComboBox txtUser;
     private JPanel pnlAdditionalInput;
     private CCEditor edtAdditionalInput;
 //</editor-fold>
@@ -80,14 +80,14 @@ public class PnlRoutingCtrl extends CFSwingCtrl {
         super._initEditor();
         pnlMultiProcess.setVisible(WF_MULTI_PROCESS && isNull(workflow));
         if (isNotNull(workflow)) {
-            cmbAction.setList(workflow.getRouting().getActions());
+            txtAction.setList(workflow.getRouting().getActions());
         } else {
             if (WF_MULTI_PROCESS) {
                 pnlMultiProcess.initList(false, WfProcess.class, "name");
                 pnlMultiProcess.setList(workflowBo.getFirstProcesses());
                 swingView.getPnlGenerator().setVisible(false);
             } else {
-                cmbProcess.setList(workflowBo.getFirstProcesses());
+                txtProcess.setList(workflowBo.getFirstProcesses());
             }
         }
     }
@@ -99,7 +99,7 @@ public class PnlRoutingCtrl extends CFSwingCtrl {
         if (isNotNull(workflow)) {
             btnProcess.setVisible(false);
             addListener(btnRoute, alSave);
-            addListener(cmbAction, new ActionListener() {
+            addListener(txtAction, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
                     _doUpdateUserField();
@@ -109,7 +109,7 @@ public class PnlRoutingCtrl extends CFSwingCtrl {
         } else {
             addListener(btnProcess, alSave);
             btnRoute.setVisible(false);
-            addListener(cmbProcess, new ActionListener() {
+            addListener(txtProcess, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
                     _doUpdateAdditionalInput();
@@ -122,13 +122,13 @@ public class PnlRoutingCtrl extends CFSwingCtrl {
     protected void _doUpdateAccessible() {
         super._doUpdateAccessible();
         if (isNotNull(workflow)) {
-            edtEntity.setAccessible(cmbProcess, Accessible.NORMAL);
-            setVisible(false, xProcess, cmbProcess);
+            edtEntity.setAccessible(txtProcess, Accessible.NORMAL);
+            setVisible(false, xProcess, txtProcess);
         } else {
-            edtEntity.setAccessible(cmbAction, Accessible.NORMAL);
-            setVisible(false, xAction, cmbAction);
-            edtEntity.setAccessible(cmbUser, Accessible.NORMAL);
-            setVisible(false, xUser, cmbUser);
+            edtEntity.setAccessible(txtAction, Accessible.NORMAL);
+            setVisible(false, xAction, txtAction);
+            edtEntity.setAccessible(txtUser, Accessible.NORMAL);
+            setVisible(false, xUser, txtUser);
         }
     }
 
@@ -145,7 +145,7 @@ public class PnlRoutingCtrl extends CFSwingCtrl {
                     showError(response.getMessage());
                 }
             } else {
-                WfProcess process = cmbProcess.getSelectedObject();
+                WfProcess process = txtProcess.getSelectedObject();
                 process.setRouting(routing);
                 CCResponse response = workflowBo.createNewWorkflow(process, document);
                 if (updateCaller = response.isTrue()) {
@@ -167,24 +167,24 @@ public class PnlRoutingCtrl extends CFSwingCtrl {
     }
 
     private void _doUpdateUserField() {
-        List<UtilUser> users = workflow.getRouting().getAction_users().get((WfAction) cmbAction.getSelectedObject());
+        List<UtilUser> users = workflow.getRouting().getAction_users().get((WfAction) txtAction.getSelectedObject());
         boolean manualRoute = isNotNull(users);
-        edtEntity.setAccessible(cmbUser, manualRoute ? Accessible.MANDATORY : Accessible.NORMAL);
-        setVisible(manualRoute, xUser, cmbUser);
+        edtEntity.setAccessible(txtUser, manualRoute ? Accessible.MANDATORY : Accessible.NORMAL);
+        setVisible(manualRoute, xUser, txtUser);
         if (manualRoute) {
-            cmbUser.setList(users);
+            txtUser.setList(users);
         }
     }
 
     private void _doUpdateAdditionalInput() {
         WfScript additionalInput = null;
         if (isNotNull(workflow)) {
-            WfAction action = cmbAction.getSelectedObject();
+            WfAction action = txtAction.getSelectedObject();
             if (isNotNull(action)) {
                 additionalInput = action.getAdditionalInput();
             }
         } else {
-            WfProcess process = cmbProcess.getSelectedObject();
+            WfProcess process = txtProcess.getSelectedObject();
             if (isNotNull(process)) {
                 additionalInput = process.getAdditionalInput();
             }

@@ -28,33 +28,33 @@ import javax.persistence.Table;
 public class WfWorkflow extends CCEntity {
 
     @ManyToOne
-    @CCFieldConfig(componentId = "bndDocument", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "number")
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "number")
     private WfDocument document;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndProcess", accessible = Accessible.MANDATORY_READONLY, maxLength = 48, uniqueKey = "name")
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, maxLength = 48, uniqueKey = "name")
     private WfProcess process;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY_READONLY, maxLength = 48, uniqueKey = "name")
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, maxLength = 48, uniqueKey = "name")
     private WfActivity activity;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndArea", accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "name")
     private UtilArea area;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndUserRole", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "name")
     private UtilUserGroup userRole;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndUser", accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "username")
+    @CCFieldConfig(accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "username")
     private UtilUser user;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndOrigin", accessible = Accessible.READONLY, uniqueKey = "id")
+    @CCFieldConfig(accessible = Accessible.READONLY, uniqueKey = "id")
     private WfWorkflow origin;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndMerge", accessible = Accessible.READONLY, uniqueKey = "id")
+    @CCFieldConfig(accessible = Accessible.READONLY, uniqueKey = "id")
     private WfWorkflow merge;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndParent", accessible = Accessible.READONLY, uniqueKey = "id")
+    @CCFieldConfig(accessible = Accessible.READONLY, uniqueKey = "id")
     private WfWorkflow parent;
-    @CCFieldConfig(label = "Status", componentId = "cmbStatusType", accessible = Accessible.MANDATORY_READONLY, optionSource = "cococare.framework.model.obj.wf.WfEnum$WorkflowStatus", optionReflectKey = "status", visible = false)
+    @CCFieldConfig(label = "Status", accessible = Accessible.MANDATORY_READONLY, optionSource = "cococare.framework.model.obj.wf.WfEnum$WorkflowStatus", optionReflectKey = "status", visible = false)
     private Integer statusIndex = WorkflowStatus.AVAILABLE.ordinal();
     @Column(length = 12)
     @CCFieldConfig(maxLength = 12, visible2 = false)

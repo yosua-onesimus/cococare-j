@@ -4,8 +4,7 @@ package cococare.framework.common;
 import cococare.common.CCAccessibleListener;
 import static cococare.common.CCClass.*;
 import cococare.common.CCField;
-import static cococare.common.CCFormat.getBoolean;
-import static cococare.common.CCFormat.maxLength;
+import static cococare.common.CCFormat.*;
 import static cococare.common.CCLanguage.*;
 import static cococare.common.CCLogic.*;
 import static cococare.common.CCMessage.logp;
@@ -71,7 +70,7 @@ public abstract class CFViewCtrl implements CCTrackable {
     protected final String parentNewEntity = "parentNewEntity";
     protected final String childContentId = "childContentId";
     protected final String childsValue = "childsValue";
-    protected List<String> childsValueKeys = new ArrayList();
+    protected final String allChildsValue = "allChildsValue";
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc=" CFViewCtrl ">
@@ -93,7 +92,7 @@ public abstract class CFViewCtrl implements CCTrackable {
 //</editor-fold>
 
     /**
-     * <b>Line Number: 96</b>
+     * <b>Line Number: 95</b>
      * <ol>
      * <li>Returns the runtime class of this Object.</li>
      * </ol>
@@ -105,21 +104,21 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 108</b>
+     * <b>Line Number: 107</b>
      *
      * @return The Class object that represents the runtime class of this object.
      */
     protected abstract Class _getCustomToDefaultClass();
 
     /**
-     * <b>Line Number: 115</b>
+     * <b>Line Number: 114</b>
      *
      * @return The Class object that represents the runtime class of this object.
      */
     protected abstract Class _getDefaultToCustomClass();
 
     /**
-     * <b>Line Number: 122</b>
+     * <b>Line Number: 121</b>
      * <ol>
      * <li>Returns the Class representing the superclass of the entity (class, interface, primitive
      * type or void) represented by this Class.</li>
@@ -132,14 +131,14 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 135</b>
+     * <b>Line Number: 134</b>
      *
      * @return The Entity class that will be in management.
      */
     protected abstract Class _getEntity();
 
     /**
-     * <b>Line Number: 142</b>
+     * <b>Line Number: 141</b>
      * <ol>
      * <li>Returns true if has entity class that will be in management.</li>
      * </ol>
@@ -151,7 +150,7 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 154</b>
+     * <b>Line Number: 153</b>
      * <ol>
      * <li>Returns the simple name of the underlying class as given in the source code.</li>
      * </ol>
@@ -163,14 +162,14 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 166</b>
+     * <b>Line Number: 165</b>
      *
      * @return BaseFunction: LIST_FUNCTION or FORM_FUNCTION.
      */
     protected abstract BaseFunction _getBaseFunction();
 
     /**
-     * <b>Line Number: 173</b>
+     * <b>Line Number: 172</b>
      * <ol>
      * <li>Returns ShowMode: PANEL_MODE (Default of LIST_FUNCTION), TAB_MODE (Default of
      * FORM_FUNCTION), or DIALOG_MODE.</li>
@@ -190,7 +189,7 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 193</b>
+     * <b>Line Number: 192</b>
      * <ol>
      * <li>Sets the parameter.</li>
      * </ol>
@@ -204,7 +203,7 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 207</b>
+     * <b>Line Number: 206</b>
      * <ol>
      * <li>Sets the caller controller.</li>
      * <li>[listFunction]Re-sets parameter.</li>
@@ -217,10 +216,11 @@ public abstract class CFViewCtrl implements CCTrackable {
         this.callerCtrl = callerCtrl;
         //parent-childs-screen
         if (BaseFunction.LIST_FUNCTION.equals(callerCtrl._getBaseFunction())) {
-            parameter.put(toString() + parentField, parameter.get(callerCtrl.toString() + parentField));
-            parameter.put(toString() + parentValue, parameter.get(callerCtrl.toString() + parentValue));
-            parameter.put(toString() + parentNewEntity, parameter.get(callerCtrl.toString() + parentNewEntity));
-            parameter.put(toString() + childsValue, parameter.get(callerCtrl.toString() + childsValue));
+            _setParameterParentField(this, _getParameterParentField(callerCtrl));
+            _setParameterParentValue(this, _getParameterParentValue(callerCtrl));
+            _setParameterParentNewEntity(this, _getParameterParentNewEntity(callerCtrl));
+            _setParameterChildsValue(this, _getParameterChildsValue(callerCtrl));
+            _setParameterAllChildsValue(this, _getParameterAllChildsValue(callerCtrl));
         }
         //
         return this;
@@ -363,8 +363,8 @@ public abstract class CFViewCtrl implements CCTrackable {
     protected void _initObject() {
         newEntity = isNotNull(objEntity) && isNull(getValue(objEntity, FIELD_ID));
         //parent-childs-screen
-        if (newEntity && getBoolean(parameter.get(toString() + parentNewEntity))) {
-            newEntity = !((List) parameter.get(toString() + childsValue)).contains(objEntity);
+        if (newEntity && _getParameterParentNewEntity(this)) {
+            newEntity = !_getParameterChildsValue(this).contains(objEntity);
         }
         //
         updateCaller = false;
@@ -384,8 +384,8 @@ public abstract class CFViewCtrl implements CCTrackable {
                 ? _getEntity().getName()
                 : getSysRef(objEntity)
                 //parent-childs-screen
-                + (getBoolean(parameter.get(toString() + parentNewEntity))
-                ? ":" + ((List) parameter.get(toString() + childsValue)).indexOf(objEntity)
+                + (_getParameterParentNewEntity(this)
+                ? ":" + _getParameterChildsValue(this).indexOf(objEntity)
                 : "");
     }
 
@@ -526,7 +526,7 @@ public abstract class CFViewCtrl implements CCTrackable {
     protected void _doDelete() {
         if (_isSelected()) {
             //parent-childs-screen
-            if (getBoolean(parameter.get(toString() + parentNewEntity)) || _isSureDelete()) {
+            if (_getParameterParentNewEntity(this) || _isSureDelete()) {
                 if (_doDeleteEntity()) {
                     _logger(_getSelectedItem());
                     doUpdateTable();
@@ -657,7 +657,7 @@ public abstract class CFViewCtrl implements CCTrackable {
         if (_hasEdtEntity()) {
             //parent-childs-screen
             if (_isValueValid() && _isValueCompare() && _isValueUnique()
-                    && (getBoolean(parameter.get(toString() + parentNewEntity)) || _isSureSave())) {
+                    && (_getParameterParentNewEntity(this) || _isSureSave())) {
                 _getValueFromEditor();
                 if (updateCaller = _doSaveEntity()) {
                     _logger(objEntity);
@@ -725,35 +725,31 @@ public abstract class CFViewCtrl implements CCTrackable {
     /**
      * <b>Line Number: 726 [FORM_FUNCTION ONLY]</b>
      * <ol>
-     * <li>list.addAll((List) parameter.get(childsValueKey))</li>
+     * <li>coalesce(_getParameterAllChildsValue(this), new ArrayList())</li>
      * </ol>
      *
      * @return the collection of entity child.
      */
     protected List _getEntityChilds() {
-        List list = new ArrayList();
-        for (String childsValueKey : childsValueKeys) {
-            list.addAll((List) parameter.get(childsValueKey));
-        }
-        return list;
+        return coalesce(_getParameterAllChildsValue(this), new ArrayList());
     }
 
     /**
-     * <b>Line Number: 742 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 738 [FORM_FUNCTION ONLY]</b>
      *
      * @return true if success; false if fail.
      */
     protected abstract boolean _doSaveEntity();
 
     /**
-     * <b>Line Number: 749 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 745 [FORM_FUNCTION ONLY]</b>
      *
      * @param success the success.
      */
     protected abstract void _showSaved(boolean success);
 
     /**
-     * <b>Line Number: 756 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 752 [FORM_FUNCTION ONLY]</b>
      * <ol>
      * <li>(!_isValueChanges() || _isSureDataNotSaved())</li>
      * </ol>
@@ -769,14 +765,14 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 772 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 768 [FORM_FUNCTION ONLY]</b>
      *
      * @return true if any value of all registered component has changes.
      */
     protected abstract boolean _isValueChanges();
 
     /**
-     * <b>Line Number: 779 [FORM_FUNCTION ONLY]</b>
+     * <b>Line Number: 775 [FORM_FUNCTION ONLY]</b>
      *
      * @return true if the object is sure not to be saved.
      */
@@ -784,7 +780,7 @@ public abstract class CFViewCtrl implements CCTrackable {
 //</editor-fold>
 
     /**
-     * <b>Line Number: 787</b>
+     * <b>Line Number: 783</b>
      * <ol>
      * <li>newEntity ? turn(New) : coalesce(getUniqueKeyValue(objEntity), readonly ? turn(View) :
      * turn(Edit)).toString()</li>
@@ -797,13 +793,13 @@ public abstract class CFViewCtrl implements CCTrackable {
     }
 
     /**
-     * <b>Line Number: 800</b>
+     * <b>Line Number: 796</b>
      */
     protected abstract void _doShowScreen();
 
 //<editor-fold defaultstate="collapsed" desc=" LIST_FUNCTION ">
     /**
-     * <b>Line Number: 806</b>
+     * <b>Line Number: 802</b>
      *
      * @param readonly the readonly.
      * @param objEntity the object entity.
@@ -814,13 +810,13 @@ public abstract class CFViewCtrl implements CCTrackable {
 
 //<editor-fold defaultstate="collapsed" desc=" FORM_FUNCTION ">
     /**
-     * <b>Line Number: 817</b>
+     * <b>Line Number: 813</b>
      */
     protected abstract void _doCloseScreen();
 //</editor-fold>
 
     /**
-     * <b>Line Number: 823</b>
+     * <b>Line Number: 819</b>
      * <ol>
      * <li>[listFunction]doUpdateTable(): ...</li>
      * <li>[formFunction]_doUpdateEditor(): ...</li>
@@ -836,12 +832,12 @@ public abstract class CFViewCtrl implements CCTrackable {
 
 //<editor-fold defaultstate="collapsed" desc=" LIST_FUNCTION ">
     /**
-     * <b>Line Number: 839</b>
+     * <b>Line Number: 835</b>
      */
     public abstract void doUpdateTable();
 
     /**
-     * <b>Line Number: 844</b>
+     * <b>Line Number: 840</b>
      *
      * @param objEntity the object entity.
      */
@@ -850,29 +846,34 @@ public abstract class CFViewCtrl implements CCTrackable {
 
 //<editor-fold defaultstate="collapsed" desc=" FORM_FUNCTION ">
     /**
-     * <b>Line Number: 853</b>
+     * <b>Line Number: 849</b>
      */
     protected abstract void _doUpdateEditor();
 
     /**
-     * <b>Line Number: 858</b>
+     * <b>Line Number: 854</b>
      *
      * @param parentField the parent field.
      * @param childCtrl the child controller.
      * @param childContentId the child content id.
      */
     protected void _addChildScreen(String parentField, CFViewCtrl childCtrl, String childContentId) {
-        parameter.put(childCtrl.toString() + this.parentField, parentField);
-        parameter.put(childCtrl.toString() + this.parentValue, objEntity);
-        parameter.put(childCtrl.toString() + this.parentNewEntity, newEntity);
-        parameter.put(childCtrl.toString() + this.childContentId, childContentId);
-        parameter.put(childCtrl.toString() + this.childsValue, new ArrayList());
-        childsValueKeys.add(childCtrl.toString() + this.childsValue);
+        _setParameterParentField(childCtrl, parentField);
+        _setParameterParentValue(childCtrl, objEntity);
+        _setParameterParentNewEntity(childCtrl, newEntity);
+        _setParameterChildContentId(childCtrl, childContentId);
+        _setParameterChildsValue(childCtrl, new ArrayList());
+        List entityChilds = _getParameterAllChildsValue(this);
+        if (isNull(entityChilds)) {
+            _setParameterAllChildsValue(this, entityChilds = new ArrayList());
+        }
+        entityChilds.add(_getParameterChildsValue(childCtrl));
+        _setParameterAllChildsValue(childCtrl, _getParameterAllChildsValue(this));
         childCtrl.with(parameter).with(this).with(readonly).init();
     }
 
     /**
-     * <b>Line Number: 875</b>
+     * <b>Line Number: 876</b>
      *
      * @param tabTitle
      * @param parentField
@@ -881,8 +882,131 @@ public abstract class CFViewCtrl implements CCTrackable {
     protected abstract void _addChildScreen2(String tabTitle, String parentField, CFViewCtrl childCtrl);
 //</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc=" parent-childs-screen ">
     /**
-     * <b>Line Number: 885</b>
+     * <b>Line Number: 887</b>
+     *
+     * @param viewCtrl
+     * @return
+     */
+    protected String _getParameterParentField(CFViewCtrl viewCtrl) {
+        return getStringOrNull(parameter.get(viewCtrl.toString() + parentField));
+    }
+
+    /**
+     * <b>Line Number: 897</b>
+     *
+     * @param viewCtrl
+     * @param value
+     */
+    protected void _setParameterParentField(CFViewCtrl viewCtrl, String value) {
+        parameter.put(viewCtrl.toString() + parentField, value);
+    }
+
+    /**
+     * <b>Line Number: 907</b>
+     *
+     * @param <T>
+     * @param viewCtrl
+     * @return
+     */
+    protected <T> T _getParameterParentValue(CFViewCtrl viewCtrl) {
+        return (T) parameter.get(viewCtrl.toString() + parentValue);
+    }
+
+    /**
+     * <b>Line Number: 918</b>
+     *
+     * @param viewCtrl
+     * @param value
+     */
+    protected void _setParameterParentValue(CFViewCtrl viewCtrl, Object value) {
+        parameter.put(viewCtrl.toString() + parentValue, value);
+    }
+
+    /**
+     * <b>Line Number: 928</b>
+     *
+     * @param viewCtrl
+     * @return
+     */
+    protected Boolean _getParameterParentNewEntity(CFViewCtrl viewCtrl) {
+        return getBoolean(parameter.get(viewCtrl.toString() + parentNewEntity));
+    }
+
+    /**
+     * <b>Line Number: 938</b>
+     *
+     * @param viewCtrl
+     * @param value
+     */
+    protected void _setParameterParentNewEntity(CFViewCtrl viewCtrl, Boolean value) {
+        parameter.put(viewCtrl.toString() + parentNewEntity, value);
+    }
+
+    /**
+     * <b>Line Number: 948/b>
+     *
+     * @param viewCtrl
+     * @return
+     */
+    protected String _getParameterChildContentId(CFViewCtrl viewCtrl) {
+        return getStringOrNull(parameter.get(viewCtrl.toString() + childContentId));
+    }
+
+    /**
+     * <b>Line Number: 958</b>
+     *
+     * @param viewCtrl
+     * @param value
+     */
+    protected void _setParameterChildContentId(CFViewCtrl viewCtrl, String value) {
+        parameter.put(viewCtrl.toString() + childContentId, value);
+    }
+
+    /**
+     * <b>Line Number: 968</b>
+     *
+     * @param viewCtrl
+     * @return
+     */
+    protected List _getParameterChildsValue(CFViewCtrl viewCtrl) {
+        return (List) parameter.get(viewCtrl.toString() + childsValue);
+    }
+
+    /**
+     * <b>Line Number: 978</b>
+     *
+     * @param viewCtrl
+     * @param value
+     */
+    protected void _setParameterChildsValue(CFViewCtrl viewCtrl, List value) {
+        parameter.put(viewCtrl.toString() + childsValue, value);
+    }
+
+    /**
+     * <b>Line Number: 988</b>
+     *
+     * @param viewCtrl
+     * @return
+     */
+    protected List _getParameterAllChildsValue(CFViewCtrl viewCtrl) {
+        return (List) parameter.get(viewCtrl.toString() + allChildsValue);
+    }
+
+    /**
+     * <b>Line Number: 998</b>
+     *
+     * @param viewCtrl
+     * @param value
+     */
+    protected void _setParameterAllChildsValue(CFViewCtrl viewCtrl, List value) {
+        parameter.put(viewCtrl.toString() + allChildsValue, value);
+    }
+//</editor-fold>
+
+    /**
+     * <b>Line Number: 1009</b>
      *
      * @param note the note.
      */

@@ -28,7 +28,7 @@ public class UtilRegency extends CCEntity {
     @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true)
     private String name;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndProvince", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false)
     private UtilProvince province;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

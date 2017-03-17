@@ -22,13 +22,13 @@ import javax.persistence.*;
 public class WfRoundRobin extends CCEntity {
 
     @ManyToOne
-    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name")
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name")
     private WfActivity activity;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndUser", accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "username")
+    @CCFieldConfig(accessible = Accessible.READONLY, maxLength = 32, uniqueKey = "username")
     private UtilUser user;
     @Temporal(value = TemporalType.TIMESTAMP)
-    @CCFieldConfig(componentId = "dtpLastTask", accessible = Accessible.READONLY, type = Type.DATE)
+    @CCFieldConfig(accessible = Accessible.READONLY, type = Type.DATE)
     private Date lastTask = new Date(0);
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

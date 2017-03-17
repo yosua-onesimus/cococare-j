@@ -24,16 +24,16 @@ public class UtilScheduler extends CCEntity {
     @Column(length = 32)
     private String appl = CFApplCtrl.APPL_CODE;
     @Column(length = 8)
-    @CCFieldConfig(componentId = "txtCode", accessible = Accessible.READONLY, maxLength = 8, sequence = "Sch000", unique = true)
+    @CCFieldConfig(accessible = Accessible.READONLY, maxLength = 8, sequence = "Sch000", unique = true)
     private String code;
     @Column(length = Short.MAX_VALUE)
-    @CCFieldConfig(componentId = "txtName", accessible = Accessible.READONLY, maxLength = Short.MAX_VALUE)
+    @CCFieldConfig(accessible = Accessible.READONLY, maxLength = Short.MAX_VALUE)
     private String name;
     @Column(length = 255)
     @CCFieldConfig(visible = false, visible2 = false)
     private String jobClassName;
     @Column(length = 32)
-    @CCFieldConfig(componentId = "txtCronSchedule", accessible = Accessible.MANDATORY, maxLength = 32, requestFocus = true)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 32, requestFocus = true)
     private String cronSchedule = "0 0 0 * * ?";
     @Column(length = 32)
     @CCFieldConfig(visible2 = false)
@@ -41,7 +41,7 @@ public class UtilScheduler extends CCEntity {
     @Temporal(value = TemporalType.TIMESTAMP)
     @CCFieldConfig(visible2 = false)
     private Date lastCheckpointTime;
-    @CCFieldConfig(componentId = "chkActive", maxLength = 4)
+    @CCFieldConfig(maxLength = 4)
     private Boolean active = false;
 
 //<editor-fold defaultstate="collapsed" desc=" UtilScheduler ">

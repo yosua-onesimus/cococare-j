@@ -26,31 +26,31 @@ import javax.persistence.*;
 public class WfWorkflowHistory extends CCEntity {
 
     @ManyToOne
-    @CCFieldConfig(componentId = "bndWorkflow", accessible = Accessible.MANDATORY_READONLY, uniqueKey = "@document.number-@id")
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, uniqueKey = "@document.number-@id")
     private WfWorkflow workflow;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndProcess", accessible = Accessible.MANDATORY_READONLY, maxLength = 48, uniqueKey = "name")
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, maxLength = 48, uniqueKey = "name")
     private WfProcess process;
     @Temporal(value = TemporalType.TIMESTAMP)
-    @CCFieldConfig(componentId = "dtpDateAssigned", accessible = Accessible.READONLY, type = Type.DATE)
+    @CCFieldConfig(accessible = Accessible.READONLY, type = Type.DATE)
     private Date dateAssigned;
     @Temporal(value = TemporalType.TIMESTAMP)
-    @CCFieldConfig(componentId = "dtpDateClaimed", accessible = Accessible.READONLY, type = Type.DATE)
+    @CCFieldConfig(accessible = Accessible.READONLY, type = Type.DATE)
     private Date dateClaimed;
     @Temporal(value = TemporalType.TIMESTAMP)
-    @CCFieldConfig(componentId = "dtpDateDue", accessible = Accessible.READONLY, type = Type.DATE)
+    @CCFieldConfig(accessible = Accessible.READONLY, type = Type.DATE)
     private Date dateDue;
     @Temporal(value = TemporalType.TIMESTAMP)
-    @CCFieldConfig(componentId = "dtpDateProcessed", accessible = Accessible.READONLY, type = Type.DATE)
+    @CCFieldConfig(accessible = Accessible.READONLY, type = Type.DATE)
     private Date dateProcessed;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY_READONLY, maxLength = 48, uniqueKey = "name")
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, maxLength = 48, uniqueKey = "name")
     private WfActivity activity;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndUser", accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "username")
+    @CCFieldConfig(accessible = Accessible.MANDATORY_READONLY, maxLength = 32, uniqueKey = "username")
     private UtilUser user;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndAction", accessible = Accessible.READONLY, maxLength = 48, uniqueKey = "name")
+    @CCFieldConfig(accessible = Accessible.READONLY, maxLength = 48, uniqueKey = "name")
     private WfAction action;
 
 //<editor-fold defaultstate="collapsed" desc=" WfWorkflowHistory ">

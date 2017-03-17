@@ -28,7 +28,7 @@ public class UtilSubDistrict extends CCEntity {
     @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true)
     private String name;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndRegency", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false)
     private UtilRegency regency;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

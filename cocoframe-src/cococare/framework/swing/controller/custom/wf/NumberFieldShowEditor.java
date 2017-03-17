@@ -7,8 +7,7 @@ import static cococare.common.CCClass.invoke;
 import cococare.common.CCCustomField;
 import static cococare.common.CCFormat.getBoolean;
 import static cococare.common.CCFormat.getString;
-import static cococare.common.CCLogic.isNull;
-import static cococare.common.CCLogic.isSureClaim;
+import static cococare.common.CCLogic.*;
 import cococare.framework.common.CFViewCtrl;
 import cococare.framework.model.bo.wf.WfWorkflowBo;
 import cococare.framework.model.obj.wf.WfActivity;
@@ -54,7 +53,8 @@ public class NumberFieldShowEditor extends CCCustomField {
             public void actionPerformed(ActionEvent actionEvent) {
                 tblEntity.getStopCellEditingListener().actionPerformed(actionEvent);
                 WfDocument document = (WfDocument) object;
-                if (DocumentStatus.ACTIVE.equals(document.getDocumentStatus())) {
+                if (DocumentStatus.ACTIVE.equals(document.getDocumentStatus())
+                        && isNotNull(workflowBo) && isNotNull(cmbActivity)) {
                     document.setWorkflow(workflowBo.getWorkflowBy(document, (WfActivity) cmbActivity.getSelectedObject()));
                     if (isNull(document.getWorkflow().getUser())) {
                         if (isSureClaim()) {

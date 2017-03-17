@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 public class PnlActivityTabCtrl extends PnlDefaultCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
-    private CCBandBox bndTab;
+    private CCBandBox txtTab;
     private JTextField txtTabName;
 //</editor-fold>
 
@@ -32,7 +32,7 @@ public class PnlActivityTabCtrl extends PnlDefaultCtrl {
     @Override
     protected void _initListener() {
         super._initListener();
-        addListener(bndTab, new ActionListener() {
+        addListener(txtTab, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 _doUpdateTxtTabName();
@@ -41,7 +41,7 @@ public class PnlActivityTabCtrl extends PnlDefaultCtrl {
     }
 
     private void _doUpdateTxtTabName() {
-        WfTab tab = bndTab.getObject();
+        WfTab tab = txtTab.getObject();
         if (newEntity && isNotNull(tab)) {
             txtTabName.setText(tab.getName());
         }

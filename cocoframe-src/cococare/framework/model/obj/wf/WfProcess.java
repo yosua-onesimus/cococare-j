@@ -28,19 +28,19 @@ public class WfProcess extends CCEntity {
     @Column(length = 48)
     @CCFieldConfig(accessible = Accessible.MANDATORY)
     private String name;
-    @CCFieldConfig(label = "FP", tooltiptext = "First Process", componentId = "chkFirstProcess", maxLength = 4)
+    @CCFieldConfig(label = "FP", tooltiptext = "First Process", maxLength = 4)
     private Boolean firstProcess = true;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndAdditionalInput", maxLength = 64, uniqueKey = "name")
+    @CCFieldConfig(maxLength = 64, uniqueKey = "name")
     private WfScript additionalInput;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndRouteValidation", maxLength = 64, uniqueKey = "name")
+    @CCFieldConfig(maxLength = 64, uniqueKey = "name")
     private WfScript routeValidation;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndPostRouteProcess", maxLength = 64, uniqueKey = "name")
+    @CCFieldConfig(maxLength = 64, uniqueKey = "name")
     private WfScript postRouteProcess;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndPostCommitProcess", maxLength = 64, uniqueKey = "name")
+    @CCFieldConfig(maxLength = 64, uniqueKey = "name")
     private WfScript postCommitProcess;
     //
     transient private WfRouting routing;

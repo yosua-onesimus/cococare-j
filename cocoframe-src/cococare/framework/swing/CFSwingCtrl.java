@@ -77,6 +77,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     /**
      * @return nvl2(swingView, getClass(), _getSuperclass())
      */
+    @Override
     protected Class _getDefaultToCustomClass() {
         return nvl2(swingView, getClass(), _getSuperclass());
     }
@@ -157,21 +158,21 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
                 tblEntity = new CCTable(swingView.getTblEntity(), _getEntity());
                 requestFocusInWindow(swingView.getTblEntity());
                 //parent-childs-screen
-                if (isNotNull(parameter.get(toString() + parentValue))) {
-                    if (getBoolean(parameter.get(toString() + parentNewEntity))) {
+                if (isNotNull(_getParameterParentValue(this))) {
+                    if (_getParameterParentNewEntity(this)) {
                         setVisible(false, swingView.getTxtKeyword(), swingView.getBtnFilter(), swingView.getPgnEntity());
                     }
-                    final Object dummy = this;
-                    tblEntity.setVisibleField(false, parameter.get(toString() + parentField).toString());
+                    final CFViewCtrl dummy = this;
+                    tblEntity.setVisibleField(false, _getParameterParentField(this));
                     tblEntity.setHqlFilters(new CCHibernateFilter() {
                         @Override
                         public String getFieldName() {
-                            return parameter.get(dummy.toString() + parentField).toString();
+                            return _getParameterParentField(dummy);
                         }
 
                         @Override
                         public Object getFieldValue() {
-                            return parameter.get(dummy.toString() + parentValue);
+                            return _getParameterParentValue(dummy);
                         }
                     });
                 }
@@ -213,7 +214,7 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
         if (_hasEntity()) {
             edtEntity = new CCEditor(getContainer(), _getEntity());
             if (isNotNull(swingView.getPnlGenerator())) {
-                edtEntity.generateDefaultEditor(swingView.getPnlGenerator(), getStringOrNull(parameter.get(toString() + parentField)));
+                edtEntity.generateDefaultEditor(swingView.getPnlGenerator(), _getParameterParentField(this));
                 initComponent(getContainer(), this, reinitComponents);
             }
             if (newEntity) {
@@ -226,8 +227,8 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected void _initObjEntity() {
         edtEntity.initSequence(objEntity);
         //parent-childs-screen
-        if (isNotNull(parameter.get(toString() + parentValue))) {
-            setValue(objEntity, parameter.get(toString() + parentField).toString(), parameter.get(toString() + parentValue));
+        if (isNotNull(_getParameterParentValue(this))) {
+            setValue(objEntity, _getParameterParentField(this), _getParameterParentValue(this));
         }
     }
 //</editor-fold>
@@ -388,8 +389,8 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     @Override
     protected boolean _doDeleteEntity() {
         //parent-childs-screen
-        if (getBoolean(parameter.get(toString() + parentNewEntity))) {
-            return ((List) parameter.get(toString() + childsValue)).remove(_getSelectedItem());
+        if (_getParameterParentNewEntity(this)) {
+            return _getParameterChildsValue(this).remove(_getSelectedItem());
         } else {
             return tblEntity.deleteBySetting(_getSelectedItem()) > 0;
         }
@@ -453,8 +454,8 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     protected boolean _doSaveEntity() {
         //return edtEntity.saveOrUpdate(objEntity);
         //parent-childs-screen
-        if (getBoolean(parameter.get(toString() + parentNewEntity))) {
-            List list = (List) parameter.get(toString() + childsValue);
+        if (_getParameterParentNewEntity(this)) {
+            List list = _getParameterChildsValue(this);
             return list.contains(objEntity) ? true : list.add(objEntity);
         } else {
             return edtEntity.saveOrUpdate(objEntity, _getEntityChilds());
@@ -479,10 +480,10 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
 
     protected JPanel _getContent() {
         //parent-childs-screen
-        if (isNull(parameter.get(toString() + childContentId))) {
+        if (isNull(_getParameterChildContentId(this))) {
             return getContent();
         } else {
-            return getJPanel(((CFSwingCtrl) callerCtrl).getContainer(), parameter.get(toString() + childContentId).toString());
+            return getJPanel(((CFSwingCtrl) callerCtrl).getContainer(), _getParameterChildContentId(this));
         }
     }
 
@@ -549,8 +550,8 @@ public abstract class CFSwingCtrl extends CFViewCtrl {
     public void doUpdateTable() {
         if (_hasTblEntity()) {
             //parent-childs-screen
-            if (getBoolean(parameter.get(toString() + parentNewEntity))) {
-                tblEntity.setList((List) parameter.get(toString() + childsValue));
+            if (_getParameterParentNewEntity(this)) {
+                tblEntity.setList(_getParameterChildsValue(this));
             } else {
                 tblEntity.search();
             }

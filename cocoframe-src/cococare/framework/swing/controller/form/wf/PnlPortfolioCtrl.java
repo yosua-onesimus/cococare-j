@@ -1,10 +1,9 @@
 package cococare.framework.swing.controller.form.wf;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
-import static cococare.common.CCConfig.WF_DOCUMENT_CLASS;
 import cococare.framework.model.obj.wf.WfDocument;
 import cococare.framework.model.obj.wf.WfEnum.DocumentStatus;
-import cococare.framework.swing.CFSwingCtrl;
+import cococare.framework.swing.controller.form.PnlDefaultWithChildCtrl;
 import static cococare.swing.CCSwing.execute;
 import static cococare.swing.CCSwing.setVisible;
 import java.awt.event.ActionEvent;
@@ -16,17 +15,7 @@ import java.awt.event.ActionListener;
  * @since 13.03.17
  * @version 13.03.17
  */
-public class PnlPortfolioCtrl extends CFSwingCtrl {
-
-    @Override
-    protected Class _getEntity() {
-        return WF_DOCUMENT_CLASS;
-    }
-
-    @Override
-    protected BaseFunction _getBaseFunction() {
-        return BaseFunction.FORM_FUNCTION;
-    }
+public class PnlPortfolioCtrl extends PnlDefaultWithChildCtrl {
 
     @Override
     protected void _initComponent() {

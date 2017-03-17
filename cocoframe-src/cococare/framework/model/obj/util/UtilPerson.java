@@ -94,27 +94,27 @@ public class UtilPerson extends CCEntity {
     private String nickName;
     //----------------------------------------------------------------------------------------------
     @Column(length = 48)
-    @CCFieldConfig(componentId = "cmbBirthPlace", accessible = Accessible.MANDATORY, optionSource = "IndonesiaCities.txt", optionReflectKey = "birthPlace")
+    @CCFieldConfig(accessible = Accessible.MANDATORY, optionSource = "IndonesiaCities.txt", optionReflectKey = "birthPlace")
     private String birthPlace;
     @Temporal(value = TemporalType.DATE)
-    @CCFieldConfig(componentId = "dtpBirthDate", accessible = Accessible.MANDATORY, type = Type.DATE_PAST)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.DATE_PAST)
     private Date birthDate;
-    @CCFieldConfig(componentId = "cmbGender", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$Gender", optionReflectKey = "gender", visible = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$Gender", optionReflectKey = "gender", visible = false)
     private Integer genderIndex;
     @Column(length = 8)
     @CCFieldConfig(visible2 = false)
     private String gender;
-    @CCFieldConfig(componentId = "cmbBloodType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$BloodType", optionReflectKey = "bloodType", visible = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$BloodType", optionReflectKey = "bloodType", visible = false)
     private Integer bloodTypeIndex;
     @Column(length = 4)
     @CCFieldConfig(visible2 = false)
     private String bloodType;
-    @CCFieldConfig(componentId = "cmbNationality", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$Nationality", optionReflectKey = "nationality", visible = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$Nationality", optionReflectKey = "nationality", visible = false)
     private Integer nationalityIndex;
     @Column(length = 4)
     @CCFieldConfig(visible2 = false)
     private String nationality;
-    @CCFieldConfig(componentId = "cmbReligion", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$Religion", optionReflectKey = "religion", visible = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilPerson$Religion", optionReflectKey = "religion", visible = false)
     private Integer religionIndex;
     @Column(length = 16)
     @CCFieldConfig(visible2 = false)
@@ -136,10 +136,10 @@ public class UtilPerson extends CCEntity {
     @CCFieldConfig(tooltiptext = "Kecamatan", visible = false)
     private String subDistrict;
     @Column(length = 48)
-    @CCFieldConfig(tooltiptext = "Kabupaten", componentId = "cmbRegency", optionSource = "IndonesiaCities.txt", optionReflectKey = "regency", visible = false)
+    @CCFieldConfig(tooltiptext = "Kabupaten", optionSource = "IndonesiaCities.txt", optionReflectKey = "regency", visible = false)
     private String regency;
     @Column(length = 48)
-    @CCFieldConfig(tooltiptext = "Propinsi", componentId = "cmbProvince", optionSource = "IndonesiaProvinces.txt", optionReflectKey = "province", visible = false)
+    @CCFieldConfig(tooltiptext = "Propinsi", optionSource = "IndonesiaProvinces.txt", optionReflectKey = "province", visible = false)
     private String province;
     @Column(length = 5)
     @CCFieldConfig(minLength = 5, type = Type.NUMBER_ONLY, visible = false)
@@ -163,7 +163,7 @@ public class UtilPerson extends CCEntity {
     //----------------------------------------------------------------------------------------------
     @Lob
     @Column(length = Integer.MAX_VALUE)
-    @CCFieldConfig(componentId = "attPhoto", type = Type.THUMB_FILE, optionReflectKey = "photoName", visible = false)
+    @CCFieldConfig(type = Type.THUMB_FILE, optionReflectKey = "photoName", visible = false)
     private byte[] photo;
     @Column(length = 255)
     @CCFieldConfig(visible = false, visible2 = false)

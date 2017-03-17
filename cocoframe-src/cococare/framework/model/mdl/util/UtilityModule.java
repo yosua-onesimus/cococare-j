@@ -26,10 +26,12 @@ public class UtilityModule extends CCHibernateModule {
     protected List<Class> _getAnnotatedClasses() {
         List<Class> annotatedClasses = new ArrayList();
         if (APPL_UTIL_INCLUDED_PERSON_ENTITIES) {
+            annotatedClasses.add(UtilCountry.class);
             annotatedClasses.add(UtilProvince.class);
             annotatedClasses.add(UtilRegency.class);
             annotatedClasses.add(UtilSubDistrict.class);
             annotatedClasses.add(UtilVillage.class);
+            annotatedClasses.add(UtilZipCode.class);
             annotatedClasses.add(UtilPerson.class);
         }
         if (APPL_UTIL_INCLUDED_PERSON_ENTITIES || APPL_UTIL_SHOW_WORKFLOW_MODULE) {

@@ -23,7 +23,7 @@ import javax.persistence.Table;
 public class WfAction extends CCEntity {
 
     @ManyToOne
-    @CCFieldConfig(componentId = "bndActivity", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false, visible2 = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false, visible2 = false)
     private WfActivity activity;
     @Column(length = 8)
     @CCFieldConfig(accessible = Accessible.MANDATORY, sequence = "A000", requestFocus = true, unique = true)
@@ -32,15 +32,15 @@ public class WfAction extends CCEntity {
     @CCFieldConfig(accessible = Accessible.MANDATORY)
     private String name;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndActionVisibility", maxLength = 64, uniqueKey = "name")
+    @CCFieldConfig(maxLength = 64, uniqueKey = "name")
     private WfScript actionVisibility;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndAdditionalInput", maxLength = 64, uniqueKey = "name")
+    @CCFieldConfig(maxLength = 64, uniqueKey = "name")
     private WfScript additionalInput;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndRouteValidation", maxLength = 64, uniqueKey = "name")
+    @CCFieldConfig(maxLength = 64, uniqueKey = "name")
     private WfScript routeValidation;
-    @CCFieldConfig(componentId = "chkMergeable", visible = false)
+    @CCFieldConfig(visible = false)
     private Boolean mergeable = false;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

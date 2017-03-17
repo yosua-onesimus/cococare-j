@@ -30,7 +30,7 @@ public class WfDocument extends CCEntity {
     private String number;
     @Temporal(value = TemporalType.DATE)
     @Column(name = "date_")
-    @CCFieldConfig(componentId = "dtpDate", type = Type.DATE, accessible = Accessible.MANDATORY)
+    @CCFieldConfig(type = Type.DATE, accessible = Accessible.MANDATORY)
     private Date date = new Date();
     @CCFieldConfig(accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.wf.WfEnum$DocumentStatus", optionReflectKey = "status", visible = false, visible2 = false)
     private Integer statusIndex = DocumentStatus.PORTFOLIO.ordinal();

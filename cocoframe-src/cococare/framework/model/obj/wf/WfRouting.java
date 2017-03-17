@@ -22,11 +22,11 @@ public class WfRouting {
     private HashMap<WfAction, List<UtilUser>> action_users = new HashMap();
     private Object additionalInput;
     //
-    @CCFieldConfig(componentType = ComponentType.COMBOBOX, componentId = "cmbProcess", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentType = ComponentType.COMBOBOX, accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
     private WfProcess process;
-    @CCFieldConfig(componentType = ComponentType.COMBOBOX, componentId = "cmbAction", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(componentType = ComponentType.COMBOBOX, accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
     private WfAction action;
-    @CCFieldConfig(componentType = ComponentType.COMBOBOX, componentId = "cmbUser", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "username")
+    @CCFieldConfig(componentType = ComponentType.COMBOBOX, accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "username")
     private UtilUser user;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">

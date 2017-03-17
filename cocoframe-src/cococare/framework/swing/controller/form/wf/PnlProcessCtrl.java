@@ -14,19 +14,19 @@ import cococare.swing.component.CCBandBox;
 public class PnlProcessCtrl extends PnlDefaultCtrl {
 
 //<editor-fold defaultstate="collapsed" desc=" private object ">
-    private CCBandBox bndAdditionalInput;
-    private CCBandBox bndRouteValidation;
-    private CCBandBox bndPostRouteProcess;
-    private CCBandBox bndPostCommitProcess;
+    private CCBandBox txtAdditionalInput;
+    private CCBandBox txtRouteValidation;
+    private CCBandBox txtPostRouteProcess;
+    private CCBandBox txtPostCommitProcess;
 //</editor-fold>
 
     @Override
     protected void _initEditor() {
         super._initEditor();
-        bndAdditionalInput.getTable().setHqlFilters(isTypeIsAdditionalInput);
-        bndRouteValidation.getTable().setHqlFilters(isTypeIsRouteValidation);
-        bndPostRouteProcess.getTable().setHqlFilters(isTypeIsPostRouteProcess);
-        bndPostCommitProcess.getTable().setHqlFilters(isTypeIsPostRouteProcess);
+        txtAdditionalInput.getTable().setHqlFilters(isTypeIsAdditionalInput);
+        txtRouteValidation.getTable().setHqlFilters(isTypeIsRouteValidation);
+        txtPostRouteProcess.getTable().setHqlFilters(isTypeIsPostRouteProcess);
+        txtPostCommitProcess.getTable().setHqlFilters(isTypeIsPostRouteProcess);
     }
 
     @Override

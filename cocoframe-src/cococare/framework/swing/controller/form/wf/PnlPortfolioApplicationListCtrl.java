@@ -2,6 +2,7 @@ package cococare.framework.swing.controller.form.wf;
 
 //<editor-fold defaultstate="collapsed" desc=" import ">
 import static cococare.common.CCConfig.WF_DOCUMENT_CLASS;
+import cococare.framework.swing.controller.custom.wf.NumberFieldShowEditor;
 import cococare.framework.swing.controller.form.PnlDefaultListCtrl;
 import static cococare.swing.CCSwing.setVisible;
 //</editor-fold>
@@ -21,6 +22,9 @@ public class PnlPortfolioApplicationListCtrl extends PnlDefaultListCtrl {
     @Override
     protected void _initTable() {
         super._initTable();
+        tblEntity.setVisibleField(false, "number");
+        tblEntity.addField(0, new NumberFieldShowEditor(this, tblEntity, null, null));
+        tblEntity.setEditableColumn(true, 0);
         tblEntity.addField(tblEntity.getColumnCount(), "status");
     }
 

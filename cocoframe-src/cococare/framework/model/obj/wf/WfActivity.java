@@ -25,7 +25,7 @@ import javax.persistence.Table;
 public class WfActivity extends CCEntity {
 
     @ManyToOne
-    @CCFieldConfig(componentId = "bndProcess", accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false, visible2 = false)
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false, visible2 = false)
     private WfProcess process;
     @Column(length = 8)
     @CCFieldConfig(accessible = Accessible.MANDATORY, sequence = "A000", requestFocus = true, unique = true)
@@ -36,11 +36,11 @@ public class WfActivity extends CCEntity {
     @CCFieldConfig(label = "DL", tooltiptext = "Day Limit", accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4)
     private Integer dayLimit = 5;
     @ManyToOne
-    @CCFieldConfig(componentId = "bndUserRole", accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 32, uniqueKey = "name")
     private UtilUserGroup userRole;
     @CCFieldConfig(accessible = Accessible.MANDATORY, type = Type.NUMERIC, maxLength = 4)
     private Integer weight = 1;
-    @CCFieldConfig(label = "Point Type", componentId = "cmbPointType", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.wf.WfEnum$ActivityPointType", optionReflectKey = "pointType", visible = false)
+    @CCFieldConfig(label = "Point Type", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.wf.WfEnum$ActivityPointType", optionReflectKey = "pointType", visible = false)
     private Integer pointTypeIndex = ActivityPointType.PLAIN_POINT.ordinal();
     @Column(length = 12)
     @CCFieldConfig(visible2 = false)

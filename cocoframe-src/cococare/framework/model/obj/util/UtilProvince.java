@@ -7,6 +7,7 @@ import cococare.common.CCTypeConfig;
 import cococare.database.CCEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 //</editor-fold>
 
@@ -26,6 +27,9 @@ public class UtilProvince extends CCEntity {
     @Column(length = 48)
     @CCFieldConfig(accessible = Accessible.MANDATORY, requestFocus = true)
     private String name;
+    @ManyToOne
+    @CCFieldConfig(accessible = Accessible.MANDATORY, maxLength = 48, uniqueKey = "name", visible = false)
+    private UtilCountry country;
 
 //<editor-fold defaultstate="collapsed" desc=" getter-setter ">
     public String getCode() {
@@ -42,6 +46,14 @@ public class UtilProvince extends CCEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public UtilCountry getCountry() {
+        return country;
+    }
+
+    public void setCountry(UtilCountry country) {
+        this.country = country;
     }
 //</editor-fold>
 }
