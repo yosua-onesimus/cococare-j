@@ -887,7 +887,7 @@ public abstract class CFViewCtrl implements CCTrackable {
      * <b>Line Number: 887</b>
      *
      * @param viewCtrl
-     * @return
+     * @return parentField
      */
     protected String _getParameterParentField(CFViewCtrl viewCtrl) {
         return getStringOrNull(parameter.get(viewCtrl.toString() + parentField));
@@ -908,7 +908,7 @@ public abstract class CFViewCtrl implements CCTrackable {
      *
      * @param <T>
      * @param viewCtrl
-     * @return
+     * @return parentValue
      */
     protected <T> T _getParameterParentValue(CFViewCtrl viewCtrl) {
         return (T) parameter.get(viewCtrl.toString() + parentValue);
@@ -928,7 +928,7 @@ public abstract class CFViewCtrl implements CCTrackable {
      * <b>Line Number: 928</b>
      *
      * @param viewCtrl
-     * @return
+     * @return parentNewEntity
      */
     protected Boolean _getParameterParentNewEntity(CFViewCtrl viewCtrl) {
         return getBoolean(parameter.get(viewCtrl.toString() + parentNewEntity));
@@ -948,7 +948,7 @@ public abstract class CFViewCtrl implements CCTrackable {
      * <b>Line Number: 948/b>
      *
      * @param viewCtrl
-     * @return
+     * @return childContentId
      */
     protected String _getParameterChildContentId(CFViewCtrl viewCtrl) {
         return getStringOrNull(parameter.get(viewCtrl.toString() + childContentId));
@@ -968,7 +968,7 @@ public abstract class CFViewCtrl implements CCTrackable {
      * <b>Line Number: 968</b>
      *
      * @param viewCtrl
-     * @return
+     * @return childsValue
      */
     protected List _getParameterChildsValue(CFViewCtrl viewCtrl) {
         return (List) parameter.get(viewCtrl.toString() + childsValue);
@@ -988,7 +988,7 @@ public abstract class CFViewCtrl implements CCTrackable {
      * <b>Line Number: 988</b>
      *
      * @param viewCtrl
-     * @return
+     * @return allChildsValue
      */
     protected List _getParameterAllChildsValue(CFViewCtrl viewCtrl) {
         return (List) parameter.get(viewCtrl.toString() + allChildsValue);
