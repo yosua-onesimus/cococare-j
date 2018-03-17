@@ -70,13 +70,13 @@ public abstract class CFSwingMain extends CFApplCtrl {
         addListener(getSendMail(), new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                System.out.println("SEND-MAIL");
+                new PnlSendMailCtrl().init();
             }
         });
         addListener(getBugReport(), new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                System.out.println("BUG-REPORT");
+                new PnlBugReportCtrl().init();
             }
         });
     }
@@ -137,7 +137,7 @@ public abstract class CFSwingMain extends CFApplCtrl {
             confServ = (UtilConfServ) object;
             getFileTransfer().setVisible(confServ.getFileTransferEnable());
             getSendMail().setVisible(confServ.getMailSendMailEnable());
-            getBugReport().setVisible(confServ.getMailBugReportEnable());
+            getBugReport().setVisible(true);
         }
     }
 

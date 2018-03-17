@@ -52,8 +52,6 @@ public class UtilConfServ {
     //----------------------------------------------------------------------------------------------
     @CCFieldConfig(group = "Mail Service", label = "Send Mail?")
     private Boolean mailSendMailEnable = false;
-    @CCFieldConfig(group = "Mail Service", label = "Bug Report?")
-    private Boolean mailBugReportEnable = false;
     @CCFieldConfig(group = "Mail Service", label = "Protocol", accessible = Accessible.MANDATORY, optionSource = "cococare.framework.model.obj.util.UtilConfServ$MailProtocol")
     private Integer mailProtocol = 0;
     @CCFieldConfig(group = "Mail Service", label = "Mail Smtp Host", maxLength = 32)
@@ -126,14 +124,6 @@ public class UtilConfServ {
 
     public void setMailSendMailEnable(Boolean mailSendMailEnable) {
         this.mailSendMailEnable = mailSendMailEnable;
-    }
-
-    public Boolean getMailBugReportEnable() {
-        return mailBugReportEnable;
-    }
-
-    public void setMailBugReportEnable(Boolean mailBugReportEnable) {
-        this.mailBugReportEnable = mailBugReportEnable;
     }
 
     public Integer getMailProtocol() {

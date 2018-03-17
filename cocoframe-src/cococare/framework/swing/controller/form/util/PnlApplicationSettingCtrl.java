@@ -35,7 +35,6 @@ public class PnlApplicationSettingCtrl extends PnlDefaultCtrl {
     private JTextField txtFileTransferPassword;
     //
     private JCheckBox txtMailSendMailEnable;
-    private JCheckBox txtMailBugReportEnable;
     private JComboBox txtMailProtocol;
     private JTextField txtMailMailSmtpHost;
     private JTextField txtMailGmailUsername;
@@ -54,7 +53,6 @@ public class PnlApplicationSettingCtrl extends PnlDefaultCtrl {
             };
             addListener(txtFileTransferEnable, alUpdateAccessible);
             addListener(txtMailSendMailEnable, alUpdateAccessible);
-            addListener(txtMailBugReportEnable, alUpdateAccessible);
             addListener(txtMailProtocol, alUpdateAccessible);
         }
     }
@@ -67,9 +65,8 @@ public class PnlApplicationSettingCtrl extends PnlDefaultCtrl {
             edtEntity.setAccessible(txtFileTransferUsername, accessible);
             edtEntity.setAccessible(txtFileTransferPassword, accessible);
         } else if (object.equals(txtMailSendMailEnable)
-                || object.equals(txtMailBugReportEnable)
                 || object.equals(txtMailProtocol)) {
-            boolean mandatory = txtMailSendMailEnable.isSelected() || txtMailBugReportEnable.isSelected();
+            boolean mandatory = txtMailSendMailEnable.isSelected();
             Accessible accessible = mandatory ? Accessible.MANDATORY : Accessible.NORMAL;
             edtEntity.setAccessible(txtMailProtocol, accessible);
             int selectedIndex = txtMailProtocol.getSelectedIndex();

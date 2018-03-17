@@ -69,25 +69,25 @@ public class PnlFileTransferCtrl extends CFSwingCtrl {
         addListener(btnStoreFile, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                _storeFile();
+                _doStoreFile();
             }
         });
         addListener(btnRetrieveFile, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                _retrieveFile();
+                _doRetrieveFile();
             }
         });
     }
 
-    private void _storeFile() {
+    private void _doStoreFile() {
         if (isNotNull(attFileTransfer.getInputStream())) {
             ftp.storeFile(attFileTransfer.getFileName(), attFileTransfer.getInputStream());
             doUpdateTable();
         }
     }
 
-    private void _retrieveFile() {
+    private void _doRetrieveFile() {
         if (tblFileTransfer.isSelected()) {
             String fileName = tblFileTransfer.getTable().getValueAt(tblFileTransfer.getSelectedRow(), 0).toString();
             File file;
